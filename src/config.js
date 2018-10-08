@@ -91,12 +91,14 @@ var config = {
       "action": "index",
       "page_title": "惠学科技-会员中心"
     },
-    "menu_list": [{
+    "menu_list": [
+      {
         id: 'login',
         icon: 'form',
         name: '我是学员',
         open: true,
-        pages: [{
+        pages: [
+          {
             name: '我的余额',
             key: 'user_finance',
             value: 'money',
@@ -135,7 +137,8 @@ var config = {
         icon: 'form',
         name: '我是学员',
         open: true,
-        pages: [{
+        pages: [
+          {
             name: '邀请好友',
             is_phone: false,
             img_src: '../../../../src/images/invite.png',
@@ -162,7 +165,8 @@ var config = {
         icon: 'form',
         name: '我是学员',
         open: true,
-        pages: [{
+        pages: [
+          {
             name: '活动订单',
             is_phone: false,
             img_src: '../../../../src/images/pic_waller.png',
@@ -193,7 +197,8 @@ var config = {
         icon: 'form',
         name: '系统服务',
         open: false,
-        pages: [{
+        pages: [
+          {
             name: '常见问题',
             is_phone: false,
             img_src: '../../../../src/images/pic_ask.png',
@@ -208,12 +213,14 @@ var config = {
         ]
       }
     ],
-    "menu_list2": [{
+    "menu_list2": [
+      {
         id: 'login',
         icon: 'form',
         name: '我是学员',
         open: true,
-        pages: [{
+        pages: [
+          {
             name: '我的余额',
             key: 'user_finance',
             value: 'money',
@@ -244,7 +251,8 @@ var config = {
         icon: 'form',
         name: '我是学员',
         open: true,
-        pages: [{
+        pages: [
+          {
             name: '传统学员',
             key: 'overview',
             value: 'relevance',
@@ -275,7 +283,8 @@ var config = {
         icon: 'form',
         name: '我是学员',
         open: true,
-        pages: [{
+        pages: [
+          {
             name: '计时学员',
             key: 'overview',
             value: 'relevancepay',
@@ -306,7 +315,8 @@ var config = {
         icon: 'form',
         name: '系统服务',
         open: false,
-        pages: [{
+        pages: [
+          {
             name: '我的资料',
             is_phone: false,
             img_src: '../../../../src/images/dealDetail.png',
@@ -331,7 +341,8 @@ var config = {
         icon: 'form',
         name: '我是学员',
         open: true,
-        pages: [{
+        pages: [
+          {
             name: '邀请好友',
             is_phone: false,
             img_src: '../../../../src/images/invite.png',
@@ -370,7 +381,8 @@ var config = {
         icon: 'form',
         name: '系统服务',
         open: false,
-        pages: [{
+        pages: [
+          {
             name: '常见问题',
             is_phone: false,
             img_src: '../../../../src/images/question.png',
@@ -385,7 +397,8 @@ var config = {
         ]
       }
     ],
-    "menu_1": [{
+    "menu_1": [
+      {
         "selected_icon": "wap/images/skin/red/home1.png",
         "no_selected_icon": "wap/images/show/home.png",
         "app_module_action_param": "/page/deal292/haivitDeal/index/index",
@@ -411,7 +424,8 @@ var config = {
         "name": "我的账户"
       }
     ],
-    "menu_5": [{
+    "menu_5": [
+      {
         "selected_icon": "wap/images/skin/red/user1.png",
         "no_selected_icon": "wap/images/show/user.png",
         "app_module_action_param": "/reservation/student/haivitDeal/dealList/dealList",
@@ -424,7 +438,8 @@ var config = {
         "name": "我的预约"
       }
     ],
-    "menu_2": [{
+    "menu_2": [
+      {
         "selected_icon": "wap/images/show/icon/icon_hotel.png",
         "no_selected_icon": "wap/images/show/icon/icon_hotel.png",
         "app_module_action_param": "/page/finance/userMoney/index/index?money_id=4",
@@ -470,7 +485,8 @@ var config = {
         "name": "惠学观点顶部图"
       }
     },
-    "money_first_types": [{
+    "money_first_types": [
+      {
         "action": "inchange",
         "id": 1,
         "name": "绩点A"
@@ -521,7 +537,8 @@ var config = {
     "money_deals": {
 
     },
-    "first_types": [{
+    "first_types": [
+      {
         "action": "inchange",
         "id": 1,
         "name": "绩点A"
