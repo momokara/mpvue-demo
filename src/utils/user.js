@@ -1,9 +1,12 @@
 import config from '@/config.js'
 import qcloud from 'wafer2-client-sdk'
 import {
+  login,
+  setLoginUrl
+} from "@/utils/lib/login";
+import {
   request,
   request_h,
-  uploadImg
 } from "@/utils/request";
 var is_getUserInfo = wx.getStorageSync("is_getUserInfo");
 
@@ -91,12 +94,11 @@ export function callAutoLogin(folder_name, module, action, data, is_show_toast, 
   if (past_time == -1 || past_time > 100 * 60) { //当过去的时间大于100分钟时调用后台自动登录接口
     wx.removeStorageSync('weapp_session_F2C224D4-2BCE-4C64-AF9F-A6D872000D1A');
     var url = config.domain_url + "/" + config.json.json_config[folder_name] + config.extra_folder_name + "/" + module + "/" + action + config.json.request_suffix + "?" + config.json.common_param + "&small_key_suffix=" + config.small_key_suffix;
-    qcloud.setLoginUrl(url);
-    qcloud.login({
+    setLoginUrl(url);
+    login({
       method: "POST",
       data: data,
       success: function (userInfo) {
-        console.log('loginsuccess', userInfo)
         callback(userInfo);
       },
       fail: function (err) {
@@ -112,8 +114,9 @@ export function callAutoLogin(folder_name, module, action, data, is_show_toast, 
  * 获取用户信息，并更新
  */
 export function getUserInfo(callback) {
-  if (is_getUserInfo != 1)
+  if (is_getUserInfo != 1) {
     request_h("project_name_deal3", "deal", "list/user_weixin_xcx", {}, false, function (res1) {
+      console.log('getuserinfo', res1)
       if (res1.err_code == -1) {
         if (res1.user_info.nickName == '用户信息获取失败') {
           wx.getUserInfo({
@@ -159,8 +162,8 @@ export function getUserInfo(callback) {
         })
       }
     }, false);
-  else {
-    callback(user_info);
+  } else {
+    callback(wx.getStorageSync('user_info'));
   }
 }
 

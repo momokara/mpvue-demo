@@ -40,8 +40,6 @@ export const userAutoLogin = (postdata, callback) => {
     'country': 'China',
     'avatarUrl': 'http://hh-common-test.oss-cn-shenzhen.aliyuncs.com/wap/images/tou.png'
   }
-
-  console.log('postdata', postdata)
   autoLogin("project_name_login", "user", "dologinFromXCX", postdata, true, callback);
 }
 

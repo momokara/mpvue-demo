@@ -1,5 +1,6 @@
 import qcloud from 'wafer2-client-sdk'
 import config from '@/config.js'
+var Cookie = require('./lib/cookie');
 
 /**
  *  所有请求
@@ -21,10 +22,11 @@ export function request_h(
   is_show_toast2
 ) {
   var is_check_login = checkUserInfo()
-
+  console.log('request_h working',
+    is_check_login, qcloud.Session.get())
   if (is_check_login) {
-    var headCookie = qcloud.cookie.getHeadCookie()
-    var session_data = qcloud.session.get()
+    var headCookie = Cookie.getHeadCookie()
+    var session_data = qcloud.Session.get()
     data['session_token'] = session_data.session_token
     data['cookie_data'] = headCookie
   } else {
@@ -65,7 +67,7 @@ export function request_h(
       if (res) {
         var set_cookie = result.header['Set-Cookie']
         if (set_cookie) {
-          qcloud.cookie.saveCookie(set_cookie)
+          Cookie.saveCookie(set_cookie)
           var timestamp = Date.parse(new Date())
           timestamp = timestamp / 1000
         } else {
@@ -118,7 +120,7 @@ export function request(folder_name, module, action, data, is_show_toast, callba
  */
 export function checkUserInfo() {
   try {
-    var session_data = qcloud.session.get()
+    var session_data = qcloud.Session.get()
     var userInfo = session_data.userInfo
     return true
   } catch (err) {
