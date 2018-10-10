@@ -27,7 +27,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 ├── dist                   小程序运行代码目录（该目录由编译生成）  
 ├── node_modules             
 ├── src                    开发目录  
-|   ├── api                页面请求api统一管理  
+|...├── api                页面请求api统一管理  
 |   ├── components         组件目录  
 |   |   ├── com_a.vue      组件a  
 |   |   └── com_b.vue      组件b  
