@@ -20,7 +20,7 @@
 
 <script>
 import swiper from "@/components/swiper";
-import scrollBox from "@/components/scroll-box";
+import scrollBox from "@/components/scroll-box";  
 import { getHomeInfo, uploadImage } from "@/api/api";
 
 export default {
