@@ -21,13 +21,14 @@ npm run build --report
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 
-# 项目目录 参考
+## 项目目录 参考
+``` bash
 ├── build                  编译配置  
 ├── config                 编译配置  
 ├── dist                   小程序运行代码目录（该目录由编译生成）  
 ├── node_modules             
 ├── src                    开发目录  
-|   ├── api                页面请求api统一管理  
+|...├── api                页面请求api统一管理  
 |   ├── components         组件目录  
 |   |   ├── com_a.vue      组件a  
 |   |   └── com_b.vue      组件b  
@@ -49,3 +50,4 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
     └── vant               vant的组件库  
 └── package.json           项目的package配置  
 └── project.config.json    小程序开发工具的配置  
+```
