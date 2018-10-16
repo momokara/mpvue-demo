@@ -7,6 +7,7 @@ import {
   autoLogin
 } from "@/utils/user";
 // appOnLaunch的请求
+let url = '';
 export const onLaunchrequest = (postdata, callback) => {
   request_h(
     "project_name_deal3",

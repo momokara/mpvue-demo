@@ -3,9 +3,6 @@
     <v-button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
       授权登录
     </v-button>
-    <v-cell-group>
-      <v-cell v-for="(item,index) in cellList" :key="index" :title="item.title" :value="item.value+'|index:'+index" />
-    </v-cell-group>
     <div>
       <img v-for="(item,index) in tempFilePaths" :key="index" :src="item" alt="" srcset="">
       <v-button type='primary' open-type="getUserInfo" @click="addImage">
@@ -14,25 +11,27 @@
       <v-button type='primary' @click="subimage">
         上传图片
       </v-button>
+      <br>
+       <v-button type='primary' @click="getHomeInfo">
+        getHomeInfo
+      </v-button>
+       <v-button type='primary' @click="doautoLogin">
+        autoLogin
+      </v-button>
     </div>
   </div>
 </template>
 
 <script>
 import swiper from "@/components/swiper";
-import scrollBox from "@/components/scroll-box";  
-import { getHomeInfo, uploadImage } from "@/api/api";
+import scrollBox from "@/components/scroll-box";
+import api from "@/api/api";
 
 export default {
   data() {
     return {
       motto: "home",
       userInfo: {},
-      cellList: [
-        { title: "单元格1", value: "内容1" },
-        { title: "单元格2", value: "内容2" },
-        { title: "单元格3", value: "内容3" }
-      ],
       tempFilePaths: [],
       uploadresFilePaths: []
     };
@@ -105,8 +104,8 @@ export default {
         wx.showLoading({
           title: "图片上传中"
         });
-        uploadImage(filePath, res => {
-          console.log(res)
+        api.uploadImage(filePath, res => {
+          console.log(res);
           i++;
           successUp++;
 
@@ -126,17 +125,23 @@ export default {
       _this.uploadFile(this.tempFilePaths, successUp, 0, function(res) {
         console.log(res);
       });
+    },
+    doautoLogin() {
+      api.userAutoLogin({}, function(userinfo) {
+        console.log("userautoLogin", userinfo);
+      });
+    },
+    getHomeInfo() {
+      api.getHomeInfo({}, function(res) {
+        if (res) {
+          console.log("请求回来的res", res);
+        }
+      });
     }
   },
 
   created() {
-    getHomeInfo({}, function(res) {
-      if (res) {
-        console.log("请求回来的res", res);
-      }
-    });
-    // 调用应用实例的方法获取全局数据
-    // this.getUserInfo();
+    this.getHomeInfo()
   }
 };
 </script>
