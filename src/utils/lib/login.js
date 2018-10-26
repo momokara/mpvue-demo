@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 /**
  * README!!!
  * 为了兼容微信修改的登录逻辑

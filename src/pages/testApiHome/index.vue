@@ -8,15 +8,22 @@
       <v-button type='primary' open-type="getUserInfo" @click="addImage">
         添加图片
       </v-button>
-      <v-button type='primary' @click="subimage">
-        上传图片
-      </v-button>
       <br>
        <v-button type='primary' @click="getHomeInfo">
         getHomeInfo
       </v-button>
        <v-button type='primary' @click="doautoLogin">
         autoLogin
+      </v-button>
+       <br>
+       <v-button type='primary' @click="promiseRequest">
+        testpromise
+      </v-button>
+       <v-button type='primary' @click="subimage">
+        subimage
+      </v-button>
+       <v-button type='primary' @click="uploadImgs">
+        uploadImgs
       </v-button>
     </div>
   </div>
@@ -26,7 +33,7 @@
 import swiper from "@/components/swiper";
 import scrollBox from "@/components/scroll-box";
 import api from "@/api/api";
-
+import { request, uploadImg, uploadImgs } from "@/utils/Wxrequest";
 export default {
   data() {
     return {
@@ -90,40 +97,10 @@ export default {
         tempFilePaths: tempFilePaths
       });
     },
-    /**
-     * 文件上传处理
-     * @param {Array} filePaths 文件路径数组,由wx.chooseImage 产生
-     * @param {Number} successUp  是成功上传的个数
-     * @param {Number} failUp 上传失败的个数
-     * @param {Number} i  是文件路径数组的标记
-     * @param {Number} length 是文件路径数组的长度
-     */
-    uploadFile: function(filePaths, successUp, i, callback) {
-      if (filePaths.length > 0) {
-        const filePath = filePaths[i];
-        wx.showLoading({
-          title: "图片上传中"
-        });
-        api.uploadImage(filePath, res => {
-          console.log(res);
-          i++;
-          successUp++;
-
-          if (i < filePaths.length) {
-            this.uploadFile(filePaths, successUp, i, callback);
-          } else {
-            wx.hideLoading();
-            callback(this.uploadresFilePaths);
-          }
-          this.uploadresFilePaths = this.uploadresFilePaths.concat(res.url);
-        });
-      }
-    },
-    subimage: function() {
-      let _this = this;
-      const successUp = 0; //成功个数
-      _this.uploadFile(this.tempFilePaths, successUp, 0, function(res) {
-        console.log(res);
+    // 批量上传图片
+    uploadImgs() {
+      uploadImgs(this.tempFilePaths).then(res => {
+        console.log("uploadImgs", res);
       });
     },
     doautoLogin() {
@@ -137,11 +114,26 @@ export default {
           console.log("请求回来的res", res);
         }
       });
+    },
+    promiseRequest() {
+      const _requestUrl = {
+        folder_name: "project_name_deal3",
+        module: "deal",
+        action: "page/11000_index_jx"
+      };
+      request(_requestUrl, {})
+        .then(res => {
+          console.log("res1", res);
+          return request(_requestUrl, {});
+        })
+        .then(res => {
+          console.log("res2", res);
+        });
     }
   },
 
   created() {
-    this.getHomeInfo()
+    // this.getHomeInfo();
   }
 };
 </script>

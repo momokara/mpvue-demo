@@ -1,5 +1,5 @@
 <script>
-import { onLaunchrequest, userAutoLogin } from "@/api/api";
+// import { onLaunchrequest, userAutoLogin } from "@/api/api";
 
 export default {
   created() {
@@ -9,16 +9,16 @@ export default {
     wx.setStorageSync("logs", logs);
     console.log("app created and cache logs by setStorageSync");
     // 设置缓存中的 app_phone？
-    onLaunchrequest({}, function(res) {
-      if (res.err_code == -1) {
-        wx.setStorageSync("app_phone", res.phone.content);
-      }
-    });
+    // onLaunchrequest({}, function(res) {
+    //   if (res.err_code == -1) {
+    //     wx.setStorageSync("app_phone", res.phone.content);
+    //   }
+    // });
   },
   onShow() {
-    userAutoLogin({}, function(userinfo) {
-      console.log("userautoLogin", userinfo);
-    });
+    // userAutoLogin({}, function(userinfo) {
+    //   console.log("userautoLogin", userinfo);
+    // });
   }
 };
 </script>

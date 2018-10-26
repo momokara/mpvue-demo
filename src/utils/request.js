@@ -1,5 +1,6 @@
-import qcloud from 'wafer2-client-sdk'
-import config from '@/config.js'
+/* jshint esversion: 6 */
+import qcloud from 'wafer2-client-sdk';
+import config from '@/config.js';
 var Cookie = require('./lib/cookie');
 
 /**
@@ -27,11 +28,11 @@ export function request_h(
   if (is_check_login) {
     var headCookie = Cookie.getHeadCookie()
     var session_data = qcloud.Session.get()
-    data['session_token'] = session_data.session_token
-    data['cookie_data'] = headCookie
+    data['session_token'] = session_data.session_token;
+    data['cookie_data'] = headCookie;
   } else {
-    data['session_token'] = ''
-    data['cookie_data'] = ''
+    data['session_token'] = '';
+    data['cookie_data'] = '';
   }
 
   //console.log(headCookie);
@@ -140,6 +141,8 @@ export function uploadImg(path, callback) {
   // })
   console.log(path);
   request_h("project_name_oss", "oss", "jsapiTicket", {}, false, function (res) {
+   console.log(res);
+   
     if (res.err_code == -1) {
       const config = JSON.parse(res.config);
       wx.uploadFile({
@@ -179,10 +182,46 @@ export function uploadImg(path, callback) {
     }
   }, false);
 }
+/**
+ * 
+ * @param {string} method      请求方式
+ * @param {string} urlObj.folder_name:string 在数据库m_config里面配置的项目名
+ * @param {string} urlObj.module 模块
+ * @param {string} urlObj.action 动作
+ * @param {json}   params        post的json
+ */
+export function request_promise(urlObj, params) {
+  let _Request = toPromise(wx.request);
+  let _url = `${config.domain_url}/${config.json.json_config[urlObj.folder_name]}${config.extra_folder_name}/${urlObj.module}/${urlObj.action}${config.json.request_suffix}?${config.json.common_param}&small_key_suffix=${config.small_key_suffix}&supplier_id=${+config.supplier_id}`;
+  return _Request({
+    url: _url,
+    method: 'POST',
+    data: params,
+    header: {
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  })
+}
 
-export default {
-  request_h,
-  request,
-  checkUserInfo,
-  uploadImg
+function toPromise(fn) {
+  return function (obj = {}) {
+    return new Promise((resolve, reject) => {
+      obj.success = function (res) {
+        console.log('promise res', res);
+        resolve(res.data)
+      }
+      obj.fail = function (res) {
+        reject(res)
+      }
+      fn(obj)
+    })
+  }
+}
+
+module.export = {
+  request_h: request_h,
+  request: request,
+  checkUserInfo: checkUserInfo,
+  uploadImg: uploadImg,
+  request_promise: request_promise
 }

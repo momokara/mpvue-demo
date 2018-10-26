@@ -130,11 +130,11 @@ export default {
   },
 
   created() {
-    getHomeInfo({}, function(res) {
-      if (res) {
-        console.log("请求回来的res", res);
-      }
-    });
+    // getHomeInfo({}, function(res) {
+    //   if (res) {
+    //     console.log("请求回来的res", res);
+    //   }
+    // });
     // 调用应用实例的方法获取全局数据
     // this.getUserInfo();
   }
