@@ -1,6 +1,10 @@
 /* jshint esversion: 6 */
-import qcloud from 'wafer2-client-sdk';
+
 import config from '@/config.js';
+import {
+  checkUserInfo,
+  toPromise
+} from './basic';
 var Cookie = require('./lib/cookie');
 
 /**
@@ -11,12 +15,13 @@ var Cookie = require('./lib/cookie');
  * @param {json}   params        post的json
  * @return {Promise} 
  */
-export function request(urlObj, params) {
+export const request = (urlObj, params) => {
   let _Request = toPromise(wx.request);
   const _isLogin = checkUserInfo();
   let _hearder = {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
+
   if (_isLogin) {
     var headCookie = Cookie.getHeadCookie();
     var session_data = _isLogin;
@@ -30,6 +35,7 @@ export function request(urlObj, params) {
     params.cookie_data = '';
   }
   let _url = `${config.domain_url}/${config.json.json_config[urlObj.folder_name]}${config.extra_folder_name}/${urlObj.module}/${urlObj.action}${config.json.request_suffix}?${config.json.common_param}&small_key_suffix=${config.small_key_suffix}&supplier_id=${+config.supplier_id}`;
+
   return _Request({
     url: _url,
     method: 'POST',
@@ -43,7 +49,7 @@ export function request(urlObj, params) {
  * @param {string} path 文件路径
  * @return {Promise} 
  */
-export function uploadImg(path, isUrl = true) {
+export const uploadImg = (path, isUrl = true) => {
   const _requestUrl = {
     folder_name: "project_name_oss",
     module: "oss",
@@ -107,56 +113,6 @@ export const uploadImgs = async (FilePaths) => {
   return resUrlList;
 }
 
-// export function uploadImgs2(FilePaths) {
-//   let resList = []
-//   FilePaths.forEach(element => {
-//     uploadImg(element, false).then(res => {
-//       if (res) {
-//         resList.push(res)
-//       }
-//     })
-//   });
-//   console.log('uploadImgs2', resList);
-//   return resList;
-// }
-
-
-function toPromise(fn) {
-  return function (obj = {}) {
-    return new Promise((resolve, reject) => {
-      obj.success = function (res) {
-        if (res) {
-          console.log('toPromise', res);
-
-          // let _set_cookie = res.header['Set-Cookie'] ? res.header['Set-Cookie']:'';
-          // if (_set_cookie) {
-          //   Cookie.saveCookie(_set_cookie);
-          // }
-        }
-        res = res.data ? res.data : res;
-        resolve(res);
-      };
-      obj.fail = function (res) {
-        reject(res);
-      };
-      fn(obj);
-    });
-  };
-}
-
-
-/**
- * 检查用户数据是否缓存
- * @returns {boolean}
- */
-function checkUserInfo() {
-  try {
-    var session_data = qcloud.Session.get();
-    return session_data;
-  } catch (err) {
-    return false;
-  }
-}
 
 module.export = {
   request: request,

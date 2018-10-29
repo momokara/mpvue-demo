@@ -31,4 +31,9 @@ export default {
   -webkit-transition: width 2s;
   -o-transition: width 2s;
 }
+.title{
+  font-size: 17pt;
+  color: #353535;
+  padding: 15px;
+}
 </style>

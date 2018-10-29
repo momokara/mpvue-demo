@@ -29,7 +29,9 @@
       "root": "pages/test",
       "pages": [
         "counter/main",
-        "logs/main"
+        "logs/main",
+        "componentsDemoMenu/main",
+        "componentsDemo/Layout/main"
       ]
     },
     {

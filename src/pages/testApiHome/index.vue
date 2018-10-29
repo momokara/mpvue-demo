@@ -1,5 +1,13 @@
 <template>
   <div class="container">
+    <div>
+      <navigator url="/pages/test/componentsDemoMenu/main">
+        <v-button type='default'>
+          进入组件列表
+        </v-button>
+      </navigator>
+    </div>
+
     <v-button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
       授权登录
     </v-button>
@@ -9,20 +17,24 @@
         添加图片
       </v-button>
       <br>
-       <v-button type='primary' @click="getHomeInfo">
-        getHomeInfo
-      </v-button>
-       <v-button type='primary' @click="doautoLogin">
+      <v-button type='primary' @click="doautoLogin">
         autoLogin
       </v-button>
-       <br>
-       <v-button type='primary' @click="promiseRequest">
+      <v-button type='primary' @click="newAutoLogin">
+        newAutoLogin
+      </v-button>
+      <br>
+      <v-button type='primary' @click="getHomeInfo">
+        getHomeInfo
+      </v-button>
+      <v-button type='primary' @click="promiseRequest">
         testpromise
       </v-button>
-       <v-button type='primary' @click="subimage">
+      <br>
+      <v-button type='primary' @click="subimage">
         subimage
       </v-button>
-       <v-button type='primary' @click="uploadImgs">
+      <v-button type='primary' @click="uploadImgs">
         uploadImgs
       </v-button>
     </div>
@@ -34,6 +46,7 @@ import swiper from "@/components/swiper";
 import scrollBox from "@/components/scroll-box";
 import api from "@/api/api";
 import { request, uploadImg, uploadImgs } from "@/utils/Wxrequest";
+import { autoLogin } from "@/utils/login";
 export default {
   data() {
     return {
@@ -129,6 +142,25 @@ export default {
         .then(res => {
           console.log("res2", res);
         });
+    },
+    newAutoLogin() {
+      const _requestUrl = {
+        folder_name: "project_name_login",
+        module: "user",
+        action: "dologinFromXCX"
+      };
+      let postdata = {};
+      postdata["userInfo"] = {
+        nickName: "用户信息获取失败",
+        gender: 1,
+        language: "zh_CN",
+        city: "Guangzhou",
+        province: "Guangdong",
+        country: "China",
+        avatarUrl:
+          "http://hh-common-test.oss-cn-shenzhen.aliyuncs.com/wap/images/tou.png"
+      };
+      autoLogin(_requestUrl, postdata);
     }
   },
 
