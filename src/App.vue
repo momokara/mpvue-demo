@@ -31,9 +31,32 @@ export default {
   -webkit-transition: width 2s;
   -o-transition: width 2s;
 }
-.title{
-  font-size: 17pt;
-  color: #353535;
+.title {
   padding: 15px;
+}
+
+.fz-17pt {
+  font-size: 17pt;
+}
+.fz-15pt {
+  font-size: 15pt;
+}
+.fz-14pt {
+  font-size: 14pt;
+}
+.fz-13pt {
+  font-size: 13pt;
+}
+.fz-11pt {
+  font-size: 11pt;
+}
+.color-35 {
+  color: #353535;
+}
+.color-888{
+  color: #888
+}
+.ta-c{
+  text-align:center;
 }
 </style>
