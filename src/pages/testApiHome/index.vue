@@ -7,46 +7,28 @@
         </v-button>
       </navigator>
     </div>
-
-    <v-button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
-      授权登录
-    </v-button>
     <div>
-      <img v-for="(item,index) in tempFilePaths" :key="index" :src="item" alt="" srcset="">
+      <img v-for="(item,index) in tempFilePaths" :key="index" :src="item" @click="deleteImage(index)">
       <v-button type='primary' open-type="getUserInfo" @click="addImage">
         添加图片
       </v-button>
-      <br>
-      <v-button type='primary' @click="doautoLogin">
-        autoLogin
+      <v-button type='primary' @click="upLoadImgs">
+        上传图片
       </v-button>
-      <v-button type='primary' @click="newAutoLogin">
-        newAutoLogin
+      <br>
+      <v-button type='primary' @click="autoLogin">
+        自动登录
       </v-button>
       <br>
       <v-button type='primary' @click="getHomeInfo">
-        getHomeInfo
-      </v-button>
-      <v-button type='primary' @click="promiseRequest">
-        testpromise
-      </v-button>
-      <br>
-      <v-button type='primary' @click="subimage">
-        subimage
-      </v-button>
-      <v-button type='primary' @click="uploadImgs">
-        uploadImgs
+        获取首页信息
       </v-button>
     </div>
   </div>
 </template>
 
 <script>
-import swiper from "@/components/swiper";
-import scrollBox from "@/components/scroll-box";
-import api from "@/api/api";
-import { request, uploadImg, uploadImgs } from "@/utils/Wxrequest";
-import { autoLogin } from "@/utils/login";
+import Api from "@/api/api";
 export default {
   data() {
     return {
@@ -57,35 +39,9 @@ export default {
     };
   },
 
-  components: {
-    swiper,
-    scrollBox
-  },
+  components: {},
 
   methods: {
-    bindViewTap() {
-      const url = "../logs/main";
-      wx.navigateTo({ url });
-    },
-    getUserInfo() {
-      // 调用登录接口
-      wx.login({
-        success: () => {
-          wx.getUserInfo({
-            success: res => {
-              this.userInfo = res.userInfo;
-              console.log("登录返回的userinfo", res);
-            },
-            fail: res => {
-              console.log("fail", res);
-            }
-          });
-        }
-      });
-    },
-    clickHandle(msg, ev) {
-      console.log("clickHandle:", msg, ev);
-    },
     // 选择图片
     addImage: function(e) {
       wx.chooseImage({
@@ -93,80 +49,37 @@ export default {
         sizeType: ["original", "compressed"],
         sourceType: ["album", "camera"],
         success: res => {
-          console.log(res.tempFilePaths);
           this.tempFilePaths = this.tempFilePaths.concat(res.tempFilePaths);
-          console.log(this.tempFilePaths);
         }
       });
     },
     /**
      * 删除图片
      * @param {*} index 图片序号
-     */ deleteImage: function(event) {
-      var index = event.currentTarget.dataset.id;
-      var tempFilePaths = this.data.tempFilePaths;
+     */
+    deleteImage: function(index) {
+      console.log(index);
+      let tempFilePaths = this.tempFilePaths;
       tempFilePaths.splice(index, 1);
-      this.setData({
-        tempFilePaths: tempFilePaths
+    },
+    upLoadImgs() {
+      Api.upLoadimgs(this.tempFilePaths).then(res => {
+        console.log("upLoadImgs res:", res);
       });
     },
-    // 批量上传图片
-    uploadImgs() {
-      uploadImgs(this.tempFilePaths).then(res => {
-        console.log("uploadImgs", res);
-      });
-    },
-    doautoLogin() {
-      api.userAutoLogin({}, function(userinfo) {
-        console.log("userautoLogin", userinfo);
+    autoLogin() {
+      Api.autoLogin().then(res => {
+        console.log("auto login res:", res);
       });
     },
     getHomeInfo() {
-      api.getHomeInfo({}, function(res) {
-        if (res) {
-          console.log("请求回来的res", res);
-        }
+      Api.gethomeInfo().then(res => {
+        console.log("get Home Info:", res);
       });
-    },
-    promiseRequest() {
-      const _requestUrl = {
-        folder_name: "project_name_deal3",
-        module: "deal",
-        action: "page/11000_index_jx"
-      };
-      request(_requestUrl, {})
-        .then(res => {
-          console.log("res1", res);
-          return request(_requestUrl, {});
-        })
-        .then(res => {
-          console.log("res2", res);
-        });
-    },
-    newAutoLogin() {
-      const _requestUrl = {
-        folder_name: "project_name_login",
-        module: "user",
-        action: "dologinFromXCX"
-      };
-      let postdata = {};
-      postdata["userInfo"] = {
-        nickName: "用户信息获取失败",
-        gender: 1,
-        language: "zh_CN",
-        city: "Guangzhou",
-        province: "Guangdong",
-        country: "China",
-        avatarUrl:
-          "http://hh-common-test.oss-cn-shenzhen.aliyuncs.com/wap/images/tou.png"
-      };
-      autoLogin(_requestUrl, postdata);
     }
   },
 
-  created() {
-    // this.getHomeInfo();
-  }
+  created() {}
 };
 </script>
 

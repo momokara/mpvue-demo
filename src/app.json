@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/testApiHome/main",
-    "pages/home/main"
-   
+    "pages/home/main",
+    "pages/loginpage/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -22,6 +22,10 @@
       {
         "pagePath": "pages/testApiHome/main",
         "text": "test"
+      },
+      {
+        "pagePath": "pages/loginpage/main",
+        "text": "登录"
       }
     ]
   },

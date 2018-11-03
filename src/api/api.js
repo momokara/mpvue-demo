@@ -1,58 +1,54 @@
-import {
-  request,
-  request_h,
-  uploadImg
-} from "@/utils/request";
-import {
-  autoLogin
-} from "@/utils/user";
-// appOnLaunch的请求
-let url = '';
-export const onLaunchrequest = (postdata, callback) => {
-  request_h(
-    "project_name_deal3",
-    "deal",
-    "list/getAppPhone",
-    postdata,
-    false,
-    callback,
-    false);
-}
+/* jshint esversion: 6 */
+import autoLogin from "@/utils/login";
+import WxPromis from "@/utils/Wxrequest";
 
+const Api = {};
+// 处理自动登录
+Api.autoLogin = () => {
+  const _requestUrl = {
+    folder_name: "project_name_login",
+    module: "user",
+    action: "dologinFromXCX"
+  };
+  let postdata = {};
+  postdata["userInfo"] = {
+    nickName: "用户信息获取失败",
+    gender: 1,
+    language: "zh_CN",
+    city: "Guangzhou",
+    province: "Guangdong",
+    country: "China",
+    avatarUrl: "http://hh-common-test.oss-cn-shenzhen.aliyuncs.com/wap/images/tou.png"
+  };
+  return autoLogin(_requestUrl, postdata).catch(res => {
+    // 登录错误处理
+    console.error('autoLogin err:', res);
+    wx.navigateTo({
+      url: '/pages/loginpage/main',
+      fail: function (res) {
+        wx.switchTab({
+          url: '/pages/loginpage/main',
+          fail: function (res) {
+            console.log(res);
+          }
+        });
+      },
+    });
+    return res;
+  });
+}
+// 上传图片
+Api.upLoadimgs = (tempFilePaths) => {
+  return WxPromis.uploadImgs(tempFilePaths);
+};
 // 获取首页信息
-export const getHomeInfo = (postdata, callback) => {
-  request(
-    "project_name_deal3",
-    "deal",
-    "page/11000_index_jx",
-    postdata,
-    false,
-    callback
-  );
-}
+Api.gethomeInfo = () => {
+  const _requestUrl = {
+    folder_name: "project_name_deal3",
+    module: "deal",
+    action: "page/11000_index_jx"
+  };
+  return WxPromis.request(_requestUrl, {})
 
-export const userAutoLogin = (postdata, callback) => {
-  postdata['userInfo'] = {
-    'nickName': '用户信息获取失败',
-    'gender': 1,
-    'language': 'zh_CN',
-    'city': 'Guangzhou',
-    'province': 'Guangdong',
-    'country': 'China',
-    'avatarUrl': 'http://hh-common-test.oss-cn-shenzhen.aliyuncs.com/wap/images/tou.png'
-  }
-  autoLogin("project_name_login", "user", "dologinFromXCX", postdata, true, callback);
 }
-
-export const uploadImage = (path, callback) => {
-  uploadImg(path, callback);
-}
-
-// 用户自动登录
-
-export default {
-  onLaunchrequest,
-  getHomeInfo,
-  userAutoLogin,
-  uploadImage
-}
+export default Api;

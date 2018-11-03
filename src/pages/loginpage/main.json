@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "请先登录",
+  "usingComponents": {
+    "v-button": "/static/components/button/index"
+  }
+}

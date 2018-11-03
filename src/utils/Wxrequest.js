@@ -15,7 +15,7 @@ var Cookie = require('./lib/cookie');
  * @param {json}   params        post的json
  * @return {Promise} 
  */
-export const request = (urlObj, params) => {
+const request = (urlObj, params) => {
   let _Request = toPromise(wx.request);
   const _isLogin = checkUserInfo();
   let _hearder = {
@@ -49,7 +49,7 @@ export const request = (urlObj, params) => {
  * @param {string} path 文件路径
  * @return {Promise} 
  */
-export const uploadImg = (path, isUrl = true) => {
+const uploadImg = (path, isUrl = true) => {
   const _requestUrl = {
     folder_name: "project_name_oss",
     module: "oss",
@@ -99,23 +99,29 @@ export const uploadImg = (path, isUrl = true) => {
  * 批量上传图片 有报错 请无视
  * @param {array[string]} FilePaths 
  */
-export const uploadImgs = async (FilePaths) => {
+const uploadImgs = async (FilePaths) => {
   let resUrlList = [];
+  let i = 0;
   for (let obj in FilePaths) {
     try {
       let _path = FilePaths[obj];
+      console.log(`上传第${i}张`);
       resUrlList.push(await uploadImg(_path, false));
+      i++;
+
     } catch (err) {
       return err;
     }
   }
-  console.log('resUrlList', resUrlList);
+  console.log('图片传完了！结果是:', resUrlList);
   return resUrlList;
 }
+const WxPromis = {};
+// 处理请求的方法
+WxPromis.request = request;
+// 上传单张图片
+WxPromis.uploadImg = uploadImg;
+// 上传多张图片
+WxPromis.uploadImgs = uploadImgs;
 
-
-module.export = {
-  request: request,
-  uploadImg: uploadImg,
-  uploadImgs: uploadImgs
-};
+export default WxPromis;

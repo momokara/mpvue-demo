@@ -17,7 +17,7 @@ import {
  * @param {json}   params        post的json
  * @return {Promise} 
  */
-export const autoLogin = (urlObj, params) => {
+const autoLogin = (urlObj, params) => {
   let timestamp = Date.parse(new Date());
   timestamp = timestamp / 1000;
   let token_create_time = wx.getStorageSync("session_expire_time");
@@ -27,11 +27,21 @@ export const autoLogin = (urlObj, params) => {
   }
   if (past_time == -1 || past_time > 100 * 60) { //当过去的时间大于100分钟时调用后台自动登录接口
     wx.removeStorageSync('weapp_session_F2C224D4-2BCE-4C64-AF9F-A6D872000D1A');
-    _wxLogin(urlObj,params).then(res => {
-      console.log('_wxLogin',res);
-    })
+    return _wxLogin(urlObj, params);
   } else {
-    console.log(wx.getStorageSync('user_info'));
+    return new Promise((resolve, reject) => {
+      let _res = wx.getStorageSync('user_info');
+      if (_res) {
+        resolve(_res);
+      } else {
+        _res = {
+          err: 1,
+          info: "no info"
+        };
+        reject(_res);
+      }
+
+    })
   }
 }
 /**
@@ -51,3 +61,5 @@ const _wxLogin = (urlObj, params) => {
     data: params,
   });
 }
+
+export default autoLogin;

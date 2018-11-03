@@ -21,7 +21,6 @@
 <script>
 import swiper from "@/components/swiper";
 import scrollBox from "@/components/scroll-box";  
-import { getHomeInfo, uploadImage } from "@/api/api";
 
 export default {
   data() {
@@ -91,52 +90,11 @@ export default {
         tempFilePaths: tempFilePaths
       });
     },
-    /**
-     * 文件上传处理
-     * @param {Array} filePaths 文件路径数组,由wx.chooseImage 产生
-     * @param {Number} successUp  是成功上传的个数
-     * @param {Number} failUp 上传失败的个数
-     * @param {Number} i  是文件路径数组的标记
-     * @param {Number} length 是文件路径数组的长度
-     */
-    uploadFile: function(filePaths, successUp, i, callback) {
-      if (filePaths.length > 0) {
-        const filePath = filePaths[i];
-        wx.showLoading({
-          title: "图片上传中"
-        });
-        uploadImage(filePath, res => {
-          console.log(res)
-          i++;
-          successUp++;
-
-          if (i < filePaths.length) {
-            this.uploadFile(filePaths, successUp, i, callback);
-          } else {
-            wx.hideLoading();
-            callback(this.uploadresFilePaths);
-          }
-          this.uploadresFilePaths = this.uploadresFilePaths.concat(res.url);
-        });
-      }
-    },
-    subimage: function() {
-      let _this = this;
-      const successUp = 0; //成功个数
-      _this.uploadFile(this.tempFilePaths, successUp, 0, function(res) {
-        console.log(res);
-      });
-    }
+   
   },
 
   created() {
-    // getHomeInfo({}, function(res) {
-    //   if (res) {
-    //     console.log("请求回来的res", res);
-    //   }
-    // });
-    // 调用应用实例的方法获取全局数据
-    // this.getUserInfo();
+   
   }
 };
 </script>
