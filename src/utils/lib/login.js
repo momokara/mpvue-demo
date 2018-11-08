@@ -93,7 +93,7 @@ export function login(opts) {
 
         //处理cookie
         Cookie.saveCookie(result.header['Set-Cookie']);
-        var timestamp = Date.parse(new Date());
+        var timestamp = Date.parse(new Date()) / 1000;
         timestamp = timestamp / 1000;
         wx.setStorageSync("session_expire_time", timestamp);
         wx.setStorageSync("is_getUserInfo", 1);

@@ -1,6 +1,4 @@
 <script>
-// import { onLaunchrequest, userAutoLogin } from "@/api/api";
-
 export default {
   created() {
     // 调用API从本地缓存中获取数据
@@ -8,55 +6,96 @@ export default {
     logs.unshift(Date.now());
     wx.setStorageSync("logs", logs);
     console.log("app created and cache logs by setStorageSync");
-    // 设置缓存中的 app_phone？
-    // onLaunchrequest({}, function(res) {
-    //   if (res.err_code == -1) {
-    //     wx.setStorageSync("app_phone", res.phone.content);
-    //   }
-    // });
   },
-  onShow() {
-    // userAutoLogin({}, function(userinfo) {
-    //   console.log("userautoLogin", userinfo);
-    // });
-  }
+  // 初始化
+  onLaunch() {
+    console.log("onLaunch");
+  },
+  // 当小程序启动，或从后台进入前台显示
+  onShow() {},
+  // 当小程序从前台进入后台
+  onHide() {}
 };
 </script>
 
-<style>
-/* this rule will be remove */
+<style lang="scss">
+/* 微信设计规范中的字体大小 */
+$fs-40: 40pt;
+$fs-20: 20pt;
+$fs-18: 18pt;
+$fs-17: 17pt;
+$fs-14: 14pt;
+$fs-13: 13pt;
+$fs-11: 11pt;
+// $fs-40: 40pt;
+// $fs-20: 20pt;
+// $fs-18: 18pt;
+// $fs-17: 17pt;
+// $fs-14: 14pt;
+// $fs-13: 14px;
+// $fs-11: 12px;
+// 常用颜色
+$fc-black: #000;
+$fc-semi: #353535;
+$fc-grey: #888;
+$fc-light: #b2b2b2;
+$fc-blue: #576b95;
+$fc-green: #09bb07;
+$fc-red: #e64340;
+// 常用透明度
+$opacity-normal: 100%;
+$opacity-press: 20%;
+$opacity-disable: 10%;
+// 全局样式
 * {
   transition: width 2s;
   -moz-transition: width 2s;
   -webkit-transition: width 2s;
   -o-transition: width 2s;
+  margin: 0;
+  padding: 0;
 }
-.title {
-  padding: 15px;
+// 基本字体大小
+.fs40 {
+  font-size: $fs-40;
 }
-
-.fz-17pt {
-  font-size: 17pt;
+.fs20 {
+  font-size: $fs-20;
 }
-.fz-15pt {
-  font-size: 15pt;
+.fs18 {
+  font-size: $fs-18;
 }
-.fz-14pt {
-  font-size: 14pt;
+.fs17 {
+  font-size: $fs-17;
 }
-.fz-13pt {
-  font-size: 13pt;
+.fs14 {
+  font-size: $fs-14;
 }
-.fz-11pt {
-  font-size: 11pt;
+.fs13 {
+  font-size: $fs-13;
 }
-.color-35 {
-  color: #353535;
+.fs11 {
+  font-size: $fs-11;
 }
-.color-888{
-  color: #888
+.fc-black{
+  color: $fc-black;
 }
-.ta-c{
-  text-align:center;
+.fc-semi{
+  color: $fc-semi;
+}
+.fc-grey{
+  color: $fc-grey;
+}
+.fc-light{
+  color: $fc-light;
+}
+.fc-blue{
+  color: $fc-blue;
+}
+.fc-green{
+  color: $fc-green;
+}
+.fc-red{
+  color: $fc-red;
 }
 </style>

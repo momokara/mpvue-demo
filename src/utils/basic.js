@@ -22,7 +22,7 @@ export const toPromise = (fn) => {
     return new Promise((resolve, reject) => {
       obj.success = (res) => {
         if (res) {
-          console.log('toPromise', res);
+          // console.log('toPromise', res);
           if (res.header) {
             let _set_cookie = res.header['Set-Cookie'] ? res.header['Set-Cookie'] : '';
             if (_set_cookie) {

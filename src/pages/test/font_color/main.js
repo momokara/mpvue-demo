@@ -1,4 +1,3 @@
-/* jshint esversion: 6 */
 import Vue from 'vue'
 import App from './index'
 

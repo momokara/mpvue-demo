@@ -48,7 +48,7 @@ Api.gethomeInfo = () => {
     module: "deal",
     action: "page/11000_index_jx"
   };
-  return WxPromis.request(_requestUrl, {})
+  return WxPromis.request(_requestUrl, {});
 
 }
 export default Api;

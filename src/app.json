@@ -22,10 +22,6 @@
       {
         "pagePath": "pages/testApiHome/main",
         "text": "test"
-      },
-      {
-        "pagePath": "pages/loginpage/main",
-        "text": "登录"
       }
     ]
   },
@@ -35,7 +31,9 @@
         "counter/main",
         "logs/main",
         "componentsDemoMenu/main",
-        "componentsDemo/Layout/main"
+        "componentsDemo/Layout/main",
+        "font_color/main",
+        "newpagedemo/main"
       ]
     },
     {

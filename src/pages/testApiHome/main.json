@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "这里是首页",
+  "navigationBarTitleText": "这里是API测试页",
   "usingComponents": {
     "v-button": "/static/components/button/index",
     "v-cell": "/static/components/cell/index",

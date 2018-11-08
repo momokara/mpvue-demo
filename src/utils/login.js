@@ -18,8 +18,9 @@ import {
  * @return {Promise} 
  */
 const autoLogin = (urlObj, params) => {
-  let timestamp = Date.parse(new Date());
-  timestamp = timestamp / 1000;
+  let timestamp = Date.parse(new Date()) / 1000;
+  console.log(timestamp);
+  
   let token_create_time = wx.getStorageSync("session_expire_time");
   let past_time = -1;
   if (token_create_time) {

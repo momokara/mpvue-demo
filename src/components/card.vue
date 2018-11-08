@@ -1,15 +1,15 @@
 <template>
   <div>
     <p class="card">
-      {{text}}
+      this is card:{{text}}
     </p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['text']
-}
+  props: ["text"]
+};
 </script>
 
 <style>
