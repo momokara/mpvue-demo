@@ -1,0 +1,22 @@
+<view class='wrap'>
+  <view>
+    <view class='hearder-date-title'>
+      <view class="header-date">{{monthname[month-1]}}月 {{year}}</view>
+      <view class='lt-arrow' bindtap='lastMonth'>{{lastMonth}}</view>
+      <view class='rt-arrow' bindtap='nextMonth'>{{nextMonth}}</view>
+    </view>
+  </view>
+  <view class='header-weekday'>
+    <view wx:for='{{date}}' wx:key="{{item}}" class='{{(index == todayIndex) && isTodayWeek ? "weekMark" : ""}}'>
+      {{item}}
+    </view>
+  </view>
+  <view class='date-box'>
+    <view wx:for='{{dateArr}}' wx:key="{{item}}" class='{{isToday == item.isToday ? "nowDay" : ""}} {{item.isSelected ? "Selected" : ""}} {{item.isActMonth ? "ActMonth" : "deActMonth"}}   {{(startDay<item.isToday && item.isToday<endDay) ? "between" : ""}} {{startDay==item.isToday?"startDay":""}}  {{endDay==item.isToday?"endDay":""}}  {{lastTouched==item.isToday?"lastTouched":""}}' id="day-{{item.isToday}}" data-date='{{item.isToday}}' bindtap="tapDay">
+      <view class='date-head'>
+        <view>{{item.dateNum}}</view>
+      </view>
+      <view wx:if="{{isShowDayInfo}}" class='date-info'>{{item.info}}</view>
+    </view>
+  </view>
+</view>

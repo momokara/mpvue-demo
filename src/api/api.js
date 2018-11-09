@@ -20,7 +20,12 @@ Api.autoLogin = () => {
     country: "China",
     avatarUrl: "http://hh-common-test.oss-cn-shenzhen.aliyuncs.com/wap/images/tou.png"
   };
-  return autoLogin(_requestUrl, postdata).catch(res => {
+  return autoLogin(_requestUrl, postdata).then(res => {
+      let _pageHis = getCurrentPages();
+      console.log(_pageHis);
+      return res;
+    }
+  ).catch(res => {
     // 登录错误处理
     console.error('autoLogin err:', res);
     wx.navigateTo({

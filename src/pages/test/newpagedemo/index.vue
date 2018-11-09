@@ -7,7 +7,6 @@
 </template>
 <script>
 import card from "@/components/card";
-let QuerySelect = wx.createSelectorQuery();
 export default {
   data() {
     return {

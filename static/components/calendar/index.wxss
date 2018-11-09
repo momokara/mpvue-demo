@@ -1,0 +1,138 @@
+/* index/calendar/index.wxss */
+
+/* 顶部 title */
+
+.hearder-date-title {
+  position: relative;
+  width: 620rpx;
+  margin: 0px auto 15px auto;
+  font-size: 14px;
+  color: #282828;
+  text-align: left;
+}
+
+.lt-arrow, .rt-arrow {
+  position: absolute;
+  top: 1rpx;
+  height: 20px;
+  background-color: #f7f8fc;
+  color: #6bb72d;
+  line-height: 20px;
+  padding: 0px 10px;
+  border-radius: 10px;
+}
+
+.lt-arrow {
+  right: 140rpx;
+}
+
+.rt-arrow {
+  right: 0rpx;
+}
+
+/* 星期 行  */
+
+.header-weekday {
+  font-size: 0;
+  padding: 0 20rpx;
+}
+
+.header-weekday>view {
+  display: inline-block;
+  width: 14.285%;
+  color: #cdd2d7;
+  font-size: 16px;
+  text-align: center;
+  padding: 10rpx 0;
+}
+
+.weekMark {
+  border-bottom: 1px solid #e1efd5;
+}
+
+/* 日期 */
+
+.date-box {
+  font-size: 0;
+  padding: 10rpx 20rpx;
+  color: #020202;
+}
+
+.date-box>view {
+  position: relative;
+  display: inline-block;
+  width: 14.285%;
+  font-size: 16px;
+  text-align: center;
+  vertical-align: middle;
+  margin: 5rpx 0;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+.date-box .deActMonth {
+  color: #d0d0d0;
+}
+
+.date-box .between {
+  /* background-color: #e1efd5; */
+}
+
+.date-box .Selected {
+  /* background-color: #e1efd5; */
+  box-sizing: border-box;
+  position: relative;
+}
+
+.Selected .date-head {
+  position: absolute;
+  top: -5rpx;
+  right: 50%;
+  margin-right: -30rpx;
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 50%;
+  color: #fff;
+  background-color: #60b848;
+}
+
+.date-box .startDay {
+  border-radius: 50% 0 0 50%;
+  width: 10%;
+  margin-left: 4.285%;
+}
+
+.date-box .startDay .date-head {
+  right: 72%;
+}
+
+.date-box .endDay {
+  border-radius: 0 50% 50% 0;
+  width: 10%;
+  margin-right: 4.285%;
+}
+
+.date-box .endDay .date-head {
+  right: 28%;
+}
+
+.nowDay .date-head {
+  text-align: center;
+  color: #22a7f6;
+  margin: 0 auto;
+}
+
+.date-info {
+  font-size: 22rpx;
+  padding: 15rpx 0;
+}
+
+.nowDay .date-info {
+  color: #22a7f6;
+}
+
+.lastTouched {
+  color: #63B640;
+  font-weight: 600;
+}

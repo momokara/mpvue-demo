@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "转盘抽奖",
+  "usingComponents": {
+    "wheel": "/static/components/lottery-wheel/index",
+    "van-cell-group": "/static/components/cell-group/index",
+    "van-field": "/static/components/field/index"
+  }
+}

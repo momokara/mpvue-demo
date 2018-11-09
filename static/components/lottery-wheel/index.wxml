@@ -1,0 +1,16 @@
+<view class="cyc-box">
+    <view class="{{isAnimate?'animate':''}} wheel-box" style="{{rotateDeg?'transform:rotate('+rotateDeg+'deg)':''}};{{animateDuration?'transition-duration:'+animateDuration+'s':''}}">
+        <image class="bg-img" src="{{bgImg}}" mode="widthFix"></image>
+        <view class="awardList-box" wx:if="{{awardList}}">
+            <view class="awardList-cell" wx:for="{{awardList}}" wx:key="{{item}}" style="transform:rotate({{perCelldeg[index]}}deg)">
+                <view class="img-box">
+                    <image src="{{item.img}}" mode="widthFix"></image>
+                </view>
+                <view class="name">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="arr-box">
+        <image bindtap="onstart" class="arr-img" src="{{arrImg}}"></image>
+    </view>
+</view>

@@ -31,6 +31,8 @@ export default {
           })
           .then(res => {
             let _pageHis = getCurrentPages();
+            console.log(_pageHis);
+            
             if (_pageHis.length > 1 && res.nickName) {
               // 有历史记录处理
               wx.navigateBack({

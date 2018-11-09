@@ -32,6 +32,7 @@
         "logs/main",
         "componentsDemoMenu/main",
         "componentsDemo/Layout/main",
+        "componentsDemo/Lottery-Wheel/main",
         "font_color/main",
         "newpagedemo/main"
       ]

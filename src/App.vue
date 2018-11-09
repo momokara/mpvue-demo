@@ -27,13 +27,14 @@ $fs-17: 17pt;
 $fs-14: 14pt;
 $fs-13: 13pt;
 $fs-11: 11pt;
-// $fs-40: 40pt;
-// $fs-20: 20pt;
-// $fs-18: 18pt;
-// $fs-17: 17pt;
-// $fs-14: 14pt;
-// $fs-13: 14px;
-// $fs-11: 12px;
+
+
+$fsp-32: 32px;
+$fsp-24: 24px;
+$fsp-20: 20px;
+$fsp-16: 16px;
+$fsp-14: 14px;
+$fsp-12: 12px;
 // 常用颜色
 $fc-black: #000;
 $fc-semi: #353535;
@@ -56,6 +57,7 @@ $opacity-disable: 10%;
   padding: 0;
 }
 // 基本字体大小
+// 基于pt
 .fs40 {
   font-size: $fs-40;
 }
@@ -74,28 +76,48 @@ $opacity-disable: 10%;
 .fs13 {
   font-size: $fs-13;
 }
-.fs11 {
-  font-size: $fs-11;
+// 基于px
+.fsp32 {
+  font-size: $fsp-32;
 }
-.fc-black{
+.fsp24 {
+  font-size: $fsp-24;
+}
+.fsp20 {
+  font-size: $fsp-20;
+}
+.fsp16 {
+  font-size: $fsp-16;
+}
+.fsp14 {
+  font-size: $fsp-14;
+}
+.fs12 {
+  font-size: $fsp-12;
+}
+.fc-black {
   color: $fc-black;
 }
-.fc-semi{
+.fc-semi {
   color: $fc-semi;
 }
-.fc-grey{
+.fc-grey {
   color: $fc-grey;
 }
-.fc-light{
+.fc-light {
   color: $fc-light;
 }
-.fc-blue{
+.fc-blue {
   color: $fc-blue;
 }
-.fc-green{
+.fc-green {
   color: $fc-green;
 }
-.fc-red{
+.fc-red {
   color: $fc-red;
+}
+.title {
+  padding: 15px;
+  font-size: $fs-17;
 }
 </style>
