@@ -16,6 +16,14 @@
         <van-cell v-for="(item,index) in menuList1" v-bind:key="index" :title="index+1+'.'+item.title" :value="item.cn_name" :label="item.label" :url="components_root_url+item.url" :border="true" is-link />
       </van-cell-group>
     </div>
+    <div class="title">
+      VUE-页面功能组件
+    </div>
+    <div>
+      <van-cell-group>
+        <van-cell v-for="(item,index) in menuList2" v-bind:key="index" :title="index+1+'.'+item.title" :value="item.cn_name" :label="item.label" :url="components_root_url+item.url" :border="true" is-link />
+      </van-cell-group>
+    </div>
   </div>
 </template>
 <script>
@@ -51,6 +59,15 @@ export default {
           cn_name: "转盘抽奖",
           label: "Lottery-Wheel 转盘抽奖",
           url: "/componentsDemo/Lottery-Wheel/main"
+        }
+      ],
+      // 页面功能组件_vue组件
+      menuList2: [
+        {
+          title: "upLoad_Images",
+          cn_name: "图片上传",
+          label: "图片上传组件-vue 组件",
+          url: "/componentsDemo_vue/upLoad_imgs/main"
         }
       ]
     };

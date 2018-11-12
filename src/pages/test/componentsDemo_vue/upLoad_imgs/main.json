@@ -1,10 +1,10 @@
 {
-  "navigationBarTitleText": "转盘抽奖",
+  "navigationBarTitleText": "图片上传",
   "usingComponents": {
-    "wheel": "/static/components/lottery-wheel/index",
     "van-row": "/static/components/row/index",
     "van-col": "/static/components/col/index",
     "van-cell-group": "/static/components/cell-group/index",
-    "van-field": "/static/components/field/index"
+    "van-cell": "/static/components/cell/index",
+    "van-switch": "/static/components/switch/index"
   }
 }

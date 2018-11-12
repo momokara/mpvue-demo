@@ -9,6 +9,36 @@
         <van-field :label="'转动角度'" :placeholder="'{Number}圆盘转动的角度(单位°)'" :border="true" data-name="rotateDeg" @change="changeInput($event)" />
       </van-cell-group>
     </div>
+    <div class="api-info">
+      <div class="title color-35">API 说明</div>
+      <div class="title color-888">接收参数</div>
+      <van-row class="fsp14" v-for="tabrow in table_info_data" v-bind:key="tabrow">
+        <van-col span="7" custom-class="table-col">
+          {{tabrow.params}}
+        </van-col>
+        <van-col span="8" custom-class="table-col">
+          {{tabrow.desc}}
+        </van-col>
+        <van-col span="6" custom-class="table-col ta-c ">
+          {{tabrow.tpye}}
+        </van-col>
+        <van-col span="3" custom-class="table-col ta-c ">
+          {{tabrow.default}}
+        </van-col>
+      </van-row>
+      <div class="title color-888">回调方法</div>
+      <van-row class="fsp14" v-for="tabrow in table_func_data" v-bind:key="tabrow">
+        <van-col span="6" custom-class="table-col">
+          {{tabrow.params}}
+        </van-col>
+        <van-col span="10" custom-class="table-col">
+          {{tabrow.desc}}
+        </van-col>
+        <van-col span="8" custom-class="table-col ta-c ">
+          {{tabrow.return}}
+        </van-col>
+      </van-row>
+    </div>
   </div>
 </template>
 <script>
@@ -74,6 +104,73 @@ export default {
           img:
             "https://cdn.jiapeiyun.cn/haivit/public/image/20180922084530_210/88元积分.png"
         }
+      ],
+      table_info_data: [
+        {
+          params: "参数",
+          desc: "说明",
+          tpye: "类型",
+          default: "默认值"
+        },
+        {
+          params: "awardList",
+          desc: "奖品列表",
+          tpye: "Array",
+          default: "[]"
+        },
+        {
+          params: "defaultDeg",
+          desc: "文字初始偏转的角度",
+          tpye: "Number",
+          default: "0"
+        },
+        {
+          params: "resultID",
+          desc: "中奖结果ID,如ID在awardList中存在,则执行动画转动到ID奖品位置 ",
+          tpye: "String",
+          default: "-"
+        },
+        {
+          params: "rotateDeg",
+          desc: "圆盘转动的角度",
+          tpye: "Number",
+          default: "-"
+        },
+        {
+          params: "animateDuration",
+          desc: "动画时间,为空或者0时候执行默认的时间3s",
+          tpye: "Number",
+          default: "3s"
+        },
+        {
+          params: "bgImg",
+          desc: "圆盘的背景图",
+          tpye: "String",
+          default: "~"
+        },
+        {
+          params: "arrImg",
+          desc: "指针图",
+          tpye: "String",
+          default: "~"
+        }
+      ],
+      table_func_data: [
+        {
+          params: "方法名",
+          desc: "说明",
+          return: "返回值"
+        },
+        {
+          params: "play",
+          desc: "点击指针时触发",
+          return: "-"
+        },
+        {
+          params: "over",
+          desc: "动画结束时触发,返回被抽中的奖品信息",
+          return: "{Array}[{中奖结果}]"
+        }
       ]
     };
   },
@@ -119,4 +216,11 @@ export default {
 
 
 <style lang="scss">
+.api-info {
+  padding: 10rpx 10rpx 60rpx 10rpx;
+}
+.table-col {
+  font-size: 11pt;
+  border-top: 1px solid #333;
+}
 </style>

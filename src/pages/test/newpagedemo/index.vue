@@ -82,8 +82,8 @@ export default {
     console.log("demopage-onPageScroll", this.msg);
   },
   // 当前是 tab 页时，点击 tab 时触发 （mpvue 0.0.16 支持）
-  onPageScroll() {
-    console.log("demopage-onPageScroll", this.msg);
+  onTabItemTap() {
+    console.log("demopage-onTabItemTap", this.msg);
   }
 };
 </script>

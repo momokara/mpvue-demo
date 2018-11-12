@@ -34,7 +34,8 @@
         "componentsDemo/Layout/main",
         "componentsDemo/Lottery-Wheel/main",
         "font_color/main",
-        "newpagedemo/main"
+        "newpagedemo/main",
+        "componentsDemo_vue/upLoad_imgs/main"
       ]
     },
     {

@@ -120,4 +120,7 @@ $opacity-disable: 10%;
   padding: 15px;
   font-size: $fs-17;
 }
+.ta-c{
+  text-align: center;
+}
 </style>

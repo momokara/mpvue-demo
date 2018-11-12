@@ -84,6 +84,8 @@ const uploadImg = (path, isUrl = true) => {
           }
           return _resJson;
         }
+      }).catch(err => {
+        console.error("wxUploaderr", err);
       });
     } else {
       console.error(res);
@@ -113,7 +115,6 @@ const uploadImgs = async (FilePaths) => {
       return err;
     }
   }
-  console.log('图片传完了！结果是:', resUrlList);
   return resUrlList;
 }
 const WxPromis = {};

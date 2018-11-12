@@ -68,18 +68,35 @@ export default {
       });
     },
     autoLogin() {
-      Api.autoLogin().then(res => {
-        console.log("auto login res:", res);
+      return Api.autoLogin().then(res => {
+        return res;
       });
     },
     getHomeInfo() {
-      Api.gethomeInfo().then(res => {
-        console.log("get Home Info:", res);
+      return Api.gethomeInfo().then(res => {
+        return res;
       });
     }
   },
 
-  created() {}
+  created() {
+    // this.autoLogin()
+    //   .then(res => {
+    //     console.log(res);
+    //     return res;
+    //   })
+    //   .then(res => {
+    //     if (res.nickName) {
+    //       return this.getHomeInfo();
+    //     }
+    //   })
+    //   .then(res => {
+    //     console.log("页面信息", res);
+    //   })
+    //   .catch(res => {
+    //     console.log("error");
+    //   });
+  }
 };
 </script>
 

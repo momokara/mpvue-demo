@@ -2,7 +2,7 @@
  * 小程序配置文件
  */
 
-var host = "tst.jiapeiyun.cn"
+var host = "tst.huibaoming.com"
 // host = "tst.huibaoming.com"
 var config = {
 
@@ -53,7 +53,7 @@ var config = {
     "action": "..",
     "json_config": {
       "system_weixin_page_size": 10,
-      "oss_common_url": "http://common.huibaoming.cn",
+      "oss_common_url": "https://tst.huibaoming.com",
       "project_name": "惠学科技",
       "project_name_common": "common",
       "project_name_admins": "admins",
