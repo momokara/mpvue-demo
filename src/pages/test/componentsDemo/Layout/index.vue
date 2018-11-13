@@ -65,7 +65,7 @@
         </van-col>
       </van-row>
     </div>
-    <div>
+    <div class="info">
       <div class="title fz-17pt color-35">API 说明</div>
       <div class="title fz-15pt color-888">Row</div>
 
@@ -122,6 +122,7 @@
 </template>
 
 <script>
+import demoBlock from "@/components/demo-block";
 export default {
   data() {
     return {
@@ -162,7 +163,9 @@ export default {
     };
   },
 
-  components: {},
+  components: {
+    demoBlock
+  },
 
   methods: {},
 

@@ -8,22 +8,28 @@
         <van-cell v-for="(item,index) in menuList0" v-bind:key="index" :title="index+1+'.'+item.title" :value="item.cn_name" :label="item.label" :url="components_root_url+item.url" :border="true" is-link />
       </van-cell-group>
     </div>
+
     <div class="title">
       基础组件
     </div>
-    <div>
-      <van-cell-group>
-        <van-cell v-for="(item,index) in menuList1" v-bind:key="index" :title="index+1+'.'+item.title" :value="item.cn_name" :label="item.label" :url="components_root_url+item.url" :border="true" is-link />
-      </van-cell-group>
+    <van-cell-group>
+      <van-cell v-for="(item,index) in menuList_basic" v-bind:key="index" :title="index+1+'.'+item.title" :value="item.cn_name" :label="item.label" :url="components_root_url+item.url" :border="true" is-link />
+    </van-cell-group>
+
+    <div class="title">
+      业务组件
     </div>
+    <van-cell-group>
+      <van-cell v-for="(item,index) in menuList_business" v-bind:key="index" :title="index+1+'.'+item.title" :value="item.cn_name" :label="item.label" :url="components_root_url+item.url" :border="true" is-link />
+    </van-cell-group>
+
     <div class="title">
       VUE-页面功能组件
     </div>
-    <div>
-      <van-cell-group>
-        <van-cell v-for="(item,index) in menuList2" v-bind:key="index" :title="index+1+'.'+item.title" :value="item.cn_name" :label="item.label" :url="components_root_url+item.url" :border="true" is-link />
-      </van-cell-group>
-    </div>
+    <van-cell-group>
+      <van-cell v-for="(item,index) in menuList_vue" v-bind:key="index" :title="index+1+'.'+item.title" :value="item.cn_name" :label="item.label" :url="components_root_url+item.url" :border="true" is-link />
+    </van-cell-group>
+
   </div>
 </template>
 <script>
@@ -46,14 +52,17 @@ export default {
           url: "/font_color/main"
         }
       ],
-      // 页面功能组件
-      menuList1: [
+      // 基础组件
+      menuList_basic: [
         {
           title: "Layout",
           cn_name: "布局",
           label: "Layout 页面分栏布局",
           url: "/componentsDemo/Layout/main"
-        },
+        }
+      ],
+      // 业务组件
+      menuList_business: [
         {
           title: "Lottery-Wheel",
           cn_name: "转盘抽奖",
@@ -61,8 +70,9 @@ export default {
           url: "/componentsDemo/Lottery-Wheel/main"
         }
       ],
+
       // 页面功能组件_vue组件
-      menuList2: [
+      menuList_vue: [
         {
           title: "upLoad_Images",
           cn_name: "图片上传",
@@ -82,9 +92,10 @@ export default {
 </script>
 <style>
 page {
-  background-color: #ddd;
+  background-color: #fbfbfb;
 }
-</style>
+.container {
+  padding: 15px;
+}
 
-<style scoped>
 </style>
