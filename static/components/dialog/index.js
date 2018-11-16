@@ -1,5 +1,9 @@
-import { VantComponent } from '../common/component';
-import { openType } from '../mixins/open-type';
+import {
+  VantComponent
+} from '../common/component';
+import {
+  openType
+} from '../mixins/open-type';
 VantComponent({
   mixins: [openType],
   props: {
@@ -9,6 +13,7 @@ VantComponent({
     useSlot: Boolean,
     asyncClose: Boolean,
     showCancelButton: Boolean,
+    closeOnClickOverlay: Boolean,
     confirmButtonOpenType: String,
     zIndex: {
       type: Number,
@@ -29,10 +34,6 @@ VantComponent({
     overlay: {
       type: Boolean,
       value: true
-    },
-    closeOnClickOverlay: {
-      type: Boolean,
-      value: false
     }
   },
   data: {
@@ -43,14 +44,7 @@ VantComponent({
   },
   watch: {
     show: function show(_show) {
-      if (!_show) {
-        this.setData({
-          loading: {
-            confirm: false,
-            cancel: false
-          }
-        });
-      }
+      !_show && this.stopLoading();
     }
   },
   methods: {
@@ -77,6 +71,14 @@ VantComponent({
         show: false
       });
     },
+    stopLoading: function stopLoading() {
+      this.setData({
+        loading: {
+          confirm: false,
+          cancel: false
+        }
+      });
+    },
     onClose: function onClose(action) {
       if (!this.data.asyncClose) {
         this.close();
@@ -89,6 +91,9 @@ VantComponent({
       if (callback) {
         callback(this);
       }
+    },
+    bindGetUserInfo: function (res) {
+     this.$emit('GetUserInfo',res);
     }
   }
 });

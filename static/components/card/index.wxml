@@ -1,20 +1,36 @@
-<view class="custom-class van-card {{ centered ? 'van-card--center' : '' }}">
-  <view class="van-card__thumb">
-    <image wx:if="{{ thumb }}" src="{{ thumb }}" class="van-card__img thumb-class" />
+<view class="custom-class van-card show-header {{ centered ? 'van-card--center' : '' }}" style="{{height?'height:'+height+';':''}}{{imgwidth?'padding-left:'+imgwidth+';':''}}">
+  <view class="van-card__thumb" bind:tap="onClickThumb" style="{{imgheight?'height:'+imgheight+';':''}}{{imgwidth?'width:'+imgwidth+';':''}}">
+    <image wx:if="{{ thumb }}" src="{{ thumb }}" mode="{{ thumbMode }}" lazy-load="{{ lazyLoad }}" class="van-card__img thumb-class" />
     <slot wx:else name="thumb" />
+    <van-tag wx:if="{{ tag }}" mark type="danger" custom-class="van-card__tag">{{ tag }}</van-tag>
+  </view>
+  <view class="van-card-header">
+    <slot name="header" />
   </view>
   <view class="van-card__content">
-    <view wx:if="{{ title || price || price === 0 }}" class="van-card__row">
-      <view wx:if="{{ title }}" class="van-card__title title-class">{{ title }}</view>
-      <view wx:if="{{ price || price === 0 }}" class="van-card__price price-class">{{ currency }} {{ price }}</view>
+    <view class="infobox">
+      <view class="van-card__left">
+        <view wx:if="{{ title }}" class="van-card__title van-multi-ellipsis--l2 title-class">
+          {{ title }}
+        </view>
+        <slot wx:else name="title" />
+        <view wx:if="{{ desc }}" class="van-card__desc van-ellipsis desc-class">{{ desc }}</view>
+        <slot wx:else name="desc" />
+        <slot name="tags" />
+      </view>
+      <view class="van-card__right">
+        <view wx:if="{{ price || price === 0 }}" class="van-card__price price-class">
+          {{ currency }} {{ price }}
+        </view>
+        <view wx:if="{{ originPrice || originPrice === 0 }}" class="van-card__origin-price origin-price-class">
+          {{ currency }} {{ originPrice }}
+        </view>
+        <view wx:if="{{ num }}" class="van-card__num num-class">x {{ num }}</view>
+      </view>
     </view>
-    <slot wx:else name="title" />
-    <view wx:if="{{ desc || num }}" class="van-card__row">
-      <view wx:if="{{ desc }}" class="van-card__desc desc-class">{{ desc }}</view>
-      <view wx:if="{{ num }}" class="van-card__num num-class">x {{ num }}</view>
-    </view>
-    <slot wx:else name="desc" />
-    <slot name="tags" />
+  </view>
+  <view class="right-slot">
+    <slot name="right-slot" />
   </view>
   <view class="van-card__footer">
     <slot name="footer" />

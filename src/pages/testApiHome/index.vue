@@ -24,6 +24,7 @@
         获取首页信息
       </v-button>
     </div>
+    <van-dialog id="van-dialog" @GetUserInfo="GetUserInfo" />
   </div>
 </template>
 
@@ -76,15 +77,17 @@ export default {
       return Api.gethomeInfo().then(res => {
         return res;
       });
+    },
+    GetUserInfo(res) {
+      console.log('getuserinfo',res);
     }
   },
 
   created() {
-    // this.autoLogin()
-    //   .then(res => {
-    //     console.log(res);
-    //     return res;
-    //   })
+    this.autoLogin().then(res => {
+      console.log(res);
+      return res;
+    });
     //   .then(res => {
     //     if (res.nickName) {
     //       return this.getHomeInfo();

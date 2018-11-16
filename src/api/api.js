@@ -1,7 +1,7 @@
 /* jshint esversion: 6 */
 import autoLogin from "@/utils/login";
 import WxPromis from "@/utils/Wxrequest";
-
+import dialog from "@/../static/components/dialog/dialog";
 const Api = {};
 // 处理自动登录
 Api.autoLogin = () => {
@@ -21,24 +21,35 @@ Api.autoLogin = () => {
     avatarUrl: "http://hh-common-test.oss-cn-shenzhen.aliyuncs.com/wap/images/tou.png"
   };
   return autoLogin(_requestUrl, postdata).then(res => {
-      let _pageHis = getCurrentPages();
-      console.log(_pageHis);
-      return res;
-    }
-  ).catch(res => {
+    let _pageHis = getCurrentPages();
+    console.log(_pageHis);
+    return res;
+  }).catch(res => {
     // 登录错误处理
     console.error('autoLogin err:', res);
-    wx.navigateTo({
-      url: '/pages/loginpage/main',
-      fail: function (res) {
-        wx.switchTab({
+    dialog.alert({
+      title: "请先登录",
+      message: "弹窗内容XXX",
+      confirmButtonOpenType: "getUserInfo"
+    }).then(() => {
+      // on close
+    }).catch(res => {
+      console.info(res);
+      if (res == 'nodialog') {
+        wx.navigateTo({
           url: '/pages/loginpage/main',
           fail: function (res) {
-            console.log(res);
-          }
+            wx.switchTab({
+              url: '/pages/loginpage/main',
+              fail: function (res) {
+                console.log(res);
+              }
+            });
+          },
         });
-      },
+      }
     });
+
     return res;
   });
 }

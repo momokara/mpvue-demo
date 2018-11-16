@@ -1,0 +1,10 @@
+.scroe {
+    color: #F4E929;
+    line-height: 100%;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.scroe .empty {
+    color: #8C959F;
+}

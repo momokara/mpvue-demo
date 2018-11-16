@@ -3,15 +3,18 @@ VantComponent({
   props: {
     info: null,
     icon: String,
-    dot: Boolean
+    dot: Boolean,
+    count:{
+      type:Number,
+      value:0
+    }
   },
   relation: {
     name: 'tabbar',
     type: 'ancestor'
   },
   data: {
-    active: false,
-    count: 0
+    active: false
   },
   methods: {
     onClick: function onClick() {
@@ -20,7 +23,6 @@ VantComponent({
       if (parent) {
         parent.onChange(this);
       }
-
       this.$emit('click');
     },
     setActive: function setActive(data) {

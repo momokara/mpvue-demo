@@ -1,0 +1,6 @@
+<!-- common/component/touch-move/index.wxml -->
+<movable-area bindtouchmove="touchmove" bindtap="tap" bindtouchstart='touchstart' bindtouchend='touchend'>
+  <movable-view direction="horizontal">
+    <slot></slot>
+  </movable-view>
+</movable-area>

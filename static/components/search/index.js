@@ -1,14 +1,19 @@
-import { VantComponent } from '../common/component';
+import {
+  VantComponent
+} from '../common/component';
 VantComponent({
   field: true,
   classes: ['cancel-class'],
   props: {
     focus: Boolean,
+    error: Boolean,
     disabled: Boolean,
     readonly: Boolean,
+    inputAlign: String,
     showAction: Boolean,
     useActionSlot: Boolean,
     placeholder: String,
+    placeholderStyle: String,
     background: {
       type: String,
       value: '#f2f2f2'

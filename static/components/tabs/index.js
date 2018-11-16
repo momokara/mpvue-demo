@@ -40,6 +40,10 @@ VantComponent({
       type: Number,
       value: 0.2
     },
+    zIndex: {
+      type: Number,
+      value: 1
+    },
     swipeThreshold: {
       type: Number,
       value: 4
@@ -108,7 +112,7 @@ VantComponent({
 
       this.getRect('.van-tab', true).then(function (rects) {
         var rect = rects[_this.data.active];
-        var width = _this.data.lineWidth || rect.width;
+        var width = _this.data.lineWidth || rect.width / 2;
         var left = rects.slice(0, _this.data.active).reduce(function (prev, curr) {
           return prev + curr.width;
         }, 0);
@@ -135,8 +139,11 @@ VantComponent({
           item.instance.setData(data);
         }
       });
-      this.setLine();
-      this.scrollIntoView();
+      this.setData({}, function () {
+        _this2.setLine();
+
+        _this2.scrollIntoView();
+      });
     },
     // scroll active tab into view
     scrollIntoView: function scrollIntoView() {

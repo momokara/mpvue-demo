@@ -3,6 +3,7 @@
   "usingComponents": {
     "v-button": "/static/components/button/index",
     "v-cell": "/static/components/cell/index",
-    "v-cell-group": "/static/components/cell-group/index"
+    "v-cell-group": "/static/components/cell-group/index",
+    "van-dialog": "/static/components/dialog/index"
   }
 }

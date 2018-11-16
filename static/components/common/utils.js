@@ -3,11 +3,12 @@ function isDef(value) {
 }
 
 function isObj(x) {
-  const type = typeof x;
+  var type = typeof x;
   return x !== null && (type === 'object' || type === 'function');
 }
 
-export {
-  isObj,
-  isDef
-};
+function isNumber(value) {
+  return /^\d+$/.test(value);
+}
+
+export { isObj, isDef, isNumber };
