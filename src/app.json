@@ -33,6 +33,7 @@
         "componentsDemoMenu/main",
         "componentsDemo/Layout/main",
         "componentsDemo/Lottery-Wheel/main",
+        "componentsDemo/Lottery-Table/main",
         "font_color/main",
         "newpagedemo/main",
         "componentsDemo_vue/upLoad_imgs/main"

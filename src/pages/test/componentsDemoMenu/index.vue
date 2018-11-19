@@ -68,6 +68,12 @@ export default {
           cn_name: "转盘抽奖",
           label: "Lottery-Wheel 转盘抽奖",
           url: "/componentsDemo/Lottery-Wheel/main"
+        },
+        {
+          title: "Lottery-Table",
+          cn_name: "九宫格抽奖",
+          label: "Lottery-Table 九宫格抽奖",
+          url: "/componentsDemo/Lottery-Table/main"
         }
       ],
 

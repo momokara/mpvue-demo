@@ -84,10 +84,10 @@ export default {
   },
 
   created() {
-    this.autoLogin().then(res => {
-      console.log(res);
-      return res;
-    });
+    // this.autoLogin().then(res => {
+    //   console.log(res);
+    //   return res;
+    // });
     //   .then(res => {
     //     if (res.nickName) {
     //       return this.getHomeInfo();
