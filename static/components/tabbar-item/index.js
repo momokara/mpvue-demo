@@ -4,9 +4,9 @@ VantComponent({
     info: null,
     icon: String,
     dot: Boolean,
-    count:{
-      type:Number,
-      value:0
+    count: {
+      type: Number,
+      value: 0
     }
   },
   relation: {
@@ -23,15 +23,14 @@ VantComponent({
       if (parent) {
         parent.onChange(this);
       }
+
       this.$emit('click');
     },
-    setActive: function setActive(data) {
-      var _this$data = this.data,
-          active = _this$data.active,
-          count = _this$data.count;
-
-      if (active !== data.active || count !== data.count) {
-        this.setData(data);
+    setActive: function setActive(active) {
+      if (this.data.active !== active) {
+        this.setData({
+          active: active
+        });
       }
     }
   }

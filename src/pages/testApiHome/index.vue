@@ -24,6 +24,14 @@
         获取首页信息
       </v-button>
     </div>
+
+    <van-tabbar :active="active" @change="onChange">
+      <van-tabbar-item icon="shop">标签</van-tabbar-item>
+      <van-tabbar-item icon="chat" dot>标签</van-tabbar-item>
+      <van-tabbar-item icon="records" info="5">标签</van-tabbar-item>
+      <van-tabbar-item icon="gold-coin" info="20">标签</van-tabbar-item>
+    </van-tabbar>
+
     <van-dialog id="van-dialog" @GetUserInfo="GetUserInfo" />
   </div>
 </template>
@@ -79,7 +87,11 @@ export default {
       });
     },
     GetUserInfo(res) {
-      console.log('getuserinfo',res);
+      console.log("getuserinfo", res);
+    },
+    onChange(event){
+      console.log(event);
+      
     }
   },
 

@@ -59,10 +59,22 @@ export default {
           cn_name: "布局",
           label: "Layout 页面分栏布局",
           url: "/componentsDemo/Layout/main"
+        },
+        {
+          title: "Icon",
+          cn_name: "图标",
+          label: "Icon 图标",
+          url: "/componentsDemo/Icon/main"
         }
       ],
       // 业务组件
       menuList_business: [
+         {
+          title: "GoodsAction",
+          cn_name: "商品导航",
+          label: "GoodsAction 商品导航",
+          url: "/componentsDemo/GoodsAction/main"
+        },
         {
           title: "Lottery-Wheel",
           cn_name: "转盘抽奖",

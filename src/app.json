@@ -17,10 +17,14 @@
     "backgroundColor": "#fff",
     "list": [{
         "pagePath": "pages/home/main",
+        "iconPath": "static/images/icon/home.png",
+        "selectedIconPath": "static/images/icon/home1.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/testApiHome/main",
+        "iconPath": "static/images/icon/user.png",
+        "selectedIconPath": "static/images/icon/user1.png",
         "text": "test"
       }
     ]
@@ -32,6 +36,8 @@
         "logs/main",
         "componentsDemoMenu/main",
         "componentsDemo/Layout/main",
+        "componentsDemo/Icon/main",
+        "componentsDemo/GoodsAction/main",
         "componentsDemo/Lottery-Wheel/main",
         "componentsDemo/Lottery-Table/main",
         "font_color/main",

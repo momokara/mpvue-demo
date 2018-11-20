@@ -4,6 +4,8 @@
     "v-button": "/static/components/button/index",
     "v-cell": "/static/components/cell/index",
     "v-cell-group": "/static/components/cell-group/index",
-    "van-dialog": "/static/components/dialog/index"
+    "van-dialog": "/static/components/dialog/index",
+    "van-tabbar": "/static/components/tabbar/index",
+    "van-tabbar-item": "/static/components/tabbar-item/index"
   }
 }
