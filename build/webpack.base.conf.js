@@ -63,9 +63,7 @@ module.exports = {
           'babel-loader',
           {
             loader: 'mpvue-loader',
-            options: {
-              checkMPEntry: true
-            }
+            options: Object.assign({checkMPEntry: true}, vueLoaderConfig)
           },
         ]
       },
@@ -106,7 +104,7 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
-        to: path.resolve(__dirname, '../dist/static'),
+        to: path.resolve(config.build.assetsRoot, './static'),
         ignore: ['.*']
       }
     ])

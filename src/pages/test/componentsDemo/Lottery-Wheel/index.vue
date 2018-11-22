@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+      <div class="title fz-17pt">
+      Lottery-Wheel 转盘抽奖
+    </div>
     <wheel :isplay="false" :awardList="awardList" :defaultDeg="defaultDeg" :resultID="resultID" :rotateDeg="rotateDeg" :animateDuration="animateDuration" @play="play" @over="over"></wheel>
     <div class="control-box">
       <van-cell-group>
@@ -217,7 +220,7 @@ export default {
 
 <style lang="scss">
 .api-info {
-  padding: 10rpx 10rpx 60rpx 10rpx;
+  padding: 10px 10px 60px 10px; /*px*/
 }
 .table-col {
   font-size: 11pt;

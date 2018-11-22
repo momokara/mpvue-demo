@@ -5,6 +5,7 @@ export default {
     const logs = wx.getStorageSync("logs") || [];
     logs.unshift(Date.now());
     wx.setStorageSync("logs", logs);
+
     console.log("app created and cache logs by setStorageSync");
   },
   // 初始化
@@ -19,6 +20,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/../static/index.wxss";
 /* 微信设计规范中的字体大小 */
 $fs-40: 40pt;
 $fs-20: 20pt;
@@ -26,6 +28,7 @@ $fs-18: 18pt;
 $fs-17: 17pt;
 $fs-14: 14pt;
 $fs-13: 13pt;
+$fs-11: 11pt;
 $fs-11: 11pt;
 
 
@@ -47,15 +50,6 @@ $fc-red: #e64340;
 $opacity-normal: 100%;
 $opacity-press: 20%;
 $opacity-disable: 10%;
-// 全局样式
-* {
-  transition: width 2s;
-  -moz-transition: width 2s;
-  -webkit-transition: width 2s;
-  -o-transition: width 2s;
-  margin: 0;
-  padding: 0;
-}
 // 基本字体大小
 // 基于pt
 .fs40 {
@@ -78,22 +72,22 @@ $opacity-disable: 10%;
 }
 // 基于px
 .fsp32 {
-  font-size: $fsp-32;
+  font-size: $fsp-32; /*px*/
 }
 .fsp24 {
-  font-size: $fsp-24;
+  font-size: $fsp-24; /*px*/
 }
 .fsp20 {
-  font-size: $fsp-20;
+  font-size: $fsp-20; /*px*/
 }
 .fsp16 {
-  font-size: $fsp-16;
+  font-size: $fsp-16; /*px*/
 }
 .fsp14 {
-  font-size: $fsp-14;
+  font-size: $fsp-14; /*px*/
 }
 .fs12 {
-  font-size: $fsp-12;
+  font-size: $fsp-12; /*px*/
 }
 .fc-black {
   color: $fc-black;
@@ -124,3 +118,4 @@ $opacity-disable: 10%;
   text-align: center;
 }
 </style>
+

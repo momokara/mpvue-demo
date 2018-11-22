@@ -10,25 +10,6 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
-  "tabBar": {
-    "color": "#7A7E83",
-    "selectedColor": "#6BB72D",
-    "borderStyle": "black",
-    "backgroundColor": "#fff",
-    "list": [{
-        "pagePath": "pages/home/main",
-        "iconPath": "static/images/icon/home.png",
-        "selectedIconPath": "static/images/icon/home1.png",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/testApiHome/main",
-        "iconPath": "static/images/icon/user.png",
-        "selectedIconPath": "static/images/icon/user1.png",
-        "text": "test"
-      }
-    ]
-  },
   "subPackages": [{
       "root": "pages/test",
       "pages": [
@@ -52,5 +33,23 @@
       ]
     }
   ],
-  "debug": true
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#6BB72D",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
+    "list": [{
+        "pagePath": "pages/home/main",
+        "iconPath": "static/images/icon/home.png",
+        "selectedIconPath": "static/images/icon/home1.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/testApiHome/main",
+        "iconPath": "static/images/icon/user.png",
+        "selectedIconPath": "static/images/icon/user1.png",
+        "text": "test"
+      }
+    ]
+  }
 }

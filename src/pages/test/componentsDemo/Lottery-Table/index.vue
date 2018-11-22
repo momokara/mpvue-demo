@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div class="title fz-17pt">
+      Lottery-Table 九宫格抽奖
+    </div>
     <wheel :isplay="false" :btnImg="btnImg" :awardList="awardList" :resultID="resultID" @play="play" @over="over"></wheel>
     <div class="control-box">
       <van-cell-group>

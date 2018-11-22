@@ -1,0 +1,22 @@
+page{
+  transition: width 2s;
+  -moz-transition: width 2s;
+  -webkit-transition: width 2s;
+  -o-transition: width 2s;
+  margin: 0;
+  padding: 0;
+}
+
+.tabbar-item_icon {
+  width: 26px;/*px*/
+  display: block;
+  height: 28px;/*px*/
+  margin: -5px auto 3px auto;
+}
+
+.tabbar-item {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  font-size: 10px;/*px*/
+}
