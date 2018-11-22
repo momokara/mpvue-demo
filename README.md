@@ -1,4 +1,4 @@
-# mpvue-demo-project-0
+# mpvue-demo
 
 > A Mpvue project
 
@@ -7,6 +7,15 @@
 ``` bash
 # install dependencies
 npm install
+
+# 需要安装以下插件
+
+## sass 支持
+npm install -d node-sass
+npm install -d sass-loader
+
+## 小程序sdk
+npm install -d wafer2-client-sdk
 
 # serve with hot reload at localhost:8080
 npm run dev
@@ -18,7 +27,8 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+For detailed explanation on how things work, checkout the [mpvue-docs](http://mpvue.com/) , [mpvue](https://github.com/Meituan-Dianping/mpvue), [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
 
 
 ## 项目目录 参考
@@ -50,4 +60,14 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
     └── components         组件库 基于vant 略作了一些适应项目到修改
 └── package.json           项目的package配置  
 └── project.config.json    小程序开发工具的配置  
+```
+
+## 一些说明
+```
+## 如果出现 px2rpx-loader 到/*px*/ 注释 标注依然 会失效到情况 可以尝试以下解决方案：
+### 1.使用 PX 代替px  如 
+width：12px 
+### 2.调整  ~/build/utils.js 下 loaders 到顺序 
+var loaders = [cssLoader, px2rpxLoader, postcssLoader ]  => var loaders = [cssLoader, postcssLoader, px2rpxLoader] 
+
 ```
