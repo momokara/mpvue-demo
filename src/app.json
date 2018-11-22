@@ -18,6 +18,7 @@
         "componentsDemoMenu/main",
         "componentsDemo/Layout/main",
         "componentsDemo/Icon/main",
+        "componentsDemo/scoreStar/main",
         "componentsDemo/GoodsAction/main",
         "componentsDemo/Lottery-Wheel/main",
         "componentsDemo/Lottery-Table/main",

@@ -1,11 +1,19 @@
 <!-- page/11000/haivitDealOrder/components/dist/score-star/index.wxml -->
 <view class="scroe">
-    <text wx:for="{{scorelist}}" wx:key="{{item}}" class="start" data-index="{{index}}" bindtap="tapstart" style="font-size:{{fontsize}}">
-        <text class="full" wx:if="{{item}}">★</text>
-        <!-- <text wx:if="{{item==0.5}}" class="half">
-            <text class="full_start">★</text>
-            <text class="empty_start">☆</text>
-        </text> -->
-        <text class="empty" wx:if="{{!item}}">★</text>
-    </text>
+    <view wx:for="{{scorelist}}" wx:key="{{item}}" class="star" data-index="{{index}}" bindtap="tapstart" style="{{fontsize?'font-size:'+fontsize:''}} {{width?'width:'+width:''}} {{height?'height:'+height:''}}">
+        <block wx:if="{{item}}">
+            <block wx:if="{{item<1&&UseHalfStar}}">
+                <image wx:if="{{halfStarImg}}" class="" src="{{halfStarImg}}" mode="widthFix"></image>
+                <text wx:else="{{UseStarSlot}}" class="half">★</text>
+            </block>
+            <block wx:else="{{item<1&&UseHalfStar}}">
+                <image wx:if="{{fullStarImg}}" class="" src="{{fullStarImg}}" mode="widthFix"></image>
+                <text wx:else="{{UseStarSlot}}" class="full">★</text>
+            </block>
+        </block>
+        <block wx:else="{{item}}">
+            <image wx:if="{{emptyStarImg}}" class="" src="{{emptyStarImg}}" mode="widthFix"></image>
+            <text wx:else="{{UseStarSlot}}" class="empty">☆</text>
+        </block>
+    </view>
 </view>

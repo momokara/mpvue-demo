@@ -5,6 +5,18 @@
     overflow: hidden;
 }
 
+.half{
+    color: #8C959F
+}
 .scroe .empty {
-    color: #8C959F;
+    color: #ddd;
+}
+.star{
+    display: inline-block;
+    min-width: 24px;
+    min-height: 24px;
+}
+.star image{
+    width: 100%;
+    height: 100%;
 }

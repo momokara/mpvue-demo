@@ -110,7 +110,6 @@ const uploadImgs = async (FilePaths) => {
       console.log(`上传第${i}张`);
       resUrlList.push(await uploadImg(_path, false));
       i++;
-
     } catch (err) {
       return err;
     }

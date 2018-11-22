@@ -65,9 +65,12 @@ For detailed explanation on how things work, checkout the [mpvue-docs](http://mp
 ## 一些说明
 
 ``` bash
+
 ## 如果出现 px2rpx-loader 到/*px*/ 注释 标注依然 会失效到情况 可以尝试以下解决方案：
+
 ### 1.使用 PX 代替px  如 
 width：12px 
+
 ### 2.调整  ~/build/utils.js 下 loaders 到顺序 
 var loaders = [cssLoader, px2rpxLoader, postcssLoader ]  => var loaders = [cssLoader, postcssLoader, px2rpxLoader] 
 

@@ -65,11 +65,17 @@ export default {
           cn_name: "图标",
           label: "Icon 图标",
           url: "/componentsDemo/Icon/main"
+        },
+        {
+          title: "Score-Star",
+          cn_name: "评分到星星",
+          label: "评分用到到星星",
+          url: "/componentsDemo/scoreStar/main"
         }
       ],
       // 业务组件
       menuList_business: [
-         {
+        {
           title: "GoodsAction",
           cn_name: "商品导航",
           label: "GoodsAction 商品导航",
@@ -115,5 +121,4 @@ page {
 .container {
   padding: 15px;
 }
-
 </style>

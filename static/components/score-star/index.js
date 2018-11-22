@@ -14,6 +14,12 @@ VantComponent({
       type: String,
       value: '24px'
     },
+    width: String,
+    height: String,
+    halfStarImg: String,
+    fullStarImg: String,
+    emptyStarImg: String,
+    UseHalfStar: Boolean
   },
 
   /**

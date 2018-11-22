@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <div class="title fz-17pt">
+    <div class="title fz-17pt">
       Lottery-Wheel 转盘抽奖
     </div>
     <wheel :isplay="false" :awardList="awardList" :defaultDeg="defaultDeg" :resultID="resultID" :rotateDeg="rotateDeg" :animateDuration="animateDuration" @play="play" @over="over"></wheel>
