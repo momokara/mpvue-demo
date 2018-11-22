@@ -175,8 +175,4 @@ export default {
 .api-info {
   padding: 10rpx 10rpx 60rpx 10rpx;
 }
-.table-col {
-  font-size: 11pt;
-  border-top: 1px solid #333;
-}
 </style>

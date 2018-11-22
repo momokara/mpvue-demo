@@ -178,8 +178,4 @@ export default {
   border: 1px solid #ddd;
   font-size: 11pt;
 }
-.table-col {
-  font-size: 11pt;
-  border-top: 1px solid #333;
-}
 </style>

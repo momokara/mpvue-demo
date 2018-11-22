@@ -222,8 +222,4 @@ export default {
 .api-info {
   padding: 10px 10px 60px 10px; /*px*/
 }
-.table-col {
-  font-size: 11pt;
-  border-top: 1px solid #333;
-}
 </style>

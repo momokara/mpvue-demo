@@ -16,8 +16,8 @@
     </div>
     <!-- info -->
     <div class="info">
-      <div class="title fz-17pt color-35">API 说明</div>
-      <div class="title fz-15pt color-888">API</div>
+      <div class="title fc-semi">API 说明</div>
+      <div class="title fc-grey">API</div>
       <van-row class="fsp14" v-for="tabrow in table_Icon_api" v-bind:key="tabrow">
         <van-col span="7" custom-class="table-col">
           {{tabrow.params}}
@@ -33,7 +33,7 @@
         </van-col>
       </van-row>
 
-      <div class="title fz-17pt color-35">Slot</div>
+      <div class="title fc-grey">Slot</div>
       <van-row class="fsp14" v-for="tabrow in slot_data" v-bind:key="tabrow">
         <van-col span="6" custom-class="table-col">
           {{tabrow.params}}
@@ -43,7 +43,7 @@
         </van-col>
       </van-row>
 
-      <div class="title fz-17pt color-35">外部样式类</div>
+      <div class="title fc-grey">外部样式类</div>
       <van-row class="fsp14" v-for="tabrow in custom_class_data" v-bind:key="tabrow">
         <van-col span="6" custom-class="table-col">
           {{tabrow.params}}
@@ -53,7 +53,7 @@
         </van-col>
       </van-row>
 
-      <div class="title fz-17pt color-35">Event</div>
+      <div class="title fc-grey">Event</div>
       <van-row class="fsp14" v-for="tabrow in table_func_data" v-bind:key="tabrow">
         <van-col span="6" custom-class="table-col">
           {{tabrow.params}}
@@ -220,8 +220,5 @@ export default {
     margin: 10px;
   }
 }
-.table-col {
-  font-size: 11pt;
-  border-top: 1px solid #333;
-}
+
 </style>

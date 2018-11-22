@@ -61,16 +61,40 @@ export default {
           url: "/componentsDemo/Layout/main"
         },
         {
+          title: "Button",
+          cn_name: "按钮",
+          label: "Button 按钮",
+          url: "/componentsDemo/Button/main"
+        },
+        {
+          title: "Cell",
+          cn_name: "单元格",
+          label: "Cell 单元格",
+          url: "/componentsDemo/Cell/main"
+        },
+        {
           title: "Icon",
           cn_name: "图标",
           label: "Icon 图标",
           url: "/componentsDemo/Icon/main"
         },
         {
+          title: "Popup",
+          cn_name: "弹出层",
+          label: "Popup 弹出层",
+          url: "/componentsDemo/Popup/main"
+        },
+        {
           title: "Score-Star",
           cn_name: "评分星星",
           label: "评分用到的⭐⭐",
           url: "/componentsDemo/scoreStar/main"
+        },
+        {
+          title: "Transition",
+          cn_name: "动画",
+          label: "Transition 动画",
+          url: "/componentsDemo/Transition/main"
         }
       ],
       // 业务组件

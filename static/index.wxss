@@ -1,12 +1,3 @@
-page{
-  transition: width 2s;
-  -moz-transition: width 2s;
-  -webkit-transition: width 2s;
-  -o-transition: width 2s;
-  margin: 0;
-  padding: 0;
-}
-
 .tabbar-item_icon {
   width: 26px;/*px*/
   display: block;
@@ -19,4 +10,11 @@ page{
   display: inline-block;
   text-align: center;
   font-size: 10px;/*px*/
+}
+.demo {
+  padding: 15px;
+}
+.table-col {
+  font-size: 11pt;
+  border-top: 1px solid #333;
 }
