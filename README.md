@@ -47,7 +47,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 |   ├── app.json           小程序配置项  
 |   └── app.vue            小程序启动项（全局数据、样式、声明钩子等；经build后，会在dist目录下生成app.js、app.json和app.wxss文件）  
 └── static                 静态文件，会直接被复制到dist/下  
-    └── vant               vant的组件库  
+    └── components         组件库 基于vant 略作了一些适应项目到修改
 └── package.json           项目的package配置  
 └── project.config.json    小程序开发工具的配置  
 ```
