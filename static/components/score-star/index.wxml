@@ -1,6 +1,6 @@
 <!-- page/11000/haivitDealOrder/components/dist/score-star/index.wxml -->
-<view class="scroe">
-    <view wx:for="{{scorelist}}" wx:key="{{item}}" class="star" data-index="{{index}}" bindtap="tapstart" style="{{fontsize?'font-size:'+fontsize:''}} {{width?'width:'+width:''}} {{height?'height:'+height:''}}">
+<view class="scroe {{customClass}}">
+    <view wx:for="{{scorelist}}" wx:key="{{item}}" class="star" data-index="{{index}}" bindtap="tapstar" style="{{fontsize?'font-size:'+fontsize:''}};{{width?'width:'+width:''}};{{height?'height:'+height:''}}">
         <block wx:if="{{item}}">
             <block wx:if="{{item<1&&UseHalfStar}}">
                 <image wx:if="{{halfStarImg}}" class="" src="{{halfStarImg}}" mode="widthFix"></image>

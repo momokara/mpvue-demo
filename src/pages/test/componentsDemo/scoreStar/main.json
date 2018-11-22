@@ -5,6 +5,8 @@
     "van-cell-group": "/static/components/cell-group/index",
     "van-field": "/static/components/field/index",
     "van-cell": "/static/components/cell/index",
-    "van-switch": "/static/components/switch/index"
+    "van-switch": "/static/components/switch/index",
+    "van-row": "/static/components/row/index",
+    "van-col": "/static/components/col/index"
   }
 }

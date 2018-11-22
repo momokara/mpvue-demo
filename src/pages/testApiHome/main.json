@@ -6,6 +6,7 @@
     "v-cell-group": "/static/components/cell-group/index",
     "van-dialog": "/static/components/dialog/index",
     "van-tabbar": "/static/components/tabbar/index",
-    "van-tabbar-item": "/static/components/tabbar-item/index"
+    "van-tabbar-item": "/static/components/tabbar-item/index",
+    "van-popup": "/static/components/popup/index"
   }
 }

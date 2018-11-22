@@ -19,7 +19,8 @@ VantComponent({
     halfStarImg: String,
     fullStarImg: String,
     emptyStarImg: String,
-    UseHalfStar: Boolean
+    UseHalfStar: Boolean,
+    customClass: String
   },
 
   /**
@@ -52,8 +53,8 @@ VantComponent({
    * 组件的方法列表
    */
   methods: {
-    tapstart(event) {
-      this.$emit('click', event.currentTarget.dataset.index);
+    tapstar(event) {
+      this.$emit('tapstar', event.currentTarget.dataset.index);
     }
   }
 })

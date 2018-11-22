@@ -68,8 +68,8 @@ export default {
         },
         {
           title: "Score-Star",
-          cn_name: "评分到星星",
-          label: "评分用到到星星",
+          cn_name: "评分星星",
+          label: "评分用到的⭐⭐",
           url: "/componentsDemo/scoreStar/main"
         }
       ],
