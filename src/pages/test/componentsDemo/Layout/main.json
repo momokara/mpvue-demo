@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "这里是首页",
+  "navigationBarTitleText": "Layout 分栏布局",
   "usingComponents": {
     "van-row": "/static/components/row/index",
     "van-col": "/static/components/col/index"

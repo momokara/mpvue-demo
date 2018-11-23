@@ -55,22 +55,22 @@
     <div class="info">
       <div class="fsp16 fc-grey">API 说明</div>
       <div class="fsp14 fc-grey">CellGroup API</div>
-      <apiTable :tabledata="CellGroup_api_info"></apiTable>
+      <apiTable :tabledata="table_api_cellgroup"></apiTable>
 
       <div class="fsp14 fc-grey">CellGroup 外部样式类</div>
-      <apiTable :tabledata="CellGroup_custom_class"></apiTable>
+      <apiTable :tabledata="table_custom_class_cellgroup"></apiTable>
 
       <div class="fsp14 fc-grey">Cell API</div>
-      <apiTable :tabledata="Cell_api_info"></apiTable>
+      <apiTable :tabledata="table_api_cell"></apiTable>
 
       <div class="fsp14 fc-grey">Cell Event</div>
-      <apiTable :tabledata="Cell_event_info"></apiTable>
+      <apiTable :tabledata="table_event_cell"></apiTable>
 
       <div class="fsp14 fc-grey">Cell Slot</div>
-      <apiTable :tabledata="Cell_slot_info"></apiTable>
+      <apiTable :tabledata="table_slot_cell"></apiTable>
 
       <div class="fsp14 fc-grey">Cell 外部样式类</div>
-      <apiTable :tabledata="Cell_custom_class_info"></apiTable>
+      <apiTable :tabledata="table_custom_class_cell"></apiTable>
     </div>
   </div>
 </template>
@@ -81,12 +81,12 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
-      CellGroup_api_info: apiData.api_CellGroup,
-      CellGroup_custom_class: apiData.custom_class_CellGroup,
-      Cell_api_info: apiData.api_Cell,
-      Cell_event_info: apiData.event_Cell,
-      Cell_slot_info: apiData.slot_Cell,
-      Cell_custom_class_info: apiData.custom_class_Cell,
+      table_api_cellgroup: apiData.api_CellGroup,
+      table_custom_class_cellgroup: apiData.custom_class_CellGroup,
+      table_api_cell: apiData.api_Cell,
+      table_event_cell: apiData.event_Cell,
+      table_slot_cell: apiData.slot_Cell,
+      table_custom_class_cell: apiData.custom_class_Cell
     };
   },
   // 使用的 vue 组件
@@ -95,16 +95,10 @@ export default {
   },
   // 页面中的方法
   methods: {},
-  // VUE 钩子 常用
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  created() {
-    console.log("demopage-created", this.msg);
-  },
-  // 页面节点挂载
-  mounted() {
-    console.log("demopage-mounted", this.msg);
-  }
+  created() {},
+
 };
 </script>
 

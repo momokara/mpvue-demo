@@ -54,10 +54,10 @@
       <apiTable :tabledata="table_api"></apiTable>
 
       <div class="fsp14 fc-grey">外部样式类</div>
-      <apiTable :tabledata="custom_class"></apiTable>
+      <apiTable :tabledata="table_custom_class"></apiTable>
 
       <div class="fsp14 fc-grey">Event</div>
-      <apiTable :tabledata="table_func_data"></apiTable>
+      <apiTable :tabledata="table_event"></apiTable>
 
     </div>
   </div>
@@ -69,8 +69,8 @@ export default {
   data() {
     return {
       table_api: apiData.api,
-      custom_class: apiData.custom_class,
-      table_func_data: apiData.func
+      table_custom_class: apiData.custom_class,
+      table_event: apiData.func
     };
   },
   // 使用的 vue 组件

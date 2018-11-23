@@ -26,16 +26,16 @@
     <div class="info">
       <div class="title fc-semi">API 说明</div>
       <div class="title fc-grey">API</div>
-      <apiTable :tabledata="table_Icon_api"></apiTable>
+      <apiTable :tabledata="table_api"></apiTable>
 
       <div class="title fc-grey">Slot</div>
-      <apiTable :tabledata="slot_data"></apiTable>
+      <apiTable :tabledata="table_slot"></apiTable>
 
       <div class="title fc-grey">外部样式类</div>
-      <apiTable :tabledata="custom_class_data"></apiTable>
+      <apiTable :tabledata="table_custom_class"></apiTable>
 
       <div class="title fc-grey">Event</div>
-      <apiTable :tabledata="table_func_data"></apiTable>
+      <apiTable :tabledata="table_event"></apiTable>
 
     </div>
   </div>
@@ -48,10 +48,10 @@ export default {
   data() {
     return {
       iconlist: apiData.icon_name_list,
-      table_Icon_api: apiData.api,
-      table_func_data: apiData.event,
-      slot_data: apiData.slot,
-      custom_class_data: apiData.custom_class
+      table_api: apiData.api,
+      table_event: apiData.event,
+      table_slot: apiData.slot,
+      table_custom_class: apiData.custom_class
     };
   },
   // 使用的 vue 组件

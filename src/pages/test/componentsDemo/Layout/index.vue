@@ -66,10 +66,10 @@
     <div class="info">
       <div class="4 fc-grey">API 说明</div>
       <div class="fsp14 fc-grey">Row</div>
-      <apiTable :tabledata="table_info_Row"></apiTable>
+      <apiTable :tabledata="table_api_Row"></apiTable>
 
       <div class="fsp14 fc-grey">Col</div>
-      <apiTable :tabledata="table_info_Col"></apiTable>
+      <apiTable :tabledata="table_api_Col"></apiTable>
 
       <div class="fsp16 fc-grey">外部样式类</div>
       <apiTable :tabledata="table_custom_class"></apiTable>
@@ -83,8 +83,8 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
-     table_info_Row:apiData.api_row,
-     table_info_Col:apiData.api_col,
+     table_api_Row:apiData.api_row,
+     table_api_Col:apiData.api_col,
      table_custom_class:apiData.custom_class
     };
   },

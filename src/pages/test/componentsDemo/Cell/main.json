@@ -2,8 +2,6 @@
   "navigationBarTitleText": "Cell(单元格)",
   "usingComponents": {
     "van-cell": "/static/components/cell/index",
-    "van-cell-group": "/static/components/cell-group/index",
-    "van-row": "/static/components/row/index",
-    "van-col": "/static/components/col/index"
+    "van-cell-group": "/static/components/cell-group/index"
   }
 }
