@@ -25,16 +25,16 @@
     <!-- info -->
     <div class="info">
       <div class="title fc-semi">API 说明</div>
-      <div class="title fc-grey">API</div>
+      <div class="fsp16 fc-grey">API</div>
       <apiTable :tabledata="table_api"></apiTable>
 
-      <div class="title fc-grey">Slot</div>
+      <div class="fsp16 fc-grey">Slot</div>
       <apiTable :tabledata="table_slot"></apiTable>
 
-      <div class="title fc-grey">外部样式类</div>
+      <div class="fsp16 fc-grey">外部样式类</div>
       <apiTable :tabledata="table_custom_class"></apiTable>
 
-      <div class="title fc-grey">Event</div>
+      <div class="fsp16 fc-grey">Event</div>
       <apiTable :tabledata="table_event"></apiTable>
 
     </div>

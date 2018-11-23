@@ -4,6 +4,9 @@
       Score-Star 得分五角星组件
     </div>
     <div class="demo">
+      <div class="fsp16 fc-grey ">
+        基础用法
+      </div>
       <score-star :custom-class="'testclass'" :width="width" :height="height" :score="score" :use-half-star="UseHalfStar" :half-star-img="halfStarImg" :full-star-img="fullStarImg" :emptyStarImg="emptyStarImg" @tapstar="clickstar">
       </score-star>
     </div>
@@ -28,14 +31,14 @@
     </div>
     <!-- info -->
     <div class="info">
-      <div class="title fz-17pt color-35">API 说明</div>
-      <div class="title fz-15pt color-888">API</div>
+      <div class="title fc-semi">API 说明</div>
+      <div class="fsp16 fc-grey">API</div>
       <apiTable :tabledata="table_api"></apiTable>
 
-      <div class="title fz-17pt color-35">外部样式类</div>
+      <div class="tfsp16 fc-grey">外部样式类</div>
       <apiTable :tabledata="table_custom_class"></apiTable>
 
-      <div class="title fz-17pt color-35">Event</div>
+      <div class="fsp16 fc-grey">Event</div>
       <apiTable :tabledata="table_event"></apiTable>
     </div>
   </div>
