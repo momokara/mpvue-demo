@@ -19,7 +19,7 @@ VantComponent({
     halfStarImg: String,
     fullStarImg: String,
     emptyStarImg: String,
-    UseHalfStar: Boolean,
+    useHalfStar: Boolean,
     customClass: String
   },
 
