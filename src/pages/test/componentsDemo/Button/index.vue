@@ -70,7 +70,7 @@ export default {
     return {
       table_api: apiData.api,
       table_custom_class: apiData.custom_class,
-      table_event: apiData.func
+      table_event: apiData.event
     };
   },
   // 使用的 vue 组件

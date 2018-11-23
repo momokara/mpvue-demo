@@ -108,7 +108,7 @@ const apiData = {
       default: "false"
     },
   ],
-  func: [{
+  event: [{
       params: "方法名",
       desc: "说明",
       return: "返回值"

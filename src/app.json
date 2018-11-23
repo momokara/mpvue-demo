@@ -29,6 +29,7 @@
         "componentsDemo/scoreStar/main",
         "componentsDemo/Transition/main",
 
+        "componentsDemo/Area/main",
         "componentsDemo/GoodsAction/main",
         "componentsDemo/Lottery-Wheel/main",
         "componentsDemo/Lottery-Table/main",
