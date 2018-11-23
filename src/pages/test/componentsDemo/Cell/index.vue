@@ -52,15 +52,47 @@
         </van-cell>
       </van-cell-group>
     </div>
+    <div class="info">
+      <div class="fsp16 fc-grey">API 说明</div>
+      <div class="fsp14 fc-grey">CellGroup API</div>
+      <apiTable :tabledata="CellGroup_api_info"></apiTable>
+
+      <div class="fsp14 fc-grey">CellGroup 外部样式类</div>
+      <apiTable :tabledata="CellGroup_custom_class"></apiTable>
+
+      <div class="fsp14 fc-grey">Cell API</div>
+      <apiTable :tabledata="Cell_api_info"></apiTable>
+
+      <div class="fsp14 fc-grey">Cell Event</div>
+      <apiTable :tabledata="Cell_event_info"></apiTable>
+
+      <div class="fsp14 fc-grey">Cell Slot</div>
+      <apiTable :tabledata="Cell_slot_info"></apiTable>
+
+      <div class="fsp14 fc-grey">Cell 外部样式类</div>
+      <apiTable :tabledata="Cell_custom_class_info"></apiTable>
+    </div>
   </div>
 </template>
 <script>
+import apiTable from "@/components/api_data_table";
+import apiData from "./api_data";
+
 export default {
   data() {
-    return {};
+    return {
+      CellGroup_api_info: apiData.api_CellGroup,
+      CellGroup_custom_class: apiData.custom_class_CellGroup,
+      Cell_api_info: apiData.api_Cell,
+      Cell_event_info: apiData.event_Cell,
+      Cell_slot_info: apiData.slot_Cell,
+      Cell_custom_class_info: apiData.custom_class_Cell,
+    };
   },
   // 使用的 vue 组件
-  components: {},
+  components: {
+    apiTable
+  },
   // 页面中的方法
   methods: {},
   // VUE 钩子 常用
@@ -77,8 +109,5 @@ export default {
 </script>
 
 
-<style lang="scss">
-.fsp16{
-  margin: 10px 0;
-}
+<style lang="scss" scoped>
 </style>
