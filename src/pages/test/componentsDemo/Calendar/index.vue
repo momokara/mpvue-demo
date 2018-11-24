@@ -4,10 +4,10 @@
       Calendar 日历
     </div>
     <div class="demo">
-      <div class="fsp16 fc-grey ">
+      <!-- <div class="fsp16 fc-grey ">
         基础用法
-      </div>
-      <van-calendar> </van-calendar>
+      </div> -->
+      <!-- <van-calendar> </van-calendar> -->
 
       <div class="fsp16 fc-grey ">
         高级用法

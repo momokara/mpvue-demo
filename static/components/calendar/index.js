@@ -1,5 +1,7 @@
 // index/calendar/index.js
-const app = getApp()
+import {
+  VantComponent
+} from '../common/component';
 
 const defaultNow = new Date()
 const defaultYear = defaultNow.getFullYear()
@@ -10,11 +12,11 @@ let _month;
 let _startDay;
 let _endDay;
 
-Component({
+VantComponent({
   /**
    * 组件的属性列表
    */
-  properties: {
+  props: {
     // 默认显示的年份
     year: {
       type: Number,
@@ -29,10 +31,7 @@ Component({
     // {day:Number 日期 ,info:String 消息内容}
     markDay: {
       type: Array,
-      value: [],
-      observer: function () {
-        this._dateInit(_year, _month);
-      }
+      value: []
     },
     isShowDayInfo: {
       type: Boolean,
@@ -69,18 +68,16 @@ Component({
     startDay: 0,
     endDay: 0
   },
-
-  // 初始化加载
-  ready: function () {
-    this._dateInit(this.data.year, this.data.month - 1);
-    this.setData({
-      isToday: '' + defaultYear + (defaultMonth + 1) + defaultNow.getDate()
-    })
+  watch: {
+    markDay: '_set_dateInit'
   },
 
   methods: {
-    _dateInit: function (setYear, setMonth) {
+    _set_dateInit: function () {
+      this._dateInit(_year, _month)
+    },
 
+    _dateInit: function (setYear, setMonth) {
       //全部时间的月份都是按0~11基准，显示月份才+1
       let dateArr = []; //需要遍历的日历数组数据
       let arrLen = 0; //dateArr的数组长度
@@ -235,5 +232,14 @@ Component({
     _formatNumber: function (number) {
       return number < 10 ? '0' + number : number;
     }
-  }
+  },
+  // 初始化加载
+  mounted: function () {
+    this._dateInit(this.data.year, this.data.month - 1);
+    this.setData({
+      isToday: '' + defaultYear + (defaultMonth + 1) + defaultNow.getDate()
+    })
+    console.log(this.data);
+    
+  },
 })
