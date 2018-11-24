@@ -61,12 +61,7 @@ export default {
   // VUE 钩子 常用
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  created() {},
-
-  // 用户点击右上角分享
-  onShareAppMessage() {
-    console.log("demopage-onShareAppMessage", this.msg);
-  }
+  created() {}
 };
 </script>
 

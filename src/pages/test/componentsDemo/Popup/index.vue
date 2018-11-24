@@ -107,14 +107,7 @@ export default {
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  created() {
-    console.log("demopage-created", this.msg);
-  },
-
-  // 页面节点挂载
-  mounted() {
-    console.log("demopage-mounted", this.msg);
-  }
+  created() {}
 };
 </script>
 
@@ -133,7 +126,7 @@ export default {
   padding: 20px;
   border-radius: 0;
   line-height: 20px;
-  background-color: rgba(0, 0, 0, 0.8) ;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .bottom {

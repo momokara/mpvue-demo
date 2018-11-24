@@ -33,7 +33,7 @@ export default {
       table_api: apiData.api,
       table_custom_class: apiData.custom_class,
       table_event: apiData.event,
-      table_slot: apiData.slot,
+      table_slot: apiData.slot
     };
   },
   // 使用的 vue 组件
@@ -45,13 +45,7 @@ export default {
   // VUE 钩子 常用
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  created() {
-    console.log("demopage-created", this.msg);
-  },
-  // 页面节点挂载
-  mounted() {
-    console.log("demopage-mounted", this.msg);
-  }
+  created() {}
 };
 </script>
 

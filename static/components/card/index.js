@@ -33,8 +33,7 @@ VantComponent({
     imgheight: {
       type: String,
       value: '90px'
-    },
-    rightslot: Boolean
+    }
   },
   methods: {
     onClickThumb: function onClickThumb() {

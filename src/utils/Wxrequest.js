@@ -11,9 +11,7 @@ const ajax = (url, method, params) => {
   let _hearder = {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
-
   method = method ? method : 'GET';
-  console.log(method)
   if (method == 'GET' || method == 'get') {
     let _params = ''
     for (const key in params) {
@@ -21,7 +19,6 @@ const ajax = (url, method, params) => {
     }
     url = `${url}?${_params}`
   }
-
   return _Request({
     url: url,
     method: method,

@@ -64,7 +64,8 @@
 .van-card__left {
     -webkit-flex: 1;
     flex: 1;
-    min-width: 0
+    min-width: 0;
+    float: left;
 }
 
 .van-card__right {
@@ -101,7 +102,7 @@
 }
 
 .show-header{
-    margin-top: 30px;
+
 }
 .van-card-header{
     position: absolute;
