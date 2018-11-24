@@ -30,6 +30,7 @@
         "componentsDemo/Transition/main",
 
         "componentsDemo/Area/main",
+        "componentsDemo/Card/main",
         "componentsDemo/GoodsAction/main",
         "componentsDemo/Lottery-Wheel/main",
         "componentsDemo/Lottery-Table/main",

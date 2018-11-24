@@ -1,5 +1,6 @@
 /* jshint esversion: 6 */
 import qcloud from 'wafer2-client-sdk';
+var Cookie = require('./lib/cookie');
 /**
  * 检查用户数据是否缓存
  * @returns {boolean}

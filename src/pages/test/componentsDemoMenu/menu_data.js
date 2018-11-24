@@ -65,6 +65,12 @@ const menuData = {
       url: "/componentsDemo/Area/main"
     },
     {
+      title: "Card",
+      cn_name: "商品卡片",
+      label: "Card 商品卡片",
+      url: "/componentsDemo/Card/main"
+    },
+    {
       title: "GoodsAction",
       cn_name: "商品导航",
       label: "GoodsAction 商品导航",

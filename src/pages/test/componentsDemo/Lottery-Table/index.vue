@@ -13,36 +13,18 @@
     <div class="api-info">
       <div class="title color-35">API 说明</div>
       <div class="title color-888">接收参数</div>
-      <van-row class="fsp14" v-for="tabrow in table_info_data" v-bind:key="tabrow">
-        <van-col span="7" custom-class="table-col">
-          {{tabrow.params}}
-        </van-col>
-        <van-col span="8" custom-class="table-col">
-          {{tabrow.desc}}
-        </van-col>
-        <van-col span="6" custom-class="table-col ta-c ">
-          {{tabrow.tpye}}
-        </van-col>
-        <van-col span="3" custom-class="table-col ta-c ">
-          {{tabrow.default}}
-        </van-col>
-      </van-row>
+      <apiTable :tabledata="table_api"></apiTable>
+
       <div class="title color-888">回调方法</div>
-      <van-row class="fsp14" v-for="tabrow in table_func_data" v-bind:key="tabrow">
-        <van-col span="6" custom-class="table-col">
-          {{tabrow.params}}
-        </van-col>
-        <van-col span="10" custom-class="table-col">
-          {{tabrow.desc}}
-        </van-col>
-        <van-col span="8" custom-class="table-col ta-c ">
-          {{tabrow.return}}
-        </van-col>
-      </van-row>
+      <apiTable :tabledata="table_event"></apiTable>
+
     </div>
   </div>
 </template>
 <script>
+import apiTable from "@/components/api_data_table";
+import apiData from "./api_data";
+
 export default {
   data() {
     return {
@@ -50,7 +32,8 @@ export default {
       resultID: "",
       animateDuration: 0,
       // 开始按钮的图片
-      btnImg:"https://cdn.huibaoming.com/haivit/public/image/20181108164431_588/dial_pointer.png",
+      btnImg:
+        "https://cdn.huibaoming.com/haivit/public/image/20181108164431_588/dial_pointer.png",
       // 奖品列表
       awardList: [
         {
@@ -91,47 +74,14 @@ export default {
             "https://cdn.jiapeiyun.cn/haivit/public/image/20180922084530_210/88元积分.png"
         }
       ],
-      table_info_data: [
-        {
-          params: "参数",
-          desc: "说明",
-          tpye: "类型",
-          default: "默认值"
-        },
-        {
-          params: "awardList",
-          desc: "奖品列表",
-          tpye: "Array",
-          default: "[]"
-        },
-        {
-          params: "arrImg",
-          desc: "指针图",
-          tpye: "String",
-          default: "~"
-        }
-      ],
-      table_func_data: [
-        {
-          params: "方法名",
-          desc: "说明",
-          return: "返回值"
-        },
-        {
-          params: "play",
-          desc: "点击指针时触发,点击之后即开始执行动画,没有得到结果时会一直执行",
-          return: "-"
-        },
-        {
-          params: "over",
-          desc: "动画结束时触发,返回被抽中的奖品信息",
-          return: "{Array}[{中奖结果}]"
-        }
-      ]
+      table_api: apiData.api,
+      table_event: apiData.event
     };
   },
   // 使用的 vue 组件
-  components: {},
+  components: {
+    apiTable
+  },
   // 页面中的方法
   methods: {
     // 输入信息
@@ -145,27 +95,6 @@ export default {
     over: function(e) {
       console.log("over", e.mp.detail);
     }
-  },
-
-  // 页面创建时使用的钩子
-  created() {
-    console.log("demopage-created", this.msg);
-  },
-  // 页面数据更新之后  数据变更处理
-  updated() {
-    console.log("demopage-updated", this.msg);
-  },
-  // 页面隐藏
-  onHide() {
-    console.log("demopage-onHide", this.msg);
-  },
-  // 监听页面卸载
-  onUnload() {
-    console.log("demopage-onUnload", this.msg);
-  },
-  // 用户点击右上角分享
-  onShareAppMessage() {
-    console.log("demopage-onShareAppMessage", this.msg);
   }
 };
 </script>

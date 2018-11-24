@@ -6,7 +6,29 @@ import {
   toPromise
 } from './basic';
 var Cookie = require('./lib/cookie');
+const ajax = (url, method, params) => {
+  let _Request = toPromise(wx.request);
+  let _hearder = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
 
+  method = method ? method : 'GET';
+  console.log(method)
+  if (method == 'GET' || method == 'get') {
+    let _params = ''
+    for (const key in params) {
+      _params = `${_params}${key}=${params[key]}&`
+    }
+    url = `${url}?${_params}`
+  }
+
+  return _Request({
+    url: url,
+    method: method,
+    data: params,
+    header: _hearder
+  });
+}
 /**
  * 发送ajax请求，默认统一使用 POST 方式
  * @param {string} urlObj.folder_name 在数据库m_config里面配置的项目名
@@ -117,6 +139,7 @@ const uploadImgs = async (FilePaths) => {
   return resUrlList;
 }
 const WxPromis = {};
+WxPromis.ajax = ajax;
 // 处理请求的方法
 WxPromis.request = request;
 // 上传单张图片
