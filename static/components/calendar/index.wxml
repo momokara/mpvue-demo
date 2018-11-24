@@ -1,13 +1,20 @@
-<view class='wrap'>
+<view class='calendar {{customClass}}'>
   <view>
     <view class='hearder-date-title'>
-      <view class="header-date">{{monthname[month-1]}}月 {{year}}</view>
-      <view class='lt-arrow' bindtap='lastMonth'>{{lastMonth}}</view>
-      <view class='rt-arrow' bindtap='nextMonth'>{{nextMonth}}</view>
+      <view class="header-date">{{monthname[month-1]}} {{year}}</view>
+      <view class="title-box">
+        <slot></slot>
+      </view>
+      <view class="lt-arrow-box">
+        <view wx:if="{{lastMonth}}" class='lt-arrow' bindtap='lastMonth'>{{lastMonth}}</view>
+      </view>
+      <view class="rt-arrow-box">
+        <view wx:if="{{nextMonth}}" class='rt-arrow' bindtap='nextMonth'>{{nextMonth}}</view>
+      </view>
     </view>
   </view>
   <view class='header-weekday'>
-    <view wx:for='{{date}}' wx:key="{{item}}" class='{{(index == todayIndex) && isTodayWeek ? "weekMark" : ""}}'>
+    <view wx:for='{{weekday}}' wx:key="{{item}}" class='{{(index == todayIndex) && isTodayWeek ? "weekMark" : ""}}'>
       {{item}}
     </view>
   </view>

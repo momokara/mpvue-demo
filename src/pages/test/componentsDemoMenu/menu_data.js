@@ -83,6 +83,12 @@ const menuData = {
       url: "/componentsDemo/GoodsAction/main"
     },
     {
+      title: "Calendar",
+      cn_name: "日历",
+      label: "Calendar 日历🗓",
+      url: "/componentsDemo/Calendar/main"
+    },
+    {
       title: "Lottery-Wheel",
       cn_name: "转盘抽奖",
       label: "Lottery-Wheel 转盘抽奖",

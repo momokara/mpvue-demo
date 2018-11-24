@@ -45,15 +45,22 @@ Component({
     nextMonth: {
       type: String,
       value: "下一月"
-    }
+    },
+    weekday: {
+      type: Array,
+      value: ['日', '一', '二', '三', '四', '五', '六']
+    },
+    monthname: {
+      type: Array,
+      value: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+    },
+    customClass: String
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    date: ['日', '一', '二', '三', '四', '五', '六'],
-    monthname: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
     dateArr: [],
     isToday: 0,
     isTodayWeek: false,

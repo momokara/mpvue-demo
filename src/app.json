@@ -32,6 +32,7 @@
         "componentsDemo/Area/main",
         "componentsDemo/Card/main",
         "componentsDemo/SubmitBar/main",
+        "componentsDemo/Calendar/main",
         "componentsDemo/GoodsAction/main",
         "componentsDemo/Lottery-Wheel/main",
         "componentsDemo/Lottery-Table/main",
