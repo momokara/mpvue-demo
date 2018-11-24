@@ -4,7 +4,40 @@
       SubmitBar 提交订单栏
     </div>
     <div class="demo">
+      <div class="fsp16 fc-grey ">
+        基础用法
+      </div>
+      <div class="submit-box">
+        <van-submit-bar :price="3050" button-text="提交订单" @submit="onClickButton" custom-class="van-submit-bar" />
+      </div>
 
+      <div class="fsp16 fc-grey ">
+        禁用状态
+      </div>
+      <div class="submit-box">
+        <van-submit-bar disabled :price="3050" button-text="提交订单" tip="您的收货地址不支持同城送, 我们已为您推荐快递" @submit="onClickButton" custom-class="van-submit-bar" />
+      </div>
+
+      <div class="fsp16 fc-grey ">
+        加载状态
+      </div>
+      <div class="submit-box">
+        <van-submit-bar loading :price="3050" button-text="提交订单" @submit="onClickButton" custom-class="van-submit-bar" />
+      </div>
+
+      <div class="fsp16 fc-grey ">
+        高级用法
+      </div>
+      <div class="submit-box">
+        <van-submit-bar :price="3050" button-text="提交订单" @submit="onClickButton" custom-class="van-submit-bar" :tip="true">
+          <van-tag type="primary" custom-class="van-tag">标签</van-tag>
+          <view slot="tip">
+            您的收货地址不支持同城送
+            <text class="edit-address" @click="onClickLink">修改地址</text>
+          </view>
+        </van-submit-bar>
+      </div>
+      <van-toast id="van-toast" />
     </div>
     <div class="info">
       <div class="fsp16 fc-grey">API 说明</div>
@@ -26,7 +59,7 @@
 <script>
 import apiTable from "@/components/api_data_table";
 import apiData from "./api_data";
-
+import Toast from "@/../static/components/toast/toast";
 export default {
   data() {
     return {
@@ -41,7 +74,14 @@ export default {
     apiTable
   },
   // 页面中的方法
-  methods: {},
+  methods: {
+    onClickButton() {
+      Toast("点击按钮");
+    },
+    onClickLink() {
+      Toast("修改地址");
+    }
+  },
   // VUE 钩子 常用
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
@@ -51,4 +91,13 @@ export default {
 
 
 <style lang="scss">
+.submit-box {
+  .van-submit-bar {
+    position: relative;
+    box-shadow: 0 0 1px #ddd;
+  }
+  .van-tag {
+    margin-left: 15px;
+  }
+}
 </style>

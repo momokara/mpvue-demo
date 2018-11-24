@@ -71,6 +71,12 @@ const menuData = {
       url: "/componentsDemo/Card/main"
     },
     {
+      title: "SubmitBar",
+      cn_name: "提交订单栏",
+      label: "SubmitBar 提交订单栏",
+      url: "/componentsDemo/SubmitBar/main"
+    },
+    {
       title: "GoodsAction",
       cn_name: "商品导航",
       label: "GoodsAction 商品导航",
