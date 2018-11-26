@@ -7,15 +7,8 @@ const defaultNow = new Date()
 const defaultYear = defaultNow.getFullYear()
 const defaultMonth = defaultNow.getMonth()
 const defaultNowday = defaultNow.getDay()
-let _year;
-let _month;
-let _startDay;
-let _endDay;
 
 VantComponent({
-  /**
-   * 组件的属性列表
-   */
   props: {
     // 默认显示的年份
     year: {
@@ -55,10 +48,6 @@ VantComponent({
     },
     customClass: String
   },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
     dateArr: [],
     isToday: 0,
@@ -68,32 +57,51 @@ VantComponent({
     startDay: 0,
     endDay: 0
   },
+
   watch: {
-    markDay: '_set_dateInit'
+    markDay: '_markDayChange',
+    year: '_yearChange',
+    month: '_monthChange'
   },
 
   methods: {
-    _set_dateInit: function () {
-      this._dateInit(_year, _month)
+    _yearChange: function (event) {
+      console.log('_yearChange', event, this.data)
+      this._dateInit(event, this.data.month - 1);
     },
-
-    _dateInit: function (setYear, setMonth) {
+    _monthChange: function (event) {
+      console.log('_monthChange', event)
+      let _month = event;
+      let _year = this.data.year
+      if (_month > 12) {
+        _month = _month % 12 ? _month % 12 : 12;
+        _year = _year + parseInt(event / 12);
+        _year = _month == 12 ? _year - 1 : _year;
+        this.setData({
+          year: _year,
+          month: _month
+        })
+      }
+      this._dateInit();
+    },
+    _markDayChange: function (event) {
+      console.log('markDay', event)
+      this._dateInit()
+    },
+    // 根据 data 中到year 和month 获取月份 显示列表
+    _dateInit: function () {
       //全部时间的月份都是按0~11基准，显示月份才+1
       let dateArr = []; //需要遍历的日历数组数据
       let arrLen = 0; //dateArr的数组长度
-      let now = setYear ? new Date(setYear, setMonth) : new Date();
-      let year = setYear || now.getFullYear();
-      let month = setMonth || now.getMonth(); //没有+1方便后面计算当月总天数   
-      // 处理月份溢出
-      if (month + 1 > 12) {
-        year = year + parseInt(month / 12);
-        month = month % 12;
-      }
+
+      let now = this.data.year ? new Date(this.data.year, this.data.month - 1) : new Date();
+      let year = now.getFullYear();
+      let month = now.getMonth();
+
       let nextMonth = (month + 1) > 11 ? 1 : (month + 1);
-      let startWeek = new Date(year + ',' + (month + 1) + ',' + 1).getDay(); //目标月1号对应的星期
+      let startWeek = new Date(year, month, 1).getDay(); //目标月1号对应的星期
       let dayNums = new Date(year, nextMonth, 0).getDate(); //获取目标月有多少天
-      let obj = {};
-      let num = 0;
+
       // 上个月的天数
       let perMonthDayNums = new Date(year, month, 0).getDate();
       // 下个月天数
@@ -103,6 +111,8 @@ VantComponent({
       let lastrow = arrLen % 7 ? 1 : 0
       let dateRowNum = parseInt(arrLen / 7) + lastrow;
       let alllen = dateRowNum * 7;
+      let _startDay = 0;
+      let _endDay = 0;
 
       for (let i = 0; i < alllen; i++) {
         let today;
@@ -148,31 +158,25 @@ VantComponent({
             }
           })
         }
-        obj = {
+        dateArr[i] = {
           isToday: today,
           isSelected: isselected,
           dateNum: daynum ? daynum : '',
           info: day_info ? day_info : "",
           isActMonth: isActMonth
-        }
-        dateArr[i] = obj;
+        };
       }
+
       this.setData({
-        year: year,
-        month: month + 1,
         dateArr: dateArr,
         startDay: _startDay ? _startDay : '',
         endDay: _endDay ? _endDay : ''
       })
 
-      _year = year ? year : _year;
-      _month = month ? month : _month;
-
-      let nowMonth = defaultMonth + 1;
-      let getYear = setYear || defaultYear;
-      let getMonth = setMonth >= 0 ? (setMonth + 1) : nowMonth;
-
-      if (defaultYear == getYear && nowMonth == getMonth) {
+      // 用于标记当前到星期
+      let getYear = this.data.year || defaultYear;
+      let getMonth = this.data.month - 1;
+      if (defaultYear == getYear && defaultMonth == getMonth) {
         this.setData({
           isTodayWeek: true,
           todayIndex: defaultNowday
@@ -183,7 +187,6 @@ VantComponent({
           todayIndex: -1
         })
       }
-
 
     },
     lastMonth: function () {
@@ -226,7 +229,7 @@ VantComponent({
         lastTouched: e.currentTarget.dataset.date
       })
       // 刷新数组
-      this._dateInit(_year, _month);
+      this._dateInit(this.data.year, this.data.month - 1);
     },
     // 格式化数字
     _formatNumber: function (number) {
@@ -239,7 +242,5 @@ VantComponent({
     this.setData({
       isToday: '' + defaultYear + (defaultMonth + 1) + defaultNow.getDate()
     })
-    console.log(this.data);
-    
   },
 })
