@@ -8,26 +8,60 @@
     <div class="goods-action-box">
       <div class="fsp16 fc-grey ">基本用法</div>
       <van-goods-action>
-        <van-goods-action-icon text="客服1" @click="onClickIcon">
+        <van-goods-action-icon
+          text="客服1"
+          @click="onClickIcon"
+        >
           <image src="https://cdn.huibaoming.com/haivit/public/image/20181026120910_500/活动订单.png" />
         </van-goods-action-icon>
-        <van-goods-action-icon icon="cart" text="购物车" @click="onClickIcon" />
-        <van-goods-action-button text="加入购物车" type="warning" />
+        <van-goods-action-icon
+          text="客服1"
+          @click="onClickIcon"
+        >
+          <div>123</div>
+        </van-goods-action-icon>
+        <van-goods-action-icon
+          icon="cart"
+          text="购物车"
+          @click="onClickIcon"
+        />
+        <van-goods-action-button
+          text="加入购物车"
+          type="warning"
+        />
         <van-goods-action-button text="立即购买" />
-        <van-goods-action-button text="立即购买2" type="primary" />
+        <van-goods-action-button
+          text="立即购买2"
+          type="primary"
+        />
       </van-goods-action>
     </div>
     <div class="goods-action-box">
       <div class="fsp16 fc-grey ">加上info提示</div>
       <van-goods-action>
-        <van-goods-action-icon text="客服1" @click="onClickIcon">
+        <van-goods-action-icon
+          text="客服1"
+          @click="onClickIcon"
+        >
           <image src="https://cdn.huibaoming.com/haivit/public/image/20181026120910_500/活动订单.png" />
         </van-goods-action-icon>
-        <van-goods-action-icon text="客服2" @click="onClickIcon" info="s1">
+        <van-goods-action-icon
+          text="客服2"
+          @click="onClickIcon"
+          info="s1"
+        >
           <image src="https://cdn.huibaoming.com/haivit/public/image/20181026120910_500/活动订单.png" />
         </van-goods-action-icon>
-        <van-goods-action-icon icon="cart" text="购物车" @click="onClickIcon" info="66" />
-        <van-goods-action-button text="加入购物车" type="warning" />
+        <van-goods-action-icon
+          icon="cart"
+          text="购物车"
+          @click="onClickIcon"
+          info="66"
+        />
+        <van-goods-action-button
+          text="加入购物车"
+          type="warning"
+        />
         <van-goods-action-button text="立即购买" />
       </van-goods-action>
     </div>
