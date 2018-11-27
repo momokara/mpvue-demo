@@ -38,7 +38,7 @@
 <script>
 import Api from "@/api/api";
 import dialog from "@/../static/components/dialog/dialog";
-import { log } from 'util';
+
 export default {
   data() {
     return {
