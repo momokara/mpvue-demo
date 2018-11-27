@@ -31,7 +31,7 @@
     <van-icon 
       wx:else="{{ icon }}"
       info="{{ info }}"
-      size="25px"
+      size="20px"
       class="van-goods-action-icon_box" >
       <slot/>
     </van-icon>
