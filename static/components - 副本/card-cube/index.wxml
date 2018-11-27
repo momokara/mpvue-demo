@@ -1,0 +1,20 @@
+<view style="{{ count ? 'width: ' + ((100-count*2) / count) + '%' : '' }};padding-top:{{ (100 / count)+'vw'}}" class="custom-class van-card-cube {{ centered ? 'van-card-cube--center' : '' }}">
+  <view class="van-card-cube__thumb" style="height:{{ (100 / count)+'vw'}}">
+    <image wx:if="{{ thumb }}" src="{{ thumb }}" class="van-card-cube__img thumb-class" />
+    <slot wx:else name="thumb" />
+  </view>
+  <view class="van-card-cube__content">
+    <view wx:if="{{ title || price || price === 0 }}" class="van-card-cube__row">
+      <view wx:if="{{ title }}" class="van-card-cube__title title-class">{{ title }}</view>
+      <view wx:if="{{ price || price === 0 }}" class="van-card-cube__price price-class">
+        {{ currency }} {{ price }}
+        <text wx:if="{{ num }}" class="van-card-cube__num">{{ num }}</text>
+      </view>
+    </view>
+    <slot wx:else name="title" />
+    <slot name="tags" />
+  </view>
+  <view class="van-card-cube__footer">
+    <slot name="footer" />
+  </view>
+</view>

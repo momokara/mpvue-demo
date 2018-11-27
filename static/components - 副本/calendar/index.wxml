@@ -1,0 +1,29 @@
+<view class='calendar {{customClass}}'>
+  <view>
+    <view class='hearder-date-title'>
+      <view class="header-date">{{monthname[month-1]}} {{year}}</view>
+      <view class="title-box">
+        <slot></slot>
+      </view>
+      <view class="lt-arrow-box">
+        <view wx:if="{{lastMonth}}" class='lt-arrow' bindtap='lastMonth'>{{lastMonth}}</view>
+      </view>
+      <view class="rt-arrow-box">
+        <view wx:if="{{nextMonth}}" class='rt-arrow' bindtap='nextMonth'>{{nextMonth}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='header-weekday'>
+    <view wx:for='{{weekday}}' wx:key="{{item}}" class='{{(index == todayIndex) && isTodayWeek ? "weekMark" : ""}}'>
+      {{item}}
+    </view>
+  </view>
+  <view class='date-box'>
+    <view wx:for='{{dateArr}}' wx:key="{{item}}" class='{{isToday == item.isToday ? "nowDay" : ""}} {{item.isSelected ? "Selected" : ""}} {{item.isActMonth ? "ActMonth" : "deActMonth"}}   {{(startDay<item.isToday && item.isToday<endDay) ? "between" : ""}} {{startDay==item.isToday?"startDay":""}}  {{endDay==item.isToday?"endDay":""}}  {{lastTouched==item.isToday?"lastTouched":""}}' id="day-{{item.isToday}}" data-date='{{item.isToday}}' bindtap="tapDay">
+      <view class='date-head'>
+        <view>{{item.dateNum}}</view>
+      </view>
+      <view wx:if="{{isShowDayInfo}}" class='date-info'>{{item.info}}</view>
+    </view>
+  </view>
+</view>

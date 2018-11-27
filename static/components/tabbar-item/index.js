@@ -3,11 +3,7 @@ VantComponent({
   props: {
     info: null,
     icon: String,
-    dot: Boolean,
-    count: {
-      type: Number,
-      value: 0
-    }
+    dot: Boolean
   },
   relation: {
     name: 'tabbar',

@@ -1,12 +1,7 @@
-import {
-  link
-} from '../mixins/link';
-import {
-  VantComponent
-} from '../common/component';
+import { link } from '../mixins/link';
+import { VantComponent } from '../common/component';
 VantComponent({
   classes: ['num-class', 'desc-class', 'thumb-class', 'title-class', 'price-class', 'origin-price-class'],
-
   mixins: [link],
   props: {
     tag: String,
@@ -26,13 +21,6 @@ VantComponent({
     currency: {
       type: String,
       value: '¥'
-    },
-    // 添加的内容
-    height: String,
-    imgwidth: String,
-    imgheight: {
-      type: String,
-      value: '90px'
     }
   },
   methods: {

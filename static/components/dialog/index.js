@@ -1,9 +1,5 @@
-import {
-  VantComponent
-} from '../common/component';
-import {
-  openType
-} from '../mixins/open-type';
+import { VantComponent } from '../common/component';
+import { openType } from '../mixins/open-type';
 VantComponent({
   mixins: [openType],
   props: {
@@ -91,9 +87,6 @@ VantComponent({
       if (callback) {
         callback(this);
       }
-    },
-    bindGetUserInfo: function (res) {
-     this.$emit('GetUserInfo',res);
     }
   }
 });
