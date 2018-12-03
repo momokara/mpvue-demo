@@ -8,28 +8,56 @@
       </navigator>
     </div>
     <div>
-      <v-button type='primary' @click="autoLogin">
+      <v-button
+        type='primary'
+        @click="autoLogin"
+      >
         自动登录
       </v-button>
       <br>
-      <v-button type='primary' @click="getHomeInfo">
+      <v-button
+        type='primary'
+        @click="getHomeInfo"
+      >
         获取首页信息
       </v-button>
-      <v-button type='primary' @click="showalert">
+      <v-button
+        type='primary'
+        @click="showalert"
+      >
         弹出窗口
       </v-button>
     </div>
-    <video class="video-box" src="https://cdn.huibaoming.com/haivit/public/image/20181108110347_150/7867e1428c1f76.mp4"></video>
-    <van-tabbar :active="1" @change="onChange">
+    <video
+      class="video-box"
+      src="https://cdn.huibaoming.com/haivit/public/image/20181108110347_150/7867e1428c1f76.mp4"
+    ></video>
+    <van-tabbar
+      :active="1"
+      @change="onChange"
+    >
       <van-tabbar-item>
-        <img class="tabbar-item_icon" :slot="icon" src="../../../static/images/icon/home.png" />
+        <img
+          class="tabbar-item_icon"
+          :slot="icon"
+          src="../../../static/images/icon/home.png"
+        />
         <span class="tabbar-item">首页</span>
       </van-tabbar-item>
-      <van-tabbar-item icon="chat" dot>test</van-tabbar-item>
+      <van-tabbar-item
+        icon="chat"
+        dot
+      >test</van-tabbar-item>
     </van-tabbar>
-    <van-dialog id="van-dialog" @GetUserInfo="GetUserInfo" />
+    <van-dialog
+      id="van-dialog"
+      @GetUserInfo="GetUserInfo"
+    />
     <!-- 弹出层 -->
-    <van-popup :show="show" @close="onClose">
+    <van-popup
+      :show="show"
+      @close="onClose"
+    >
       内容11111111111111111111111
     </van-popup>
   </div>
@@ -82,7 +110,7 @@ export default {
     },
     onClose() {
       this.show = false;
-      console.log('close')
+      console.log("close");
     }
   },
 
@@ -102,6 +130,7 @@ export default {
     //   .catch(res => {
     //     console.log("error");
     //   });
+
   }
 };
 </script>

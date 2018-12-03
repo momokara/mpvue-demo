@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "Card 商品卡片",
   "usingComponents": {
-    "van-card": "/static/components/card/index",
+    "van-card": "/static/components/card-mo/index",
     "van-button": "/static/components/button/index"
   }
 }
