@@ -65,7 +65,10 @@
 
 <script>
 import Api from "@/api/api";
+import WxPromis from "@/utils/Wxrequest";
 import dialog from "@/../static/components/dialog/dialog";
+import qidlist from "@/../static/qlist";
+import { log } from "util";
 
 export default {
   data() {
@@ -130,7 +133,6 @@ export default {
     //   .catch(res => {
     //     console.log("error");
     //   });
-
   }
 };
 </script>

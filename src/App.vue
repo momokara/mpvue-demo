@@ -31,7 +31,6 @@ $fs-13: 13pt;
 $fs-11: 11pt;
 $fs-11: 11pt;
 
-
 $fsp-32: 32px;
 $fsp-24: 24px;
 $fsp-20: 20px;
@@ -114,8 +113,35 @@ $opacity-disable: 10%;
   padding: 15px;
   font-size: $fs-17;
 }
-.ta-c{
+.ta-c {
   text-align: center;
+}
+@mixin line-clamp($lineNumber) {
+    white-space:normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $lineNumber;
+  -webkit-box-orient: vertical;
+}
+.line-clamp_1 {
+  @include line-clamp(1);
+}
+.line-clamp_2 {
+  @include line-clamp(2);
+}
+.line-clamp_3 {
+  @include line-clamp(3);
+}
+.line-clamp_4 {
+  @include line-clamp(4);
+}
+.line-clamp_5 {
+  @include line-clamp(5);
+}
+.scroll-x {
+  width: 100%;
+  white-space: nowrap;
 }
 </style>
 

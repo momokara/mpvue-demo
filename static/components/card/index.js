@@ -21,6 +21,13 @@ VantComponent({
     currency: {
       type: String,
       value: '¥'
+    },
+    // 添加的内容
+    height: String,
+    imgwidth: String,
+    imgheight: {
+      type: String,
+      value: '90px'
     }
   },
   methods: {

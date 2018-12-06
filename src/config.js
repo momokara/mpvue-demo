@@ -2,7 +2,7 @@
  * 小程序配置文件
  */
 
-var host = "tst.huibaoming.com"
+var host = "tst.jiapeiyun.cn"
 // host = "tst.huibaoming.com"
 var config = {
 

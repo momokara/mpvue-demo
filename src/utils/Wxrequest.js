@@ -6,6 +6,12 @@ import {
   toPromise
 } from './basic';
 var Cookie = require('./lib/cookie');
+/**
+ * 发送ajax 请求
+ * @param {String} url    请求的地址
+ * @param {String} method 请求方式 POST || GET
+ * @param {Object} params 请求的参数 如果为get 则会拼接在url 后
+ */
 const ajax = (url, method, params) => {
   let _Request = toPromise(wx.request);
   let _hearder = {
@@ -14,10 +20,13 @@ const ajax = (url, method, params) => {
   method = method ? method : 'GET';
   if (method == 'GET' || method == 'get') {
     let _params = ''
-    for (const key in params) {
-      _params = `${_params}${key}=${params[key]}&`
+    if (params) {
+      for (const key in params) {
+        _params = `${_params}${key}=${params[key]}&`
+      }
+      url = `${url}?${_params}`
     }
-    url = `${url}?${_params}`
+
   }
   return _Request({
     url: url,

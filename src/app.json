@@ -1,8 +1,9 @@
 {
   "pages": [
-    "pages/testApiHome/main",
     "pages/home/main",
-    "pages/loginpage/main"
+    "pages/testApiHome/main",
+    "pages/loginpage/main",
+    "pages/mockExam/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -57,6 +58,12 @@
         "iconPath": "static/images/icon/home.png",
         "selectedIconPath": "static/images/icon/home1.png",
         "text": "首页"
+      },
+      {
+        "pagePath": "pages/mockExam/main",
+        "iconPath": "static/images/icon/home.png",
+        "selectedIconPath": "static/images/icon/home1.png",
+        "text": "模拟考试"
       },
       {
         "pagePath": "pages/testApiHome/main",

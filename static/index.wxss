@@ -1,7 +1,7 @@
 .tabbar-item_icon {
-  width: 26px;/*px*/
+  width: 28px;/*px*/
   display: block;
-  height: 28px;/*px*/
+  height: 26px;/*px*/
   margin: -5px auto 3px auto;
 }
 
