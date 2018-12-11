@@ -5,7 +5,16 @@
     </div>
     <div>
       <van-cell-group>
-        <van-cell v-for="(item,index) in style_components" v-bind:key="index" :title="index+1+'.'+item.title" :value="item.cn_name" :label="item.label" :url="components_root_url+item.url" :border="true" is-link />
+        <van-cell
+          v-for="(item,index) in style_components"
+          v-bind:key="index"
+          :title="index+1+'.'+item.title"
+          :value="item.cn_name"
+          :label="item.label"
+          :url="components_root_url+item.url"
+          :border="true"
+          is-link
+        />
       </van-cell-group>
     </div>
 
@@ -13,21 +22,64 @@
       基础组件
     </div>
     <van-cell-group>
-      <van-cell v-for="(item,index) in menuList_basic" v-bind:key="index" :title="index+1+'.'+item.title" :value="item.cn_name" :label="item.label" :url="components_root_url+item.url" :border="true" is-link />
+      <van-cell
+        v-for="(item,index) in menuList_basic"
+        v-bind:key="index"
+        :title="index+1+'.'+item.title"
+        :value="item.cn_name"
+        :label="item.label"
+        :url="components_root_url+item.url"
+        :border="true"
+        is-link
+      />
+    </van-cell-group>
+
+    <div class="title">
+      表单组件
+    </div>
+    <van-cell-group>
+      <van-cell
+        v-for="(item,index) in menuList_table"
+        v-bind:key="index"
+        :title="index+1+'.'+item.title"
+        :value="item.cn_name"
+        :label="item.label"
+        :url="components_root_url+item.url"
+        :border="true"
+        is-link
+      />
     </van-cell-group>
 
     <div class="title">
       业务组件
     </div>
     <van-cell-group>
-      <van-cell v-for="(item,index) in menuList_business" v-bind:key="index" :title="index+1+'.'+item.title" :value="item.cn_name" :label="item.label" :url="components_root_url+item.url" :border="true" is-link />
+      <van-cell
+        v-for="(item,index) in menuList_business"
+        v-bind:key="index"
+        :title="index+1+'.'+item.title"
+        :value="item.cn_name"
+        :label="item.label"
+        :url="components_root_url+item.url"
+        :border="true"
+        is-link
+      />
     </van-cell-group>
 
     <div class="title">
       VUE-页面功能组件
     </div>
     <van-cell-group>
-      <van-cell v-for="(item,index) in menuList_vue" v-bind:key="index" :title="index+1+'.'+item.title" :value="item.cn_name" :label="item.label" :url="components_root_url+item.url" :border="true" is-link />
+      <van-cell
+        v-for="(item,index) in menuList_vue"
+        v-bind:key="index"
+        :title="index+1+'.'+item.title"
+        :value="item.cn_name"
+        :label="item.label"
+        :url="components_root_url+item.url"
+        :border="true"
+        is-link
+      />
     </van-cell-group>
 
   </div>
@@ -42,6 +94,8 @@ export default {
       style_components: menuData.styledemo,
       // 基础组件
       menuList_basic: menuData.basic,
+      // 表单组件
+      menuList_table: menuData.table,
       // 业务组件
       menuList_business: menuData.business,
 

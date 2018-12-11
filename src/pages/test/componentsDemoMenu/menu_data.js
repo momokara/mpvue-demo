@@ -57,6 +57,20 @@ const menuData = {
       url: "/componentsDemo/Transition/main"
     }
   ],
+  // 表单组件
+  table: [{
+      title: "CheckBox",
+      cn_name: "复选框",
+      label: "CheckBox 复选框",
+      url: "/componentsDemo/CheckBox/main"
+    },
+    {
+      title: "Radio",
+      cn_name: "单选框",
+      label: "Radio 单选框",
+      url: "/componentsDemo/Radio/main"
+    }
+  ],
   // 业务组件
   business: [{
       title: "Area",

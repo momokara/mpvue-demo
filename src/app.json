@@ -30,6 +30,9 @@
         "componentsDemo/scoreStar/main",
         "componentsDemo/Transition/main",
 
+        "componentsDemo/CheckBox/main",
+        "componentsDemo/Radio/main",
+
         "componentsDemo/Area/main",
         "componentsDemo/Card/main",
         "componentsDemo/SubmitBar/main",
