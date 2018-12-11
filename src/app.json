@@ -3,7 +3,7 @@
     "pages/home/main",
     "pages/testApiHome/main",
     "pages/loginpage/main",
-    "pages/mockExam/main"
+    "pages/mockExamHome/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -46,6 +46,12 @@
       "pages": [
         "main"
       ]
+    },
+    {
+      "root": "pages/mockExam",
+      "pages": [
+        "qlist/main"
+      ]
     }
   ],
   "tabBar": {
@@ -60,7 +66,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/mockExam/main",
+        "pagePath": "pages/mockExamHome/main",
         "iconPath": "static/images/icon/home.png",
         "selectedIconPath": "static/images/icon/home1.png",
         "text": "模拟考试"
