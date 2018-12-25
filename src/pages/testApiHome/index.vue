@@ -7,7 +7,7 @@
         </v-button>
       </navigator>
     </div>
-    <div>
+    <!-- <div>
       <v-button
         type='primary'
         @click="autoLogin"
@@ -27,11 +27,7 @@
       >
         弹出窗口
       </v-button>
-    </div>
-    <video
-      class="video-box"
-      src="https://cdn.huibaoming.com/haivit/public/image/20181108110347_150/7867e1428c1f76.mp4"
-    ></video>
+    </div> -->
     <van-tabbar
       :active="1"
       @change="onChange"

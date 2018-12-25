@@ -1,6 +1,4 @@
-import {
-  VantComponent
-} from '../common/component';
+import { VantComponent } from '../common/component';
 VantComponent({
   field: true,
   relation: {
@@ -10,33 +8,12 @@ VantComponent({
   classes: ['icon-class', 'label-class'],
   props: {
     name: null,
-    iconName: {
-      type: String,
-      value: "check"
-    },
-    checkedIconName: {
-      type: String,
-      value: "checked"
-    },
     value: null,
     disabled: Boolean,
-    useIconSlot: Boolean,
     labelDisabled: Boolean,
     labelPosition: String,
-    checkedColor: String
-  },
-  computed: {
-    iconClass: function iconClass() {
-      var _this$data = this.data,
-        disabled = _this$data.disabled,
-        name = _this$data.name,
-        value = _this$data.value;
-      return this.classNames('van-radio__icon', {
-        'van-radio__icon--disabled': disabled,
-        'van-radio__icon--checked': !disabled && name === value,
-        'van-radio__icon--check': !disabled && name !== value
-      });
-    }
+    checkedColor: String,
+    useIconSlot: Boolean,
   },
   methods: {
     emitChange: function emitChange(value) {

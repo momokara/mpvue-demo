@@ -1,60 +1,56 @@
 <template>
   <div class="container">
     <div id="msg">这里放页面内容</div>
-    <demo-block
-      title="基本用法"
-      padding
+
+    <van-radio-group
+      :value="radio1"
+      data-key="radio1"
+      custom-class="demo-radio-group"
+      @change="onChange"
     >
-      <van-radio-group
-        :value="radio1"
-        data-key="radio1"
-        custom-class="demo-radio-group"
-        @change="onChange"
-      >
-        <van-radio
-          name="0"
-          checked-icon-name="checked"
-          checkedColor="green"
-          use-icon-slot
-        >单选框 0
-          <div slot="icon">
-            <div
-              v-if="radio1==0"
-              class="
+      <van-radio
+        name="0"
+        checked-icon-name="checked"
+        checkedColor="green"
+        use-icon-slot
+      >单选框 0
+        <div slot="icon">
+          <div
+            v-if="radio1==0"
+            class="
               radio-icon
               ta-c
               fsp14"
-            >
-              <van-icon
-                name="checked"
-                color="green"
-                size="20px"
-              ></van-icon>
-            </div>
-
-            <div
-              v-else
-              class="
-              radio-icon
-              ta-c
-              fsp14"
-            >A
-            </div>
-
+          >
+            <van-icon
+              name="checked"
+              color="green"
+              size="20px"
+            ></van-icon>
           </div>
-        </van-radio>
-        <van-radio
-          name="1"
-          checked-icon-name="clear"
-          checkedColor="red"
-        >单选框 1</van-radio>
-        <van-radio
-          name="2"
-          checked-icon-name="checked"
-          checkedColor="green"
-        >单选框 2</van-radio>
-      </van-radio-group>
-    </demo-block>
+
+          <div
+            v-else
+            class="
+              radio-icon
+              ta-c
+              fsp14"
+          >A
+          </div>
+
+        </div>
+      </van-radio>
+      <van-radio
+        name="1"
+        checked-icon-name="clear"
+        checkedColor="red"
+      >单选框 1</van-radio>
+      <van-radio
+        name="2"
+        checked-icon-name="checked"
+        checkedColor="green"
+      >单选框 2</van-radio>
+    </van-radio-group>
 
   </div>
 </template>
@@ -63,7 +59,6 @@ import card from "@/components/card";
 export default {
   data() {
     return {
-      msg: "这里是消息",
       radio1: "1"
     };
   },

@@ -1,3 +1,5 @@
+<wxs src="../wxs/utils.wxs" module="utils" />
+
 <view class="van-radio custom-class">
   <view class="van-radio__input">
     <radio-group bindchange="onChange">
@@ -8,16 +10,20 @@
         class="van-radio__control"
       />
     </radio-group>
-    <slot wx:if="{{ useIconSlot }}" name="icon" />
+    <block  wx:if="{{ useIconSlot }}">
+        <slot wx:if="{{value==name}}" name="icon-active" />
+        <slot wx:else name="icon-default" />
+        <slot name="icon" />
+    </block>
     <van-icon
       wx:else
-      class="{{ iconClass }}"
+      class="{{ utils.bem('radio__icon', { disabled, checked: !disabled && name === value, check: !disabled && name !== value }) }}"
       custom-class="icon-class"
       color="{{ value === name ? checkedColor : '' }}"
-      name="{{ value === name ? checkedIconName : iconName }}"
+      name="{{ value === name ? 'checked' : 'check' }}"
     />
   </view>
-  <view class="van-radio__label van-radio__label--{{ labelPosition }} label-class" bindtap="onClickLabel">
+  <view class="van-radio__label van-radio__label--{{ labelPosition }} label-class {{value==name?'selected':''}}" bindtap="onClickLabel">
     <slot />
   </view>
 </view>

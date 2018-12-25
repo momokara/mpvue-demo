@@ -9,6 +9,7 @@ VantComponent({
     value: Number,
     integer: Boolean,
     disabled: Boolean,
+    asyncChange: Boolean,
     disableInput: Boolean,
     min: {
       type: null,
@@ -38,12 +39,20 @@ VantComponent({
       });
     }
   },
+  data: {
+    focus: false
+  },
   created: function created() {
     this.set({
       value: this.range(this.data.value)
     });
   },
   methods: {
+    onFocus: function onFocus() {
+      this.setData({
+        focus: true
+      });
+    },
     // limit value range
     range: function range(value) {
       return Math.max(Math.min(this.data.max, value), this.data.min);
@@ -79,7 +88,7 @@ VantComponent({
     },
     triggerInput: function triggerInput(value) {
       this.set({
-        value: value
+        value: this.data.asyncChange ? this.data.value : value
       });
       this.$emit('change', value);
     }
