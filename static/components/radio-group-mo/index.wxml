@@ -1,1 +1,3 @@
-<slot />
+<view class="van-radio-group custom-class">
+  <slot />
+</view>

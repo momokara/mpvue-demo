@@ -10,20 +10,27 @@
         class="van-radio__control"
       />
     </radio-group>
-    <block  wx:if="{{ useIconSlot }}">
+
+    <block wx:if="{{useIconSlot}}">
+      <block wx:if="{{disabled}}">
+        <slot name="icon-disabled" />
+      </block>
+      <block wx:else>
         <slot wx:if="{{value==name}}" name="icon-active" />
         <slot wx:else name="icon-default" />
         <slot name="icon" />
+      </block>
     </block>
+
     <van-icon
       wx:else
       class="{{ utils.bem('radio__icon', { disabled, checked: !disabled && name === value, check: !disabled && name !== value }) }}"
       custom-class="icon-class"
       color="{{ value === name ? checkedColor : '' }}"
-      name="{{ value === name ? 'checked' : 'check' }}"
+      name="{{ value === name ? 'checked' : 'circle' }}"
     />
   </view>
-  <view class="van-radio__label van-radio__label--{{ labelPosition }} label-class {{value==name?'selected':''}}" bindtap="onClickLabel">
+  <view class="van-radio__label van-radio__label--{{ labelPosition }} label-class" bindtap="onClickLabel">
     <slot />
   </view>
 </view>

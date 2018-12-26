@@ -1,5 +1,5 @@
 const apiData = {
-  api_CheckboxGroup: [{
+  api_RadioGroup: [{
       params: "参数",
       desc: "说明",
       tpye: "类型",
@@ -22,15 +22,9 @@ const apiData = {
       desc: "是否禁用所有单选框",
       tpye: "Boolean",
       default: "false"
-    },
-    {
-      params: "max",
-      desc: "设置最大可选数",
-      tpye: "Number",
-      default: "0（无限制）"
     }
   ],
-  api_Checkbox: [{
+  api_Radio: [{
       params: "参数",
       desc: "说明",
       tpye: "类型",
@@ -67,10 +61,10 @@ const apiData = {
       default: "right"
     },
     {
-      params: "shape",
-      desc: "形状，可选值为 round square",
+      params: "checked-color",
+      desc: "选中状态颜色",
       tpye: "String",
-      default: "round"
+      default: "#1989fa"
     },
     {
       params: "use-icon-slot",
@@ -78,14 +72,9 @@ const apiData = {
       tpye: "Boolean",
       default: "false"
     },
-    {
-      params: "checked-color",
-      desc: "选中状态颜色",
-      tpye: "String",
-      default: "#1989fa"
-    },
+
   ],
-  event_Checkbox: [{
+  event_Radio: [{
       params: "方法名",
       desc: "说明",
       return: "返回值"
@@ -93,11 +82,11 @@ const apiData = {
     {
       params: "bind:change",
       desc: "当绑定值变化时触发的事件",
-      return: "当前组件的值"
+      return: "当前选中项的 name"
     },
 
   ],
-  event_CheckboxGroup: [{
+  event_RadioGroup: [{
       params: "方法名",
       desc: "说明",
       return: "返回值"
@@ -105,10 +94,10 @@ const apiData = {
     {
       params: "bind:change",
       desc: "当绑定值变化时触发的事件",
-      return: "当前组件的值"
+      return: "	当前选中项的 name"
     },
   ],
-  slot_Checkbox: [{
+  slot_Radio: [{
       params: "名称",
       desc: "说明",
       default: "slot-scope"
@@ -139,20 +128,7 @@ const apiData = {
       default: "-"
     },
   ],
-  func_Checkbox: [{
-      params: "方法名",
-      desc: "参数",
-      type: "返回值",
-      default: "介绍"
-    },
-    {
-      params: "toggle",
-      desc: "-",
-      type: "-",
-      default: "切换选中状态"
-    },
-  ],
-  custom_class_Checkbox: [{
+  custom_class_Radio: [{
       params: "类名",
       desc: "说明"
     },
@@ -169,7 +145,7 @@ const apiData = {
       desc: "描述信息样式类"
     }
   ],
-  custom_class_CheckboxGroup: [{
+  custom_class_RadioGroup: [{
       params: "类名",
       desc: "说明"
     },

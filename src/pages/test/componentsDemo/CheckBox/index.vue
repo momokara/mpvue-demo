@@ -91,11 +91,38 @@
 
       </van-checkbox-group>
     </div>
+    <div class="info">
+      <div class="fsp16 fc-grey">API 说明</div>
+      <div class="fsp14 fc-grey">Checkbox API</div>
+      <apiTable :tabledata="table_api_checkbox"></apiTable>
 
+      <div class="fsp14 fc-grey">CheckboxGroup API</div>
+      <apiTable :tabledata="table_api_checkboxgroup"></apiTable>
+
+      <div class="fsp14 fc-grey">Checkbox Event</div>
+      <apiTable :tabledata="table_event_checkbox"></apiTable>
+
+      <div class="fsp14 fc-grey">CheckboxGroup Event</div>
+      <apiTable :tabledata="table_event_checkboxgroup"></apiTable>
+
+      <div class="fsp14 fc-grey">Checkbox Slot</div>
+      <apiTable :tabledata="table_slot_checkbox"></apiTable>
+
+      <div class="fsp14 fc-grey">Checkbox 方法</div>
+      <div class="fs12 fc-grey">通过 selectComponent 可以获取到 checkbox 实例并调用实例方法</div>
+      <apiTable :tabledata="table_func_checkbox"></apiTable>
+
+      <div class="fsp14 fc-grey">Checkbox 外部样式类</div>
+      <apiTable :tabledata="table_custom_class_checkbox"></apiTable>
+
+      <div class="fsp14 fc-grey">CheckboxGroup 外部样式类</div>
+      <apiTable :tabledata="table_custom_class_checkboxgroup"></apiTable>
+    </div>
   </div>
 </template>
 <script>
-import card from "@/components/card";
+import apiTable from "@/components/api_data_table";
+import apiData from "./api_data";
 export default {
   data() {
     return {
@@ -117,11 +144,21 @@ export default {
           info: "复选框 嵌套Group 和cell"
         }
       ],
-      checked_group_selected: []
+      checked_group_selected: [],
+      table_api_checkbox: apiData.api_Checkbox,
+      table_api_checkboxgroup: apiData.api_CheckboxGroup,
+      table_event_checkbox: apiData.event_Checkbox,
+      table_event_checkboxgroup: apiData.event_CheckboxGroup,
+      table_slot_checkbox: apiData.slot_Checkbox,
+      table_func_checkbox: apiData.func_Checkbox,
+      table_custom_class_checkbox: apiData.custom_class_Checkbox,
+      table_custom_class_checkboxgroup: apiData.custom_class_CheckboxGroup,
     };
   },
   // 使用的 vue 组件
-  components: {},
+  components: {
+    apiTable
+  },
   // 页面中的方法
   methods: {
     onChange(e) {
