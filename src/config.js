@@ -3,7 +3,7 @@
  */
 
 var host = "tst.jiapeiyun.cn"
-// host = "tst.huibaoming.com"
+
 var config = {
 
   // 下面的地址配合云端 Server 工作
@@ -88,8 +88,7 @@ var config = {
       "pre_url_param": "http://qiu.mingkong.com/weixin/userCenter/index.do?is_json\u003d1",
       "folder_name": "wap",
       "module": "userCenter",
-      "action": "index",
-      "page_title": "惠学科技-会员中心"
+      "action": "index"
     },
     "request_suffix": ".do",
     "common_param": "is_json=3"

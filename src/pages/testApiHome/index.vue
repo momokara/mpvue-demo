@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <div>
+    <div class="ta-c">
       <navigator url="/pages/test/componentsDemoMenu/main">
-        <v-button type='default'>
+        <van-button type='default'>
           进入组件列表
-        </v-button>
+        </van-button>
       </navigator>
     </div>
     <!-- <div>

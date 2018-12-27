@@ -41,7 +41,7 @@ VantComponent({
       value: []
     },
     // 结果的ID
-    resultID: {
+    resultId: {
       type: String
     },
   },
@@ -51,22 +51,23 @@ VantComponent({
   },
   watch: {
     defaultDeg: "_setCelldeg",
-    resultID: "gores",
-    rotateDeg: 'goDeg'
+    resultId: "gores",
+    rotateDeg: "goDeg",
+    awardList: "_setCelldeg"
   },
   methods: {
     // 点击转动按钮发送的事件
     onstart: function () {
       this.$emit('play', this.data);
     },
-    // 转动到结果 根据 data.resultID
+    // 转动到结果 根据 data.resultId
     gores: function () {
       let _this = this;
       _this.reset();
       _this.setData({
         isAnimate: true
       });
-      let id = _this.data.resultID;
+      let id = _this.data.resultId;
       let _res = [];
       if (id) {
         _res = _this.data.awardList.filter((e, i) => {

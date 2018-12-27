@@ -3,7 +3,7 @@
     <div class="title fz-17pt">
       Lottery-Wheel 转盘抽奖
     </div>
-    <wheel :isplay="false" :awardList="awardList" :defaultDeg="defaultDeg" :resultID="resultID" :rotateDeg="rotateDeg" :animate-duration="animateDuration" @play="play" @over="over"></wheel>
+    <lottery-wheel :isplay="false" :awardList="awardList" :defaultDeg="defaultDeg" :resultId="resultID" :rotateDeg="rotateDeg" :animate-duration="animateDuration" @play="play" @over="over"></lottery-wheel>
     <div class="control-box">
       <van-cell-group>
         <van-field :label="'动画时间'" :placeholder="'{Number}动画持续时间(单位秒)'" :border="true" data-name="animateDuration" @change="changeInput($event)" />

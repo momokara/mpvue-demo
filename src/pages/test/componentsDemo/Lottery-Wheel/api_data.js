@@ -18,8 +18,8 @@ const apiData = {
       default: "0"
     },
     {
-      params: "resultID",
-      desc: "中奖结果ID,如ID在awardList中存在,则执行动画转动到ID奖品位置 ",
+      params: "resultId",
+      desc: "中奖结果Id,如ID在awardList中存在,则执行动画转动到ID奖品位置 ",
       tpye: "String",
       default: "-"
     },

@@ -1,7 +1,3 @@
 {
-  "navigationBarTitleText": "Layout 分栏布局",
-  "usingComponents": {
-    "van-row": "/static/components/row/index",
-    "van-col": "/static/components/col/index"
-  }
+  "navigationBarTitleText": "Layout 分栏布局"
 }

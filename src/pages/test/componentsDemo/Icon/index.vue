@@ -3,22 +3,49 @@
     <div class="title fz-17pt">
       Icon(图标)
     </div>
+
     <div class="demo">
-      <div class="fsp16 fc-grey ">
-        基础用法
-      </div>
-      <div class="demo-cell" v-for="(item, index) in iconlist" :key="index">
-        <van-icon :custom-class="'icon-row'" :name="item" :size="'35px'" :color="'#888'" />
-        <span class="icon_name">{{item}}</span>
-      </div>
+
+      <van-tabs
+        @change="onChange"
+        class="tabs"
+      >
+        <div class="fsp16 fc-grey ">
+          基础用法
+        </div>
+        <van-tab
+          v-for="(item, index) in iconTable"
+          :key="index"
+          :title="item.title"
+        >
+          <view class="content">
+            <div
+              class="demo-cell"
+              v-for="(item_icon, index_icon) in iconlist[item.name]"
+              :key="index_icon"
+            >
+              <van-icon
+                :custom-class="'icon-row'"
+                :name="item_icon"
+                :size="'35px'"
+                :color="'#3AC569'"
+              />
+              <div class="icon_name fs12">{{item_icon}}</div>
+            </div>
+          </view>
+        </van-tab>
+      </van-tabs>
 
       <div class="fsp16 fc-grey ">
         使用自定义图片
       </div>
-      <div class="demo-cell">
-        <van-icon size="40px">
-          <image src="https://cdn.huibaoming.com/haivit/public/image/20181026120910_500/活动订单.png" />
-        </van-icon>
+      <div class="demo-cell ta-c">
+        <van-icon
+          :custom-class="'icon-row'"
+          name="https://cdn.huibaoming.com/haivit/public/image/20181026120910_500/活动订单.png"
+          size="35px"
+        />
+        <div class="icon_name fs12">自定义</div>
       </div>
 
     </div>
@@ -47,6 +74,11 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
+      iconTable: [
+        { title: "基础图标", name: "basic" },
+        { title: "线框风格", name: "full" },
+        { title: "实线风格", name: "filled" }
+      ],
       iconlist: apiData.icon_name_list,
       table_api: apiData.api,
       table_event: apiData.event,
@@ -68,24 +100,19 @@ export default {
 
 <style lang="scss">
 .demo {
-  display: flex;
-  flex-wrap: wrap;
-  .fsp16 {
-    display: block;
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .tabs {
     width: 100%;
   }
   .demo-cell {
-    .icon-row {
-      display: block;
-    }
-    .icon_name {
-      font-size: 12px;
-    }
     text-align: center;
     display: inline-block;
     margin: 10px 0;
     width: 20%;
-    position: relative;
   }
 }
 </style>

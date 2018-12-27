@@ -1,6 +1,3 @@
 {
-  "navigationBarTitleText": "Button(按钮)",
-  "usingComponents": {
-    "van-button": "/static/components/button/index"
-  }
+  "navigationBarTitleText": "Button(按钮)"
 }

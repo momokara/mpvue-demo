@@ -1,11 +1,3 @@
 {
-  "navigationBarTitleText": "GoodsAction(商品导航)",
-  "usingComponents": {
-    "van-toast": "/static/components/toast/index",
-    "van-goods-action": "/static/components/goods-action/index",
-    "van-goods-action-icon": "/static/components/goods-action-icon-mo/index",
-    "van-goods-action-button": "/static/components/goods-action-button/index",
-    "van-row": "/static/components/row/index",
-    "van-col": "/static/components/col/index"
-  }
+  "navigationBarTitleText": "GoodsAction(商品导航)"
 }

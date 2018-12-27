@@ -3,7 +3,7 @@
     <div class="title fz-17pt">
       Lottery-Table 九宫格抽奖
     </div>
-    <wheel :isplay="false" :btnImg="btnImg" :awardList="awardList" :resultID="resultID" @play="play" @over="over"></wheel>
+    <lottery-table :isplay="false" :btnImg="btnImg" :awardList="awardList" :resultID="resultID" @play="play" @over="over"></lottery-table>
     <div class="control-box">
       <van-cell-group>
         <van-field :label="'结果的ID'" :placeholder="'{String}中奖结果ID'" :border="true" data-name="resultID" @change="changeInput($event)" />

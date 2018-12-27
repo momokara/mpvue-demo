@@ -1,6 +1,3 @@
 {
-  "navigationBarTitleText": "这里是首页",
-  "usingComponents": {
-    "van-tabbar-item": "/static/components/tabbar-item-mo/index"
-  }
+  "navigationBarTitleText": "这里是首页"
 }

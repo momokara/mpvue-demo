@@ -1,8 +1,3 @@
 {
-  "navigationBarTitleText": "九宫格抽奖",
-  "usingComponents": {
-    "wheel": "/static/components/lottery-table/index",
-    "van-cell-group": "/static/components/cell-group/index",
-    "van-field": "/static/components/field/index"
-  }
+  "navigationBarTitleText": "九宫格抽奖"
 }

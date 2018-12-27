@@ -1,9 +1,3 @@
 {
-  "navigationBarTitleText": "Radio 单选框",
-  "usingComponents": {
-    "van-radio": "/static/components/radio-mo/index",
-    "van-radio-group": "/static/components/radio-group-mo/index",
-    "van-cell": "/static/components/cell/index",
-    "van-cell-group": "/static/components/cell-group/index"
-  }
+  "navigationBarTitleText": "Radio 单选框"
 }

@@ -1,9 +1,3 @@
 {
-  "navigationBarTitleText": "Checkbox 复选框",
-  "usingComponents": {
-    "van-checkbox": "/static/components/checkbox-mo/index",
-    "van-checkbox-group": "/static/components/checkbox-group-mo/index",
-    "van-cell": "/static/components/cell/index",
-    "van-cell-group": "/static/components/cell-group/index"
-  }
+  "navigationBarTitleText": "Checkbox 复选框"
 }

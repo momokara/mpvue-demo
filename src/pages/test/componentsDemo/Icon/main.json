@@ -1,6 +1,3 @@
 {
-  "navigationBarTitleText": "Icon(图标)",
-  "usingComponents": {
-    "van-icon": "/static/components/icon-mo/index"
-  }
+  "navigationBarTitleText": "Icon(图标)"
 }
