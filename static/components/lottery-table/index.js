@@ -26,7 +26,7 @@ VantComponent({
       value: []
     },
     // 结果的ID
-    resultID: {
+    resultId: {
       type: String
     },
   },
@@ -38,29 +38,33 @@ VantComponent({
     awardListShow: []
   },
   watch: {
-    // awardList: "_setAwardList",
-    resultID: "goRes"
+    awardList: "_setAwardList",
+    resultId: "goRes"
   },
   methods: {
     // 点击转动按钮发送的事件
     onStart: function () {
       let _this = this;
-      this.$emit('play', this.data);
+      _this.$emit('play', _this.data);
       clearInterval(autoStep);
       autoStep = setInterval(() => {
         _this.goStep();
       }, 100);
     },
-    // 转动到结果 根据 data.resultID
+    // 转动到结果 根据 data.resultId
     goRes: function () {
       let _this = this;
-      let id = _this.data.resultID;
+      let id = _this.data.resultId;
+      clearInterval(autoStep);
+      autoStep = setInterval(() => {
+        _this.goStep();
+      }, 80);
       if (id) {
         let _awardList = _this.data.awardListShow;
         let _resindex = _awardList.findIndex(function (event) {
           return event.id == id;
         });
-
+        console.log(_resindex);
         if (_resindex < 0) {
           console.info('没有奖品');
           _this.$emit("over", {
@@ -74,13 +78,14 @@ VantComponent({
         } else {
           let delaytime = 100;
           let _fn = function () {
-            clearInterval(autoStep);
             if (_this.data.act_step != _resindex) {
               _this.goStep();
-              delaytime = delaytime * 1.5;
+              delaytime = delaytime * 1.2;
+              clearInterval(autoStep);
               autoStep = setInterval(_fn, delaytime);
             } else {
               _this.$emit("over", _this.data.awardListShow[_resindex]);
+              clearInterval(autoStep);
             }
           };
           clearInterval(autoStep);

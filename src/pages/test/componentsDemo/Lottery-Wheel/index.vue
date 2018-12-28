@@ -6,7 +6,7 @@
     <lottery-wheel :isplay="false" :awardList="awardList" :defaultDeg="defaultDeg" :resultId="resultID" :rotateDeg="rotateDeg" :animate-duration="animateDuration" @play="play" @over="over"></lottery-wheel>
     <div class="control-box">
       <van-cell-group>
-        <van-field :label="'动画时间'" :placeholder="'{Number}动画持续时间(单位秒)'" :border="true" data-name="animateDuration" @change="changeInput($event)" />
+        <!-- <van-field :label="'动画时间'" :placeholder="'{Number}动画持续时间(单位秒)'" :border="true" data-name="animateDuration" @change="changeInput($event)" /> -->
         <van-field :label="'初始偏转'" :placeholder="'{Number}文字初始偏转的角度(单位°)'" :border="true" data-name="defaultDeg" @change="changeInput($event)" />
         <van-field :label="'结果的ID'" :placeholder="'{String}中奖结果ID'" :border="true" data-name="resultID" @change="changeInput($event)" />
         <van-field :label="'转动角度'" :placeholder="'{Number}圆盘转动的角度(单位°)'" :border="true" data-name="rotateDeg" @change="changeInput($event)" />

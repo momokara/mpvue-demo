@@ -62,6 +62,7 @@ VantComponent({
     },
     // 转动到结果 根据 data.resultId
     gores: function () {
+      console.log("res",this.data.resultId)
       let _this = this;
       _this.reset();
       _this.setData({
