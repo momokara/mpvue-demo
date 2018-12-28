@@ -80,10 +80,6 @@ export default {
       console.log(e);
     }
   },
-
-  created() {
-    console.log("demopage-created", this.msg);
-  }
 };
 </script>
 

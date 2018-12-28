@@ -161,11 +161,6 @@ export default {
       });
     }
   },
-
-  // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  created() {
-    console.log("demopage-created", this.msg);
-  }
 };
 </script>
 

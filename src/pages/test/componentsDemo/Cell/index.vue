@@ -96,9 +96,6 @@ export default {
   // 页面中的方法
   methods: {},
 
-  // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  created() {},
-
 };
 </script>
 

@@ -15,7 +15,7 @@
             :title="(index+1)+'.'+(cellindex+1)+'.'+cellitem.title"
             :value="cellitem.cn_name"
             :label="cellitem.label"
-            :url="components_root_url+cellitem.url"
+            :url="components_root_url+cellitem.url+'?label='+cellitem.label"
             :border="true"
             is-link
           />
