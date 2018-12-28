@@ -2,31 +2,31 @@ const apiData = {
   api: [{
       params: "参数",
       desc: "说明",
-      tpye: "类型",
+      type: "类型",
       default: "默认值"
     },
     {
       params: "name",
       desc: "类型",
-      tpye: "String",
+      type: "String",
       default: "fade"
     },
     {
       params: "show",
       desc: "是否展示组件",
-      tpye: "Boolean",
+      type: "Boolean",
       default: "true"
     },
     {
       params: "duration",
       desc: "动画时长，单位为毫秒",
-      tpye: "Number",
+      type: "Number",
       default: "300"
     },
     {
       params: "custom-style",
       desc: "自定义样式",
-      tpye: "String",
+      type: "String",
       default: "-"
     },
   ],

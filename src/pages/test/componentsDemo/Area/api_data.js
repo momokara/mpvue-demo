@@ -2,49 +2,49 @@ const apiData = {
   api: [{
       params: "参数",
       desc: "说明",
-      tpye: "类型",
+      type: "类型",
       default: "默认值"
     },
     {
       params: "value",
       desc: "当前选中的省市区code",
-      tpye: "String",
+      type: "String",
       default: "-"
     },
     {
       params: "title",
       desc: "顶部栏标题	",
-      tpye: "String",
+      type: "String",
       default: "-"
     },
     {
       params: "area-list",
       desc: "省市区数据, 见 getAllRegion.json",
-      tpye: "Object",
+      type: "Object",
       default: "-"
     },
     {
       params: "columns-num",
       desc: "省市区显示列数，3-省市区，2-省市，1-省",
-      tpye: "String | Number",
+      type: "String | Number",
       default: "3"
     },
     {
       params: "loading",
       desc: "是否显示加载状态",
-      tpye: "Boolean",
+      type: "Boolean",
       default: "false"
     },
     {
       params: "item-height",
       desc: "选项高度",
-      tpye: "Number",
+      type: "Number",
       default: "44"
     },
     {
       params: "visible-item-count",
       desc: "可见的选项个数",
-      tpye: "Number",
+      type: "Number",
       default: "2"
     },
 

@@ -2,55 +2,55 @@ const apiData = {
   api: [{
       params: "参数",
       desc: "说明",
-      tpye: "类型",
+      type: "类型",
       default: "默认值"
     },
     {
       params: "show",
       desc: "是否显示弹出层",
-      tpye: "Boolean",
+      type: "Boolean",
       default: "false"
     },
     {
       params: "z-index",
       desc: "z-index 层级",
-      tpye: "Number",
+      type: "Number",
       default: "100"
     },
     {
       params: "overlay",
       desc: "是否显示背景蒙层",
-      tpye: "Boolean",
+      type: "Boolean",
       default: "true"
     },
     {
       params: "position",
       desc: "可选值为 top bottom right left",
-      tpye: "String",
+      type: "String",
       default: "-"
     },
     {
       params: "duration",
       desc: "动画时长，单位为毫秒",
-      tpye: "Number",
+      type: "Number",
       default: "300"
     },
     {
       params: "custom-style",
       desc: "自定义弹出层样式",
-      tpye: "String",
+      type: "String",
       default: "-"
     },
     {
       params: "overlay-style",
       desc: "自定义背景蒙层样式",
-      tpye: "String",
+      type: "String",
       default: "-"
     },
     {
       params: "close-on-click-overlay",
       desc: "点击蒙层是否关闭 Popup",
-      tpye: "Boolean",
+      type: "Boolean",
       default: "true"
     },
   ],

@@ -2,55 +2,55 @@ const apiData = {
   api: [{
       "params": "参数",
       "desc": "说明",
-      "tpye": "类型",
+      "type": "类型",
       "default": "默认值"
     },
     {
       "params": "year",
       "desc": "默认显示的年份",
-      "tpye": "Number",
+      "type": "Number",
       "default": "当年年份"
     },
     {
       "params": "month",
       "desc": "默认显示的月份",
-      "tpye": "Number",
+      "type": "Number",
       "default": "当年月份"
     },
     {
       "params": "markDay",
       "desc": "标记选中的时间 可以在info 中标记内容， {day:Number 日期 ,info:String 消息内容} ",
-      "tpye": "Array",
+      "type": "Array",
       "default": "-"
     },
     {
       "params": "isShowDayInfo",
       "desc": "是否显示day 下面到info",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "false"
     },
     {
       "params": "lastMonth",
       "desc": "上一月按钮显示到文字",
-      "tpye": "String",
+      "type": "String",
       "default": "上一月"
     },
     {
       "params": "nextMonth",
       "desc": "下一月按钮显示到文字",
-      "tpye": "String",
+      "type": "String",
       "default": "下一月"
     },
     {
       "params": "weekday",
       "desc": "星期显示到内容",
-      "tpye": "Array",
+      "type": "Array",
       "default": "['日', '一', '二', '三', '四', '五', '六']"
     },
     {
       "params": "monthname",
       "desc": "月份显示到内容",
-      "tpye": "Array",
+      "type": "Array",
       "default": "['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']"
     },
   ],

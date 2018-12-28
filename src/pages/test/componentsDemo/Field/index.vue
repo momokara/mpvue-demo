@@ -81,14 +81,15 @@
           label="留言"
           type="textarea"
           placeholder="请输入留言"
-          rows="1"
+          rows="2"
           autosize
           :border="false"
+          input-class="text-area"
         />
       </van-cell-group>
 
       <div class="fsp16 fc-grey ">
-        高度自适应
+        插入按钮
       </div>
       <van-cell-group>
         <van-field
@@ -121,7 +122,7 @@
       <div class="fsp14 fc-grey">Slot</div>
       <apiTable :tabledata="table_Slot_Field"></apiTable>
 
-      <div class="fsp14 fc-grey">Slot</div>
+      <div class="fsp14 fc-grey">外部样式类</div>
       <apiTable :tabledata="table_class_Field"></apiTable>
 
     </div>
@@ -140,11 +141,11 @@ export default {
       username2: "",
       message: "",
       phone: "1365577",
-      table_api_Field:apiData.api_Field,
-      table_event_Field:apiData.event_Field,
-      table_event_Field:apiData.event_Field,
-      table_Slot_Field:apiData.slot_Field,
-      table_class_Field:apiData.class_Field,
+      table_api_Field: apiData.api_Field,
+      table_event_Field: apiData.event_Field,
+      table_event_Field: apiData.event_Field,
+      table_Slot_Field: apiData.slot_Field,
+      table_class_Field: apiData.class_Field
     };
   },
   // 使用的 vue 组件
@@ -170,4 +171,7 @@ export default {
 
 
 <style lang="scss">
+.container {
+  
+}
 </style>

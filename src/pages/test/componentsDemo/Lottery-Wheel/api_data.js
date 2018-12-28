@@ -2,49 +2,49 @@ const apiData = {
   api: [{
       params: "参数",
       desc: "说明",
-      tpye: "类型",
+      type: "类型",
       default: "默认值"
     },
     {
       params: "awardList",
       desc: "奖品列表",
-      tpye: "Array",
+      type: "Array",
       default: "[]"
     },
     {
       params: "defaultDeg",
       desc: "文字初始偏转的角度",
-      tpye: "Number",
+      type: "Number",
       default: "0"
     },
     {
       params: "resultId",
       desc: "中奖结果Id,如ID在awardList中存在,则执行动画转动到ID奖品位置 ",
-      tpye: "String",
+      type: "String",
       default: "-"
     },
     {
       params: "rotateDeg",
       desc: "圆盘转动的角度",
-      tpye: "Number",
+      type: "Number",
       default: "-"
     },
     {
       params: "animate-duration",
       desc: "动画时间,为空或者0时候执行默认的时间3s",
-      tpye: "Number",
+      type: "Number",
       default: "3s"
     },
     {
       params: "bgImg",
       desc: "圆盘的背景图",
-      tpye: "String",
+      type: "String",
       default: "~"
     },
     {
       params: "arrImg",
       desc: "指针图",
-      tpye: "String",
+      type: "String",
       default: "~"
     }
   ],

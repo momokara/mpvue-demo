@@ -2,97 +2,97 @@ const apiData = {
   api_DatetimePicker: [{
       params: "参数",
       desc: "说明",
-      tpye: "类型",
+      type: "类型",
       default: "默认值"
     },
     {
       params: "value",
       desc: "当前选中值",
-      tpye: "String | Number",
+      type: "String | Number",
       default: "-"
     },
     {
       params: "type",
       desc: "类型，可选值为 date time year-month 不建议动态修改",
-      tpye: "String",
+      type: "String",
       default: "datetime"
     },
     {
       params: "min-date",
       desc: "可选的最小时间，精确到分钟",
-      tpye: "Number",
+      type: "Number",
       default: "十年前"
     },
     {
       params: "max-date",
       desc: "可选的最大时间，精确到分钟",
-      tpye: "Number",
+      type: "Number",
       default: "十年后"
     },
     {
       params: "min-hour",
       desc: "可选的最小小时，针对 time 类型",
-      tpye: "Number",
+      type: "Number",
       default: "0"
     },
     {
       params: "max-hour",
       desc: "可选的最大小时，针对 time 类型",
-      tpye: "Number",
+      type: "Number",
       default: "23"
     },
     {
       params: "min-minute",
       desc: "可选的最小分钟，针对 time 类型",
-      tpye: "Number",
+      type: "Number",
       default: "0"
     },
     {
       params: "max-minute",
       desc: "可选的最大分钟，针对 time 类型",
-      tpye: "Number",
+      type: "Number",
       default: "59"
     },
     {
       params: "title",
       desc: "顶部栏标题",
-      tpye: "String",
+      type: "String",
       default: "-"
     },
     {
       params: "show-toolbar",
       desc: "是否显示顶部栏",
-      tpye: "Boolean",
+      type: "Boolean",
       default: "false"
     },
     {
       params: "loading",
       desc: "是否显示加载状态",
-      tpye: "Boolean",
+      type: "Boolean",
       default: "false"
     },
     {
       params: "item-height",
       desc: "选项高度",
-      tpye: "Number",
+      type: "Number",
       default: "44"
     },
     {
       params: "confirm-button-text",
       desc: "确认按钮文字",
-      tpye: "String",
+      type: "String",
       default: "确认"
     },
     {
       params: "cancel-button-text",
       desc: "取消按钮文字",
-      tpye: "String",
+      type: "String",
       default: "取消"
     },
     {
       params: "visible-item-count",
       desc: "可见的选项个数",
-      tpye: "Number",
+      type: "Number",
       default: "5"
     },
   ],

@@ -2,181 +2,181 @@ const apiData = {
   api_Field: [{
       params: "参数",
       desc: "说明",
-      tpye: "类型",
+      type: "类型",
       default: "默认值"
     },
     {
       "params": "name",
       "desc": "在表单内提交时的标识符",
-      "tpye": "String",
+      "type": "String",
       "default": "-"
     },
     {
       "params": "label",
       "desc": "输入框左侧文本",
-      "tpye": "String",
+      "type": "String",
       "default": "-"
     },
     {
       "params": "value",
       "desc": "当前输入的值",
-      "tpye": "String | Number",
+      "type": "String | Number",
       "default": "-"
     },
     {
       "params": "type",
       "desc": "可设置为任意原生类型, 如 number idcard textarea digit",
-      "tpye": "String",
+      "type": "String",
       "default": "text"
     },
     {
       "params": "fixed",
       "desc": "如果 type 为 textarea 且在一个 position:fixed 的区域，需要显示指定属性 fixed 为 true",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "false"
     },
     {
       "params": "focus",
       "desc": "获取焦点",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "false"
     },
     {
       "params": "border",
       "desc": "是否显示内边框",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "true"
     },
     {
       "params": "disabled",
       "desc": "是否禁用输入框",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "false"
     },
     {
       "params": "readonly",
       "desc": "是否只读",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "false"
     },
     {
       "params": "clearable",
       "desc": "是否启用清除控件",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "false"
     },
     {
       "params": "required",
       "desc": "是否显示表单必填星号",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "false"
     },
     {
       "params": "title-width",
       "desc": "标题宽度",
-      "tpye": "String",
+      "type": "String",
       "default": "90px"
     },
     {
       "params": "maxlength",
       "desc": "最大输入长度，设置为 -1 的时候不限制最大长度",
-      "tpye": "Number",
+      "type": "Number",
       "default": "-1"
     },
     {
       "params": "placeholder",
       "desc": "输入框为空时占位符",
-      "tpye": "String",
+      "type": "String",
       "default": "-"
     },
     {
       "params": "placeholder-style",
       "desc": "指定 placeholder 的样式",
-      "tpye": "String",
+      "type": "String",
       "default": "-"
     },
     {
       "params": "is-link",
       "desc": "是否展示右侧箭头并开启点击反馈",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "false"
     },
     {
       "params": "error",
       "desc": "是否将输入内容标红",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "false"
     },
     {
       "params": "error-message",
       "desc": "底部错误提示文案，为空时不展示",
-      "tpye": "String",
+      "type": "String",
       "default": "''"
     },
     {
       "params": "input-align",
       "desc": "输入框内容对齐方式，可选值为 center right",
-      "tpye": "String",
+      "type": "String",
       "default": "left"
     },
     {
       "params": "autosize",
       "desc": "自适应内容高度，只对 textarea 有效",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "false"
     },
     {
       "params": "icon",
       "desc": "输入框尾部图标名称或图片链接，可选值见 Icon 组件",
-      "tpye": "String",
+      "type": "String",
       "default": "-"
     },
     {
       "params": "left-icon",
       "desc": "输入框左侧图标名称或图片链接，可选值见 Icon 组件",
-      "tpye": "String",
+      "type": "String",
       "default": "-"
     },
     {
       "params": "confirm-type",
       "desc": "设置键盘右下角按钮的文字，仅在 type='text' 时生效",
-      "tpye": "String",
+      "type": "String",
       "default": "done"
     },
     {
       "params": "confirm-hold",
       "desc": "点击键盘右下角按钮时是否保持键盘不收起，在 type='textarea' 时无效",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "false"
     },
     {
       "params": "cursor-spacing",
       "desc": "输入框聚焦时底部与键盘的距离",
-      "tpye": "Number",
+      "type": "Number",
       "default": "50"
     },
     {
       "params": "adjust-position",
       "desc": "键盘弹起时，是否自动上推页面",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "true"
     },
     {
       "params": "use-icon-slot",
       "desc": "是否使用 icon slot",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "false"
     },
     {
       "params": "use-button-slot",
       "desc": "是否使用 button slot",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "false"
     },
     {
       "params": "show-confirm-bar",
       "desc": "是否显示键盘上方带有”完成“按钮那一栏，只对 textarea 有效",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "true"
     }
   ],

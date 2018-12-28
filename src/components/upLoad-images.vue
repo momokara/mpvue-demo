@@ -19,15 +19,15 @@ import Api from "@/api/api";
 export default {
   props: {
     title: {
-      tpye: String,
+      type: String,
       default: ""
     },
     max: {
-      tpye: Number,
+      type: Number,
       default: 6
     },
     autoUpLoad: {
-      tpye: Boolean,
+      type: Boolean,
       default: false
     },
     imageList: {

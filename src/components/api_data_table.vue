@@ -3,7 +3,7 @@
     <div class="api-table-row" v-for="tabrow in tabledata" v-bind:key="tabrow">
       <div class="api-table-col flex-1_5 ta-c fs12" v-if="tabrow.params">{{tabrow.params}}</div>
       <div class="api-table-col flex-2 fs12" v-if="tabrow.desc">{{tabrow.desc}}</div>
-      <div class="api-table-col flex-1 ta-c fs12" v-if="tabrow.tpye">{{tabrow.tpye}}</div>
+      <div class="api-table-col flex-1 ta-c fs12" v-if="tabrow.type">{{tabrow.type}}</div>
       <div class="api-table-col flex-1 ta-c fs12" v-if="tabrow.default">{{tabrow.default}}</div>
       <div class="api-table-col flex-1 ta-c fs12" v-if="tabrow.return">{{tabrow.return}}</div>
     </div>

@@ -2,55 +2,55 @@ const apiData = {
   api: [{
       "params": "参数",
       "desc": "说明",
-      "tpye": "类型",
+      "type": "类型",
       "default": "默认值"
     },
     {
       "params": "price",
       "desc": "价格（单位分）",
-      "tpye": "Number",
+      "type": "Number",
       "default": "-"
     },
     {
       "params": "label",
       "desc": "价格文案",
-      "tpye": "String",
+      "type": "String",
       "default": "合计："
     },
     {
       "params": "button-text",
       "desc": "按钮文字",
-      "tpye": "String",
+      "type": "String",
       "default": "-"
     },
     {
       "params": "button-type",
-      "desc": "按钮tpye",
-      "tpye": "String",
+      "desc": "按钮type",
+      "type": "String",
       "default": "danger"
     },
     {
       "params": "tip",
       "desc": "提示文案",
-      "tpye": "String / Boolean",
+      "type": "String / Boolean",
       "default": "-"
     },
     {
       "params": "disabled",
       "desc": "是否禁用按钮",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "false"
     },
     {
       "params": "loading",
       "desc": "是否显示加载中的按钮",
-      "tpye": "Boolean",
+      "type": "Boolean",
       "default": "false"
     },
     {
       "params": "currency",
       "desc": "货币符号",
-      "tpye": "String",
+      "type": "String",
       "default": "¥"
     }
   ],

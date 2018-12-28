@@ -2,86 +2,86 @@ const apiData = {
   api_CheckboxGroup: [{
       params: "参数",
       desc: "说明",
-      tpye: "类型",
+      type: "类型",
       default: "默认值"
     },
     {
       params: "name",
       desc: "在表单内提交时的标识符",
-      tpye: "String",
+      type: "String",
       default: "-"
     },
     {
       params: "value",
       desc: "所有选中项的 name",
-      tpye: "Array",
+      type: "Array",
       default: "-"
     },
     {
       params: "disabled",
       desc: "是否禁用所有单选框",
-      tpye: "Boolean",
+      type: "Boolean",
       default: "false"
     },
     {
       params: "max",
       desc: "设置最大可选数",
-      tpye: "Number",
+      type: "Number",
       default: "0（无限制）"
     }
   ],
   api_Checkbox: [{
       params: "参数",
       desc: "说明",
-      tpye: "类型",
+      type: "类型",
       default: "默认值"
     },
     {
       params: "name",
       desc: "在表单内提交时的标识符",
-      tpye: "String",
+      type: "String",
       default: "-"
     },
     {
       params: "value",
       desc: "所有选中项的 name",
-      tpye: "Array",
+      type: "Array",
       default: "-"
     },
     {
       params: "disabled",
       desc: "是否禁用所有单选框",
-      tpye: "Boolean",
+      type: "Boolean",
       default: "false"
     },
     {
       params: "label-disabled",
       desc: "是否禁用单选框内容点击",
-      tpye: "Boolean",
+      type: "Boolean",
       default: "false"
     },
     {
       params: "label-position",
       desc: "文本位置，可选值为 left",
-      tpye: "String",
+      type: "String",
       default: "right"
     },
     {
       params: "shape",
       desc: "形状，可选值为 round square",
-      tpye: "String",
+      type: "String",
       default: "round"
     },
     {
       params: "use-icon-slot",
       desc: "是否使用 icon slot",
-      tpye: "Boolean",
+      type: "Boolean",
       default: "false"
     },
     {
       params: "checked-color",
       desc: "选中状态颜色",
-      tpye: "String",
+      type: "String",
       default: "#1989fa"
     },
   ],

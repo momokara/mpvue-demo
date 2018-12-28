@@ -9,10 +9,10 @@
 export default {
   props: {
     title: {
-      tpye: String
+      type: String
     },
     padding: {
-      tpye: Boolean
+      type: Boolean
     }
   }
 };

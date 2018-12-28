@@ -2,43 +2,43 @@ const apiData = {
   api: [{
       params: "参数",
       desc: "说明",
-      tpye: "类型",
+      type: "类型",
       default: "默认值"
     },
     {
       params: "name",
       desc: "图标名称	",
-      tpye: "String",
+      type: "String",
       default: "-"
     },
     {
       params: "info",
       desc: "图标右上角提示信息",
-      tpye: "String| Number",
+      type: "String| Number",
       default: "-"
     },
     {
       params: "color",
       desc: "图标颜色",
-      tpye: "String",
+      type: "String",
       default: "inherit"
     },
     {
       params: "size",
       desc: "图标大小，如 20px，2em",
-      tpye: "String",
+      type: "String",
       default: "inherit"
     },
     {
       params: "custom-style",
       desc: "自定义样式",
-      tpye: "String",
+      type: "String",
       default: "-"
     },
     {
       params: "class-prefix",
       desc: "类名前缀",
-      tpye: "String",
+      type: "String",
       default: "van-icon"
     }
   ],

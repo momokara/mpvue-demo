@@ -2,19 +2,19 @@ const apiData = {
   api: [{
       params: "参数",
       desc: "说明",
-      tpye: "类型",
+      type: "类型",
       default: "默认值"
     },
     {
       params: "awardList",
       desc: "奖品列表",
-      tpye: "Array",
+      type: "Array",
       default: "[]"
     },
     {
       params: "arrImg",
       desc: "指针图",
-      tpye: "String",
+      type: "String",
       default: "~"
     }
   ],

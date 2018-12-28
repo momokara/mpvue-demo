@@ -24,7 +24,7 @@
           {{tabrow.desc}}
         </van-col>
         <van-col span="6" custom-class="table-col ta-c ">
-          {{tabrow.tpye}}
+          {{tabrow.type}}
         </van-col>
         <van-col span="3" custom-class="table-col ta-c ">
           {{tabrow.default}}
@@ -62,31 +62,31 @@ export default {
         {
           params: "参数",
           desc: "说明",
-          tpye: "类型",
+          type: "类型",
           default: "默认值"
         },
         {
           params: "title",
           desc: "顶部的标题",
-          tpye: "String",
+          type: "String",
           default: "-"
         },
         {
           params: "max",
           desc: "图片最大值,超过后会隐藏上传按钮",
-          tpye: "Number",
+          type: "Number",
           default: "6"
         },
         {
           params: "autoUpLoad",
           desc: "是否自动上传,true时添加图片会自动触发upLoadImgs",
-          tpye: "Boolean",
+          type: "Boolean",
           default: "false"
         },
         {
           params: "imageList",
           desc: "默认显示的图片列表",
-          tpye: "Array",
+          type: "Array",
           default: "[]"
         }
       ],

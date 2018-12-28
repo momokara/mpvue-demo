@@ -1,89 +1,153 @@
 <template>
   <div class="container">
-    <div id="msg">这里放页面内容</div>
-    <input type="text" v-model="msg">
-    <card :text="msg"></card>
+    <div class="title ">
+      Picker 选择器
+    </div>
+    <div class="demo fsp14">
+      <div class="fsp16 fc-grey ">
+        基础用法
+      </div>
+      <van-picker
+        :columns="column1"
+        @change="onChange1"
+        class="basic-picker"
+      />
+      <div class="fsp16 fc-grey ">
+        禁用选项
+      </div>
+      <van-picker :columns="column2" />
+
+      <div class="fsp16 fc-grey ">
+        展示顶部栏
+      </div>
+      <van-picker
+        show-toolbar
+        title="标题"
+        :columns="column1"
+        @change="onChange1"
+        @confirm="onConfirm"
+        @cancel="onCancel"
+      />
+
+      <div class="fsp16 fc-grey ">
+        多列联动
+      </div>
+      <van-picker
+        :columns="column4"
+        @change="onChange2"
+      />
+
+      <div class="fsp16 fc-grey ">
+        加载状态
+      </div>
+      <van-picker
+        loading
+        :columns="column4"
+      />
+    </div>
+
+    <div class="info">
+      <div class="fsp16 fc-grey">API 说明</div>
+      <div class="fsp14 fc-grey">Picker API</div>
+      <apiTable :tabledata="table_api_Picker"></apiTable>
+
+      <div class="fsp14 fc-grey">Picker Event</div>
+      <apiTable :tabledata="table_event_Picker"></apiTable>
+
+      <div class="fsp14 fc-grey">Columns 数据结构</div>
+      <apiTable :tabledata="table_columns_Picker"></apiTable>
+
+      <div class="fsp14 fc-grey">外部样式类</div>
+      <apiTable :tabledata="table_class_Picker"></apiTable>
+
+      <div class="fsp14 fc-grey">方法</div>
+      <div class="fs12 fc-grey">通过 selectComponent 可以获取到 picker 实例并调用实例方法</div>
+      <apiTable :tabledata="table_func_Picker"></apiTable>
+
+    </div>
+
+    <van-toast id="van-toast" />
   </div>
 </template>
 <script>
-import card from "@/components/card";
+import apiTable from "@/components/api_data_table";
+import apiData from "./api_data";
+import Toast from "@/../static/components/toast/toast";
+
 export default {
   data() {
     return {
-      msg: "这里是消息"
+      column1: ["杭州", "宁波", "温州", "嘉兴", "湖州"],
+      column2: [
+        { text: "杭州", disabled: true },
+        { text: "宁波" },
+        { text: "温州" }
+      ],
+      column3: {
+        浙江: [
+          "杭州",
+          { text: "宁波" },
+          { text: "温州", disabled: true },
+          "嘉兴",
+          "湖州"
+        ],
+        福建: ["福州", "厦门", "莆田", "三明", "泉州"]
+      },
+      column4: [
+        {
+          values: ["浙江", "福建"],
+          className: "column1"
+        },
+        {
+          values: ["杭州", "宁波", "温州", "嘉兴", "湖州"],
+          className: "column2",
+          defaultIndex: 2
+        }
+      ],
+      table_api_Picker: apiData.api,
+      table_event_Picker: apiData.event,
+      table_columns_Picker: apiData.columns,
+      table_class_Picker: apiData.class,
+      table_func_Picker: apiData.func
     };
+  },
+  methods: {
+    onChange1(event) {
+      console.log(event);
+      const { value, index } = event.mp.detail;
+      Toast(`Value: ${value}, Index：${index}`);
+    },
+
+    onConfirm(event) {
+      const { value, index } = event.mp.detail;
+      Toast(`Value: ${value}, Index：${index}`);
+    },
+
+    onCancel() {
+      Toast("取消");
+    },
+
+    onChange2(event) {
+      const { picker, value } = event.mp.detail;
+      picker.setColumnValues(1, this.column3[value[0]]);
+    },
+    // 设置picker方法
+    setPicker() {
+      let basicpaicker = this.$mp.page.selectComponent(".basic-picker");
+      basicpaicker.setValues(["温州"]);
+    }
   },
   // 使用的 vue 组件
   components: {
-    card
+    apiTable
   },
-  // 页面中的方法
-  methods: {},
-  // VUE 钩子 常用
-  // 页面初始化钩子 可以加载本地配置
-  beforeCreate() {
-    console.log("demopage-beforeCreate", this.msg);
-  },
+
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
   created() {
     console.log("demopage-created", this.msg);
   },
-  // 页面节点挂载之前 对请求数据进行处理
-  beforeMount() {
-    console.log("demopage-beforeMount", this.msg);
-  },
-  // 页面节点挂载  
   mounted() {
-    console.log("demopage-mounted", this.msg);
-  },
-  // 页面跟新 之前 数据变更预处理
-  beforeUpdate() {
-    console.log("demopage-beforeUpdate", this.msg);
-  },
-  // 页面数据更新之后  数据变更处理
-  updated() {
-    console.log("demopage-updated", this.msg);
-  },
-  // 原生钩子
-  // 监听页面加载
-  onLoad() {
-    console.log("demopage-onLoad", this.msg);
-  },
-  // 监听页面显示
-  onShow() {
-    console.log("demopage-onShow", this.msg);
-  },
-  // 监听页面初次渲染完成
-  onReady() {
-    console.log("demopage-onReady", this.msg);
-  },
-  // 监听页面隐藏
-  onHide() {
-    console.log("demopage-onHide", this.msg);
-  },
-  // 监听页面卸载
-  onUnload() {
-    console.log("demopage-onUnload", this.msg);
-  },
-  // 监听用户下拉动作
-  onPullDownRefresh() {
-    console.log("demopage-onPullDownRefresh", this.msg);
-  },
-  // 页面上拉触底事件的处理函数
-  onReachBottom() {
-    console.log("demopage-onReachBottom", this.msg);
-  },
-  // 用户点击右上角分享
-  onShareAppMessage() {
-    console.log("demopage-onShareAppMessage", this.msg);
-  },
-  // 页面滚动
-  onPageScroll() {
-    console.log("demopage-onPageScroll", this.msg);
-  },
-  // 当前是 tab 页时，点击 tab 时触发 （mpvue 0.0.16 支持）
-  onTabItemTap() {
-    console.log("demopage-onTabItemTap", this.msg);
+    this.setPicker();
   }
 };
 </script>

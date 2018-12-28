@@ -2,7 +2,7 @@ const apiData = {
   api: [{
       "params": "参数",
       "desc": "说明",
-      "tpye": "类型",
+      "type": "类型",
       "default": "默认值"
     },
 
