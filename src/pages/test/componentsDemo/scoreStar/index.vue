@@ -1,30 +1,85 @@
 <template>
   <div class="container">
     <div class="title fz-17pt">
-      Score-Star 得分五角星组件
+      {{title}}
     </div>
     <div class="demo">
       <div class="fsp16 fc-grey ">
         基础用法
       </div>
-      <score-star :custom-class="'testclass'" :width="width" :height="height" :score="score" :use-half-star="UseHalfStar" :half-star-img="halfStarImg" :full-star-img="fullStarImg" :emptyStarImg="emptyStarImg" @tapstar="clickstar">
+      <score-star
+        :custom-class="'testclass'"
+        :width="width"
+        :height="height"
+        :score="score"
+        :use-half-star="UseHalfStar"
+        :half-star-img="halfStarImg"
+        :full-star-img="fullStarImg"
+        :emptyStarImg="emptyStarImg"
+        @tapstar="clickstar"
+      >
       </score-star>
     </div>
 
     <div class="control-box">
       <van-cell-group>
-        <van-field :label="'得分'" :value="score" :placeholder="'{String}score'" :border="true" data-name="score" @change="changeInput($event)" />
-        <van-field :label="'整个星星'" :value="fullStarImg" :placeholder="'{String}fullStarImg'" :border="true" data-name="fullStarImg" @change="changeInput($event)" />
-        <van-field :label="'半个星星'" :value="halfStarImg" :placeholder="'{String}halfStarImg'" :border="true" data-name="HalfStarImg" @change="changeInput($event)" />
-        <van-field :label="'空星星'" :value="emptyStarImg" :placeholder="'{String}emptyStarImg'" :border="true" data-name="emptyStarImg" @change="changeInput($event)" />
-        <van-field :label="'width'" :value="width" :placeholder="'{String}width'" :border="true" data-name="width" @change="changeInput($event)" />
-        <van-field :label="'height'" :value="height" :placeholder="'{String}height'" :border="true" data-name="height" @change="changeInput($event)" />
+        <van-field
+          :label="'得分'"
+          :value="score"
+          :placeholder="'{String}score'"
+          :border="true"
+          data-name="score"
+          @change="changeInput($event)"
+        />
+        <van-field
+          :label="'整个星星'"
+          :value="fullStarImg"
+          :placeholder="'{String}fullStarImg'"
+          :border="true"
+          data-name="fullStarImg"
+          @change="changeInput($event)"
+        />
+        <van-field
+          :label="'半个星星'"
+          :value="halfStarImg"
+          :placeholder="'{String}halfStarImg'"
+          :border="true"
+          data-name="HalfStarImg"
+          @change="changeInput($event)"
+        />
+        <van-field
+          :label="'空星星'"
+          :value="emptyStarImg"
+          :placeholder="'{String}emptyStarImg'"
+          :border="true"
+          data-name="emptyStarImg"
+          @change="changeInput($event)"
+        />
+        <van-field
+          :label="'width'"
+          :value="width"
+          :placeholder="'{String}width'"
+          :border="true"
+          data-name="width"
+          @change="changeInput($event)"
+        />
+        <van-field
+          :label="'height'"
+          :value="height"
+          :placeholder="'{String}height'"
+          :border="true"
+          data-name="height"
+          @change="changeInput($event)"
+        />
         <van-cell>
           <div slot="title">
             <span class="van-cell-text">UseHalfStar(是否显示半个星星)</span>
           </div>
           <div>
-            <van-switch :checked="UseHalfStar" @change="ChangeSwitch" />
+            <van-switch
+              :checked="UseHalfStar"
+              @change="ChangeSwitch"
+            />
           </div>
         </van-cell>
       </van-cell-group>
@@ -49,6 +104,7 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
+      title: "",
       msg: "这里是消息",
       score: 1.5,
       UseHalfStar: false,
@@ -81,6 +137,11 @@ export default {
     },
     clickstar: function(event) {
       console.log(event.mp.detail);
+    }
+  },
+  onLoad(option) {
+    if (option) {
+      this.title = option.label;
     }
   }
 };

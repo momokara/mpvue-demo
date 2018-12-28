@@ -1,10 +1,9 @@
 <template>
   <div class="container">
     <div class="title fz-17pt">
-      GoodsAction(商品导航)
+      {{title}}
     </div>
     <!-- demo -->
-
     <div class="goods-action-box">
       <div class="fsp16 fc-grey ">基本用法</div>
       <van-goods-action>
@@ -90,6 +89,7 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
+      title: "",
       table_api_icon: apiData.api_icon,
       table_api_button: apiData.api_button,
       table_event: apiData.event,
@@ -108,6 +108,11 @@ export default {
 
     onClickButton() {
       Toast("点击按钮");
+    }
+  },
+  onLoad(option) {
+    if (option) {
+      this.title = option.label;
     }
   }
 };

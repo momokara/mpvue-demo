@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="title ">
-      Rate 评分
+      {{title}}
     </div>
     <div class="demo fsp14">
       <div class="fsp16 fc-grey ">
@@ -29,6 +29,7 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
+      title: "",
       value1: 3,
       value2: 3,
       value3: 4,
@@ -49,9 +50,10 @@ export default {
     }
   },
 
-  // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  created() {
-    console.log("demopage-created", this.msg);
+  onLoad(option) {
+    if (option) {
+      this.title = option.label;
+    }
   }
 };
 </script>

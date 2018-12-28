@@ -1,37 +1,71 @@
 <template>
   <div class="container">
     <div class="title fz-17pt">
-      Popup(弹出层)
+      {{title}}
     </div>
     <div class="demo">
       <div class="fsp16 fc-grey ">
         基础用法
       </div>
       <van-button @click="togglePopup">弹出 Popup</van-button>
-      <van-popup :show="show.middle" custom-class="center" @close="togglePopup">
+      <van-popup
+        :show="show.middle"
+        custom-class="center"
+        @close="togglePopup"
+      >
         中间弹出内容
       </van-popup>
 
       <div class="fsp16 fc-grey ">
         弹出位置
       </div>
-      <van-button @click="toggleBottomPopup" class="demo-margin-right">底部弹出</van-button>
+      <van-button
+        @click="toggleBottomPopup"
+        class="demo-margin-right"
+      >底部弹出</van-button>
 
-      <van-popup :show="show.bottom" position="bottom" custom-class="bottom" @close="toggleBottomPopup">
+      <van-popup
+        :show="show.bottom"
+        position="bottom"
+        custom-class="bottom"
+        @close="toggleBottomPopup"
+      >
         内容
       </van-popup>
 
-      <van-button @click="toggleTopPopup" class="demo-margin-right">顶部弹出</van-button>
-      <van-popup :show="show.top" position="top" :overlay="false" custom-class="top" @close="toggleTopPopup">
+      <van-button
+        @click="toggleTopPopup"
+        class="demo-margin-right"
+      >顶部弹出</van-button>
+      <van-popup
+        :show="show.top"
+        position="top"
+        :overlay="false"
+        custom-class="top"
+        @close="toggleTopPopup"
+      >
         内容
       </van-popup>
 
       <van-button @click="toggleRightPopup">右侧弹出</van-button>
-      <van-popup :show="show.right" position="right" custom-class="right" @close="toggleRightPopup">
-        <van-button @click="toggleRightPopup" class="demo-margin-right">关闭弹层</van-button>
+      <van-popup
+        :show="show.right"
+        position="right"
+        custom-class="right"
+        @close="toggleRightPopup"
+      >
+        <van-button
+          @click="toggleRightPopup"
+          class="demo-margin-right"
+        >关闭弹层</van-button>
 
         <van-button @click="toggleRightPopup2">右侧弹出</van-button>
-        <van-popup :show="show.right2" position="right" custom-class="right" @close="toggleRightPopup2">
+        <van-popup
+          :show="show.right2"
+          position="right"
+          custom-class="right"
+          @close="toggleRightPopup2"
+        >
           <van-button @click="toggleRightPopup2">关闭弹层</van-button>
         </van-popup>
       </van-popup>
@@ -61,6 +95,7 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
+      title: "",
       show: {
         middle: false,
         top: false,
@@ -106,8 +141,11 @@ export default {
     }
   },
 
-  // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  created() {}
+  onLoad(option) {
+    if (option) {
+      this.title = option.label;
+    }
+  }
 };
 </script>
 

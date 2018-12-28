@@ -42,6 +42,26 @@
         "componentsDemo/Switch/main",
         "componentsDemo/SwitchCell/main",
 
+        "componentsDemo/ActionSheet/main",
+        "componentsDemo/Dialog/main",
+        "componentsDemo/Loading/main",
+        "componentsDemo/Notify/main",
+        "componentsDemo/SwipeCell/main",
+        "componentsDemo/Toast/main",
+
+        "componentsDemo/Collapse/main",
+        "componentsDemo/NoticeBar/main",
+        "componentsDemo/Panel/main",
+        "componentsDemo/Progress/main",
+        "componentsDemo/Steps/main",
+        "componentsDemo/Tag/main",
+        "componentsDemo/TreeSelect/main",
+
+        "componentsDemo/Badge/main",
+        "componentsDemo/NavBar/main",
+        "componentsDemo/Tab/main",
+        "componentsDemo/Tabbar/main",
+
         "componentsDemo/Area/main",
         "componentsDemo/Card/main",
         "componentsDemo/SubmitBar/main",
@@ -49,11 +69,6 @@
         "componentsDemo/GoodsAction/main",
         "componentsDemo/Lottery-Wheel/main",
         "componentsDemo/Lottery-Table/main",
-
-        "componentsDemo/Badge/main",
-        "componentsDemo/NavBar/main",
-        "componentsDemo/Tab/main",
-        "componentsDemo/Tabbar/main",
 
         "componentsDemo_vue/upLoad_imgs/main"
       ]

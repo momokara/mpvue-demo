@@ -1,23 +1,63 @@
 <template>
   <div class="container">
     <div class="title fz-17pt">
-      Transition 动画
+      {{title}}
     </div>
     <div class="demo">
       <div class="fsp16 fc-grey ">
         基础用法
       </div>
-      <van-cell title="Fade" @click="onClickFade" is-link />
-      <van-cell title="Fade Up" @click="onClickFadeUp" is-link />
-      <van-cell title="Fade Down" @click="onClickFadeDown" is-link />
-      <van-cell title="Fade Left" @click="onClickFadeLeft" is-link />
-      <van-cell title="Fade Right" @click="onClickFadeRight" is-link />
-      <van-cell title="Slide Up" @click="onClickSlideUp" is-link />
-      <van-cell title="Slide Down" @click="onClickSlideDown" is-link />
-      <van-cell title="Slide Left" @click="onClickSlideLeft" is-link />
-      <van-cell title="Slide Right" @click="onClickSlideRight" is-link />
+      <van-cell
+        title="Fade"
+        @click="onClickFade"
+        is-link
+      />
+      <van-cell
+        title="Fade Up"
+        @click="onClickFadeUp"
+        is-link
+      />
+      <van-cell
+        title="Fade Down"
+        @click="onClickFadeDown"
+        is-link
+      />
+      <van-cell
+        title="Fade Left"
+        @click="onClickFadeLeft"
+        is-link
+      />
+      <van-cell
+        title="Fade Right"
+        @click="onClickFadeRight"
+        is-link
+      />
+      <van-cell
+        title="Slide Up"
+        @click="onClickSlideUp"
+        is-link
+      />
+      <van-cell
+        title="Slide Down"
+        @click="onClickSlideDown"
+        is-link
+      />
+      <van-cell
+        title="Slide Left"
+        @click="onClickSlideLeft"
+        is-link
+      />
+      <van-cell
+        title="Slide Right"
+        @click="onClickSlideRight"
+        is-link
+      />
 
-      <van-transition :show="show" :name="name" custom-class="block">动画？</van-transition>
+      <van-transition
+        :show="show"
+        :name="name"
+        custom-class="block"
+      >动画？</van-transition>
     </div>
 
     <!-- info -->
@@ -42,6 +82,7 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
+      title: "",
       show: false,
       name: "fade",
       table_api: apiData.api,
@@ -103,9 +144,10 @@ export default {
     }
   },
 
-  // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  created() {
-
+  onLoad(option) {
+    if (option) {
+      this.title = option.label;
+    }
   }
 };
 </script>

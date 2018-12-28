@@ -1,23 +1,37 @@
 <template>
   <div class="container">
     <div class="title ">
-      Area 省市区选择
+      {{title}}
     </div>
     <div class="demo">
       <div class="fsp16 fc-grey ">
         基础用法
       </div>
-      <van-area :loading="loading" :area-list="areaList" />
+      <van-area
+        :loading="loading"
+        :area-list="areaList"
+      />
 
       <div class="fsp16 fc-grey ">
         选中省市县
       </div>
-      <van-area :value="value" :loading="loading" :area-list="areaList" />
+      <van-area
+        :value="value"
+        :loading="loading"
+        :area-list="areaList"
+      />
 
       <div class="fsp16 fc-grey ">
         配置显示列
       </div>
-      <van-area title="标题" :columns-num="2" :loading="loading" :area-list="areaList" @change="onChange" @confirm="onChange" />
+      <van-area
+        title="标题"
+        :columns-num="2"
+        :loading="loading"
+        :area-list="areaList"
+        @change="onChange"
+        @confirm="onChange"
+      />
     </div>
     <div class="info">
       <div class="fsp16 fc-grey">API 说明</div>
@@ -61,6 +75,7 @@ import WxPromis from "@/utils/Wxrequest";
 export default {
   data() {
     return {
+      title: "",
       areaList: {},
       loading: true,
       value: 330302,
@@ -90,6 +105,11 @@ export default {
       this.areaList = res.data;
       this.loading = false;
     });
+  },
+  onLoad(option) {
+    if (option) {
+      this.title = option.label;
+    }
   }
 };
 </script>

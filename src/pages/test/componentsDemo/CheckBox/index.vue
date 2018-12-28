@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="title ">
-      CheckBox 复选框
+      {{title}}
     </div>
     <div class="demo fsp14">
       <div class="fsp16 fc-grey ">
@@ -126,6 +126,7 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
+      title: "",
       msg: "这里是消息",
       checked_0: false,
       checked_1: false,
@@ -152,7 +153,7 @@ export default {
       table_slot_checkbox: apiData.slot_Checkbox,
       table_func_checkbox: apiData.func_Checkbox,
       table_custom_class_checkbox: apiData.custom_class_Checkbox,
-      table_custom_class_checkboxgroup: apiData.custom_class_CheckboxGroup,
+      table_custom_class_checkboxgroup: apiData.custom_class_CheckboxGroup
     };
   },
   // 使用的 vue 组件
@@ -177,6 +178,11 @@ export default {
     },
     noop() {}
   },
+  onLoad(option) {
+    if (option) {
+      this.title = option.label;
+    }
+  }
 };
 </script>
 

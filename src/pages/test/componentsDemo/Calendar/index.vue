@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="title ">
-      Calendar 日历
+      {{title}}
     </div>
     <div class="demo">
       <div class="fsp16 fc-grey ">
@@ -12,16 +12,47 @@
       <div class="fsp16 fc-grey ">
         高级用法
       </div>
-      <van-calendar custom-class="date_box" :year="demodata.year" :mark-day="demodata.markDay" :month="demodata.month" :weekday="demodata.weekday" :monthname="demodata.monthname" @lastMonth="tapCalendar" @nextMonth="tapCalendar" @tapDay="tapCalendar">
+      <van-calendar
+        custom-class="date_box"
+        :year="demodata.year"
+        :mark-day="demodata.markDay"
+        :month="demodata.month"
+        :weekday="demodata.weekday"
+        :monthname="demodata.monthname"
+        @lastMonth="tapCalendar"
+        @nextMonth="tapCalendar"
+        @tapDay="tapCalendar"
+      >
         <div>标题</div>
       </van-calendar>
     </div>
 
     <div class="control-box">
       <van-cell-group>
-        <van-field :value="demodata.year" :label="'year'" :placeholder="'{Number}默认显示年份'" :border="true" data-name="year" @change="changeInput($event)" />
-        <van-field :value="demodata.month" :label="'month'" :placeholder="'{Number}默认显示月份'" :border="true" data-name="month" @change="changeInput($event)" />
-        <van-field :value="demodata.markDay" :label="'mark-day'" :placeholder="'{Number}标记到日期'" :border="true" data-name="markDay" @change="changeInputArray($event)" />
+        <van-field
+          :value="demodata.year"
+          :label="'year'"
+          :placeholder="'{Number}默认显示年份'"
+          :border="true"
+          data-name="year"
+          @change="changeInput($event)"
+        />
+        <van-field
+          :value="demodata.month"
+          :label="'month'"
+          :placeholder="'{Number}默认显示月份'"
+          :border="true"
+          data-name="month"
+          @change="changeInput($event)"
+        />
+        <van-field
+          :value="demodata.markDay"
+          :label="'mark-day'"
+          :placeholder="'{Number}标记到日期'"
+          :border="true"
+          data-name="markDay"
+          @change="changeInputArray($event)"
+        />
       </van-cell-group>
     </div>
 
@@ -49,6 +80,7 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
+      title: "",
       demodata: {
         year: "2017",
         month: "23",
@@ -79,6 +111,11 @@ export default {
       this.demodata[event.currentTarget.dataset.name] = event.mp.detail.split(
         ","
       );
+    }
+  },
+  onLoad(option) {
+    if (option) {
+      this.title = option.label;
     }
   }
 };

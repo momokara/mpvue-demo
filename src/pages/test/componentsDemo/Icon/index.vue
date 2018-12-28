@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="title fz-17pt">
-      Icon(图标)
+      {{title}}
     </div>
 
     <div class="demo">
@@ -74,6 +74,7 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
+      title: "",
       iconTable: [
         { title: "基础图标", name: "basic" },
         { title: "线框风格", name: "full" },
@@ -90,6 +91,11 @@ export default {
   components: { apiTable },
   // 页面中的方法
   methods: {},
+  onLoad(option) {
+    if (option) {
+      this.title = option.label;
+    }
+  }
 };
 </script>
 

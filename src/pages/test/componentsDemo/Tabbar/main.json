@@ -1,5 +1,3 @@
 {
-  "navigationBarTitleText": "SubmitBar 提交订单栏",
-  "usingComponents": {
-  }
+  "navigationBarTitleText": "Tabbar 标签栏"
 }

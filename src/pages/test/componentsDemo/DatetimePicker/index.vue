@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="title ">
-      DatetimePicker 时间选择
+      {{title}}
     </div>
     <div class="demo fsp14">
       <div class="fsp16 fc-grey ">
@@ -56,6 +56,7 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
+      title: "",
       minHour: 10,
       maxHour: 20,
       minDate: new Date(2018, 0, 1).getTime(),
@@ -65,9 +66,9 @@ export default {
       currentDate3: new Date(2018, 0, 1),
       currentDate4: "12:00",
       loading: false,
-      table_api_DatetimePicker:apiData.api_DatetimePicker,
-      table_event_DatetimePicker:apiData.event_DatetimePicker,
-      table_func_DatetimePicker:apiData.func_DatetimePicker,
+      table_api_DatetimePicker: apiData.api_DatetimePicker,
+      table_event_DatetimePicker: apiData.event_DatetimePicker,
+      table_func_DatetimePicker: apiData.func_DatetimePicker
     };
   },
   // 使用的 vue 组件
@@ -80,6 +81,11 @@ export default {
       console.log(e);
     }
   },
+  onLoad(option) {
+    if (option) {
+      this.title = option.label;
+    }
+  }
 };
 </script>
 

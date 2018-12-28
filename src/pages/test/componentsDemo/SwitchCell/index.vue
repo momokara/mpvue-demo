@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="title ">
-      SwitchCell 开关单元格
+      {{title}}
     </div>
     <div class="demo fsp14">
       <div class="fsp16 fc-grey ">
@@ -28,7 +28,9 @@ import apiData from "./api_data";
 
 export default {
   data() {
-    return {};
+    return {
+      title: ""
+    };
   },
   // 使用的 vue 组件
   components: {
@@ -37,9 +39,10 @@ export default {
   // 页面中的方法
   methods: {},
 
-  // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  created() {
-    console.log("demopage-created", this.msg);
+  onLoad(option) {
+    if (option) {
+      this.title = option.label;
+    }
   }
 };
 </script>

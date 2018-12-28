@@ -1,13 +1,33 @@
 <template>
   <div class="container">
     <div class="title fz-17pt">
-      Lottery-Table 九宫格抽奖
+      {{title}}
     </div>
-    <lottery-table :isplay="false" :btnImg="btnImg" :awardList="awardList" :resultID="resultID" @play="play" @over="over"></lottery-table>
+    <lottery-table
+      :isplay="false"
+      :btnImg="btnImg"
+      :awardList="awardList"
+      :resultID="resultID"
+      @play="play"
+      @over="over"
+    ></lottery-table>
     <div class="control-box">
       <van-cell-group>
-        <van-field :label="'结果的ID'" :placeholder="'{String}中奖结果ID'" :border="true" data-name="resultID" @change="changeInput($event)" />
-        <van-field :value="btnImg" :label="'按钮的图片'" :placeholder="'{String}按钮的图片'" :border="true" data-name="btnImg" @change="changeInput($event)" />
+        <van-field
+          :label="'结果的ID'"
+          :placeholder="'{String}中奖结果ID'"
+          :border="true"
+          data-name="resultID"
+          @change="changeInput($event)"
+        />
+        <van-field
+          :value="btnImg"
+          :label="'按钮的图片'"
+          :placeholder="'{String}按钮的图片'"
+          :border="true"
+          data-name="btnImg"
+          @change="changeInput($event)"
+        />
       </van-cell-group>
     </div>
     <div class="api-info">
@@ -28,6 +48,7 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
+      title: "",
       // 结果的id
       resultID: "",
       animateDuration: 0,
@@ -94,6 +115,11 @@ export default {
     },
     over: function(e) {
       console.log("over", e.mp.detail);
+    }
+  },
+  onLoad(option) {
+    if (option) {
+      this.title = option.label;
     }
   }
 };

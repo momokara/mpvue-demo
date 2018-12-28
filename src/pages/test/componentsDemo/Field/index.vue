@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="title ">
-      Field 输入框
+      {{title}}
     </div>
     <div class="demo fsp14">
       <div class="fsp16 fc-grey ">
@@ -134,6 +134,7 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
+      title: "",
       sms: "",
       value: "",
       password: "",
@@ -161,12 +162,16 @@ export default {
       });
     }
   },
+  onLoad(option) {
+    if (option) {
+      this.title = option.label;
+    }
+  }
 };
 </script>
 
 
 <style lang="scss">
 .container {
-  
 }
 </style>

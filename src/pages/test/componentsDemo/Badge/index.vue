@@ -29,7 +29,7 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
-      title: ""
+      title: "",
     };
   },
   // 使用的 vue 组件

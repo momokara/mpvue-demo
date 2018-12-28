@@ -136,6 +136,94 @@ const menuData = {
       ]
     },
     {
+      title_tag: "feedback",
+      title_name: "反馈组件",
+      child_menu: [{
+          title: "ActionSheet",
+          cn_name: "上拉菜单",
+          label: "ActionSheet 上拉菜单",
+          url: "/componentsDemo/ActionSheet/main"
+        },
+        {
+          title: "Dialog",
+          cn_name: "弹出框",
+          label: "Dialog 弹出框",
+          url: "/componentsDemo/Dialog/main"
+        },
+        {
+          title: "Loading",
+          cn_name: "加载",
+          label: "Loading 加载",
+          url: "/componentsDemo/Loading/main"
+        },
+        {
+          title: "Notify",
+          cn_name: "消息提示",
+          label: "Notify 消息提示",
+          url: "/componentsDemo/Notify/main"
+        },
+        {
+          title: "SwipeCell",
+          cn_name: "滑动单元格",
+          label: "SwipeCell 滑动单元格",
+          url: "/componentsDemo/SwipeCell/main"
+        },
+        {
+          title: "Toast",
+          cn_name: "轻提示",
+          label: "Toast 轻提示",
+          url: "/componentsDemo/Toast/main"
+        },
+      ]
+    },
+    {
+      title_tag: "display",
+      title_name: "展示组件",
+      child_menu: [{
+          title: "Collapse",
+          cn_name: "折叠面板",
+          label: "Collapse 折叠面板",
+          url: "/componentsDemo/Collapse/main"
+        },
+        {
+          title: "NoticeBar",
+          cn_name: "通告栏",
+          label: "NoticeBar 通告栏",
+          url: "/componentsDemo/NoticeBar/main"
+        },
+        {
+          title: "Panel",
+          cn_name: "面板",
+          label: "Panel 面板",
+          url: "/componentsDemo/Panel/main"
+        },
+        {
+          title: "Progress",
+          cn_name: "进度条",
+          label: "Progress 进度条",
+          url: "/componentsDemo/Progress/main"
+        },
+        {
+          title: "Steps",
+          cn_name: "步骤条",
+          label: "Steps 步骤条",
+          url: "/componentsDemo/Steps/main"
+        },
+        {
+          title: "Tag",
+          cn_name: "标签",
+          label: "Tag 标签",
+          url: "/componentsDemo/Tag/main"
+        },
+        {
+          title: "TreeSelect",
+          cn_name: "分类选择",
+          label: "TreeSelect 分类选择",
+          url: "/componentsDemo/TreeSelect/main"
+        },
+      ]
+    },
+    {
       title_tag: "Navigation",
       title_name: "导航组件",
       child_menu: [{
@@ -222,11 +310,7 @@ const menuData = {
       }]
     },
 
-    // {
-    //   title_tag: "business",
-    //   title_name: "业务组件",
-    //   child_menu: []
-    // }
+
   ],
 }
 

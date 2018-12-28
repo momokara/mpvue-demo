@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="title">
-      Layout 布局组件
+      {{title}}
     </div>
     <div class="demo">
       <div class="fsp14 fc-grey">基本用法</div>
@@ -31,13 +31,19 @@
             span: 4
           </div>
         </van-col>
-        <van-col span="10" offset="4">
+        <van-col
+          span="10"
+          offset="4"
+        >
           <div class="innerbox">offset: 4, span: 10</div>
         </van-col>
       </van-row>
 
       <van-row>
-        <van-col offset="12" span="12">
+        <van-col
+          offset="12"
+          span="12"
+        >
           <div class="innerbox">offset: 12, span: 12</div>
         </van-col>
       </van-row>
@@ -83,9 +89,10 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
-     table_api_Row:apiData.api_row,
-     table_api_Col:apiData.api_col,
-     table_custom_class:apiData.custom_class
+      title: "",
+      table_api_Row: apiData.api_row,
+      table_api_Col: apiData.api_col,
+      table_custom_class: apiData.custom_class
     };
   },
 
@@ -94,6 +101,11 @@ export default {
   },
 
   methods: {},
+  onLoad(option) {
+    if (option) {
+      this.title = option.label;
+    }
+  }
 };
 </script>
 
