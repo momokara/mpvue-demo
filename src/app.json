@@ -140,7 +140,7 @@
     "van-radio": "/static/components/radio-mo/index",
     "van-radio-group": "/static/components/radio-group-mo/index",
     "van-row": "/static/components/row/index",
-    "van-search": "/static/components/search/index",
+    "van-search": "/static/components/search-mo/index",
     "van-slider": "/static/components/slider/index",
     "van-stepper": "/static/components/stepper/index",
     "van-steps": "/static/components/steps/index",

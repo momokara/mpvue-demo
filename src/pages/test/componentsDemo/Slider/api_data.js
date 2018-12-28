@@ -6,58 +6,52 @@ const apiData = {
       default: "默认值"
     },
     {
-      "params": "columns",
-      "desc": "对象数组，配置每一列显示的数据",
-      "type": "Array",
-      "default": "[]"
+      "params": "value",
+      "desc": "当前进度百分比，取值范围为 0-100",
+      "type": "Number",
+      "default": "0"
     },
     {
-      "params": "show-toolbar",
-      "desc": "是否显示顶部栏",
+      "params": "disabled",
+      "desc": "是否禁用滑块",
       "type": "Boolean",
       "default": "false"
     },
     {
-      "params": "title",
-      "desc": "顶部栏标题",
-      "type": "String",
-      "default": "''"
-    },
-    {
-      "params": "loading",
-      "desc": "是否显示加载状态",
-      "type": "Boolean",
-      "default": "false"
-    },
-    {
-      "params": "value-key",
-      "desc": "选项对象中，文字对应的 key",
-      "type": "String",
-      "default": "text"
-    },
-    {
-      "params": "item-height",
-      "desc": "选项高度",
+      "params": "max",
+      "desc": "最大值",
       "type": "Number",
-      "default": "44"
+      "default": "100"
     },
     {
-      "params": "confirm-button-text",
-      "desc": "确认按钮文字",
-      "type": "String",
-      "default": "确认"
-    },
-    {
-      "params": "cancel-button-text",
-      "desc": "取消按钮文字",
-      "type": "String",
-      "default": "取消"
-    },
-    {
-      "params": "visible-item-count",
-      "desc": "可见的选项个数",
+      "params": "min",
+      "desc": "最小值",
       "type": "Number",
-      "default": "5"
+      "default": "0"
+    },
+    {
+      "params": "step",
+      "desc": "步长",
+      "type": "Number",
+      "default": "1"
+    },
+    {
+      "params": "bar-height",
+      "desc": "进度条高度",
+      "type": "String",
+      "default": "2px"
+    },
+    {
+      "params": "active-color",
+      "desc": "进度条激活态颜色",
+      "type": "String",
+      "default": "#1989fa"
+    },
+    {
+      "params": "inactive-color",
+      "desc": "进度条默认颜色",
+      "type": "String",
+      "default": "#e5e5e5"
     }
   ],
 
@@ -67,21 +61,15 @@ const apiData = {
       return: "回调参数"
     },
     {
-      "params": "confirm",
-      "desc": "点击完成按钮时触发",
-      "return": "单列：选中值，选中值对应的索引"
+      "params": "bind:drag",
+      "desc": "拖动进度条时触发",
+      "return": "event.detail.value: 当前进度"
     },
     {
-      "params": "cancel",
-      "desc": "点击取消按钮时触发",
-      "return": "单列：选中值，选中值对应的索引"
-    },
-    {
-      "params": "change",
-      "desc": "选项改变时触发",
-      "return": "单列：Picker 实例，选中值，选中值对应的索引"
-    },
-
+      "params": "bind:change",
+      "desc": "进度值改变后触发",
+      "return": "event.detail: 当前进度"
+    }
   ],
   class: [{
       params: "类名",
@@ -91,99 +79,7 @@ const apiData = {
       "params": "custom-class",
       "desc": "根节点样式类"
     },
-    {
-      "params": "active-class",
-      "desc": "选中项样式类"
-    },
-    {
-      "params": "toolbar-class",
-      "desc": "顶部栏样式类"
-    },
-    {
-      "params": "column-class",
-      "desc": "列样式类"
-    }
   ],
-  columns: [{
-      params: "key",
-      desc: "说明"
-    },
-    {
-      "params": "values",
-      "desc": "列中对应的备选值"
-    },
-    {
-      "params": "defaultIndex",
-      "desc": "初始选中项的索引，默认为 0"
-    }
-  ],
-  func: [{
-      params: "方法名",
-      desc: "参数",
-      type: "返回值",
-      return: "介绍",
-    },
-    {
-      "params": "getValues",
-      "desc": "-",
-      "type": "values",
-      "return": "获取所有列选中的值"
-    },
-    {
-      "params": "setValues",
-      "desc": "values",
-      "type": "-",
-      "return": "设置所有列选中的值"
-    },
-    {
-      "params": "getIndexes",
-      "desc": "-",
-      "type": "indexes",
-      "return": "获取所有列选中值对应的索引"
-    },
-    {
-      "params": "setIndexes",
-      "desc": "indexes",
-      "type": "-",
-      "return": "设置所有列选中值对应的索引"
-    },
-    {
-      "params": "getColumnValue",
-      "desc": "columnIndex",
-      "type": "value",
-      "return": "获取对应列选中的值"
-    },
-    {
-      "params": "setColumnValue",
-      "desc": "columnIndex, value",
-      "type": "-",
-      "return": "设置对应列选中的值"
-    },
-    {
-      "params": "getColumnIndex",
-      "desc": "columnIndex",
-      "type": "optionIndex",
-      "return": "获取对应列选中项的索引"
-    },
-    {
-      "params": "setColumnIndex",
-      "desc": "columnIndex, optionIndex",
-      "type": "-",
-      "return": "设置对应列选中项的索引"
-    },
-    {
-      "params": "getColumnValues",
-      "desc": "columnIndex",
-      "type": "values",
-      "return": "获取对应列中所有选项"
-    },
-    {
-      "params": "setColumnValues",
-      "desc": "columnIndex, values",
-      "type": "-",
-      "return": "设置对应列中所有选项"
-    }
-  ]
 }
 
 

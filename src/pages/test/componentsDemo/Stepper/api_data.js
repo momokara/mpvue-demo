@@ -6,58 +6,58 @@ const apiData = {
       default: "默认值"
     },
     {
-      "params": "columns",
-      "desc": "对象数组，配置每一列显示的数据",
-      "type": "Array",
-      "default": "[]"
+      "params": "name",
+      "desc": "在表单内提交时的标识符",
+      "type": "String",
+      "default": "-"
     },
     {
-      "params": "show-toolbar",
-      "desc": "是否显示顶部栏",
+      "params": "value",
+      "desc": "输入值",
+      "type": "String | Number",
+      "default": "最小值"
+    },
+    {
+      "params": "min",
+      "desc": "最小值",
+      "type": "String | Number",
+      "default": "1"
+    },
+    {
+      "params": "max",
+      "desc": "最大值",
+      "type": "String | Number",
+      "default": "-"
+    },
+    {
+      "params": "step",
+      "desc": "步数",
+      "type": "String | Number",
+      "default": "1"
+    },
+    {
+      "params": "integer",
+      "desc": "是否只允许输入整数",
       "type": "Boolean",
       "default": "false"
     },
     {
-      "params": "title",
-      "desc": "顶部栏标题",
-      "type": "String",
-      "default": "''"
-    },
-    {
-      "params": "loading",
-      "desc": "是否显示加载状态",
+      "params": "disabled",
+      "desc": "是否禁用",
       "type": "Boolean",
       "default": "false"
     },
     {
-      "params": "value-key",
-      "desc": "选项对象中，文字对应的 key",
-      "type": "String",
-      "default": "text"
+      "params": "disable-input",
+      "desc": "是否禁用input框",
+      "type": "Boolean",
+      "default": "false"
     },
     {
-      "params": "item-height",
-      "desc": "选项高度",
-      "type": "Number",
-      "default": "44"
-    },
-    {
-      "params": "confirm-button-text",
-      "desc": "确认按钮文字",
-      "type": "String",
-      "default": "确认"
-    },
-    {
-      "params": "cancel-button-text",
-      "desc": "取消按钮文字",
-      "type": "String",
-      "default": "取消"
-    },
-    {
-      "params": "visible-item-count",
-      "desc": "可见的选项个数",
-      "type": "Number",
-      "default": "5"
+      "params": "async-change",
+      "desc": "异步变更，为 true 时input值不变化，仅触发事件",
+      "type": "Boolean",
+      "default": "false"
     }
   ],
 
@@ -67,21 +67,30 @@ const apiData = {
       return: "回调参数"
     },
     {
-      "params": "confirm",
-      "desc": "点击完成按钮时触发",
-      "return": "单列：选中值，选中值对应的索引"
+      "params": "bind:change",
+      "desc": "当绑定值变化时触发的事件",
+      "return": "event.detail: 当前输入的值"
     },
     {
-      "params": "cancel",
-      "desc": "点击取消按钮时触发",
-      "return": "单列：选中值，选中值对应的索引"
+      "params": "bind:overlimit",
+      "desc": "点击不可用的按钮时触发",
+      "return": "-"
     },
     {
-      "params": "change",
-      "desc": "选项改变时触发",
-      "return": "单列：Picker 实例，选中值，选中值对应的索引"
+      "params": "bind:plus",
+      "desc": "点击增加按钮时触发",
+      "return": "-"
     },
-
+    {
+      "params": "bind:minus",
+      "desc": "点击减少按钮时触发",
+      "return": "-"
+    },
+    {
+      "params": "bind:blur",
+      "desc": "输入框失焦时触发",
+      "return": "-"
+    }
   ],
   class: [{
       params: "类名",
@@ -92,98 +101,19 @@ const apiData = {
       "desc": "根节点样式类"
     },
     {
-      "params": "active-class",
-      "desc": "选中项样式类"
+      "params": "input-class",
+      "desc": "输入框样式类"
     },
     {
-      "params": "toolbar-class",
-      "desc": "顶部栏样式类"
+      "params": "plus-class",
+      "desc": "加号按钮样式类"
     },
     {
-      "params": "column-class",
-      "desc": "列样式类"
+      "params": "minus-class",
+      "desc": "减号按钮样式类"
     }
   ],
-  columns: [{
-      params: "key",
-      desc: "说明"
-    },
-    {
-      "params": "values",
-      "desc": "列中对应的备选值"
-    },
-    {
-      "params": "defaultIndex",
-      "desc": "初始选中项的索引，默认为 0"
-    }
-  ],
-  func: [{
-      params: "方法名",
-      desc: "参数",
-      type: "返回值",
-      return: "介绍",
-    },
-    {
-      "params": "getValues",
-      "desc": "-",
-      "type": "values",
-      "return": "获取所有列选中的值"
-    },
-    {
-      "params": "setValues",
-      "desc": "values",
-      "type": "-",
-      "return": "设置所有列选中的值"
-    },
-    {
-      "params": "getIndexes",
-      "desc": "-",
-      "type": "indexes",
-      "return": "获取所有列选中值对应的索引"
-    },
-    {
-      "params": "setIndexes",
-      "desc": "indexes",
-      "type": "-",
-      "return": "设置所有列选中值对应的索引"
-    },
-    {
-      "params": "getColumnValue",
-      "desc": "columnIndex",
-      "type": "value",
-      "return": "获取对应列选中的值"
-    },
-    {
-      "params": "setColumnValue",
-      "desc": "columnIndex, value",
-      "type": "-",
-      "return": "设置对应列选中的值"
-    },
-    {
-      "params": "getColumnIndex",
-      "desc": "columnIndex",
-      "type": "optionIndex",
-      "return": "获取对应列选中项的索引"
-    },
-    {
-      "params": "setColumnIndex",
-      "desc": "columnIndex, optionIndex",
-      "type": "-",
-      "return": "设置对应列选中项的索引"
-    },
-    {
-      "params": "getColumnValues",
-      "desc": "columnIndex",
-      "type": "values",
-      "return": "获取对应列中所有选项"
-    },
-    {
-      "params": "setColumnValues",
-      "desc": "columnIndex, values",
-      "type": "-",
-      "return": "设置对应列中所有选项"
-    }
-  ]
+
 }
 
 

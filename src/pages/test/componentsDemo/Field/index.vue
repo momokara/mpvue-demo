@@ -172,6 +172,5 @@ export default {
 
 
 <style lang="scss">
-.container {
-}
+
 </style>

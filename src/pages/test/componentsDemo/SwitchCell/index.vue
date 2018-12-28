@@ -7,17 +7,45 @@
       <div class="fsp16 fc-grey ">
         基础用法
       </div>
+      <van-cell-group>
+        <van-switch-cell
+          title="标题"
+          :checked="checked"
+          @change="onChange"
+        />
+      </van-cell-group>
+
+      <div class="fsp16 fc-grey ">
+        禁用状态
+      </div>
+      <van-cell-group>
+        <van-switch-cell
+          disabled
+          title="标题"
+          :checked="checked"
+          @change="onChange"
+        />
+      </van-cell-group>
+
+      <div class="fsp16 fc-grey ">
+        加载状态
+      </div>
+      <van-cell-group>
+        <van-switch-cell
+          loading
+          title="标题"
+          :checked="checked"
+          @change="onChange"
+        />
+      </van-cell-group>
     </div>
     <div class="info">
       <div class="fsp16 fc-grey">API 说明</div>
-      <div class="fsp14 fc-grey">Rate API</div>
+      <div class="fsp14 fc-grey">API</div>
       <apiTable :tabledata="table_api"></apiTable>
 
-      <div class="fsp14 fc-grey">Rate Event</div>
+      <div class="fsp14 fc-grey">Event</div>
       <apiTable :tabledata="table_event"></apiTable>
-
-      <div class="fsp14 fc-grey">外部样式类</div>
-      <apiTable :tabledata="table_class"></apiTable>
 
     </div>
   </div>
@@ -29,7 +57,11 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
-      title: ""
+      title: "",
+      checked: true,
+      table_api: apiData.api,
+      table_event: apiData.event,
+      table_class: apiData.class
     };
   },
   // 使用的 vue 组件
@@ -37,7 +69,11 @@ export default {
     apiTable
   },
   // 页面中的方法
-  methods: {},
+  methods: {
+    onChange(e) {
+      this.checked = e.mp.detail;
+    }
+  },
 
   onLoad(option) {
     if (option) {

@@ -7,6 +7,36 @@
       <div class="fsp16 fc-grey ">
         基础用法
       </div>
+      <van-stepper :value="value1" />
+
+      <div class="fsp16 fc-grey ">
+        禁用状态
+      </div>
+      <van-stepper
+        :value="value1"
+        disabled
+      />
+
+      <div class="fsp16 fc-grey ">
+        异步变更
+      </div>
+      <van-stepper
+        :value="5"
+        integer
+        async-change
+        @change="onChange"
+      />
+      <div class="fsp16 fc-grey ">
+        高级用法
+      </div>
+      <van-stepper
+        :value="value2"
+        integer
+        min="5"
+        max="40"
+        step="2"
+      />
+
     </div>
     <div class="info">
       <div class="fsp16 fc-grey">API 说明</div>
@@ -20,16 +50,22 @@
       <apiTable :tabledata="table_class"></apiTable>
 
     </div>
+
+    <van-toast id="van-toast" />
   </div>
 </template>
 <script>
+import Toast from "@/../static/components/toast/toast";
 import apiTable from "@/components/api_data_table";
 import apiData from "./api_data";
 
 export default {
   data() {
     return {
-      title: ""
+      title: "",
+      table_api: apiData.api,
+      table_event: apiData.event,
+      table_class: apiData.class
     };
   },
   // 使用的 vue 组件
@@ -37,7 +73,11 @@ export default {
     apiTable
   },
   // 页面中的方法
-  methods: {},
+  methods: {
+    onChange(event) {
+      Toast(`change: ${event.mp.detail}`);
+    }
+  },
 
   onLoad(option) {
     if (option) {

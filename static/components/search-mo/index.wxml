@@ -2,7 +2,7 @@
   class="van-search custom-class {{ showAction || useActionSlot ? 'van-search--show-action' : '' }}"
   style="background: {{ background }}"
 >
-  <slot name="right-label" />
+  <slot name="left-action" />
   <van-field
     clearable
     type="search"

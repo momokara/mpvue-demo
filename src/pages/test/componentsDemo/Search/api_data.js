@@ -6,58 +6,82 @@ const apiData = {
       default: "默认值"
     },
     {
-      "params": "columns",
-      "desc": "对象数组，配置每一列显示的数据",
-      "type": "Array",
-      "default": "[]"
+      "params": "name",
+      "desc": "在表单内提交时的标识符",
+      "type": "String",
+      "default": "-"
     },
     {
-      "params": "show-toolbar",
-      "desc": "是否显示顶部栏",
+      "params": "value",
+      "desc": "当前输入的值",
+      "type": "String | Number",
+      "default": "-"
+    },
+    {
+      "params": "background",
+      "desc": "搜索框背景色",
+      "type": "String",
+      "default": "#f2f2f2"
+    },
+    {
+      "params": "show-action",
+      "desc": "是否在搜索框右侧显示取消按钮",
       "type": "Boolean",
       "default": "false"
     },
     {
-      "params": "title",
-      "desc": "顶部栏标题",
-      "type": "String",
-      "default": "''"
-    },
-    {
-      "params": "loading",
-      "desc": "是否显示加载状态",
+      "params": "focus",
+      "desc": "获取焦点",
       "type": "Boolean",
       "default": "false"
     },
     {
-      "params": "value-key",
-      "desc": "选项对象中，文字对应的 key",
-      "type": "String",
-      "default": "text"
+      "params": "error",
+      "desc": "是否将输入内容标红",
+      "type": "Boolean",
+      "default": "false"
     },
     {
-      "params": "item-height",
-      "desc": "选项高度",
+      "params": "disabled",
+      "desc": "是否禁用输入框",
+      "type": "Boolean",
+      "default": "false"
+    },
+    {
+      "params": "readonly",
+      "desc": "是否只读",
+      "type": "Boolean",
+      "default": "false"
+    },
+    {
+      "params": "maxlength",
+      "desc": "最大输入长度，设置为 -1 的时候不限制最大长度",
       "type": "Number",
-      "default": "44"
+      "default": "-1"
     },
     {
-      "params": "confirm-button-text",
-      "desc": "确认按钮文字",
+      "params": "use-action-slot",
+      "desc": "是否使用 action slot",
+      "type": "Boolean",
+      "default": "false"
+    },
+    {
+      "params": "placeholder",
+      "desc": "输入框为空时占位符",
       "type": "String",
-      "default": "确认"
+      "default": "-"
     },
     {
-      "params": "cancel-button-text",
-      "desc": "取消按钮文字",
+      "params": "placeholder-style",
+      "desc": "指定 placeholder 的样式",
       "type": "String",
-      "default": "取消"
+      "default": "-"
     },
     {
-      "params": "visible-item-count",
-      "desc": "可见的选项个数",
-      "type": "Number",
-      "default": "5"
+      "params": "input-align",
+      "desc": "输入框内容对齐方式，可选值为 center right",
+      "type": "String",
+      "default": "left"
     }
   ],
 
@@ -67,21 +91,35 @@ const apiData = {
       return: "回调参数"
     },
     {
-      "params": "confirm",
-      "desc": "点击完成按钮时触发",
-      "return": "单列：选中值，选中值对应的索引"
+      "params": "bind:search",
+      "desc": "确定搜索时触发",
+      "return": "event.detail: 当前输入值"
     },
     {
-      "params": "cancel",
-      "desc": "点击取消按钮时触发",
-      "return": "单列：选中值，选中值对应的索引"
+      "params": "bind:change",
+      "desc": "输入内容变化时触发",
+      "return": "event.detail: 当前输入值"
     },
     {
-      "params": "change",
-      "desc": "选项改变时触发",
-      "return": "单列：Picker 实例，选中值，选中值对应的索引"
+      "params": "bind:cancel",
+      "desc": "取消搜索搜索时触发",
+      "return": "-"
     },
-
+    {
+      "params": "bind:focus",
+      "desc": "输入框聚焦时触发",
+      "return": "-"
+    },
+    {
+      "params": "bind:blur",
+      "desc": "输入框失焦时触发",
+      "return": "-"
+    },
+    {
+      "params": "bind:clear",
+      "desc": "点击清空控件时触发",
+      "return": "-"
+    }
   ],
   class: [{
       params: "类名",
@@ -92,100 +130,32 @@ const apiData = {
       "desc": "根节点样式类"
     },
     {
-      "params": "active-class",
-      "desc": "选中项样式类"
+      "params": "field-class",
+      "desc": "搜索框样式类"
     },
     {
-      "params": "toolbar-class",
-      "desc": "顶部栏样式类"
+      "params": "input-class",
+      "desc": "输入框样式类"
     },
     {
-      "params": "column-class",
-      "desc": "列样式类"
+      "params": "cancel-class",
+      "desc": "取消按钮样式类"
     }
   ],
-  columns: [{
-      params: "key",
+  slot: [{
+      params: "名称",
       desc: "说明"
     },
     {
-      "params": "values",
-      "desc": "列中对应的备选值"
+      "params": "action",
+      "desc": "自定义搜索框右侧按钮，需要在showAction为 true 时才会显示"
     },
     {
-      "params": "defaultIndex",
-      "desc": "初始选中项的索引，默认为 0"
+      "params": "left-action",
+      "desc": "左侧的插槽"
     }
   ],
-  func: [{
-      params: "方法名",
-      desc: "参数",
-      type: "返回值",
-      return: "介绍",
-    },
-    {
-      "params": "getValues",
-      "desc": "-",
-      "type": "values",
-      "return": "获取所有列选中的值"
-    },
-    {
-      "params": "setValues",
-      "desc": "values",
-      "type": "-",
-      "return": "设置所有列选中的值"
-    },
-    {
-      "params": "getIndexes",
-      "desc": "-",
-      "type": "indexes",
-      "return": "获取所有列选中值对应的索引"
-    },
-    {
-      "params": "setIndexes",
-      "desc": "indexes",
-      "type": "-",
-      "return": "设置所有列选中值对应的索引"
-    },
-    {
-      "params": "getColumnValue",
-      "desc": "columnIndex",
-      "type": "value",
-      "return": "获取对应列选中的值"
-    },
-    {
-      "params": "setColumnValue",
-      "desc": "columnIndex, value",
-      "type": "-",
-      "return": "设置对应列选中的值"
-    },
-    {
-      "params": "getColumnIndex",
-      "desc": "columnIndex",
-      "type": "optionIndex",
-      "return": "获取对应列选中项的索引"
-    },
-    {
-      "params": "setColumnIndex",
-      "desc": "columnIndex, optionIndex",
-      "type": "-",
-      "return": "设置对应列选中项的索引"
-    },
-    {
-      "params": "getColumnValues",
-      "desc": "columnIndex",
-      "type": "values",
-      "return": "获取对应列中所有选项"
-    },
-    {
-      "params": "setColumnValues",
-      "desc": "columnIndex, values",
-      "type": "-",
-      "return": "设置对应列中所有选项"
-    }
-  ]
+
 }
-
-
 
 export default apiData;
