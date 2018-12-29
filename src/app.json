@@ -149,7 +149,7 @@
     "van-tag": "/static/components/tag/index",
     "van-toast": "/static/components/toast/index",
     "van-transition": "/static/components/transition/index",
-    "van-tree-select": "/static/components/tree-select/index",
+    "van-tree-select": "/static/components/tree-select-mo/index",
     "van-datetime-picker": "/static/components/datetime-picker/index",
     "van-rate": "/static/components/rate/index",
     "van-collapse": "/static/components/collapse/index",

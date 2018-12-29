@@ -7,6 +7,42 @@
       <div class="fsp16 fc-grey ">
         基础用法
       </div>
+      <van-progress
+        custom-class="progress"
+        percentage="50"
+      />
+
+      <div class="fsp16 fc-grey ">
+        置灰
+      </div>
+      <van-progress
+        custom-class="progress"
+        inactive
+        percentage="50"
+      />
+
+      <div class="fsp16 fc-grey ">
+        样式定制
+      </div>
+      <van-progress
+        custom-class="progress"
+        pivot-text="橙色"
+        color="#f2826a"
+        percentage="25"
+      />
+      <van-progress
+        custom-class="progress"
+        pivot-text="红色"
+        color="#f44"
+        percentage="50"
+      />
+      <van-progress
+        custom-class="progress"
+        percentage="75"
+        pivot-text="紫色"
+        pivot-color="#7232dd"
+        color="linear-gradient(to right, #be99ff, #7232dd)"
+      />
     </div>
     <div class="info">
       <div class="fsp16 fc-grey">API 说明</div>
@@ -29,7 +65,7 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
-      title: "",
+      title: ""
     };
   },
   // 使用的 vue 组件
@@ -50,4 +86,7 @@ export default {
 
 
 <style lang="scss">
+.progress {
+  margin: 5px 15px 20px;
+}
 </style>

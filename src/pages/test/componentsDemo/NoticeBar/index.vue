@@ -7,6 +7,31 @@
       <div class="fsp16 fc-grey ">
         基础用法
       </div>
+      <van-notice-bar
+        :text="text"
+        left-icon="//img.yzcdn.cn/public_files/2017/8/10/6af5b7168eed548100d9041f07b7c616.png"
+      />
+
+      <div class="fsp16 fc-grey ">
+        禁用滚动
+      </div>
+      <van-notice-bar
+        :scrollable="false"
+        :text="text"
+      />
+
+      <div class="fsp16 fc-grey ">
+        通告栏模式
+      </div>
+      <van-notice-bar
+        mode="closeable"
+        :text="text"
+        custom-class="demo-margin-bottom"
+      />
+      <van-notice-bar
+        mode="link"
+        :text="text"
+      />
     </div>
     <div class="info">
       <div class="fsp16 fc-grey">API 说明</div>
@@ -30,6 +55,8 @@ export default {
   data() {
     return {
       title: "",
+      text:
+        "我是一个负责喊666 的通知长条形性息 666666666666666666666666666666666。"
     };
   },
   // 使用的 vue 组件
