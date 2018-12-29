@@ -13,9 +13,9 @@ export default {
   onLaunch() {
     console.log("onLaunch");
     // 自动登录
-    Api.autoLogin().then(res => {
-      console.log(res);
-    });
+    // Api.autoLogin().then(res => {
+    //   console.log(res);
+    // });
   },
   // 当小程序启动，或从后台进入前台显示
   onShow() {},

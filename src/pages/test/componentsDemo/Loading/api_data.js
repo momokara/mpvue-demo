@@ -5,28 +5,26 @@ const apiData = {
       "type": "类型",
       "default": "默认值"
     },
+    {
+      "params": "color",
+      "desc": "颜色",
+      "type": "String",
+      "default": "#c9c9c9"
+    },
+    {
+      "params": "type",
+      "desc": "类型，可选值为 spinner",
+      "type": "String",
+      "default": "circular"
+    },
+    {
+      "params": "size",
+      "desc": "大小",
+      "type": "String",
+      "default": "30px"
+    }
+  ],
 
-  ],
-  event: [{
-      "params": "方法名",
-      "desc": "说明",
-      "return": "返回值"
-    },
-    {
-      "params": "click",
-      "desc": "按钮点击事件回调",
-      "return": "-"
-    }
-  ],
-  slot: [{
-      "params": "插槽",
-      "desc": "说明"
-    },
-    {
-      "params": "~",
-      "desc": "图片插槽,自定义icon的图标"
-    }
-  ],
   custom_class: [{
       "params": "类名",
       "desc": "说明"

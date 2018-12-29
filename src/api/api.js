@@ -68,4 +68,15 @@ Api.gethomeInfo = () => {
   return WxPromis.request(_requestUrl, {});
 
 }
+
+// 获取首页信息
+Api.gethomeInfo = () => {
+  const _requestUrl = {
+    folder_name: "project_name_deal3",
+    module: "deal",
+    action: "page/11000_index_jx"
+  };
+  return WxPromis.request(_requestUrl, {});
+
+}
 export default Api;
