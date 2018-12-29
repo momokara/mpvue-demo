@@ -117,7 +117,7 @@ $opacity-disable: 10%;
   text-align: center;
 }
 @mixin line-clamp($lineNumber) {
-    white-space:normal;
+  white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -142,6 +142,9 @@ $opacity-disable: 10%;
 .scroll-x {
   width: 100%;
   white-space: nowrap;
+}
+.demo-relative-box {
+  position: relative;
 }
 </style>
 
