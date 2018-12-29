@@ -98,12 +98,6 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/mockExamHome/main",
-        "iconPath": "static/images/icon/home.png",
-        "selectedIconPath": "static/images/icon/home1.png",
-        "text": "模拟考试"
-      },
-      {
         "pagePath": "pages/testApiHome/main",
         "iconPath": "static/images/icon/user.png",
         "selectedIconPath": "static/images/icon/user1.png",
@@ -124,7 +118,7 @@
     "van-checkbox": "/static/components/checkbox-mo/index",
     "van-checkbox-group": "/static/components/checkbox-group-mo/index",
     "van-col": "/static/components/col/index",
-    "van-dialog": "/static/components/dialog/index",
+    "van-dialog": "/static/components/dialog-mo/index",
     "van-field": "/static/components/field/index",
     "van-goods-action": "/static/components/goods-action/index",
     "van-goods-action-icon": "/static/components/goods-action-icon-mo/index",

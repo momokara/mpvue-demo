@@ -1,4 +1,5 @@
 <script>
+import Api from "@/api/api";
 export default {
   created() {
     // 调用API从本地缓存中获取数据
@@ -11,6 +12,10 @@ export default {
   // 初始化
   onLaunch() {
     console.log("onLaunch");
+    // 自动登录
+    Api.autoLogin().then(res => {
+      console.log(res);
+    });
   },
   // 当小程序启动，或从后台进入前台显示
   onShow() {},

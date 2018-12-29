@@ -91,6 +91,7 @@
         </adCard>
       </scroll-view>
     </div>
+    <van-dialog id="van-dialog" />
   </div>
 </template>
 

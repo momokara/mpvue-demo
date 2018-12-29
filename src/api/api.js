@@ -1,7 +1,7 @@
 /* jshint esversion: 6 */
 import autoLogin from "@/utils/login";
 import WxPromis from "@/utils/Wxrequest";
-import dialog from "@/../static/components/dialog/dialog";
+import dialog from "@/../static/components/dialog-mo/dialog";
 const Api = {};
 // 处理自动登录
 Api.autoLogin = () => {
@@ -28,13 +28,14 @@ Api.autoLogin = () => {
     // 登录错误处理
     console.error('autoLogin err:', res);
     dialog.alert({
-      title: "请先登录",
-      message: "弹窗内容XXX",
+      title: "你未登录",
+      message: "为了为您提供更好的服务，请先授权登录！",
       confirmButtonOpenType: "getUserInfo"
-    }).then(() => {
+    }).then((res) => {
       // on close
+      console.log(res);
     }).catch(res => {
-      console.info(res);
+      console.info("dialog", res);
       if (res == 'nodialog') {
         wx.navigateTo({
           url: '/pages/loginpage/main',
