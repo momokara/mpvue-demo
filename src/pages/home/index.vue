@@ -101,10 +101,12 @@ import noticeSwiper from "@/components/notice-swipers";
 import adTitle from "@/components/home-main-title";
 import adCard from "@/components/img-ad-card";
 import Api from "@/api/api";
+const appInst = getApp();
 
 export default {
   data() {
     return {
+      userInfo: {},
       swiperList: [],
       noticeList: [],
       navList: [],
@@ -131,46 +133,11 @@ export default {
       return Api.gethomeInfo().then(res => {
         return res;
       });
-    },
-    swiperChange(e) {
-      console.log("swiperChange:", e.mp.detail);
-    },
-    getDetail_11000: function(event) {
-      wx.navigateTo({
-        url:
-          app.m_config.json.domain_url +
-          "/11000/11000/haivitDeal/getDealDetail/getDealDetail?deal_id=" +
-          event.currentTarget.dataset.flag
-      });
-    },
-    getDetail_article: function(event) {
-      wx.navigateTo({
-        url:
-          app.m_config.json.domain_url +
-          "/content/content/article/articleDetail/articleDetail?id=" +
-          event.currentTarget.dataset.flag
-      });
-    },
-    getDetail_store: function(event) {
-      wx.navigateTo({
-        url:
-          app.m_config.json.domain_url +
-          "/store/store/getStoreDetail/getStoreDetail?id=" +
-          event.currentTarget.dataset.flag
-      });
     }
   },
 
-  created() {
-    this.getHomeInfo().then(res => {
-      this.swiperList = res.swiper;
-      this.noticeList = res.notice;
-      this.navList = res.nav;
-      this.deal_list = res.deal_list;
-      this.article = res.article;
-      this.storeList = res.storeList;
-    });
-  }
+  created() {},
+  onShow() {}
 };
 </script>
 

@@ -1,9 +1,9 @@
 {
+  "cloud": true,
   "pages": [
     "pages/home/main",
     "pages/testApiHome/main",
-    "pages/loginpage/main",
-    "pages/mockExamHome/main"
+    "pages/userCenterHome/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -98,9 +98,15 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/testApiHome/main",
+        "pagePath": "pages/userCenterHome/main",
         "iconPath": "static/images/icon/user.png",
         "selectedIconPath": "static/images/icon/user1.png",
+        "text": "我的"
+      },
+      {
+        "pagePath": "pages/testApiHome/main",
+        "iconPath": "static/images/icon/point.png",
+        "selectedIconPath": "static/images/icon/point1.png",
         "text": "test"
       }
     ]
@@ -158,5 +164,11 @@
     "score-star": "/static/components/score-star/index",
     "lottery-table": "/static/components/lottery-table/index",
     "lottery-wheel": "/static/components/lottery-wheel/index"
+  },
+  "permission": {
+    "scope.userInfo": {},
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
   }
 }

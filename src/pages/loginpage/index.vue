@@ -1,8 +1,20 @@
 <template>
   <div class="loginpage-container">
-    <img class="icon" v-if="imgurl" :src="imgurl" alt="" mode="widthFix">
+    <img
+      class="icon"
+      v-if="imgurl"
+      :src="imgurl"
+      alt=""
+      mode="widthFix"
+    >
     <div class="tips fz-11pt color-888">{{tip}}</div>
-    <v-button custom-class='button' type='primary' open-type="getUserInfo" lang="zh_CN" @getuserinfo="getUserInfo">
+    <v-button
+      custom-class='button'
+      type='primary'
+      open-type="getUserInfo"
+      lang="zh_CN"
+      @getuserinfo="getUserInfo"
+    >
       授权登录
     </v-button>
   </div>
@@ -23,55 +35,43 @@ export default {
 
   methods: {
     getUserInfo(e) {
-      if (e.target.rawData) {
-        Api.autoLogin()
-          .then(res => {
-            console.log("登录成功:", res);
-            return res;
-          })
-          .then(res => {
-            let _pageHis = getCurrentPages();
-            console.log(_pageHis);
-            
-            if (_pageHis.length > 1 && res.nickName) {
-              // 有历史记录处理
-              wx.navigateBack({
-                delta: 1,
-                success: function() {
-                  console.log("back OK");
-                }
-              });
-            } else if (_pageHis.length <= 1 && res.nickName) {
-              // 无历史记录则返回首页
-              wx.switchTab({
-                url: "/pages/home/main",
-                success: function() {
-                  console.log("go OK");
-                }
-              });
-            }
-          });
+      let data = e.mp.detail.userInfo;
+      if (e.mp.detail.errMsg === "getUserInfo:ok") {
+        console.log(data);
+        wx.cloud.callFunction({
+          // 云函数名称
+          name: "saveUserInfo",
+          // 传给云函数的参数
+          data: {
+            userinfo: data
+          },
+          success(res) {
+            console.log("saveUserInfo success",res); 
+          },
+          fail(err) {
+            console.error("saveUserInfo fail:", err);
+          }
+        });
       }
     }
   },
 
   created() {}
 };
-
 </script>
 
 <style lang="scss">
-.loginpage-container{
+.loginpage-container {
   text-align: center;
-  .icon{
+  .icon {
     width: 300rpx;
     margin-top: 120rpx;
   }
-  .tips{
+  .tips {
     margin: 50rpx auto;
   }
-  .button{
-    width:660rpx;
+  .button {
+    width: 660rpx;
   }
 }
 </style>

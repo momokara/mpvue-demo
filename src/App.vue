@@ -1,26 +1,39 @@
 <script>
 import Api from "@/api/api";
+import { getUserInfo } from "@/utils/cloudfunc/getUserInfo";
+var appInst = getApp();
+
 export default {
   created() {
     // 调用API从本地缓存中获取数据
     const logs = wx.getStorageSync("logs") || [];
     logs.unshift(Date.now());
     wx.setStorageSync("logs", logs);
-
+    if (!wx.cloud) {
+      console.error("请使用 2.2.3 或以上的基础库以使用云能力");
+    } else {
+      wx.cloud.init({
+        traceUser: true
+      });
+    }
     console.log("app created and cache logs by setStorageSync");
   },
   // 初始化
   onLaunch() {
     console.log("onLaunch");
-    // 自动登录
-    // Api.autoLogin().then(res => {
-    //   console.log(res);
-    // });
   },
   // 当小程序启动，或从后台进入前台显示
-  onShow() {},
+  onShow() {
+    console.log("App onShow");
+    getUserInfo().then(res=>{
+      console.log("login Ok!",res);
+    });
+  },
   // 当小程序从前台进入后台
-  onHide() {}
+  onHide() {},
+  globalData: {
+    userInfo: {}
+  }
 };
 </script>
 

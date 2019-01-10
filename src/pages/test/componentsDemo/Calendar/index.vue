@@ -84,7 +84,7 @@ export default {
       demodata: {
         year: "2017",
         month: "23",
-        markDay: [20181009, 20181015],
+        markDay: [20181009, 20181015, 20181016, 20181020],
         weekday: ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"],
         monthname: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
       },
