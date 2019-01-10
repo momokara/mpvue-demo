@@ -22,12 +22,14 @@
 
 <script>
 import Api from "@/api/api";
+import { saveUserInfo } from "@/utils/cloudfunc/getUserInfo";
 export default {
   data() {
     return {
       imgurl:
         "https://cdn.jiapeiyun.cn/haivit/public/image/20181017162601_890/关于粤安@3x.png",
-      tip: "这里显示的tips"
+      tip: "这里显示的tips",
+      fromUrl: ""
     };
   },
 
@@ -37,26 +39,40 @@ export default {
     getUserInfo(e) {
       let data = e.mp.detail.userInfo;
       if (e.mp.detail.errMsg === "getUserInfo:ok") {
-        console.log(data);
-        wx.cloud.callFunction({
-          // 云函数名称
-          name: "saveUserInfo",
-          // 传给云函数的参数
-          data: {
-            userinfo: data
-          },
-          success(res) {
-            console.log("saveUserInfo success",res); 
-          },
-          fail(err) {
-            console.error("saveUserInfo fail:", err);
+        saveUserInfo(data).then(res => {
+          console.log("saveUserInfo", res, this.fromUrl);
+          if (res.userInfo.nickName) {
+            if (this.fromUrl) {
+              wx.redirectTo({
+                url: `/${this.fromUrl}`,
+                fail: () => {
+                  wx.switchTab({
+                    url: `/${this.fromUrl}`
+                  });
+                }
+              });
+            } else {
+              wx.redirectTo({
+                url: `/pages/home/main`,
+                fail: () => {
+                  wx.switchTab({
+                    url: `/${this.fromUrl}`
+                  });
+                }
+              });
+            }
           }
         });
       }
     }
   },
 
-  created() {}
+  onLoad(options) {
+    console.log("loginoptions", options);
+    if (options.from) {
+      this.fromUrl = options.from;
+    }
+  }
 };
 </script>
 

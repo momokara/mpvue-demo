@@ -21,14 +21,14 @@ export const getUserInfo = () => {
         }).then(res => {
           let _data = res.result;
           wx.setStorageSync('openid', _data);
-          basicInfo.commit('updatauserInfo',_data);
+          basicInfo.commit('updatauserInfo', _data);
           resolve(_data);
         }).catch(error => {
           console.error(error);
           reject(error)
         })
       } else {
-        basicInfo.commit('updatauserInfo',openid);
+        basicInfo.commit('updatauserInfo', openid);
         resolve(openid);
       }
     } else {
@@ -43,7 +43,30 @@ export const getUserInfo = () => {
  * @param {*} type 0-使用openid(defalut) 1-使用unionid
  */
 export const saveUserInfo = (userInfo) => {
-  type = type ? type : 0;
+  return new Promise((resolve, reject) => {
+    if (wx.cloud) {
+      wx.cloud.callFunction({
+        // 云函数名称
+        name: "saveUserInfo",
+        // 传给云函数的参数
+        data: {
+          userinfo: userInfo
+        },
+        success(res) {
+          let _data = res.result;
+          wx.setStorageSync('openid', _data);
+          basicInfo.commit('updatauserInfo', _data);
+          resolve(_data);
+        },
+        fail(error) {
+          console.error("saveUserInfo fail:", error);
+          reject(error)
+        }
+      });
+    } else {
+      console.error("请使用 2.2.3 或以上的基础库以使用云能力");
+    }
+  })
 }
 
 module.export = {
