@@ -54,7 +54,7 @@
         </adCard>
       </scroll-view>
       <adTitle
-        title="粤安特色"
+        title="服务特色"
         url="/content/content/article/articleList/articleList"
       ></adTitle>
       <scroll-view
@@ -136,8 +136,9 @@ export default {
     }
   },
 
-  created() {},
-  onShow() {}
+  onShow() {},
+
+  onShareAppMessage() {}
 };
 </script>
 

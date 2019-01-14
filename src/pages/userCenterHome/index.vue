@@ -34,12 +34,6 @@ export default {
   // 页面中的方法
   methods: {},
 
-  // 原生钩子
-  // 监听页面加载
-  onLoad() {
-    console.log("demopage-onLoad", this.msg);
-  },
-  // 监听页面显示
   onShow() {
     console.log("demopage-onShow", this.msg);
   }

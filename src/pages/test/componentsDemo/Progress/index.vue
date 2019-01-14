@@ -43,6 +43,20 @@
         pivot-color="#7232dd"
         color="linear-gradient(to right, #be99ff, #7232dd)"
       />
+
+      <div class="fsp16 fc-grey ">
+        环形
+      </div>
+      <van-progress-cycle
+        custom-class="progress"
+        :percentage="cycpercent"
+      ></van-progress-cycle>
+      <van-slider
+        :value="cycpercent"
+        min="0"
+        max="100"
+        @drag="sliderChange"
+      />
     </div>
     <div class="info">
       <div class="fsp16 fc-grey">API 说明</div>
@@ -65,7 +79,8 @@ import apiData from "./api_data";
 export default {
   data() {
     return {
-      title: ""
+      title: "",
+      cycpercent: 10
     };
   },
   // 使用的 vue 组件
@@ -73,7 +88,11 @@ export default {
     apiTable
   },
   // 页面中的方法
-  methods: {},
+  methods: {
+    sliderChange(e) {
+      this.cycpercent = e.mp.detail.value;
+    }
+  },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
   onLoad(option) {

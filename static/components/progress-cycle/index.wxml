@@ -1,0 +1,18 @@
+<view class="van-progress custom-class">
+  <view class="bg-border" style="{{bgBorderStyle}}background-color:{{bgColor}}">
+    <!-- 活动线 -->
+    <view class="line-box-1" style="{{bgBorderStyle}}transform:rotate({{deg}}deg)">
+      <view class="line" style="{{halfLineStyle}}background-color:{{linecolor}};border-color:{{bgColor}}"></view>
+    </view>
+    <!-- 小于50%的时候左遮罩 -->
+    <view class="right-cover" wx:if="{{percentage<=50}}" style="{{halfCoverStyle}}background-color:{{bgColor}};"></view>
+    <view class="left-cover" wx:else style="{{halfCoverStyle_left}}background-color:{{linecolor}};border-color:{{bgColor}}"></view>
+    <!-- 中心圆环 -->
+    <view class="info-slot-box" style="{{infoBoxStyle}}">
+      <view class="">
+        {{percentage}}%
+        <slot />
+      </view>
+    </view>
+  </view>
+</view>

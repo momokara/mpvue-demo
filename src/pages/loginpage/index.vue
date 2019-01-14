@@ -2,7 +2,6 @@
   <div class="loginpage-container">
     <img
       class="icon"
-      v-if="imgurl"
       :src="imgurl"
       alt=""
       mode="widthFix"
@@ -41,13 +40,15 @@ export default {
       if (e.mp.detail.errMsg === "getUserInfo:ok") {
         saveUserInfo(data).then(res => {
           console.log("saveUserInfo", res, this.fromUrl);
-          if (res.userInfo.nickName) {
+          if (res.openid) {
             if (this.fromUrl) {
+              let gourl = this.fromUrl?this.fromUrl:"pages/home/main";
+              console.log("gourl");
               wx.redirectTo({
-                url: `/${this.fromUrl}`,
+                url: `/${gourl}`,
                 fail: () => {
                   wx.switchTab({
-                    url: `/${this.fromUrl}`
+                    url: `/${gourl}`
                   });
                 }
               });

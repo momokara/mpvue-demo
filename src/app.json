@@ -3,7 +3,8 @@
   "pages": [
     "pages/home/main",
     "pages/testApiHome/main",
-    "pages/userCenterHome/main"
+    "pages/userCenterHome/main",
+    "pages/loginpage/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -137,6 +138,7 @@
     "van-panel": "/static/components/panel/index",
     "van-popup": "/static/components/popup/index",
     "van-progress": "/static/components/progress/index",
+    "van-progress-cycle": "/static/components/progress-cycle/index",
     "van-radio": "/static/components/radio-mo/index",
     "van-radio-group": "/static/components/radio-group-mo/index",
     "van-row": "/static/components/row/index",
