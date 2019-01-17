@@ -1,6 +1,4 @@
-import {
-  VantComponent
-} from '../common/component';
+import { VantComponent } from '../common/component';
 VantComponent({
   classes: ['title-class'],
   props: {
@@ -20,10 +18,10 @@ VantComponent({
   },
   methods: {
     onClickLeft: function onClickLeft() {
-      this.$emit('clickLeft');
+      this.$emit('click-left');
     },
     onClickRight: function onClickRight() {
-      this.$emit('clickRight');
+      this.$emit('click-right');
     }
   }
 });
