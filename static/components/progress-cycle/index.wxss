@@ -1,1 +1,48 @@
-.bg-border{position:relative;border-radius:50%;overflow:hidden;border:1px solid #ddd}.info-slot-box{position:absolute;border-radius:50%;left:50%;background-color:#fff}.line-box-1{position:relative;border-radius:50%;overflow:hidden}.line-box-1 .line,.bg-border .right-cover,.bg-border .left-cover{position:absolute;top:0}.bg-border .right-cover{right:0}.bg-border .left-cover{left:0;border:1px solid #ddd;box-sizing:border-box;border-right:none}.line-box-1 .line{box-sizing:border-box;border:1px solid #ddd;border-left:none;left:50%}.info-slot-box{text-align:center}
+.van-progress {
+  display: inline-block;
+}
+
+.bg-border {
+  position: relative;
+  border-radius: 50%;
+  /* overflow: hidden; */
+  border: 1rpx solid #ddd
+}
+
+.info-slot-box {
+  position: absolute;
+  border-radius: 50%;
+  left: 50%;
+  background-color: #fff
+}
+
+.line-box-1 {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden
+}
+
+.line-box-1 .line,
+.bg-border .right-cover,
+.bg-border .left-cover {
+  position: absolute;
+  top: 0
+}
+
+.bg-border .right-cover {
+  right: 0;
+}
+
+.bg-border .left-cover {
+  left: 0rpx;
+  box-sizing: border-box;
+}
+
+.line-box-1 .line {
+  box-sizing: border-box;
+  left: 50%
+}
+
+.info-slot-box {
+  text-align: center
+}

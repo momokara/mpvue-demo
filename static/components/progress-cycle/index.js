@@ -26,7 +26,7 @@ VantComponent({
     },
     linewidth: {
       type: String,
-      value: 15
+      value: 10
     },
   },
   data: {
@@ -40,27 +40,27 @@ VantComponent({
       let radius = this.data.radius;
       let bgColor = this.data.bgColor;
       let _w = radius * 2;
-      return `width:${_w}px;height:${_w}px;`
+      return `width:${_w}rpx;height:${_w}rpx;`
     },
     infoBoxStyle: function infoBoxStyle() {
       let radius = this.data.radius - this.data.linewidth;
       let _w = radius * 2;
-      return `width:${_w}px;height:${_w}px;top:${this.data.linewidth}px;margin-left:-${radius}px`
+      return `width:${_w}rpx;height:${_w}rpx;top:${this.data.linewidth}rpx;margin-left:-${radius}rpx`
     },
     halfLineStyle: function halfLineStyle() {
       let radius = this.data.radius;
       let _h = radius * 2;
-      return `width:${radius}px;height:${_h}px;border-radius:0 ${radius}px ${radius}px 0;`
+      return `width:${radius}rpx;height:${_h}rpx;border-radius:0 ${radius}rpx ${radius}rpx 0;`
     },
     halfCoverStyle: function halfCoverStyle() {
       let radius = this.data.radius;
       let _h = radius * 2;
-      return `width:${radius}px;height:${_h}px;`
+      return `width:${radius}rpx;height:${_h}rpx;border-radius:0 ${radius}rpx ${radius}rpx 0;`
     },
     halfCoverStyle_left: function halfCoverStyle_left() {
       let radius = this.data.radius;
       let _h = radius * 2;
-      return `width:${radius}px;height:${_h}px;border-radius:${radius}px 0 0 ${radius}px;`
+      return `width:${radius}rpx;height:${_h}rpx;border-radius:${radius}rpx 0 0 ${radius}rpx;`
 
     }
   },
