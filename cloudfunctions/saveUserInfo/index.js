@@ -33,10 +33,17 @@ exports.main = async (event, context) => {
   let _nTime = new Date().getTime();
 
   let user_name_default = `游客`;
-  let user_num = '';
+  // 接收的微信公开信息
   let _userInfo = event.userinfo ? event.userinfo : {};
+  // 接收的用户基本信息
+  let _basic_info = event.basicinfo ? event.basicinfo : {};
+  let user_num = '';
+  let user_name = '';
+  let user_info = '';
+  let basic_info = '';
 
   if (wxContext.OPENID) {
+
     let dbUser = db.collection('user');
     await dbUser.where({
       openid: wxContext.OPENID
@@ -44,21 +51,33 @@ exports.main = async (event, context) => {
       if (res.data.length > 0) {
         _sSaveID = res.data[0]._id;
         user_num = res.data[0].user_num;
-        user_name = res.data[0].user_name;
+
+        // 已经存储的信息
+        let saveduser_name = res.data[0].user_name;
+        let saved_user_info = res.data[0].userInfo ? res.data[0].userInfo : {};
+        let saved_basic_info = res.data[0].userInfo ? res.data[0].userInfo : {};
+        user_name = _userInfo.nickName ? _userInfo.nickName : saveduser_name;
+        user_info = _userInfo.nickName ? _userInfo : saved_user_info;
+        basic_info = _basic_info ? _basic_info : saved_basic_info;
+
         await dbUser.where({
           openid: wxContext.OPENID
         }).update({
           data: {
             updatetime: _nTime,
-            user_info: _userInfo,
-            user_name: _userInfo.nickName ? _userInfo.nickName : res.data[0].type_name
+            user_info: user_info,
+            user_name: _userInfo.nickName ? _userInfo.nickName : saveduser_name,
+            basic_info: basic_info
           },
         }).then(res => {
           console.log("success", res)
         })
       } else {
+        // 用时间戳生成一个id
         user_num = `${parseInt(_nTime/1000)}`;
         user_name = event.userinfo ? event.userinfo.nickName : user_name_default;
+        user_info = _userInfo;
+        basic_info = _basic_info;
         await dbUser.add({
           // data 字段表示需新增的 JSON 数据
           data: {
@@ -67,7 +86,8 @@ exports.main = async (event, context) => {
             openid: wxContext.OPENID,
             user_name: user_name,
             user_num: user_num,
-            user_info: _userInfo,
+            user_info: user_info,
+            basic_info: basic_info
           }
         }).then(res => {
           console.log("success", res);

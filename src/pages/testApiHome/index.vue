@@ -7,7 +7,9 @@
         </van-button>
       </navigator>
     </div>
-
+    <input type="text" v-model="msg">
+    <input type="text" v-model="msg">
+    <div >{{msg}}</div>
   </div>
 </template>
 
@@ -22,6 +24,7 @@ export default {
   data() {
     return {
       motto: "home",
+      msg:"this is msg",
       userInfo: {},
       tempFilePaths: [],
       uploadresFilePaths: [],

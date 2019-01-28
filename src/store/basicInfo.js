@@ -10,8 +10,9 @@ const basicInfo = new Vuex.Store({
     userInfo: {}
   },
   mutations: {
+    // 变更方法
     updatauserInfo: (state, userInfo) => {
-      console.log("updatauserInfo", state, userInfo);
+      console.log("updatauserInfo", userInfo);
       const obj = state
       obj.userInfo = userInfo
     }

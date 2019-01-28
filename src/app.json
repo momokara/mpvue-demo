@@ -75,15 +75,15 @@
       ]
     },
     {
-      "root": "pages/index",
-      "pages": [
-        "main"
-      ]
-    },
-    {
       "root": "pages/mockExam",
       "pages": [
         "qlist/main"
+      ]
+    },
+    {
+      "root": "pages/user",
+      "pages": [
+        "editUserInfo/main"
       ]
     }
   ],

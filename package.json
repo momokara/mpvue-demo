@@ -16,6 +16,7 @@
     "build": "node build/build.js wx"
   },
   "dependencies": {
+    "cos-wx-sdk-v5": "^0.7.0",
     "mpvue": "^1.0.11",
     "node-sass": "^4.10.0",
     "sass-loader": "^7.1.0",

@@ -4,11 +4,6 @@ import {
   login,
   setLoginUrl
 } from "@/utils/lib/login";
-import {
-  request,
-  request_h,
-} from "@/utils/request";
-var is_getUserInfo = wx.getStorageSync("is_getUserInfo");
 
 /**
  * 普通登录
@@ -71,7 +66,69 @@ export function autoLogin(folder_name, module, action, data, is_show_toast, call
     getUserInfo(callback);
   });
 }
+export function getUserInfo(callback) {
+  wx.getUserInfo({
+    success: function (res) {
+      var ranges = [
+        '\ud83c[\udf00-\udfff]',
+        '\ud83d[\udc00-\ude4f]',
+        '\ud83d[\ude80-\udeff]'
+      ];
+      res.userInfo.nickName = res.userInfo.nickName.replace(new RegExp(ranges.join('|'), 'g'), '');
+      res.userInfo.nickName = res.userInfo.nickName.replace("'", "-");
+      res.userInfo.province = res.userInfo.province.replace("'", "-");
+      res.userInfo.city = res.userInfo.city.replace("'", "-");
+      res.userInfo.nickName = res.userInfo.nickName.replace("?", "-");
+      that.request("project_name_login", "user", "updateUserXCX", res.userInfo, false, function (res2) {
+        if (res2.err_code == '-1') {
+          wx.setStorageSync("is_getUserInfo", 1);
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '更新用户信息失败',
+            showCancel: false
+          })
+        }
+        callback(res.userInfo);
+      }, false, 5);
+    },
+    fail: function (res) {
+      is_getUserInfo = 0;
 
+      callback(res);
+      var pages = getCurrentPages();
+      console.log('gotologin');
+      // 弹窗
+      dialog.alert({
+        title: "请先登录",
+        message: "",
+        confirmButtonOpenType: "getUserInfo"
+      }).then(() => {
+        // on close
+        wx.showToast({
+          title: "登录成功请下拉刷新",
+          icon: "none"
+        })
+      }).catch(res => {
+        console.info(res);
+        if (res == 'nodialog') {
+          pages = pages.filter(e => {
+            if (e.route = "login/login/login/login/login") {
+              return true;
+            }
+          });
+
+          that.globalData.isShowLogin = true;
+          wx.navigateTo({
+            url: '../../../../login/login/login/login/login',
+          });
+
+        }
+      });
+
+    }
+  });
+}
 
 /**
  * 调用自动登录接口
@@ -110,60 +167,17 @@ export function callAutoLogin(folder_name, module, action, data, is_show_toast, 
   }
 }
 
+
 /**
- * 获取用户信息，并更新
+ * 检查用户数据是否缓存
+ * @returns {boolean}
  */
-export function getUserInfo(callback) {
-  if (is_getUserInfo != 1) {
-    request_h("project_name_deal3", "deal", "list/user_weixin_xcx", {}, false, function (res1) {
-      console.log('getuserinfo', res1)
-      if (res1.err_code == -1) {
-        if (res1.user_info.nickName == '用户信息获取失败') {
-          wx.getUserInfo({
-            success: function (res) {
-              var ranges = [
-                '\ud83c[\udf00-\udfff]',
-                '\ud83d[\udc00-\ude4f]',
-                '\ud83d[\ude80-\udeff]'
-              ];
-              res.userInfo.nickName = res.userInfo.nickName.replace(new RegExp(ranges.join('|'), 'g'), '');
-              res.userInfo.nickName = res.userInfo.nickName.replace("'", "-");
-              res.userInfo.province = res.userInfo.province.replace("'", "-");
-              res.userInfo.city = res.userInfo.city.replace("'", "-");
-              request("project_name_deal3", "deal", "function/update_user_xcx", res.userInfo, false, function (res) {
-                if (res.err_msg == '1') {
-                  callback(res.userInfo);
-                } else {
-                  wx.showModal({
-                    title: '提示',
-                    content: '更新用户信息失败',
-                    showCancel: false
-                  })
-                }
-              });
-            },
-            fail: function (res) {
-              wx.navigateTo({
-                url: '../../../../login/login/login/login/login',
-              })
-            }
-          });
-        } else {
-          wx.setStorageSync("is_getUserInfo", 1);
-          wx.setStorageSync("user_info", res1.user_info);
-          is_getUserInfo = 1;
-          user_info = res1.user_info;
-          callback(res1.user_info);
-        }
-      } else {
-        wx.showToast({
-          title: '用户信息获取失败',
-          icon: 'none'
-        })
-      }
-    }, false);
-  } else {
-    callback(wx.getStorageSync('user_info'));
+export function checkUserInfo() {
+  try {
+    var session_data = qcloud.Session.get();
+    return session_data;
+  } catch (err) {
+    return false;
   }
 }
 
@@ -171,5 +185,6 @@ export default {
   doLogin,
   autoLogin,
   callAutoLogin,
+  checkUserInfo,
   getUserInfo
 }

@@ -13,10 +13,15 @@ export default {
       console.error("请使用 2.2.3 或以上的基础库以使用云能力");
     } else {
       wx.cloud.init({
+        env: "wubaib-9543f7",
         traceUser: true
       });
     }
-    console.log("app created and cache logs by setStorageSync");
+    console.log(
+      "app created and cache logs by setStorageSync",
+      "运行环境：",
+      process.env.NODE_ENV
+    );
   },
   // 初始化
   onLaunch() {
@@ -25,8 +30,8 @@ export default {
   // 当小程序启动，或从后台进入前台显示
   onShow() {
     console.log("App onShow");
-    getUserInfo().then(res=>{
-      console.log("login Ok!",res);
+    getUserInfo().then(res => {
+      console.log("login Ok!", res);
     });
   },
   // 当小程序从前台进入后台

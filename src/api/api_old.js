@@ -1,11 +1,11 @@
 /* jshint esversion: 6 */
-import autoLogin from "@/utils/login";
-import WxPromis from "@/utils/Wxrequest";
+import autoLogin from "@/utils/oldfunction/login_old";
+import WxPromis from "@/utils/oldfunction/Wxrequest";
 import dialog from "@/../static/components/dialog-mo/dialog";
 const Api_old = {};
 
 // 处理自动登录 旧登录
-Api.autoLogin = () => {
+Api_old.autoLogin = () => {
   const _requestUrl = {
     folder_name: "project_name_login",
     module: "user",

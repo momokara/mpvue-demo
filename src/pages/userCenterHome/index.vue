@@ -20,7 +20,6 @@ export default {
   computed: {
     userInfo() {
       if (!basicInfo.state.userInfo.userInfo) {
-        console.log("will go login");
         let currentPage = getCurrentPages();
         currentPage = currentPage[currentPage.length - 1];
         console.log(currentPage.route);
@@ -28,6 +27,7 @@ export default {
           url: `/pages/loginpage/main?from=${currentPage.route}`
         });
       }
+      console.log("userInfochange")
       return basicInfo.state.userInfo;
     }
   },

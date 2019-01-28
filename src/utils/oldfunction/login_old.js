@@ -6,9 +6,9 @@ import {
   setLoginUrl
 } from "@/utils/lib/login";
 import {
-  checkUserInfo,
   toPromise
 } from './basic';
+
 /**
  * 自动登录默认统一使用 POST 方式
  * @param {string} urlObj.folder_name 在数据库m_config里面配置的项目名
