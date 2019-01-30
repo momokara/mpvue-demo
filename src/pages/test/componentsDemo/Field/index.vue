@@ -120,6 +120,8 @@
           placeholder="输入值双向绑定"
           use-input-slot
           :border="false"
+          :is-show-clear="true"
+          @clear="clear"
         >
           <input
             slot="input"
@@ -197,6 +199,9 @@ export default {
         icon: "none",
         title: "点击图标"
       });
+    },
+    clear(){
+      console.log(clear)
     }
   },
   watch: {
