@@ -126,7 +126,7 @@
     "van-checkbox-group": "/static/components/checkbox-group-mo/index",
     "van-col": "/static/components/col/index",
     "van-dialog": "/static/components/dialog-mo/index",
-    "van-field": "/static/components/field/index",
+    "van-field": "/static/components/field-mo/index",
     "van-goods-action": "/static/components/goods-action/index",
     "van-goods-action-icon": "/static/components/goods-action-icon-mo/index",
     "van-goods-action-button": "/static/components/goods-action-button/index",

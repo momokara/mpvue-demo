@@ -42,18 +42,24 @@ export const getUserInfo = () => {
  * @param {*} id  openid 或者 unionid 的值
  * @param {*} type 0-使用openid(defalut) 1-使用unionid
  */
-export const saveUserInfo = (userInfo) => {
+export const saveUserInfo = (data) => {
+  let _data = {
+    userinfo: data.userInfo,
+  };
+  if (data.basicInfo) {
+    _data.basicinfo = data.basicInfo
+  }
+
   return new Promise((resolve, reject) => {
     if (wx.cloud) {
       wx.cloud.callFunction({
         // 云函数名称
         name: "saveUserInfo",
         // 传给云函数的参数
-        data: {
-          userinfo: userInfo
-        },
+        data: _data,
         success(res) {
           let _data = res.result;
+          console.log(_data)
           wx.setStorageSync('openid', _data);
           basicInfo.commit('updatauserInfo', _data);
           resolve(_data);

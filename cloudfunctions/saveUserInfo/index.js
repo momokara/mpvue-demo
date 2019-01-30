@@ -120,6 +120,9 @@ exports.main = async (event, context) => {
     appid: wxContext.APPID,
     user_name: user_name,
     user_num: user_num,
-    userInfo: _userInfo
+    // 用户信息
+    userInfo: user_info,
+    // 用户基本信息
+    basic_info: basic_info
   }
 }

@@ -109,6 +109,39 @@
           >发送验证码</van-button>
         </van-field>
       </van-cell-group>
+
+      <div class="fsp16 fc-grey ">
+        使用输入框插槽
+      </div>
+      <van-cell-group>
+        <van-field
+          center
+          label="双向绑定"
+          placeholder="输入值双向绑定"
+          use-input-slot
+          :border="false"
+        >
+          <input
+            slot="input"
+            type="text"
+            v-model="inputval.info_normal"
+          >
+        </van-field>
+        <van-field
+          label="双向绑定err"
+          placeholder="输入值双向绑定"
+          use-input-slot
+          :border="false"
+          error
+          error-message="错误提示"
+        >
+          <input
+            slot="input"
+            type="text"
+            v-model="inputval.info_error"
+          >
+        </van-field>
+      </van-cell-group>
     </div>
 
     <div class="info">
@@ -142,6 +175,10 @@ export default {
       username2: "",
       message: "",
       phone: "1365577",
+      inputval: {
+        info_normal: "",
+        info_error: "内容标记错误样式"
+      },
       table_api_Field: apiData.api_Field,
       table_event_Field: apiData.event_Field,
       table_event_Field: apiData.event_Field,
@@ -162,6 +199,25 @@ export default {
       });
     }
   },
+  watch: {
+    // 深度监听,这么写会监听变量子属性的变化
+    inputval: {
+      handler: function(val, oldval) {
+        for (const key in val) {
+          console.log(key, val[key]);
+        }
+      },
+      deep: true //对象内部的属性监听，也叫深度监听
+    },
+    /**
+     * 监听单一属性的变化
+     * @param {string} val 当前的 input 的值
+     * @param {string} oldval 改变之前 input 的值
+     */
+    "inputval.info_normal": function(val, oldval) {
+      console.log(val, "|oldval:", oldval);
+    }
+  },
   onLoad(option) {
     if (option) {
       this.title = option.label;
@@ -172,5 +228,4 @@ export default {
 
 
 <style lang="scss">
-
 </style>

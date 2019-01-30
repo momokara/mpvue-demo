@@ -36,13 +36,14 @@ export default {
 
   methods: {
     getUserInfo(e) {
-      let data = e.mp.detail.userInfo;
+      let data = {};
+      data.userInfo = e.mp.detail.userInfo;
       if (e.mp.detail.errMsg === "getUserInfo:ok") {
         saveUserInfo(data).then(res => {
           console.log("saveUserInfo", res, this.fromUrl);
           if (res.openid) {
             if (this.fromUrl) {
-              let gourl = this.fromUrl?this.fromUrl:"pages/home/main";
+              let gourl = this.fromUrl ? this.fromUrl : "pages/home/main";
               console.log("gourl");
               wx.redirectTo({
                 url: `/${gourl}`,

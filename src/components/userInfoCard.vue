@@ -3,6 +3,7 @@
     <img
       class="head-img"
       :src="userInfo.userInfo?userInfo.userInfo.avatarUrl:''"
+      @click="tapheadimg()"
     >
     <div class="info-box-1 ta-c">
       <div class="user-name fsp14 fc-semi">{{userInfo.user_name}}
@@ -14,14 +15,19 @@
     </div>
 
     <div class="info-box-2">
-
+      <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["userInfo"]
+  props: ["userInfo"],
+  methods: {
+    tapheadimg: function() {
+      this.$emit("tapHeaderImg");
+    }
+  }
 };
 </script>
 

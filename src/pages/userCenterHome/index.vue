@@ -1,12 +1,19 @@
 <template>
   <div class="container">
-    <userInfoCard :userInfo="userInfo"></userInfoCard>
-
+    <userInfoCard
+      :userInfo="userInfo"
+      @tapHeaderImg="tapHeaderImg()"
+    >
+      123
+    </userInfoCard>
   </div>
 </template>
 <script>
 import basicInfo from "../../store/basicInfo.js";
 import userInfoCard from "@/components/userInfoCard";
+// 页面记录
+import { pagelogs } from "@/utils/logs";
+
 export default {
   data() {
     return {
@@ -27,16 +34,28 @@ export default {
           url: `/pages/loginpage/main?from=${currentPage.route}`
         });
       }
-      console.log("userInfochange")
+      console.log("userInfochange");
       return basicInfo.state.userInfo;
     }
   },
   // 页面中的方法
-  methods: {},
-
-  onShow() {
-    console.log("demopage-onShow", this.msg);
-  }
+  methods: {
+    tapHeaderImg: function() {
+      wx.navigateTo({
+        url: "/pages/user/editUserInfo/main",
+        success: function(res) {
+          // success
+        },
+        fail: function() {
+          // fail
+        }
+      });
+    }
+  },
+  onLoad() {
+    pagelogs();
+  },
+  onShow() {}
 };
 </script>
 

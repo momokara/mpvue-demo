@@ -1,14 +1,41 @@
 <template>
   <div class="img_upload">
-    <div v-if="title" class="title">{{title}}</div>
+    <div
+      v-if="title"
+      class="title"
+    >{{title}}</div>
     <div class="image-box">
-      <img class="img-cell" v-for="(item,index) in imageList" :key="index" :src="item" @click="deleteImage(index,false)">
-      <img class="img-cell" v-if="!autoUpLoad" v-for="(item,index) in tempFilePaths" :key="index" :src="item" @click="deleteImage(index,true)">
-      <div class="img-cell add-btn fs40" v-if="(imageList.length+tempFilePaths.length)<max" @click="addImage">
+      <img
+        class="img-cell"
+        v-for="(item,index) in imageList"
+        :key="index"
+        :src="item"
+        @click="deleteImage(index,false)"
+      >
+      <block v-if="!autoUpLoad">
+        <img
+          class="img-cell"
+          v-for="(item,index) in tempFilePaths"
+          :key="index"
+          :src="item"
+          @click="deleteImage(index,true)"
+        >
+
+      </block>
+      <div
+        class="img-cell add-btn fs40"
+        v-if="(imageList.length+tempFilePaths.length)<max"
+        @click="addImage"
+      >
         +
       </div>
     </div>
-    <button class="upload-btn" type="primary" v-if="!autoUpLoad" @click="upLoadImgs">
+    <button
+      class="upload-btn"
+      type="primary"
+      v-if="!autoUpLoad"
+      @click="upLoadImgs"
+    >
       上传图片
     </button>
   </div>

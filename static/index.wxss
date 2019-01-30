@@ -1,7 +1,9 @@
 .tabbar-item_icon {
-  width: 28px;/*px*/
+  width: 28px;
+  /*px*/
   display: block;
-  height: 26px;/*px*/
+  height: 26px;
+  /*px*/
   margin: -5px auto 3px auto;
 }
 
@@ -9,15 +11,23 @@
   width: 100%;
   display: inline-block;
   text-align: center;
-  font-size: 10px;/*px*/
+  font-size: 10px;
+  /*px*/
 }
+
+.hidden {
+  display: none;
+}
+
 /* demo 列表 到样式 */
 .demo {
   padding: 15px;
 }
-.demo .fc-grey{
+
+.demo .fc-grey {
   padding: 10px 0;
 }
+
 .info .fc-grey {
   padding: 15px 15px 0 15px;
 }

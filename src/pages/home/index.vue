@@ -102,8 +102,8 @@ import adTitle from "@/components/home-main-title";
 import adCard from "@/components/img-ad-card";
 
 import Api from "@/api/api";
-
-const appInst = getApp();
+// 页面记录
+import { pagelogs } from "@/utils/logs";
 
 export default {
   data() {
@@ -137,14 +137,11 @@ export default {
       });
     }
   },
-
+  onLoad() {
+    pagelogs();
+  },
   onShow() {
 
-    var pages = getCurrentPages(); //获取加载的页面
-
-    var currentPage = pages[pages.length - 1]; //获取当前页面的对象
-
-    var url = currentPage.route; //当前页面url
   }
 };
 </script>

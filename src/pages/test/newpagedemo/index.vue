@@ -1,8 +1,19 @@
 <template>
   <div class="container">
     <div id="msg">这里放页面内容</div>
-    <input type="text" v-model="msg">
+    <input
+      type="text"
+      v-model="msg"
+    >
+    <div>
+      输入card 组件:
+    </div>
     <card :text="msg"></card>
+    <div>
+      多个表单
+    </div>
+
+    <input type="text">
   </div>
 </template>
 <script>
@@ -17,6 +28,12 @@ export default {
   components: {
     card
   },
+  watch: {
+    msg(val, old_val) {
+      console.log("watchmsg", val, old_val);
+    }
+  },
+  computed: {},
   // 页面中的方法
   methods: {},
   // VUE 钩子 常用
@@ -32,7 +49,7 @@ export default {
   beforeMount() {
     console.log("demopage-beforeMount", this.msg);
   },
-  // 页面节点挂载  
+  // 页面节点挂载
   mounted() {
     console.log("demopage-mounted", this.msg);
   },
