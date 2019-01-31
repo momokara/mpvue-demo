@@ -90,7 +90,7 @@
 <script>
 import basicInfo from "../../../store/basicInfo.js";
 import { uploadFile } from "@/utils/cloudfunc/file";
-import { saveUserInfo } from "@/utils/cloudfunc/getUserInfo";
+import { getAuthorization, upLoadFile } from "@/utils/cos/cosfunc";
 export default {
   data() {
     return {
@@ -128,10 +128,7 @@ export default {
       let _this = this;
       wx.chooseImage({
         success: chooseResult => {
-          let file_name = basicInfo.state.userInfo.openid + Date.now();
-          uploadFile(chooseResult.tempFilePaths[0], file_name).then(res => {
-            _this.userData.userInfo.avatarUrl = res[0].tempFileURL;
-          });
+          upLoadFile(chooseResult.tempFiles[0]);
         }
       });
     },
