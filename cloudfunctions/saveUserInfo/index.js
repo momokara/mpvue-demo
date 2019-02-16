@@ -56,7 +56,6 @@ exports.main = async (event, context) => {
         let saveduser_name = res.data[0].user_name;
         let saved_user_info = res.data[0].userInfo ? res.data[0].userInfo : {};
         let saved_basic_info = res.data[0].userInfo ? res.data[0].userInfo : {};
-        user_name = _userInfo.nickName ? _userInfo.nickName : saveduser_name;
         user_info = _userInfo.nickName ? _userInfo : saved_user_info;
         basic_info = _basic_info ? _basic_info : saved_basic_info;
 
@@ -66,7 +65,6 @@ exports.main = async (event, context) => {
           data: {
             updatetime: _nTime,
             user_info: user_info,
-            user_name: _userInfo.nickName ? _userInfo.nickName : saveduser_name,
             basic_info: basic_info
           },
         }).then(res => {
@@ -75,7 +73,6 @@ exports.main = async (event, context) => {
       } else {
         // 用时间戳生成一个id
         user_num = `${parseInt(_nTime/1000)}`;
-        user_name = event.userinfo ? event.userinfo.nickName : user_name_default;
         user_info = _userInfo;
         basic_info = _basic_info;
         await dbUser.add({
@@ -84,7 +81,6 @@ exports.main = async (event, context) => {
             add_time: _nTime,
             appid: wxContext.APPID,
             openid: wxContext.OPENID,
-            user_name: user_name,
             user_num: user_num,
             user_info: user_info,
             basic_info: basic_info
@@ -118,11 +114,11 @@ exports.main = async (event, context) => {
     openid: wxContext.OPENID,
     unionid: wxContext.UNIONID,
     appid: wxContext.APPID,
-    user_name: user_name,
+
     user_num: user_num,
     // 用户信息
     userInfo: user_info,
     // 用户基本信息
-    basic_info: basic_info
+    basicInfo: basic_info
   }
 }

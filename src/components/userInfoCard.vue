@@ -1,12 +1,14 @@
 <template>
   <div class="userinfo-card">
-    <img
-      class="head-img"
-      :src="userInfo.userInfo?userInfo.userInfo.avatarUrl:''"
-      @click="tapheadimg()"
-    >
+    <block v-if="userInfo.userInfo">
+      <img
+        class="head-img"
+        :src="userInfo.userInfo.avatarUrl?userInfo.userInfo.avatarUrl:defaultData.headerImg"
+        @click="tapheadimg()"
+      >
+    </block>
     <div class="info-box-1 ta-c">
-      <div class="user-name fsp14 fc-semi">{{userInfo.user_name}}
+      <div class="user-name fsp14 fc-semi">{{userInfo.openid?userInfo.userInfo.nickName:"登陆中..."}}
         <span v-if="userInfo.real_name">
           ({{userInfo.real_name}})
         </span>
@@ -21,7 +23,14 @@
 </template>
 
 <script>
+import config from "@/config.js";
 export default {
+  data() {
+    return {
+      // 默认信息
+      defaultData: config.defaultData
+    };
+  },
   props: ["userInfo"],
   methods: {
     tapheadimg: function() {
@@ -46,6 +55,7 @@ export default {
     top: -47px;
     left: 50%;
     margin-left: -47px;
+    background-color: #fff;
   }
   .info-box-1 {
     padding-top: 50px;

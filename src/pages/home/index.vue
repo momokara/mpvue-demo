@@ -137,11 +137,9 @@ export default {
       });
     }
   },
-  onLoad() {
-    pagelogs();
-  },
+  onLoad() {},
   onShow() {
-
+    pagelogs();
   }
 };
 </script>

@@ -6,27 +6,31 @@
       v-model="msg"
     >
     <div>
-      输入card 组件:
+      组件:
     </div>
-    <card :text="msg"></card>
-    <div>
-      多个表单
-    </div>
+    <demoBlock :title="msg">
+      <div>
+        插槽内容
+      </div>
+    </demoBlock>
 
     <input type="text">
   </div>
 </template>
 <script>
-import card from "@/components/card";
+import demoBlock from "@/components/demo-block";
+
+// 页面记录
+import { pagelogs } from "@/utils/logs";
 export default {
   data() {
     return {
-      msg: "这里是消息"
+      msg: "这里是消息-demoBlock"
     };
   },
   // 使用的 vue 组件
   components: {
-    card
+    demoBlock
   },
   watch: {
     msg(val, old_val) {
@@ -69,6 +73,7 @@ export default {
   // 监听页面显示
   onShow() {
     console.log("demopage-onShow", this.msg);
+    pagelogs();
   },
   // 监听页面初次渲染完成
   onReady() {

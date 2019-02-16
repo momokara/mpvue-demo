@@ -33,12 +33,13 @@
             type="text"
             v-model="userData.userInfo.nickName"
             placeholder="请输入昵称"
+            maxlength="16"
           >
         </div>
       </van-cell>
 
       <van-cell
-        title="真实姓名"
+        title="实名"
         icon="user-o"
       >
         <div>
@@ -46,19 +47,30 @@
             type="text"
             v-model="userData.basicInfo.real_name"
             placeholder="请输入真实姓名"
+            maxlength="16"
           >
         </div>
       </van-cell>
 
       <van-cell
-        title="手机号"
+        title="手机"
         icon="phone-o"
       >
+
         <div>
+          <van-button
+            plain
+            type="default"
+            size="mini"
+            custom-class="fsp16 phone-input"
+            open-type="getPhoneNumber"
+            @getphonenumber="getPhoneNumber"
+          >获取</van-button>
           <input
             type="text"
             v-model="userData.basicInfo.phone"
             placeholder="请输入手机号"
+            maxlength="11"
           >
         </div>
       </van-cell>
@@ -66,12 +78,14 @@
       <van-cell
         title="身份证"
         icon="coupon-o"
+        custom-class="id-card"
       >
         <div>
           <input
             type="text"
             v-model="userData.basicInfo.idcard_num"
             placeholder="请输入身份证"
+            maxlength="20"
           >
         </div>
       </van-cell>
@@ -89,13 +103,18 @@
 </template>
 <script>
 import basicInfo from "../../../store/basicInfo.js";
-import { uploadFile } from "@/utils/cloudfunc/file";
-import { getAuthorization, upLoadFile } from "@/utils/cos/cosfunc";
+import { upLoadFile } from "@/utils/cos/cosfunc";
+import { saveUserInfo, deCrypt } from "@/utils/cloudfunc/getUserInfo";
+// 页面记录
+import { pagelogs } from "@/utils/logs";
 export default {
   data() {
     return {
       userData: {
-        userInfo: {},
+        userInfo: {
+          avatarUrl: "",
+          nickName: ""
+        },
         basicInfo: {
           real_name: "",
           phone: "",
@@ -108,17 +127,20 @@ export default {
   components: {},
   computed: {
     userInfo() {
-      if (basicInfo.state.userInfo) {
-        this.userData.userInfo = basicInfo.state.userInfo.userInfo;
-        if (basicInfo.state.userInfo) {
-          console.log("全局userInfo", basicInfo.state.userInfo);
-          const userbasicInfo = basicInfo.state.userInfo.basic_info
-            ? basicInfo.state.userInfo.basic_info
-            : "";
-          if (userbasicInfo) {
-            this.userData.basicInfo = userbasicInfo;
+      if (basicInfo.state.islogin) {
+        if (basicInfo.state.userInfo.userInfo.avatarUrl) {
+          this.userData.userInfo = basicInfo.state.userInfo.userInfo;
+          if (basicInfo.state.userInfo) {
+            const userbasicInfo = basicInfo.state.userInfo.basicInfo
+              ? basicInfo.state.userInfo.basicInfo
+              : {};
+            if (userbasicInfo.phone) {
+              this.userData.basicInfo = userbasicInfo;
+            }
           }
         }
+      } else {
+        console.log("登录中...");
       }
     }
   },
@@ -128,13 +150,33 @@ export default {
       let _this = this;
       wx.chooseImage({
         success: chooseResult => {
-          upLoadFile(chooseResult.tempFiles[0]);
+          upLoadFile(chooseResult.tempFiles[0], `header_img`).then(res => {
+            console.log("url:", res);
+            _this.userData.userInfo.avatarUrl = `https://${res.Location}`;
+          });
         }
       });
     },
+    // 获取手机号
+    getPhoneNumber: function(e) {
+      let _this = this;
+      if (e.mp.detail.encryptedData) {
+        // 解密信息
+        deCrypt(e.mp.detail).then(res => {
+          console.log("用户同意 getPhoneNumber:", res);
+          _this.userData.basicInfo.phone = res.phoneNumber;
+        });
+      } else {
+        console.error("用户拒绝 getPhoneNumber:", e.mp.detail);
+      }
+    },
+    // 保存用户信息
     saveUserInfo: function() {
       saveUserInfo(this.userData).then(res => {
-        console.log(res);
+        wx.showToast({
+          title: "保存成功",
+          icon: "success"
+        });
       });
     }
   },
@@ -143,7 +185,7 @@ export default {
   onLoad() {},
   // 监听页面显示
   onShow() {
-    console.log("demopage-onShow", this.msg);
+    pagelogs()
   }
 };
 </script>
@@ -162,11 +204,20 @@ export default {
     }
     padding-bottom: 5px; /*px*/
   }
-
+  .id-card {
+    .van-cell__value {
+      flex: 2;
+    }
+  }
   .header-img {
     width: 60px;
     height: 60px;
     border-radius: 50%;
+  }
+  .fsp16.phone-input {
+    color: #999;
+
+    float: left;
   }
   .btn-box {
     text-align: center;

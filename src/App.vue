@@ -5,7 +5,6 @@ var appInst = getApp();
 
 export default {
   created() {
-
     if (!wx.cloud) {
       console.error("请使用 2.2.3 或以上的基础库以使用云能力");
     } else {
@@ -105,7 +104,8 @@ $opacity-disable: 10%;
 .fsp14 {
   font-size: $fsp-14; /*px*/
 }
-.fs12 {
+.fs12,
+.fsp12 {
   font-size: $fsp-12; /*px*/
 }
 .fc-black {

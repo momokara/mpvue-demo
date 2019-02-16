@@ -2,6 +2,7 @@
 // 部署：在 cloud-functions/login 文件夹右击选择 “上传并部署”
 
 const cloud = require('wx-server-sdk')
+
 // 初始化 cloud
 cloud.init()
 const db = cloud.database({
@@ -21,13 +22,15 @@ exports.main = async (event, context) => {
   // console.log 的内容可以在云开发云函数调用日志查看
   // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）
   let wxContext = await cloud.getWXContext();
+  console.log(wxContext);
 
   let _sSaveID = null;
   let _nTime = new Date().getTime();
 
   let user_name_default = `游客`;
-  let user_num = `${parseInt(_nTime/1000)}`;
-  let _userInfo = "";
+  let _user_num = `${parseInt(_nTime/1000)}`;
+  let _userInfo = {};
+  let _basicInfo = {};
 
   if (wxContext.OPENID) {
     let dbUser = db.collection('user');
@@ -36,9 +39,9 @@ exports.main = async (event, context) => {
     }).get().then(async (res) => {
       if (res.data.length > 0) {
         _sSaveID = res.data[0]._id;
-        user_num = res.data[0].user_num;
-        user_name = res.data[0].user_name;
-        _userInfo = res.data[0].user_info
+        _user_num = res.data[0].user_num;
+        _userInfo = res.data[0].user_info;
+        _basicInfo = res.data[0].basic_info;
         await dbUser.where({
           openid: wxContext.OPENID
         }).update({
@@ -51,15 +54,17 @@ exports.main = async (event, context) => {
           console.log("update Error", err)
         })
       } else {
-        user_name = event.userinfo ? event.userinfo.nickName : user_name_default;
+        _userInfo = {
+          nickName: user_name_default
+        };
         await dbUser.add({
           // data 字段表示需新增的 JSON 数据
           data: {
             add_time: _nTime,
             appid: wxContext.APPID,
             openid: wxContext.OPENID,
-            user_name: user_name,
-            user_num: user_num
+            user_num: _user_num,
+            user_info: _userInfo
           }
         }).then(res => {
           console.log("add Success", res);
@@ -89,8 +94,8 @@ exports.main = async (event, context) => {
     openid: wxContext.OPENID,
     unionid: wxContext.UNIONID,
     appid: wxContext.APPID,
-    user_name: user_name,
-    user_num: user_num,
+    basicInfo: _basicInfo,
+    user_num: _user_num,
     userInfo: _userInfo
   }
 }

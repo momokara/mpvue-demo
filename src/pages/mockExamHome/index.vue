@@ -2,11 +2,11 @@
   <div class="container">
     <div id="msg">模拟考试</div>
     <input type="text" v-model="msg">
-    <card :text="msg"></card>
+
   </div>
 </template>
 <script>
-import card from "@/components/card";
+
 export default {
   data() {
     return {
@@ -15,7 +15,7 @@ export default {
   },
   // 使用的 vue 组件
   components: {
-    card
+
   },
   // 页面中的方法
   methods: {},

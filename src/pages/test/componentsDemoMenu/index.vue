@@ -26,6 +26,9 @@
 </template>
 <script>
 import menuData from "./menu_data";
+// 页面记录
+import { pagelogs } from "@/utils/logs";
+
 export default {
   data() {
     return {
@@ -38,7 +41,10 @@ export default {
 
   methods: {},
 
-  created() {}
+  created() {},
+  onShow() {
+    pagelogs();
+  }
 };
 </script>
 <style>

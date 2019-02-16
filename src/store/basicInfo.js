@@ -7,14 +7,18 @@ Vue.use(Vuex)
 
 const basicInfo = new Vuex.Store({
   state: {
-    userInfo: {}
+    userInfo: {},
+    islogin: false
   },
   mutations: {
     // 变更方法
-    updatauserInfo: (state, userInfo) => {
-      console.log("updatauserInfo", userInfo);
-      const obj = state
-      obj.userInfo = userInfo
+    updataUserInfo: (state, userInfo) => {
+      console.log("updataUserInfo", userInfo);
+      const obj = state;
+      obj.userInfo = userInfo;
+      if (userInfo.openid) {
+        obj.islogin = true
+      }
     }
   }
 })

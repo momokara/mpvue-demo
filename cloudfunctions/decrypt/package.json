@@ -1,5 +1,5 @@
 {
-  "name": "login",
+  "name": "decrypt",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "wx-server-sdk": "latest",
-    "axios": "latest"
+    "request-promise": "latest",
+    "crypto": "latest"
   }
 }

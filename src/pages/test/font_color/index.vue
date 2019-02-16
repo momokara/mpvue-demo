@@ -61,6 +61,9 @@
   </div>
 </template>
 <script>
+// 页面记录
+import { pagelogs } from "@/utils/logs";
+
 export default {
   data() {
     return {};
@@ -70,7 +73,10 @@ export default {
 
   methods: {},
 
-  created() {}
+  created() {},
+  onShow() {
+    pagelogs();
+  }
 };
 </script>
 <style lang="scss" scoped>

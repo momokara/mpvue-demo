@@ -22,6 +22,8 @@
 <script>
 import Api from "@/api/api";
 import { saveUserInfo } from "@/utils/cloudfunc/getUserInfo";
+// 页面记录
+import { pagelogs } from "@/utils/logs";
 export default {
   data() {
     return {
@@ -40,11 +42,11 @@ export default {
       data.userInfo = e.mp.detail.userInfo;
       if (e.mp.detail.errMsg === "getUserInfo:ok") {
         saveUserInfo(data).then(res => {
-          console.log("saveUserInfo", res, this.fromUrl);
+          console.log("saveUserInfo", res, "gourl", this.fromUrl);
           if (res.openid) {
+            let gourl = this.fromUrl ? this.fromUrl : "pages/home/main";
             if (this.fromUrl) {
-              let gourl = this.fromUrl ? this.fromUrl : "pages/home/main";
-              console.log("gourl");
+              console.log("gourl", gourl);
               wx.redirectTo({
                 url: `/${gourl}`,
                 fail: () => {
@@ -58,7 +60,7 @@ export default {
                 url: `/pages/home/main`,
                 fail: () => {
                   wx.switchTab({
-                    url: `/${this.fromUrl}`
+                    url: `/${gourl}`
                   });
                 }
               });
@@ -74,6 +76,9 @@ export default {
     if (options.from) {
       this.fromUrl = options.from;
     }
+  },
+  onShow() {
+    pagelogs();
   }
 };
 </script>

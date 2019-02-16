@@ -41,7 +41,7 @@
   </div>
 </template>
 <script>
-import card from "@/components/card";
+
 let testarr = [
   [1, 365],
   [2541, 2640],
@@ -73,7 +73,7 @@ export default {
   },
   // 使用的 vue 组件
   components: {
-    card
+    
   },
   // 页面中的方法
   methods: {

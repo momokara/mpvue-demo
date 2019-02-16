@@ -1,65 +1,73 @@
 import COS from 'cos-wx-sdk-v5'
-import Wxrequest from '../Wxrequest'
-
-export const getAuthorization = () => {
-  console.log("getAuthorization")
-  let url = 'http://localhost:3000/file/getcossts';
-  return Wxrequest.ajax(url, "GET", {}).then(res => {
-    var data = res.data;
-    var credentials = data.credentials;
-    res = {
-      TmpSecretId: credentials.tmpSecretId,
-      TmpSecretKey: credentials.tmpSecretKey,
-      XCosSecurityToken: credentials.sessionToken,
-      ExpiredTime: data.expiredTime, // SDK 在 ExpiredTime 时间前，不会再次调用 getAuthorization
+import config from '@/config.js'
+// 后期临时授权签名
+const getAuthorization = function (options, callback) {
+  wx.request({
+    method: 'GET',
+    url: config.serverPrefix, // 服务端签名，参考 server 目录下的两个签名例子
+    dataType: 'json',
+    success: function (result) {
+      var data = result.data;
+      var credentials = data.credentials;
+      callback({
+        TmpSecretId: credentials.tmpSecretId,
+        TmpSecretKey: credentials.tmpSecretKey,
+        XCosSecurityToken: credentials.sessionToken,
+        ExpiredTime: data.expiredTime, // SDK 在 ExpiredTime 时间前，不会再次调用 getAuthorization
+      });
     }
-    return res;
-  }).catch(err => {
-    console.log("getAuthorization_err!", err)
-  })
-
+  });
 }
 
-export const getCosList = () => {
-  // cos.getService(function (err, data) {
-  //   console.log(err || data);
-  // });
-}
-export const upLoadFile = (file) => {
+/**
+ * 文件上传
+ * @param {Object} file 
+ * @param {String} name 文件名
+ */
+export const upLoadFile = (file, name) => {
+  var cos = new COS({
+    getAuthorization: getAuthorization
+  });
 
-  getAuthorization().then(res => {
-
-    var cos = new COS({
-      // path style 指正式请求时，Bucket 是在 path 里，这样用途相同园区多个 bucket 只需要配置一个园区域名
-      // ForcePathStyle: true,
-      SecretId: res.TmpSecretId,
-      SecretKey: res.TmpSecretKey,
-      XCosSecurityToken: res.XCosSecurityToken,
-      ExpiredTime: res.ExpiredTime, // SDK 在 ExpiredTime 时间前，不会再次调用 getAuthorization
-    });
-    console.log("cos", cos)
+  name = name ? name : "wechat_mp";
+  const date = new Date();
+  const y = date.getFullYear();
+  const m = date.getMonth() + 1;
+  const d = date.getDate();
+  let arr_filename = file.path.split(".");
+  const filetype = arr_filename[arr_filename.length - 1];
+  let filename = `${name}_${date.getTime()}.${filetype}`;
+  console.log("filename", filename, )
+  return new Promise((resolve, reject) => {
     cos.postObject({
-      Bucket: 'momokara-1251707696',
-      Region: 'ap-guangzhou',
-      Key: '1.png',
+      Bucket: config.Bucket,
+      Region: config.Region,
+      Key: `wechatfile/${y}${m}${d}/${filename}`,
       FilePath: file.path,
       FileSize: file.size,
-      TaskReady: function (taskId) {
-        TaskId = taskId
-      },
-      onProgress: function (info) {
-        console.log(JSON.stringify(info));
-      }
+      // TaskReady: function (taskId) {
+      //   console.log("TaskReady", taskId);
+      // },
+      // onProgress: function (progressData) {
+      //   console.log(JSON.stringify(progressData));
+      // }
     }, function (err, data) {
-      console.log("postObject", err || data);
+      if (err) {
+        wx.wx.showToast({
+          title: 'err',
+          icon: 'none'
+        });
+        reject(err)
+      } else {
+        resolve(data)
+      }
     });
   })
+
 
 }
 
 
 module.export = {
-  getCosList,
-  upLoadFile,
-  getAuthorization
+  upLoadFile
 };

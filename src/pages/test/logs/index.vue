@@ -1,33 +1,64 @@
 <template>
   <div>
-    <ul class="container log-list">
-      <li v-for="(log, index) in logs" :class="{ red: aa }" :key="index" class="log-item">
-        <card :text="(index + 1) + ' . ' + log"></card>
-      </li>
-    </ul>
+    <van-cell-group>
+      <van-cell
+        v-for="(log, index) in logs"
+        :key="index"
+        is-link
+        :title="index+1+'.'+log.url"
+        :label="log.time"
+        @click="golink(log.url)"
+      />
+    </van-cell-group>
   </div>
 </template>
 
 <script>
-import { formatTime } from '@/utils/index'
-import card from '@/components/card'
+import { formatTime } from "@/utils/index";
+// 页面记录
+import { pagelogs } from "@/utils/logs";
 
 export default {
-  components: {
-    card
-  },
+  components: {},
 
-  data () {
+  data() {
     return {
       logs: []
+    };
+  },
+  
+  methods: {
+    golink: function(url) {
+      url = `/${url}`;
+      wx.navigateTo({
+        url: url,
+        fail: function() {
+          wx.switchTab({
+            url: url,
+            fail: function() {
+              wx.showToast({
+                title: "打开失败",
+                icon: "none"
+              });
+            }
+          });
+        }
+      });
     }
   },
 
-  created () {
-    const logs = (wx.getStorageSync('logs') || [])
-    this.logs = logs.map(log => formatTime(new Date(log)))
+  created() {
+    const logs = wx.getStorageSync("logs") || [];
+    console.log(logs);
+    this.logs = logs.map(log => {
+      log.time = formatTime(new Date(log.time));
+      return log;
+    });
+  },
+  onShow() {
+    pagelogs();
   }
-}
+};
 </script>
 
 <style>
