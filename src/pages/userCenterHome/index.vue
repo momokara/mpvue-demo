@@ -15,6 +15,15 @@
           @click="clearStorage()"
         />
       </van-cell-group>
+
+      <van-cell-group custom-class="cell-group">
+        <van-cell
+          icon="/static/images/icon/point.png"
+          is-link
+          title="测试列表"
+          url="/pages/testApiHome/main"
+        />
+      </van-cell-group>
     </div>
   </div>
 </template>
