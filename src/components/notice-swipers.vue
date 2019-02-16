@@ -22,14 +22,17 @@
       :key="item"
       :item-id="item.id"
     >
-      <a class="fs12" :href="'/'+item.url">
+      <a
+        class="notice-link fs12"
+        :href="'/'+item.url"
+      >
         <img
           class="icon"
           :src="iconUrl"
           alt=""
         >
-        {{item.title}}
-        <span class="more">查看</span>
+        <div class="notice-info line-clamp_1">{{item.info}}</div>
+        <div class="more">查看</div>
       </a>
     </swiper-item>
   </swiper>
@@ -105,19 +108,28 @@ export default {
 .swiper {
   width: 100%;
   height: 100%;
-  a {
-    height: 100%;
-    line-height: 100%;
+  position: relative;
+  .notice-link {
+    margin-top: 1px;
   }
   .icon {
-    width: 28rpx;
-    height: 28rpx;
+    width: 16px;
+    height: 16px;
+    padding: 2px 0;
     float: left;
     margin-right: 15rpx;
   }
-  .more{
-    color: #6BB72D;
+  .notice-info {
+    width: 250px;
+  }
+  .more {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    color: #6bb72d;
     float: right;
+    height: 20px;
+    line-height: 20px;
   }
 }
 </style>

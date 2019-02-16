@@ -144,6 +144,28 @@ export default {
       }
     }
   },
+  watch: {
+    userData: {
+      handler: function(val, oldval) {
+        // for (const key in val) {
+        //   console.log(key, val[key]);
+        // }
+      },
+      deep: true
+    },
+    "userData.userInfo.nickName": function(val, oldval) {
+      console.log(val, "|oldval:", oldval);
+    },
+    "userData.basicInfo.real_name": function(val, oldval) {
+      console.log(val, "|oldval:", oldval);
+    },
+    "userData.basicInfo.phone": function(val, oldval) {
+      console.log(val, "|oldval:", oldval);
+    },
+    "userData.basicInfo.idcard_num": function(val, oldval) {
+      console.log(val, "|oldval:", oldval);
+    }
+  },
   // 页面中的方法
   methods: {
     changeHeaderImg: function() {
@@ -178,6 +200,10 @@ export default {
           icon: "success"
         });
       });
+    },
+    // 验证信息
+    validFormData:function(){
+      
     }
   },
 
@@ -185,7 +211,7 @@ export default {
   onLoad() {},
   // 监听页面显示
   onShow() {
-    pagelogs()
+    pagelogs();
   }
 };
 </script>

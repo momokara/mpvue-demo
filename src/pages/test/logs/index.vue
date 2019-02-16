@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { formatTime } from "@/utils/index";
+import { formatTime, golink } from "@/utils/index";
 // 页面记录
 import { pagelogs } from "@/utils/logs";
 
@@ -26,36 +26,19 @@ export default {
       logs: []
     };
   },
-  
+
   methods: {
-    golink: function(url) {
-      url = `/${url}`;
-      wx.navigateTo({
-        url: url,
-        fail: function() {
-          wx.switchTab({
-            url: url,
-            fail: function() {
-              wx.showToast({
-                title: "打开失败",
-                icon: "none"
-              });
-            }
-          });
-        }
-      });
-    }
+    golink
   },
 
-  created() {
+  onShow() {
     const logs = wx.getStorageSync("logs") || [];
     console.log(logs);
     this.logs = logs.map(log => {
       log.time = formatTime(new Date(log.time));
       return log;
     });
-  },
-  onShow() {
+
     pagelogs();
   }
 };

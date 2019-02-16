@@ -1,6 +1,6 @@
 <template>
   <swiper
-    class="swiper"
+    class="mini-swiper"
     :class="customClass"
     :indicator-dots="useConfig.indicatorDots"
     :indicator-color="useConfig.indicatorColor"
@@ -23,12 +23,16 @@
       :key="item"
       :item-id="item.id"
     >
-      <a :href="item.url">
+      <a
+        :href="item.url"
+        class="link"
+      >
         <img
           :src="item.img_url"
           mode="scaleToFill"
           class="slide-image"
         />
+        <div v-if="useConfig.isShowName" class="ta-c fsp12 fc-grey ">{{item.name}}</div>
       </a>
     </swiper-item>
   </swiper>
@@ -68,7 +72,8 @@ export default {
         vertical: false,
         previousMargin: "0px",
         nextMargin: "0px",
-        displayMultipleItems: 1
+        displayMultipleItems: 1,
+        isShowName: true
       },
       useConfig: {}
     };
@@ -99,12 +104,12 @@ export default {
 </script>
 
 <style lang="scss">
-.swiper {
+.mini-swiper {
   width: 100%;
   height: 100%;
-  a,
+  .link,
   .slide-image {
-    height: 100%;
+    height: 80%;
     width: 100%;
   }
 }
