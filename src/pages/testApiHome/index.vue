@@ -17,6 +17,11 @@
         title="Logs"
         url="/pages/test/logs/main"
       />
+      <van-cell
+        is-link
+        title="发送测试请求"
+        @click="sendtestrequest()"
+      />
     </van-cell-group>
 
     <div class="demo ">
@@ -36,7 +41,7 @@
       </div>
 
     </div>
-
+    <van-dialog id="van-dialog" />
   </div>
 </template>
 
@@ -63,8 +68,22 @@ export default {
   components: {},
 
   methods: {
-    getUserInfo(res) {
-      console.log("getuserinfo", res);
+    sendtestrequest: function() {
+      WxPromis.ajaxAll(
+        "http://www.zhijiayun.com.cn/zhijia-admin/printRequest",
+        "POST",
+        { data1: "hello world!" }
+      ).then(res => {
+        console.log(res);
+        dialog
+          .alert({
+            title: "返回结果",
+            message: JSON.stringify(res)
+          })
+          .then(() => {
+            // on close
+          });
+      });
     }
   },
 

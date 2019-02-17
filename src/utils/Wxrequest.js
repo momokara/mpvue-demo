@@ -34,6 +34,44 @@ const ajax = (url, method, params) => {
     header: _hearder
   });
 }
+/**
+ * 发送ajax 如果失败则用 云函数转发 请求
+ * @param {String} url    请求的地址
+ * @param {String} method 请求方式 POST || GET
+ * @param {Object} params 请求的参数 如果为get 则会拼接在url 后
+ * @param {Object} header 自定义请求头 使用云函数转发时有效
+ */
+const ajaxAll = (url, method, params, header) => {
+  try {
+    return ajax(url, method, params).catch(err => {
+      console.log("getHomecatch", err);
+      if (method == 'GET' || method == 'get') {
+        let _params = ''
+        if (params) {
+          for (const key in params) {
+            _params = `${_params}${key}=${params[key]}&`
+          }
+          url = `${url}?${_params}`
+        }
+      }
+      return wx.cloud.callFunction({
+        name: 'request',
+        data: {
+          url: url,
+          method: method,
+          form: params,
+          header: header
+        }
+      }).then(res => {
+        let resdata = res.result;
+        resdata.type = "cloudfunc"
+        return resdata;
+      })
+    });
+  } catch (error) {
+
+  }
+}
 
 /**
  * 文件上传 单个文件
@@ -109,6 +147,7 @@ const uploadImgs = async (FilePaths) => {
 }
 const WxPromis = {};
 WxPromis.ajax = ajax;
+WxPromis.ajaxAll = ajaxAll;
 // 上传单张图片
 WxPromis.uploadImg = uploadImg;
 // 上传多张图片

@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div
       v-if="config.type==1"
       class="mini-swiper-box"
