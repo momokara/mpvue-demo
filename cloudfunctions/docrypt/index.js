@@ -8,18 +8,19 @@ cloud.init()
 exports.main = async (event, context) => {
   let data = event.data;
   let res;
+  let stype = event.stype ? event.stype : "base64";
   if (event.type == 1) {
     res = dataCrypt.encrypt(data, key.pubKey); // 加密
-    res =  res.toString("hex")// 加密
+    res = res.toString(stype)
   } else if (event.type == 2) {
-    data = Buffer.from(data,"hex")
-    res = data
+    data = Buffer.from(data, stype)
     res = dataCrypt.decrypt(data, key.privKey); // 解密
     res = res.toString()
   }
 
   return {
     event,
-    res
+    res,
+    stype
   }
 }

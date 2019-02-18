@@ -24,6 +24,15 @@
       />
     </van-cell-group>
     <van-cell-group custom-class="cell-group">
+      <van-cell title="加密信息">
+        <div>
+          <input
+            type="text"
+            v-model="crypt.data"
+            placeholder="请输入需要加密的信息"
+          >
+        </div>
+      </van-cell>
       <van-cell
         is-link
         title="加密"
@@ -34,15 +43,6 @@
         title="解密"
         @click="decrypt()"
       />
-      <van-cell title="加密信息">
-        <div>
-          <input
-            type="text"
-            v-model="crypt.data"
-            placeholder="请输入需要加密的信息"
-          >
-        </div>
-      </van-cell>
 
     </van-cell-group>
     <div class="demo ">
@@ -118,11 +118,12 @@ export default {
           // 传给云函数的参数
           data: {
             type: 1,
-            data: _this.crypt.data
+            data: _this.crypt.data,
+            stype: "hex"
           }
         })
         .then(res => {
-          console.log("encryptRes:", res);
+          console.log("encryptRes:", res.result);
           _this.crypt.encrypt_data = res.result.res;
         });
     },
@@ -134,11 +135,12 @@ export default {
           // 传给云函数的参数
           data: {
             type: 2,
-            data: _this.crypt.encrypt_data
+            data: _this.crypt.encrypt_data,
+            stype: "hex"
           }
         })
         .then(res => {
-          console.log("decryptRes:", res);
+          console.log("decryptRes:", res.result);
         });
     }
   },
@@ -151,7 +153,7 @@ export default {
 </script>
 
 <style scoped>
-.video-box {
-  width: 100%;
+.cell-group {
+  margin-bottom: 15px;
 }
 </style>
