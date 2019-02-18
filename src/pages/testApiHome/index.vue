@@ -23,7 +23,28 @@
         @click="sendtestrequest()"
       />
     </van-cell-group>
+    <van-cell-group custom-class="cell-group">
+      <van-cell
+        is-link
+        title="加密"
+        @click="encrypt()"
+      />
+      <van-cell
+        is-link
+        title="解密"
+        @click="decrypt()"
+      />
+      <van-cell title="加密信息">
+        <div>
+          <input
+            type="text"
+            v-model="crypt.data"
+            placeholder="请输入需要加密的信息"
+          >
+        </div>
+      </van-cell>
 
+    </van-cell-group>
     <div class="demo ">
       <div class="fsp16 fc-grey">
         双向数据绑定
@@ -61,7 +82,11 @@ export default {
       userInfo: {},
       tempFilePaths: [],
       uploadresFilePaths: [],
-      show: false
+      show: false,
+      crypt: {
+        data: "",
+        encrypt_data: ""
+      }
     };
   },
 
@@ -84,6 +109,37 @@ export default {
             // on close
           });
       });
+    },
+    encrypt: function(data) {
+      let _this = this;
+      wx.cloud
+        .callFunction({
+          name: "docrypt",
+          // 传给云函数的参数
+          data: {
+            type: 1,
+            data: _this.crypt.data
+          }
+        })
+        .then(res => {
+          console.log("encryptRes:", res);
+          _this.crypt.encrypt_data = res.result.res;
+        });
+    },
+    decrypt: function(data) {
+      let _this = this;
+      wx.cloud
+        .callFunction({
+          name: "docrypt",
+          // 传给云函数的参数
+          data: {
+            type: 2,
+            data: _this.crypt.encrypt_data
+          }
+        })
+        .then(res => {
+          console.log("decryptRes:", res);
+        });
     }
   },
 
