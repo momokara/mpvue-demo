@@ -36,7 +36,7 @@
 import miniSwipers from "@/components/home-ad/mini-swipers";
 import imgAdList from "@/components/home-ad/img-ad-list";
 import infocardList from "@/components/home-ad/infocard-list";
-import { golink } from "@/utils/index";
+import { golink } from "@/utils/tools";
 export default {
   props: {
     config: {

@@ -34,7 +34,7 @@
 
 <script>
 import noticeSwipers from "@/components/notice-swipers";
-import { golink } from "@/utils/index";
+import { golink } from "@/utils/tools";
 export default {
   props: {
     config: {

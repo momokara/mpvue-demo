@@ -114,6 +114,13 @@ export const deCrypt = (data) => {
 
   })
 }
+
+const clouduser = {};
+clouduser.getUserInfo = getUserInfo;
+clouduser.saveUserInfo = saveUserInfo;
+clouduser.deCrypt = deCrypt;
+export default clouduser;
+
 module.export = {
   getUserInfo,
   saveUserInfo,

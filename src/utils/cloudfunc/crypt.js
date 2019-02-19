@@ -29,6 +29,12 @@ export const decrypt = (data) => {
     }
   })
 }
+
+const crypt = {};
+crypt.encrypt = encrypt;
+crypt.decrypt = decrypt;
+export default crypt;
+
 module.export = {
   encrypt,
   decrypt

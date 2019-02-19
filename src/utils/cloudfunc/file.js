@@ -31,6 +31,12 @@ export const getTempFileURL = (files) => {
     // handle error
   })
 }
+
+const cloudfile = {};
+cloudfile.uploadFile = uploadFile;
+cloudfile.getTempFileURL = getTempFileURL;
+export default cloudfile;
+
 module.export = {
   uploadFile,
   getTempFileURL,

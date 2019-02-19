@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-var Cookie = require('../lib/cookie');
+var Cookie = require('./lib/cookie');
 
 /**
  * 封装微信的异步请求 改为 promise

@@ -3,7 +3,7 @@ import qcloud from 'wafer2-client-sdk'
 import {
   login,
   setLoginUrl
-} from "@/utils/lib/login";
+} from "./lib/login";
 
 /**
  * 普通登录

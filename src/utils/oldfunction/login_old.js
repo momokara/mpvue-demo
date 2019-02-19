@@ -4,7 +4,7 @@ import config from '@/config.js'
 import {
   login,
   setLoginUrl
-} from "@/utils/lib/login";
+} from "./lib/login";
 import {
   toPromise
 } from './basic';

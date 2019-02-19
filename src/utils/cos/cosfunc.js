@@ -65,10 +65,11 @@ export const upLoadFile = (file, name) => {
       }
     });
   })
-
-
 }
 
+const cos = {};
+cos.upLoadFile = upLoadFile;
+export default cos;
 
 module.export = {
   upLoadFile

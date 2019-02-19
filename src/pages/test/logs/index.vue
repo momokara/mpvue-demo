@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { formatTime, golink } from "@/utils/index";
+import { formatTime, golink } from "@/utils/tools";
 // 页面记录
 import { pagelogs } from "@/utils/logs";
 

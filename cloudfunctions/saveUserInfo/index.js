@@ -2,6 +2,8 @@
 // 部署：在 cloud-functions/login 文件夹右击选择 “上传并部署”
 
 const cloud = require('wx-server-sdk')
+const dataCrypt = require('./dataCrypt')
+const key = require('./key');
 // 初始化 cloud
 cloud.init()
 const db = cloud.database({
@@ -101,12 +103,17 @@ exports.main = async (event, context) => {
       console.log("saved_ErrorID:", _sErrID, ";saved_Time:", _nTime);
     })
   }
+  // 加密appid
+  let appid = dataCrypt.encrypt(wxContext.APPID, key.pubKey);
+  appid = appid.toString("base64");
+  // 加密openid
+  let openid = dataCrypt.encrypt(wxContext.OPENID, key.pubKey);
+  openid = openid.toString("base64");
 
   return {
-    openid: wxContext.OPENID,
+    appid,
+    openid,
     unionid: wxContext.UNIONID,
-    appid: wxContext.APPID,
-
     user_num: user_num,
     // 用户信息
     userInfo: user_info,
