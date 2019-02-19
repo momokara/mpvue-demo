@@ -41,7 +41,7 @@ import headerSwiper from "@/components/header-swipers";
 import homeNav from "@/components/home-nav";
 import adBox from "@/components/home-ad/ad-box";
 
-import Api from "@/api/api";
+import {getHomeInfo} from "@/api/api";
 
 // 页面记录
 import { pagelogs } from "@/utils/logs";
@@ -64,7 +64,7 @@ export default {
   methods: {
     getHomeInfo() {
       let _this = this;
-      Api.getHomeInfo().then(res => {
+      getHomeInfo().then(res => {
         console.log("Homedata", res);
         _this.swiper = res.swiper;
         _this.nav = res.nav;

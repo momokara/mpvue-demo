@@ -10,10 +10,10 @@ import {
 
 import dialog from "@/../static/components/dialog-mo/dialog";
 import config from '@/config.js'
-const Api = {};
+
 
 // 获取首页信息
-Api.getHomeInfo = async () => {
+export const getHomeInfo = async () => {
   console.log("getHomeInfo||basicInfo", basicInfo.state.islogin, basicInfo.state);
   let commonheader = await getcommonheader();
   let url = "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/pagedata/home_data.json";
@@ -23,12 +23,10 @@ Api.getHomeInfo = async () => {
     resdata.type = "cloudfunc"
     return resdata;
   })
-
-
 }
 
 // 获取通用请求头
-const getcommonheader = async () => {
+export const getcommonheader = async () => {
   let commonheader = {};
   if (basicInfo.state.islogin) {
     commonheader = {
@@ -49,4 +47,13 @@ const getcommonheader = async () => {
   }
   return commonheader
 }
+
+const Api = {};
+Api.getcommonheader = getcommonheader;
+Api.getHomeInfo = getHomeInfo;
 export default Api;
+
+module.export = {
+  getcommonheader,
+  getHomeInfo
+}
