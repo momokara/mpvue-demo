@@ -16,11 +16,21 @@ import config from '@/config.js'
 export const getHomeInfo = async () => {
   console.log("getHomeInfo||basicInfo", basicInfo.state.islogin, basicInfo.state);
   let commonheader = await getcommonheader();
-  let url = "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/pagedata/home_data.json";
+  let url = `${config.static_url_basic}${config.static_url_file}/home_data.json`;
 
   return ajaxAll(url, "GET", {}, commonheader).then(res => {
     let resdata = res;
-    resdata.type = "cloudfunc"
+    console.log("getHomeInfo", res)
+    return resdata;
+  })
+}
+
+// 发送ajax 请求 带 请求头
+export const ajax = async (url, method, params) => {
+  let commonheader = await getcommonheader();
+  return ajaxAll(url, method, params, commonheader).then(res => {
+    let resdata = res;
+    console.log("getHomeInfo", res)
     return resdata;
   })
 }
@@ -51,9 +61,11 @@ export const getcommonheader = async () => {
 const Api = {};
 Api.getcommonheader = getcommonheader;
 Api.getHomeInfo = getHomeInfo;
+Api.ajax = ajax;
 export default Api;
 
 module.export = {
   getcommonheader,
-  getHomeInfo
+  getHomeInfo,
+  ajax
 }

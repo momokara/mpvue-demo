@@ -6,6 +6,12 @@ const config = {
   dev_env: "zhijia-75abfd",
   // 云函数环境id-生产
   env: "zhijia-75abfd",
+  
+  // 静态只读数据
+  // 基准地址
+  static_url_basic: "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com",
+  // 文件路径
+  static_url_file: "/wechatfile/pagedata/wx7e28d99c40baf7a8",
 
   // 文件上传cos配置
   // 临时授权请求地址
