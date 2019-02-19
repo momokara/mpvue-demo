@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "wx-server-sdk": "latest",
-    "axios": "latest"
+    "crypto": "latest"
   }
 }

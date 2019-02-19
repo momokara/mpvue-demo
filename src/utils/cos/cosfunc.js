@@ -1,10 +1,12 @@
+// 上传文件到腾讯COS
 import COS from 'cos-wx-sdk-v5'
 import config from '@/config.js'
-// 后期临时授权签名
+
+// 获取临时授权签名
 const getAuthorization = function (options, callback) {
   wx.request({
     method: 'GET',
-    url: config.serverPrefix, // 服务端签名，参考 server 目录下的两个签名例子
+    url: config.serverPrefix, // 服务端签名地址，参考 server 目录下的两个签名例子
     dataType: 'json',
     success: function (result) {
       var data = result.data;

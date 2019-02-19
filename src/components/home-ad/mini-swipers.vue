@@ -14,7 +14,6 @@
     :next-margin="useConfig.nextMargin"
     :displayMultipleItems="useConfig.displayMultipleItems"
     :current="current"
-    :current-item-id="currentItemId"
     @change="swiperChange"
     @animationfinish="animationFinish"
   >
@@ -28,11 +27,15 @@
         class="link"
       >
         <img
+          :style="{height:config.img_height?config.img_height:'150rpx'}"
           :src="item.img_url"
           mode="scaleToFill"
           class="slide-image"
         />
-        <div v-if="useConfig.isShowName" class="ta-c fsp12 fc-grey ">{{item.name}}</div>
+        <div
+          v-if="useConfig.isShowName"
+          class="ta-c fsp12 fc-grey "
+        >{{item.name}}</div>
       </a>
     </swiper-item>
   </swiper>
@@ -53,9 +56,6 @@ export default {
       type: String
     },
     current: {
-      type: String
-    },
-    currentItemId: {
       type: String
     }
   },

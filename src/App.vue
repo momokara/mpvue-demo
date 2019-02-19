@@ -1,6 +1,7 @@
 <script>
 import Api from "@/api/api";
 import { getUserInfo } from "@/utils/cloudfunc/getUserInfo";
+import config from "@/config.js";
 var appInst = getApp();
 
 export default {
@@ -9,25 +10,38 @@ export default {
       console.error("请使用 2.2.3 或以上的基础库以使用云能力");
     } else {
       wx.cloud.init({
-        env: "zhijia-75abfd",
+        env: process.env.NODE_ENV == "production" ? config.env : config.dev_env,
         traceUser: true
       });
     }
     console.log(
-      "app created and cache logs by setStorageSync",
-      "运行环境：",
-      process.env.NODE_ENV
+      `运行环境：${
+        process.env.NODE_ENV == "production" ? "生产环境" : "开发环境"
+      }(${process.env.NODE_ENV})`
     );
   },
   // 初始化
   onLaunch() {
-    console.log("onLaunch");
+
   },
   // 当小程序启动，或从后台进入前台显示
   onShow() {
-    console.log("App onShow");
+    console.log("App onShow OK!");
     getUserInfo().then(res => {
       console.log("login Ok!", res);
+      // 解密测试
+      wx.cloud
+        .callFunction({
+          name: "docrypt",
+          // 传给云函数的参数
+          data: {
+            type: 2,
+            data: res.openid
+          }
+        })
+        .then(res => {
+          console.log("decryptRes:", res.result);
+        });
     });
   },
   // 当小程序从前台进入后台

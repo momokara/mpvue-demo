@@ -92,7 +92,7 @@ page {
   background-color: #fff;
 }
 .header-swiper-box {
-  height: 403.35rpx;
+  height: 200px;
   margin: 25rpx 0;
   .swiper {
     width: 750rpx;

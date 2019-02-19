@@ -1,4 +1,5 @@
 /* jshint esversion: 6 */
+// 旧接口请求 统一处理
 import autoLogin from "@/utils/oldfunction/login_old";
 import WxPromis from "@/utils/oldfunction/Wxrequest";
 import dialog from "@/../static/components/dialog-mo/dialog";

@@ -1,4 +1,5 @@
 /* jshint esversion: 6 */
+// 统一处理 页面请求 
 import WxPromis from "@/utils/Wxrequest";
 import dialog from "@/../static/components/dialog-mo/dialog";
 import config from '@/config.js'

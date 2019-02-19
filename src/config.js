@@ -1,19 +1,25 @@
-/**
- * 小程序配置文件
- */
-
+// 小程序的配置
 
 const config = {
+  // 云函数配置
+  // 云函数环境id-开发
+  dev_env: "zhijia-75abfd",
+  // 云函数环境id-生产
+  env: "zhijia-75abfd",
+
   // 文件上传cos配置
+  // 临时授权请求地址
   serverPrefix: 'https://www.momokara.cc/sts/',
+  // 腾讯云cos上的bucket名字
   Bucket: 'hh-image-small-1254083899',
+  // 腾讯云cos上的Region名字 
   Region: 'ap-guangzhou',
 
   // 一些默认信息
-  defaultData:{
-    headerImg:"https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/default_header_img.png"
+  defaultData: {
+    headerImg: "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/default_header_img.png"
   }
-  
+
 };
 
 module.exports = config

@@ -1,5 +1,5 @@
 // 云函数入口文件
-// 解密
+// 解密 处理微信系统信息解密
 const cloud = require('wx-server-sdk')
 const rp = require('request-promise')
 const WXBizDataCrypt = require('./WXBizDataCrypt')

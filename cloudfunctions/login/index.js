@@ -2,7 +2,8 @@
 // 部署：在 cloud-functions/login 文件夹右击选择 “上传并部署”
 
 const cloud = require('wx-server-sdk')
-
+const dataCrypt = require('./dataCrypt')
+const key = require('./key');
 // 初始化 cloud
 cloud.init()
 const db = cloud.database({
@@ -89,9 +90,20 @@ exports.main = async (event, context) => {
       console.log("saved_ErrorID:", _sErrID, ";saved_Time:", _nTime, "success", res);
     })
   }
-
+  // 请求云函数处理加密openid
+  let oid = await cloud.callFunction({
+    name: 'docrypt',
+    data: {
+      type: 1,
+      data: wxContext.OPENID
+    }
+  }).then(res => {
+    console.log("docrypt:", res)
+    return res.result.res
+  })
   return {
-    openid: wxContext.OPENID,
+    // openid: wxContext.OPENID,
+    openid: oid,
     unionid: wxContext.UNIONID,
     appid: wxContext.APPID,
     basicInfo: _basicInfo,

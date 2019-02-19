@@ -118,8 +118,7 @@ export default {
           // 传给云函数的参数
           data: {
             type: 1,
-            data: _this.crypt.data,
-            stype: "hex"
+            data: _this.crypt.data
           }
         })
         .then(res => {
@@ -135,8 +134,7 @@ export default {
           // 传给云函数的参数
           data: {
             type: 2,
-            data: _this.crypt.encrypt_data,
-            stype: "hex"
+            data: _this.crypt.encrypt_data
           }
         })
         .then(res => {

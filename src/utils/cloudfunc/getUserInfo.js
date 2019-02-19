@@ -2,6 +2,7 @@
 import basicInfo from '../../store/basicInfo.js'
 
 /**
+ * 获取云函数中的用户信息
  * @return {Object} 所有存储的用户信息
  */
 export const getUserInfo = () => {

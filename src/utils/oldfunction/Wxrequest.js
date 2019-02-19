@@ -1,4 +1,5 @@
 /* jshint esversion: 6 */
+// 旧的页面请求
 
 import config from '@/config.js';
 import {
