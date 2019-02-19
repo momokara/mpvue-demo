@@ -69,11 +69,13 @@
 <script>
 import Api from "@/api/api";
 import WxPromis from "@/utils/Wxrequest";
+import { encrypt, decrypt } from "@/utils/cloudfunc/crypt";
 import dialog from "@/../static/components/dialog/dialog";
 import qidlist from "@/../static/qlist";
-import { log } from "util";
+
 // 页面记录
 import { pagelogs } from "@/utils/logs";
+
 export default {
   data() {
     return {
@@ -110,36 +112,18 @@ export default {
           });
       });
     },
-    encrypt: function(data) {
+    encrypt: function() {
       let _this = this;
-      wx.cloud
-        .callFunction({
-          name: "docrypt",
-          // 传给云函数的参数
-          data: {
-            type: 1,
-            data: _this.crypt.data
-          }
-        })
-        .then(res => {
-          console.log("encryptRes:", res.result);
-          _this.crypt.encrypt_data = res.result.res;
-        });
+      encrypt(_this.crypt.data).then(res => {
+        console.log("encryptRes:", res.result);
+        _this.crypt.encrypt_data = res.result.res;
+      });
     },
     decrypt: function(data) {
       let _this = this;
-      wx.cloud
-        .callFunction({
-          name: "docrypt",
-          // 传给云函数的参数
-          data: {
-            type: 2,
-            data: _this.crypt.encrypt_data
-          }
-        })
-        .then(res => {
-          console.log("decryptRes:", res.result);
-        });
+      decrypt(_this.crypt.encrypt_data).then(res => {
+        console.log("decryptRes:", res.result);
+      });
     }
   },
 
