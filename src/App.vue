@@ -29,19 +29,6 @@ export default {
     console.log("App onShow OK!");
     getUserInfo().then(res => {
       console.log("login Ok!", res);
-      // 解密测试
-      wx.cloud
-        .callFunction({
-          name: "docrypt",
-          // 传给云函数的参数
-          data: {
-            type: 2,
-            data: res.openid
-          }
-        })
-        .then(res => {
-          console.log("decryptRes:", res.result);
-        });
     });
   },
   // 当小程序从前台进入后台

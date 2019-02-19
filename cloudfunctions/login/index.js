@@ -90,22 +90,17 @@ exports.main = async (event, context) => {
       console.log("saved_ErrorID:", _sErrID, ";saved_Time:", _nTime, "success", res);
     })
   }
-  // 请求云函数处理加密openid
-  let oid = await cloud.callFunction({
-    name: 'docrypt',
-    data: {
-      type: 1,
-      data: wxContext.OPENID
-    }
-  }).then(res => {
-    console.log("docrypt:", res)
-    return res.result.res
-  })
+  // 加密appid
+  let appid = dataCrypt.encrypt(wxContext.APPID, key.pubKey);
+  appid = appid.toString("base64");
+  // 加密openid
+  let openid = dataCrypt.encrypt(wxContext.OPENID, key.pubKey);
+  openid = openid.toString("base64");
+
   return {
-    // openid: wxContext.OPENID,
-    openid: oid,
+    appid,
+    openid,
     unionid: wxContext.UNIONID,
-    appid: wxContext.APPID,
     basicInfo: _basicInfo,
     user_num: _user_num,
     userInfo: _userInfo

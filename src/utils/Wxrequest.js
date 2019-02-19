@@ -1,6 +1,5 @@
 /* jshint esversion: 6 */
 
-import config from '@/config.js';
 import {
   toPromise
 } from './basic';
@@ -10,12 +9,15 @@ import {
  * @param {String} url    请求的地址
  * @param {String} method 请求方式 POST || GET
  * @param {Object} params 请求的参数 如果为get 则会拼接在url 后
+ * @param {Object} header 定义的请求头
+ * @return {Promise} 请求返回的结果
  */
-const ajax = (url, method, params) => {
+const ajax = (url, method, params, header) => {
   let _Request = toPromise(wx.request);
-  let _hearder = {
+  let _header_default = {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
+ let _header =  Object.assign({}, _header_default, header)
   method = method ? method : 'GET';
   if (method == 'GET' || method == 'get') {
     let _params = ''
@@ -31,7 +33,7 @@ const ajax = (url, method, params) => {
     url: url,
     method: method,
     data: params,
-    header: _hearder
+    header: _header
   });
 }
 
@@ -41,10 +43,13 @@ const ajax = (url, method, params) => {
  * @param {String} method 请求方式 POST || GET
  * @param {Object} params 请求的参数 如果为get 则会拼接在url 后
  * @param {Object} header 自定义请求头 使用云函数转发时有效
+ * @return {Promise} 请求返回的结果
  */
 const ajaxAll = (url, method, params, header) => {
   try {
-    return ajax(url, method, params).catch(err => {
+    return ajax(url, method, params, header)
+    // 错误则调取云函数
+    .catch(err => {
       console.log("getHomecatch", err);
       if (method == 'GET' || method == 'get') {
         let _params = ''

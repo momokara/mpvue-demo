@@ -19,17 +19,8 @@ exports.main = async (event, context) => {
   // 可执行其他自定义逻辑
   // console.log 的内容可以在云开发云函数调用日志查看
   // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）
-  let wxContext = {};
-  // 接受信息
-  if (event.userInfo) {
-    wxContext = {
-      OPENID: event.userInfo.openId,
-      APPID: event.userInfo.appId
-    }
-  } else {
-    wxContext = await cloud.getWXContext();
-  }
 
+  let wxContext = await cloud.getWXContext();
   let _sSaveID = null;
   let _nTime = new Date().getTime();
 
