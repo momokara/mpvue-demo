@@ -17,6 +17,11 @@
         title="Logs"
         url="/pages/test/logs/main"
       />
+      <van-cell
+        is-link
+        title="查看当前数据"
+        url="/pages/user/watchData/main"
+      />
 
       <van-cell title="测试请求地址">
         <van-radio-group
@@ -37,16 +42,7 @@
           ></textarea>
         </div>
       </van-cell>
-      <van-cell title="测试请求DATA">
-        <div>
-          <textarea
-            class="test-data-area"
-            type="text"
-            v-model="testdata"
-            placeholder="测试请求data string 会转 json"
-          ></textarea>
-        </div>
-      </van-cell>
+
       <van-cell
         is-link
         title="发送测试请求"
@@ -114,7 +110,6 @@ export default {
       msg: "this is msg",
       testurl: "",
       testreqtype: "GET",
-      testdata: "",
       userInfo: {},
       tempFilePaths: [],
       uploadresFilePaths: [],

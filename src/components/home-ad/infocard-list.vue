@@ -1,19 +1,29 @@
 <template>
-  <div class="img-ad-list">
+  <div class="img-card-list">
     <div
       v-for="item in dataList"
       :key="item"
       :item-id="item.id"
     >
       <a
-        :href="item.url"
+        @click="golink(item.url)"
         class="link"
       >
         <van-card
-          :desc="item.info"
-          :title="item.name"
           :thumb="item.img_url"
-        />
+          height="85px"
+          imgheight="75px"
+          imgwidth="140px"
+        >
+          <div
+            class="card-title fsp14 fc-black line-clamp_1"
+            slot="title"
+          >{{item.name}}</div>
+          <div
+            class="card-desc fsp12 fc-grey line-clamp_3"
+            slot="desc"
+          >{{item.info}}</div>
+        </van-card>
 
       </a>
     </div>
@@ -22,6 +32,7 @@
 </template>
 
 <script>
+import { golink } from "@/utils/tools";
 export default {
   props: {
     dataList: {
@@ -53,6 +64,7 @@ export default {
     }
   },
   methods: {
+    golink,
     swiperChange(event) {
       this.$emit("change", event);
     },
@@ -70,5 +82,22 @@ export default {
 </script>
 
 <style lang="scss">
+.img-card-list {
+  .card-title {
+  }
+  .van-card {
+    padding: 5px 0 5px 155px; /*px*/
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  .van-card__thumb {
+    left: 0px;
 
+    image {
+      width: 130px; /*px*/
+      border-radius: 5px;
+      height: 70px; /*px*/
+    }
+  }
+}
 </style>

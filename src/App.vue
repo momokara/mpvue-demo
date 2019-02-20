@@ -21,9 +21,7 @@ export default {
     );
   },
   // 初始化
-  onLaunch() {
-
-  },
+  onLaunch() {},
   // 当小程序启动，或从后台进入前台显示
   onShow() {
     console.log("App onShow OK!");
@@ -58,13 +56,18 @@ $fsp-16: 16px;
 $fsp-14: 14px;
 $fsp-12: 12px;
 // 常用颜色
-$fc-black: #000;
-$fc-semi: #353535;
+$fc-black: #333;
+$fc-semi: #8c959f;
 $fc-grey: #888;
-$fc-light: #b2b2b2;
+$fc-light: #f0f0f0;
 $fc-blue: #576b95;
-$fc-green: #09bb07;
-$fc-red: #e64340;
+$fc-green: #6bb72d;
+$fc-igreen: #3ac569;
+$fc-red: #f66e6e;
+$fc-hred: #e61f19;
+
+// 背景色
+$fc-bgc: #f0f4f6;
 // 常用透明度
 $opacity-normal: 100%;
 $opacity-press: 20%;
@@ -127,9 +130,23 @@ $opacity-disable: 10%;
 .fc-green {
   color: $fc-green;
 }
+.fc-igreen {
+  color: $fc-igreen;
+}
 .fc-red {
   color: $fc-red;
 }
+.fc-hred {
+  color: $fc-hred;
+}
+.fc-bgc {
+  color: $fc-bgc;
+}
+
+.bg-green {
+  background: $fc-green;
+}
+
 .title {
   padding: 15px;
   font-size: $fs-17;
@@ -166,6 +183,10 @@ $opacity-disable: 10%;
 }
 .demo-relative-box {
   position: relative;
+}
+
+page {
+  background-color: $fc-bgc;
 }
 </style>
 

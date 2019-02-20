@@ -115,7 +115,7 @@ export default {
   .icon {
     width: 16px;
     height: 16px;
-    padding: 2px 0;
+    padding: 5px 0;
     float: left;
     margin-right: 15rpx;
   }
@@ -125,7 +125,7 @@ export default {
   .more {
     position: absolute;
     right: 0px;
-    top: 0px;
+    top: 3px;
     color: #6bb72d;
     float: right;
     height: 20px;

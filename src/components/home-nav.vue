@@ -62,15 +62,17 @@ export default {
 
 <style lang="scss">
 .notice-box {
-  height: 20px;
-  line-height: 20px;
-  padding-bottom: 10px;
+  height: 35px;
+  line-height: 25px;
   border-bottom: 1px solid #f2f2f2;
+  box-sizing: border-box;
+  padding: 5px;
 }
 .nav-box {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+
   .nav-cell {
     margin: 15rpx 0;
   }

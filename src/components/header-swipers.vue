@@ -23,7 +23,10 @@
       :key="item"
       :item-id="item.id"
     >
-      <a :href="item.url">
+      <a
+        @click="golink(item.url)"
+        class="link"
+      >
         <img
           :src="item.img_url"
           mode="scaleToFill"
@@ -36,6 +39,7 @@
 </template>
 
 <script>
+import { golink } from "@/utils/tools";
 export default {
   props: {
     swiperList: {
@@ -82,6 +86,7 @@ export default {
     }
   },
   methods: {
+    golink,
     swiperChange(event) {
       this.$emit("change", event);
     },

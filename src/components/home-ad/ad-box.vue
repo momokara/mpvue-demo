@@ -1,9 +1,22 @@
 <template>
   <div>
-    <div class="fsp16">{{config.title}}</div>
+    <div class="ad-box-titleline">
+      <span class="ad-box-title fsp16">{{config.title}}</span>
+      <a
+        @click="golink(config.more_url)"
+        class="ad-box-more fc-green"
+      >
+        <span class="fsp14">更多</span>
+        <van-icon
+          name="arrow"
+          size="14px"
+          custom-class="more-link-icon"
+        /></a>
+    </div>
+    <div class="info-box"></div>
     <div
       v-if="config.type==1"
-      class="mini-swiper-box"
+      class="swiper-slide-box"
     >
       <miniSwipers
         :swiperList="data"
@@ -64,7 +77,22 @@ export default {
 </script>
 
 <style lang="scss">
-.mini-swiper-box {
-  height: 105px;
+.ad-box-titleline {
+  box-sizing: border-box;
+  padding: 10px 2px 5px 2px;
+
+  .ad-box-more {
+    display: inline-block;
+    box-sizing: border-box;
+    float: right;
+    .fsp14 {
+      line-height: 30px;
+    }
+    .more-link-icon {
+      margin-top: 7px;
+      float: right;
+    }
+  }
 }
+
 </style>

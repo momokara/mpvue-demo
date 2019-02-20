@@ -6,7 +6,7 @@
       :item-id="item.id"
     >
       <a
-        :href="item.url"
+        @click="golink(item.url)"
         class="link"
       >
         <img
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { golink } from "@/utils/tools";
 export default {
   props: {
     dataList: {
@@ -54,6 +55,7 @@ export default {
     }
   },
   methods: {
+    golink,
     swiperChange(event) {
       this.$emit("change", event);
     },
@@ -71,4 +73,14 @@ export default {
 </script>
 
 <style lang="scss">
+.img-ad-list {
+  .link,
+  .slide-image {
+    border-radius: 5px;
+    width: 100%;
+  }
+  .link {
+    margin-bottom: 5px;
+  }
+}
 </style>

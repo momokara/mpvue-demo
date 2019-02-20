@@ -83,7 +83,8 @@
     {
       "root": "pages/user",
       "pages": [
-        "editUserInfo/main"
+        "editUserInfo/main",
+        "watchData/main"
       ]
     }
   ],
