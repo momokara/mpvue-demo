@@ -87,7 +87,7 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/api_data_table";
+import apiTable from "@/components/apiDataTable";
 import apiData from "./api_data";
 import Toast from "@/../static/components/toast/toast";
 export default {

@@ -103,7 +103,7 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/api_data_table";
+import apiTable from "@/components/apiDataTable";
 import apiData from "./api_data";
 export default {
   data() {

@@ -36,8 +36,8 @@
   </div>
 </template>
 <script>
-import upLoadImages from "@/components/upLoad-images";
-import apiTable from "@/components/api_data_table";
+import upLoadImages from "@/components/upLoadImages";
+import apiTable from "@/components/apiDataTable";
 import apiData from "./api_data";
 export default {
   data() {

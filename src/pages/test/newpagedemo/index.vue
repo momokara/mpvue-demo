@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-import demoBlock from "@/components/demo-block";
+import demoBlock from "@/components/demoBlock";
 
 // 页面记录
 import { pagelogs } from "@/utils/logs";

@@ -56,7 +56,7 @@
 </template>
 <script>
 import Toast from "@/../static/components/toast/toast";
-import apiTable from "@/components/api_data_table";
+import apiTable from "@/components/apiDataTable";
 import apiData from "./api_data";
 
 export default {
