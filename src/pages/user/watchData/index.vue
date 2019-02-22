@@ -1,27 +1,70 @@
 <template>
   <div class="container demo">
+
     <div class="title">basicInfo_store 的内容:</div>
     <div class="fsp12 databox">
-      <div
-        v-for="(item, index) in storeData"
-        :key="index"
+      <van-collapse
+        :value="storeTag"
+        @change="onChange"
+        data-key="storeTag"
       >
-        <div class="fsp14">{{item.key}}:</div>
-        <div class="fsp12">{{item.data}}</div>
-      </div>
+        <block
+          v-for="(item, index) in storeData"
+          :key="index"
+        >
+          <van-collapse-item
+            :title="item.key"
+            :name="index"
+          >
+            <div class="databox"> {{item.data}}</div>
+
+          </van-collapse-item>
+
+        </block>
+
+      </van-collapse>
     </div>
     <div class="title">storageData 概况:</div>
-    <div class="fsp12 databox">{{storageData}}</div>
+    <div class="fsp12 databox">
+      <van-collapse
+        :value="storageDataTag"
+        @change="onChange"
+        data-key="storageDataTag"
+      >
+        <block
+          v-for="(item, index) in storageData"
+          :key="index"
+        >
+          <van-collapse-item
+            :title="item.key"
+            :name="index"
+          >
+            <div class="databox"> {{item.data}}</div>
+          </van-collapse-item>
+        </block>
+
+      </van-collapse>
+    </div>
     <div class="title">storage 详情:</div>
     <div class="fsp12 databox">
-      <div
-        v-for="(item, index) in storageDataDetail"
-        :key="index"
+      <van-collapse
+        :value="storageDataDTag"
+        @change="onChange"
+        data-key="storageDataDTag"
       >
-        <div class="fsp14">{{item.key}}:</div>
-        <div class="fsp12">{{item.data}}</div>
-      </div>
+        <block
+          v-for="(item, index) in storageDataDetail"
+          :key="index"
+        >
+          <van-collapse-item
+            :title="item.key"
+            :name="index"
+          >
+            <div class="databox"> {{item.data}}</div>
+          </van-collapse-item>
+        </block>
 
+      </van-collapse>
     </div>
   </div>
 </template>
@@ -33,8 +76,12 @@ import { pagelogs } from "@/utils/logs";
 export default {
   data() {
     return {
-      storageData: "",
-      storageDataDetail: ""
+      storageData: [],
+      storeTag: [],
+      storageData: [],
+      storageDataTag: [],
+      storageDataDetail: [],
+      storageDataDTag: []
     };
   },
   // 使用的 vue 组件
@@ -61,8 +108,19 @@ export default {
   methods: {
     // 获取信息
     getstorageData: function() {
-      let showdata = wx.getStorageInfoSync("openid");
-      showdata = JSON.stringify(showdata);
+      let showdata = [];
+      let socuredata = wx.getStorageInfoSync();
+      for (const key in socuredata) {
+        if (key) {
+          let saveData = socuredata[key];
+          saveData = JSON.stringify(saveData);
+          let rowdata = {
+            key,
+            data: saveData
+          };
+          showdata.push(rowdata);
+        }
+      }
       return showdata;
     },
     // 遍历storage
@@ -80,6 +138,10 @@ export default {
       });
 
       return showdata;
+    },
+    onChange(e) {
+      const { key } = e.mp.currentTarget.dataset;
+      this[key] = e.mp.detail;
     }
   },
 
@@ -95,8 +157,6 @@ export default {
 
 <style lang="scss">
 .databox {
-  width: 350px;
-  white-space: normal;
   overflow: scroll;
 }
 </style>

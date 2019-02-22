@@ -14,7 +14,7 @@ import config from '@/config.js'
 
 // 获取首页信息
 export const getHomeInfo = async () => {
-  console.log("getHomeInfo||basicInfo", basicInfo.state.islogin, basicInfo.state);
+
   let commonheader = await getcommonheader();
   let url = `${config.static_url_basic}${config.static_url_file}/home_data.json`;
 
@@ -43,17 +43,13 @@ export const getcommonheader = async () => {
       appid: basicInfo.state.userInfo.appid,
       openid: basicInfo.state.userInfo.openid
     }
-    let _aid = await decrypt(basicInfo.state.userInfo.appid).then(res => {
-      return res.result.res
-    });
-    let _oid = await decrypt(basicInfo.state.userInfo.openid).then(res => {
-      return res.result.res
-    });
-    let decrypt_data = {
-      appid: _aid,
-      openid: _oid
-    }
-    console.log("解密结果", decrypt_data);
+    // let _aid = await decrypt(basicInfo.state.userInfo.appid);
+    // let _oid = await decrypt(basicInfo.state.userInfo.openid);
+    // let decrypt_data = {
+    //   appid: _aid,
+    //   openid: _oid
+    // }
+    // console.log("解密结果", decrypt_data);
   }
   return commonheader
 }

@@ -114,7 +114,7 @@ exports.main = async (event, context) => {
     appid,
     openid,
     unionid: wxContext.UNIONID,
-    user_num: user_num,
+    userNo: user_num,
     // 用户信息
     userInfo: user_info,
     // 用户基本信息

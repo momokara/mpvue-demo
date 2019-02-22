@@ -10,7 +10,7 @@
         class="link"
       >
         <van-card
-          :thumb="item.img_url"
+          :thumb="item.imgUrl"
           height="85px"
           imgheight="75px"
           imgwidth="140px"

@@ -19,6 +19,28 @@ const basicInfo = new Vuex.Store({
       if (userInfo.openid) {
         obj.islogin = true
       }
+    },
+    /**
+     * 更新指定字段的内容
+     */
+    updataByKey: (state, data) => {
+      const obj = state;
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+          const element = data[key];
+          obj[key] = element;
+        }
+      }
+      if (obj.openid) {
+        obj.islogin = true
+      }
+    },
+    clean: (state, isreset) => {
+      const obj = state;
+      if (isreset) {
+        obj.userInfo = {};
+        obj.islogin = false;
+      }
     }
   }
 })

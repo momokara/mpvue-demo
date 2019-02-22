@@ -45,7 +45,7 @@
         <div>
           <input
             type="text"
-            v-model="userData.basicInfo.real_name"
+            v-model="userData.basicInfo.realName"
             placeholder="请输入真实姓名"
             maxlength="16"
           >
@@ -83,7 +83,7 @@
         <div>
           <input
             type="text"
-            v-model="userData.basicInfo.idcard_num"
+            v-model="userData.basicInfo.idcardNum"
             placeholder="请输入身份证"
             maxlength="20"
           >
@@ -116,9 +116,9 @@ export default {
           nickName: ""
         },
         basicInfo: {
-          real_name: "",
+          realName: "",
           phone: "",
-          idcard_num: ""
+          idcardNum: ""
         }
       }
     };

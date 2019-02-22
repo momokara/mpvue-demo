@@ -32,7 +32,7 @@
         >
           <img
             :style="imgHeight"
-            :src="item.img_url"
+            :src="item.imgUrl"
             mode="aspectFill"
             class="slide-image"
           />
@@ -88,7 +88,7 @@ export default {
         nextMargin: "0px",
         displayMultipleItems: 1,
         isShowName: true,
-        img_height: "150rpx"
+        imgHeight: "150rpx"
       },
       useConfig: {}
     };
@@ -107,7 +107,7 @@ export default {
       return `height: ${_height.toFixed(2)}vw`;
     },
     imgHeight() {
-      let _height = this.useConfig.img_height / 750 * 100;
+      let _height = this.useConfig.imgHeight / 750 * 100;
       return `height: ${_height.toFixed(2)}vw`;
     }
   },
@@ -122,15 +122,15 @@ export default {
     getUseConfig() {
       let _this = this;
       _this.useConfig = Object.assign({}, _this.defaultconfig, _this.config);
-      let ltr = _this.useConfig.img_height.match(/[a-z|A-Z]+$/gi);
-      let num = _this.useConfig.img_height.match(/^\d+/gi);
+      let ltr = _this.useConfig.imgHeight.match(/[a-z|A-Z]+$/gi);
+      let num = _this.useConfig.imgHeight.match(/^\d+/gi);
       // 单位是 px 转成2倍做rpx
-      _this.useConfig.img_height = ltr == "px" ? num * 2 : num;
+      _this.useConfig.imgHeight = ltr == "px" ? num * 2 : num;
       // 如果要显示名称则需要加高高度
       if (_this.useConfig.isShowName) {
-        _this.useConfig.cell_height = parseInt(_this.useConfig.img_height) + 60;
+        _this.useConfig.cell_height = parseInt(_this.useConfig.imgHeight) + 60;
       } else {
-        _this.useConfig.cell_height = _this.useConfig.img_height;
+        _this.useConfig.cell_height = _this.useConfig.imgHeight;
       }
     }
   },

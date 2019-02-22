@@ -27,6 +27,12 @@ export const decrypt = (data) => {
       type: 2,
       data: data
     }
+  }).then(res => {
+    if (res.result.res) {
+      return res.result.res
+    } else {
+      return null
+    }
   })
 }
 

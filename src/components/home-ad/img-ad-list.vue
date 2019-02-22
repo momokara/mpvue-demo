@@ -10,8 +10,8 @@
         class="link"
       >
         <img
-          :style="{height:config.img_height?config.img_height:'150rpx'}"
-          :src="item.img_url"
+          :style="imgHeight"
+          :src="item.imgUrl"
           mode="scaleToFill"
           class="slide-image"
         />
@@ -42,7 +42,9 @@ export default {
   },
   data() {
     return {
-      defaultconfig: {},
+      defaultconfig: {
+        imgHeight: "150rpx"
+      },
       useConfig: {}
     };
   },
@@ -52,6 +54,12 @@ export default {
         this.getUseConfig();
       },
       deep: true
+    }
+  },
+  computed: {
+    imgHeight() {
+      let _height = this.useConfig.imgHeight / 750 * 100;
+      return `height: ${_height.toFixed(2)}vw`;
     }
   },
   methods: {

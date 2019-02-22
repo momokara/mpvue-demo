@@ -15,7 +15,7 @@
       <homeNav
         :config="nav.config"
         :data="nav.data"
-        :notice_data="nav.notice_data"
+        :noticeData="nav.noticeData"
       >
       </homeNav>
     </div>

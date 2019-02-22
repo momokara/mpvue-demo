@@ -102,7 +102,7 @@ exports.main = async (event, context) => {
     openid,
     unionid: wxContext.UNIONID,
     basicInfo: _basicInfo,
-    user_num: _user_num,
+    userNo: _user_num,
     userInfo: _userInfo
   }
 }

@@ -1,4 +1,5 @@
 <template>
+  <!-- 纵向滚动的轮播 -->
   <swiper
     class="swiper"
     :class="customClass"
@@ -24,7 +25,7 @@
     >
       <a
         class="notice-link fs12"
-        :href="'/'+item.url"
+        @click="golink(item.url)"
       >
         <img
           class="icon"
@@ -40,6 +41,7 @@
 </template>
 
 <script>
+import { golink } from "@/utils/tools";
 export default {
   props: {
     swiperList: {
@@ -88,6 +90,7 @@ export default {
     }
   },
   methods: {
+    golink,
     swiperChange(event) {
       this.$emit("change", event);
     },

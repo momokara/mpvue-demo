@@ -2,6 +2,8 @@
 // 部署：在 cloud-functions/login 文件夹右击选择 “上传并部署”
 
 const cloud = require('wx-server-sdk')
+const dataCrypt = require('./dataCrypt')
+const key = require('./key');
 // 初始化 cloud
 cloud.init()
 const db = cloud.database({
@@ -16,27 +18,51 @@ const db = cloud.database({
 exports.main = async (event, context) => {
   // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）
   const wxContext = await cloud.getWXContext()
-
+  let openid = wxContext.OPENID;
+  let unionid = wxContext.UNIONID;
+  let appid = wxContext.APPID;
+  
+  let trywork;
   // 写入错误记录
-  if (!wxContext.OPENID) {
-    let _nTime = new Date().getTime();
-    await db.collection('error_log').add({
-      data: {
-        function_name: "getOpenId",
-        event: event,
-        context: context,
-        time: _nTime,
-      }
-    }).then(res => {
-      let _sErrID = res._id;
-      console.log("success", res, "saved_ErrorID:", _sErrID, ";saved_Time:", _nTime);
-    }).catch(err => {
-      console.log("save_fail", err);
-    })
+  try {
+    trywork = true;
+    if (!wxContext.OPENID) {
+      let _nTime = new Date().getTime();
+      await db.collection('error_log').add({
+        data: {
+          function_name: "getOpenId",
+          event: event,
+          context: context,
+          time: _nTime,
+        }
+      }).then(res => {
+        let _sErrID = res._id;
+        console.log("success", res, "saved_ErrorID:", _sErrID, ";saved_Time:", _nTime);
+      }).catch(err => {
+        console.log("save_fail", err);
+      })
+    }
+  } catch (error) {
+    console.error(error)
   }
+
+  if (event.isEncode) {
+    // 加密appid
+    appid = dataCrypt.encrypt(appid, key.pubKey);
+    appid = appid.toString("base64");
+    // 加密openid
+    openid = dataCrypt.encrypt(openid, key.pubKey);
+    openid = openid.toString("base64");
+    if (unionid) {
+      unionid = dataCrypt.encrypt(unionid, key.pubKey);
+      unionid = unionid.toString("base64");
+    }
+  }
+
   return {
-    openid: wxContext.OPENID,
-    unionid: wxContext.UNIONID,
-    appid: wxContext.APPID
+    openid,
+    unionid,
+    appid,
+    trywork
   }
 }

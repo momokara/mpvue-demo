@@ -1,4 +1,5 @@
 <template>
+  <!-- 首页顶部轮播 -->
   <swiper
     class="swiper"
     :class="customClass"
@@ -28,7 +29,7 @@
         class="link"
       >
         <img
-          :src="item.img_url"
+          :src="item.imgUrl"
           mode="scaleToFill"
           class="slide-image"
         />

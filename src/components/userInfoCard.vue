@@ -13,7 +13,7 @@
           ({{userInfo.real_name}})
         </span>
       </div>
-      <div class="user-num fs12 fc-grey">帐号编号:{{userInfo.user_num}}</div>
+      <div class="user-num fs12 fc-grey">帐号编号:{{userInfo.userNo}}</div>
     </div>
 
     <div class="info-box-2">

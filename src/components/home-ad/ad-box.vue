@@ -3,7 +3,7 @@
     <div class="ad-box-titleline">
       <span class="ad-box-title fsp16">{{config.title}}</span>
       <a
-        @click="golink(config.more_url)"
+        @click="golink(config.moreUrl)"
         class="ad-box-more fc-green"
       >
         <span class="fsp14">更多</span>

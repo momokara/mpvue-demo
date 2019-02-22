@@ -1,11 +1,13 @@
+
 <template>
+  <!-- 首页的导航 -->
   <div>
     <div
       class="notice-box"
       v-if="config.isShowNotice"
     >
       <noticeSwipers
-        :swiperList="notice_data"
+        :swiperList="noticeData"
         icon-url="https://cdn.huibaoming.com/haivit/public/image/20181105181545_89/公告.png"
       ></noticeSwipers>
     </div>
@@ -20,7 +22,7 @@
           <div slot="icon">
             <img
               class="nav-icon"
-              :src="item.img_url"
+              :src="item.imgUrl"
             >
           </div>
           {{item.name}}
@@ -47,7 +49,7 @@ export default {
     data: {
       type: Array
     },
-    notice_data: {
+    noticeData: {
       type: Array
     }
   },
