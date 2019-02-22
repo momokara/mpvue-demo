@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <userInfoCard
-      :userInfo="userInfo"
+      :userInfo="userCardInfo"
       @tapHeaderImg="tapHeaderImg()"
     >
     </userInfoCard>
@@ -47,14 +47,21 @@ export default {
     userInfoCard
   },
   computed: {
-    userInfo() {
+    userCardInfo() {
       // 直接跳转
       this.goLoginPage();
-      console.log("userInfochange", basicInfo.state.islogin);
-      let userinfo = basicInfo.state.userInfo.openid
-        ? basicInfo.state.userInfo
-        : {};
-      return basicInfo.state.userInfo;
+
+      let userInfo = basicInfo.state.openid ? basicInfo.state.userInfo : {};
+      let openid = basicInfo.state.openid;
+      let userNo = basicInfo.state.userNo;
+      let _basicinfo = basicInfo.state.basicInfo;
+      let res = {
+        openid,
+        userNo,
+        userInfo,
+        basicInfo: _basicinfo
+      };
+      return res;
     }
   },
   // 页面中的方法

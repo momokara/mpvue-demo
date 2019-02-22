@@ -128,11 +128,11 @@ export default {
   computed: {
     userInfo() {
       if (basicInfo.state.islogin) {
-        if (basicInfo.state.userInfo.userInfo.avatarUrl) {
-          this.userData.userInfo = basicInfo.state.userInfo.userInfo;
+        if (basicInfo.state.userInfo.avatarUrl) {
+          this.userData.userInfo = basicInfo.state.userInfo;
           if (basicInfo.state.userInfo) {
-            const userbasicInfo = basicInfo.state.userInfo.basicInfo
-              ? basicInfo.state.userInfo.basicInfo
+            const userbasicInfo = basicInfo.state.basicInfo
+              ? basicInfo.state.basicInfo
               : {};
             if (userbasicInfo.phone) {
               this.userData.basicInfo = userbasicInfo;

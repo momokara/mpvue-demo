@@ -146,14 +146,14 @@ export default {
     encrypt: function() {
       let _this = this;
       encrypt(_this.crypt.data).then(res => {
-        console.log("encryptRes:", res.result);
+        console.log("encryptRes:", res.result.res);
         _this.crypt.encrypt_data = res.result.res;
       });
     },
     decrypt: function(data) {
       let _this = this;
       decrypt(_this.crypt.encrypt_data).then(res => {
-        console.log("decryptRes:", res.result);
+        console.log("解密结果:", res);
       });
     }
   },

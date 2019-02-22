@@ -9,8 +9,8 @@
     </block>
     <div class="info-box-1 ta-c">
       <div class="user-name fsp14 fc-semi">{{userInfo.openid?userInfo.userInfo.nickName:"登陆中..."}}
-        <span v-if="userInfo.real_name">
-          ({{userInfo.real_name}})
+        <span v-if="userInfo.realName">
+          ({{userInfo.realName}})
         </span>
       </div>
       <div class="user-num fs12 fc-grey">帐号编号:{{userInfo.userNo}}</div>
