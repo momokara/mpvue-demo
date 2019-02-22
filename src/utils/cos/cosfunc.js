@@ -66,11 +66,36 @@ export const upLoadFile = (file, name) => {
     });
   })
 }
+// 批量上传图片
+export const upLoadimgs = async (files, basicName) => {
+  basicName = basicName ? basicName : "wechat_mp";
+  let resUrlList = [];
+  for (const key in files) {
+    try {
+      const element = files[key];
+      let filename = `${basicName}_${key}`
+      let imgurl = await upLoadFile(element, filename).then(res => {
+        if (res.statusCode == 200) {
+          return res.Location;
+        } else {
+          return null;
+        }
+      });
+      imgurl = `https://${imgurl}`;
+      resUrlList.push(imgurl);
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  return resUrlList;
+}
 
 const cos = {};
 cos.upLoadFile = upLoadFile;
+cos.upLoadFile = upLoadimgs;
 export default cos;
 
 module.export = {
-  upLoadFile
+  upLoadFile,
+  upLoadimgs
 };

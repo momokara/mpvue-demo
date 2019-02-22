@@ -42,7 +42,8 @@
 </template>
 
 <script>
-import Api from "@/api/api";
+// import Api from "@/api/api";
+import { upLoadimgs } from "@/utils/cos/cosfunc";
 export default {
   props: {
     title: {
@@ -65,6 +66,7 @@ export default {
   data() {
     return {
       tempFilePaths: [],
+      tempFiles: [],
       uploadresFilePaths: []
     };
   },
@@ -79,11 +81,13 @@ export default {
         success: res => {
           if (_this.autoUpLoad) {
             _this.tempFilePaths = res.tempFilePaths;
+            _this.tempFiles = res.tempFiles;
             _this.upLoadImgs().then(res => {
               _this.$emit("upLoadImgs", _this.imageList);
             });
           } else {
             _this.tempFilePaths = _this.tempFilePaths.concat(res.tempFilePaths);
+            _this.tempFiles = _this.tempFiles.concat(res.tempFiles);
           }
           let _delRes = {
             imageList: this.imageList,
@@ -109,7 +113,7 @@ export default {
     // 上传图片
     upLoadImgs() {
       let _this = this;
-      return Api.upLoadimgs(this.tempFilePaths).then(res => {
+      return upLoadimgs(this.tempFiles).then(res => {
         _this.imageList = _this.imageList ? _this.imageList.concat(res) : res;
         if (!_this.autoUpLoad) {
           _this.$emit("upLoadImgs", _this.imageList);
