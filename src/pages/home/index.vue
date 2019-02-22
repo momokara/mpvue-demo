@@ -43,9 +43,9 @@
 </template>
 
 <script>
-import headerSwiper from "@/components/header-swipers";
-import homeNav from "@/components/home-nav";
-import adBox from "@/components/home-ad/ad-box";
+import headerSwiper from "@/components/headerSwipers";
+import homeNav from "@/components/homeNav";
+import adBox from "@/components/homeAd/adBox";
 
 import { getHomeInfo } from "@/api/api";
 
@@ -71,7 +71,6 @@ export default {
     getHomeInfo() {
       let _this = this;
       getHomeInfo().then(res => {
-        console.log("Homedata", res);
         _this.swiper = res.swiper;
         _this.nav = res.nav;
         _this.adList = res.adList;

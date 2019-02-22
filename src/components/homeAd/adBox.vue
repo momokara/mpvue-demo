@@ -46,9 +46,9 @@
 </template>
 
 <script>
-import miniSwipers from "@/components/home-ad/mini-swipers";
-import imgAdList from "@/components/home-ad/img-ad-list";
-import infocardList from "@/components/home-ad/infocard-list";
+import miniSwipers from "@/components/homeAd/miniSwipers";
+import imgAdList from "@/components/homeAd/imgAdList";
+import infocardList from "@/components/homeAd/infoCardList";
 import { golink } from "@/utils/tools";
 export default {
   props: {

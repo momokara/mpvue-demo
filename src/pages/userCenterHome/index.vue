@@ -30,9 +30,8 @@
 <script>
 import basicInfo from "../../store/basicInfo.js";
 import userInfoCard from "@/components/userInfoCard";
+import { reLogin } from "@/api/dataTools";
 
-import { getOpenid } from "@/utils/cloudfunc/getUserInfo";
-import { decrypt } from "@/utils/cloudfunc/crypt";
 // 页面记录
 import { pagelogs } from "@/utils/logs";
 
@@ -86,33 +85,20 @@ export default {
     goLoginPage: function(isjump) {
       isjump = isjump
         ? isjump
-        : !basicInfo.state.userInfo.userInfo && basicInfo.state.islogin;
+        : !basicInfo.state.userInfo && basicInfo.state.islogin;
       if (isjump) {
         let currentPage = getCurrentPages();
         currentPage = currentPage[currentPage.length - 1];
         console.log(currentPage.route);
-        // wx.redirectTo({
-        //   url: `/pages/loginpage/main?from=${currentPage.route}`
-        // });
+        wx.redirectTo({
+          url: `/pages/loginpage/main?from=${currentPage.route}`
+        });
       }
     },
-    clearStorage: async function() {
-      wx.clearStorageSync();
-      // basicInfo.commit("clean", true);
-
-      basicInfo.commit("updataUserInfoByKey", {
-        openid: "openid123",
-        appid: "666"
+    clearStorage: function() {
+      reLogin().then(res => {
+        console.log("clearStorage", res);
       });
-      getOpenid().then(async res => {
-        console.log("getOpenid", res);
-
-        let appid = await decrypt(res.appid);
-        let openid = await decrypt(res.openid);
-        console.log(`appid_decrypt:${appid}`);
-        console.log(`openid_decrypt:${openid}`);
-      });
-      console.log(basicInfo.state);
     }
   },
   onLoad() {},

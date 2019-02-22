@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import noticeSwipers from "@/components/notice-swipers";
+import noticeSwipers from "@/components/noticeSwipers";
 import { golink } from "@/utils/tools";
 export default {
   props: {

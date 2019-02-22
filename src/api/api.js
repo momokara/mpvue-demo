@@ -20,7 +20,6 @@ export const getHomeInfo = async () => {
 
   return ajaxAll(url, "GET", {}, commonheader).then(res => {
     let resdata = res;
-    console.log("getHomeInfo", res)
     return resdata;
   })
 }
@@ -30,7 +29,6 @@ export const ajax = async (url, method, params) => {
   let commonheader = await getcommonheader();
   return ajaxAll(url, method, params, commonheader).then(res => {
     let resdata = res;
-    console.log("getHomeInfo", res)
     return resdata;
   })
 }

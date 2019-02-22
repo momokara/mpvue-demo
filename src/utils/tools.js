@@ -46,7 +46,7 @@ export function formatTime(date) {
 }
 
 /**
- * 跳转到目标地址
+ * 跳转到目标地址 兼容页面和table
  * @param {String} url 目标地址
  */
 export function golink(url) {
