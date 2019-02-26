@@ -10,13 +10,3 @@ exports.encrypt = (data, key) => {
   }
   return crypto.publicEncrypt(key, Buffer.from(data));
 };
-
-// 解密方法
-exports.decrypt = (encrypted, key) => {
-  // 注意，encrypted是Buffer类型
-  key = {
-    key,
-    padding: crypto.constants.RSA_PKCS1_PADDING
-  }
-  return crypto.privateDecrypt(key, encrypted);
-};

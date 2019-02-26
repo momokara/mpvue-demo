@@ -6,7 +6,6 @@
  */
 export const toPromise = (fn) => {
   return (obj = {}) => {
-
     return new Promise((resolve, reject) => {
       obj.success = (res) => {
         res = res.data ? res.data : res;
@@ -67,16 +66,32 @@ export function golink(url) {
   });
 }
 
+/**
+ * 判断string 是否是 json
+ * @param {String} string 需要判断的String
+ */
+export const isJsonString = (string) => {
+  let res = false;
+  try {
+    if (typeof JSON.parse(string) == "object") {
+      res = true
+    }
+  } catch (e) {}
+  return res;
+}
+
 const tools = {};
 tools.toPromise = toPromise;
 tools.formatNumber = formatNumber;
 tools.formatTime = formatTime;
 tools.golink = golink;
+tools.isJsonString = isJsonString;
 export default tools;
 
 module.export = {
   toPromise,
   formatNumber,
   formatTime,
-  golink
+  golink,
+  isJsonString
 }

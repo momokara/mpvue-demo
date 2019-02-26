@@ -16,7 +16,9 @@
             :title="item.key"
             :name="index"
           >
-            <div class="databox"> {{item.data}}</div>
+            <div class="databox">
+              <jsonTable :data="item.data"></jsonTable>
+            </div>
 
           </van-collapse-item>
 
@@ -39,7 +41,10 @@
             :title="item.key"
             :name="index"
           >
-            <div class="databox"> {{item.data}}</div>
+            <div class="databox">
+              <jsonTable :data="item.data"></jsonTable>
+              <!-- {{item.data}} -->
+            </div>
           </van-collapse-item>
         </block>
 
@@ -60,7 +65,9 @@
             :title="item.key"
             :name="index"
           >
-            <div class="databox"> {{item.data}}</div>
+            <div class="databox">
+              <jsonTable :data="item.data"></jsonTable>
+            </div>
           </van-collapse-item>
         </block>
 
@@ -70,6 +77,7 @@
 </template>
 <script>
 import basicInfo from "../../../store/basicInfo.js";
+import jsonTable from "@/components/jsonTable";
 
 // 页面记录
 import { pagelogs } from "@/utils/logs";
@@ -85,7 +93,7 @@ export default {
     };
   },
   // 使用的 vue 组件
-  components: {},
+  components: { jsonTable },
 
   computed: {
     storeData: function() {

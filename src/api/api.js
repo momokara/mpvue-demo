@@ -17,7 +17,7 @@ export const getHomeInfo = async () => {
 
   let commonheader = await getcommonheader();
   let url = `${config.static_url_basic}${config.static_url_file}/home_data.json`;
-
+  // decryptheader();
   return ajaxAll(url, "GET", {}, commonheader).then(res => {
     let resdata = res;
     return resdata;
@@ -41,22 +41,30 @@ export const getcommonheader = async () => {
       appid: basicInfo.state.userInfo.appid,
       openid: basicInfo.state.userInfo.openid
     }
-    // let _aid = await decrypt(basicInfo.state.userInfo.appid);
-    // let _oid = await decrypt(basicInfo.state.userInfo.openid);
-    // let decrypt_data = {
-    //   appid: _aid,
-    //   openid: _oid
-    // }
-    // console.log("解密结果", decrypt_data);
+
   }
   return commonheader
 }
+
+// 解密请求头内的appid 和 openid
+const decryptheader = async () => {
+  let _aid = await decrypt(basicInfo.state.appid);
+  let _oid = await decrypt(basicInfo.state.openid);
+  let decrypt_data = {
+    appid: _aid,
+    openid: _oid
+  }
+  console.log("解密结果", decrypt_data);
+}
+
 
 const Api = {};
 Api.getcommonheader = getcommonheader;
 Api.getHomeInfo = getHomeInfo;
 Api.ajax = ajax;
 export default Api;
+
+
 
 module.export = {
   getcommonheader,

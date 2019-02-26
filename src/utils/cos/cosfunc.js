@@ -8,6 +8,9 @@ const getAuthorization = function (options, callback) {
     method: 'GET',
     url: config.serverPrefix, // 服务端签名地址，参考 server 目录下的两个签名例子
     dataType: 'json',
+    header:{
+      key1:"getsts"
+    },
     success: function (result) {
       var data = result.data;
       var credentials = data.credentials;

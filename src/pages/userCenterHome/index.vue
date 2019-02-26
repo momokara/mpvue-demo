@@ -124,6 +124,12 @@ export default {
           });
       } else {
         this.tapcleanTimes++;
+        if(this.tapcleanTimes>=3){
+          wx.showToast({
+            title: `长按${6-this.tapcleanTimes}次后显示调试`,
+            icon: 'none'
+          });
+        }
       }
     }
   },
