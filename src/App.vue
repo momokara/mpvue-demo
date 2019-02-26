@@ -9,6 +9,7 @@ export default {
     if (!wx.cloud) {
       console.error("请使用 2.2.3 或以上的基础库以使用云能力");
     } else {
+      // 云函数使用的环境
       wx.cloud.init({
         env: process.env.NODE_ENV == "production" ? config.env : config.dev_env,
         traceUser: true

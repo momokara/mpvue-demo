@@ -1,13 +1,14 @@
 <template>
   <div class="container">
-
     <van-cell-group custom-class="cell-group">
       <van-cell
+        v-if="isTestEnv"
         is-link
         title="进入组件列表"
         url="/pages/test/componentsDemoMenu/main"
       />
       <van-cell
+        v-if="isTestEnv"
         is-link
         title="counter Demo VueX"
         url="/pages/test/counter/main"
@@ -49,7 +50,10 @@
         @click="sendtestrequest()"
       />
     </van-cell-group>
-    <van-cell-group custom-class="cell-group">
+    <van-cell-group
+      custom-class="cell-group"
+      v-if="isTestEnv"
+    >
       <van-cell title="加密信息">
         <div>
           <textarea
@@ -72,7 +76,10 @@
       />
 
     </van-cell-group>
-    <div class="demo ">
+    <div
+      class="demo"
+      v-if="isTestEnv"
+    >
       <div class="fsp16 fc-grey">
         双向数据绑定
       </div>
@@ -106,7 +113,7 @@ import { pagelogs } from "@/utils/logs";
 export default {
   data() {
     return {
-      motto: "home",
+      isTestEnv: false,
       msg: "this is msg",
       testurl: "",
       testreqtype: "GET",
@@ -138,6 +145,15 @@ export default {
           .then(() => {
             // on close
           });
+      }).catch(err=>{
+        dialog
+          .alert({
+            title: "返回结果",
+            message: JSON.stringify(err)
+          })
+          .then(() => {
+            // on close
+          });
       });
     },
     reqTypeChange: function(e) {
@@ -160,6 +176,7 @@ export default {
 
   created() {},
   onShow() {
+    this.isTestEnv = process.env.NODE_ENV !== "production";
     pagelogs();
   }
 };

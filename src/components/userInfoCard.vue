@@ -57,6 +57,9 @@ export default {
     margin-left: -47px;
     background-color: #fff;
   }
+  .user-name{
+    height: 20px;
+  }
   .info-box-1 {
     padding-top: 50px;
   }
