@@ -303,11 +303,18 @@ const menuData = {
       title_tag: "vue",
       title_name: "页面功能组件_vue组件",
       child_menu: [{
-        title: "upLoad_Images",
-        cn_name: "图片上传",
-        label: "图片上传组件-vue 组件",
-        url: "/componentsDemo_vue/upLoad_imgs/main"
-      }]
+          title: "upLoad_Images",
+          cn_name: "图片上传",
+          label: "图片上传组件-vue 组件",
+          url: "/componentsDemo_vue/upLoad_imgs/main"
+        },
+        {
+          title: "formTable",
+          cn_name: "动态表单",
+          label: "动态表单-vue 组件",
+          url: "/componentsDemo_vue/formTable/main"
+        }
+      ]
     },
 
 

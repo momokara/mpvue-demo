@@ -71,7 +71,8 @@
         "componentsDemo/Lottery-Wheel/main",
         "componentsDemo/Lottery-Table/main",
 
-        "componentsDemo_vue/upLoad_imgs/main"
+        "componentsDemo_vue/formTable/main",
+        "componentsDemo_vue/upLoadImgs/main"
       ]
     },
     {
