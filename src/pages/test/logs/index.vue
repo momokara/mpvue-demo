@@ -20,7 +20,6 @@ import { pagelogs } from "@/utils/logs";
 
 export default {
   components: {},
-
   data() {
     return {
       logs: []
@@ -38,7 +37,6 @@ export default {
       log.time = formatTime(new Date(log.time));
       return log;
     });
-
     pagelogs();
   }
 };

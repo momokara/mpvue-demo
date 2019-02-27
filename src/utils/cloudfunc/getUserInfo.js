@@ -1,5 +1,6 @@
 // 通过云函数获取openid 如果有 unionid 则获取 unionid
 import basicInfo from '../../store/basicInfo.js'
+import config from '@/config.js'
 /**
  * 获取openid
  */
@@ -9,8 +10,8 @@ export const getOpenid = () => {
       wx.cloud.init({
         traceUser: true
       });
-      let openid = wx.getStorageSync('openid');
-      if (!openid.openid) {
+      let openid = isReLogin();
+      if (!openid) {
         // 获取的权限
         wx.getSetting({
           success: res => {
@@ -26,10 +27,7 @@ export const getOpenid = () => {
             isEncode: true
           },
         }).then(res => {
-
-
           let _data = res.result;
-
           wx.setStorageSync('openid', _data);
           basicInfo.commit('updataByKey', _data);
           resolve(_data);
@@ -46,7 +44,6 @@ export const getOpenid = () => {
       reject("请使用 2.2.3 或以上的基础库以使用云能力")
     }
   })
-
 }
 
 /**
@@ -59,8 +56,8 @@ export const getUserInfo = () => {
       wx.cloud.init({
         traceUser: true
       });
-      let openid = wx.getStorageSync('openid');
-      if (!openid.openid) {
+      let openid = isReLogin();
+      if (!openid) {
         // 当前获取的权限
         wx.getSetting({
           success: res => {
@@ -128,6 +125,7 @@ export const saveUserInfo = (data) => {
     }
   })
 }
+
 /**
  * 解密用户信息
  * @param {Object} data 解密需要的信息 
@@ -163,7 +161,21 @@ export const deCrypt = (data) => {
 
   })
 }
-
+/**
+ * 根据本地 Storage.openid.time 检测登录过期
+ * @return {Object/Boolean} 没有过期则返回storage中的用户信息，过期则返回false
+ */
+export const isReLogin = () => {
+  let openid = wx.getStorageSync('openid');
+  let nowTime = new Date().getTime();
+  let pastTime = parseInt((nowTime - openid.time) / 1000);
+  console.log("config", config.loginKeepTime >= pastTime);
+  if (config.loginKeepTime >= pastTime) {
+    return openid;
+  } else {
+    return false
+  }
+}
 
 const clouduser = {};
 clouduser.getOpenid = getOpenid;

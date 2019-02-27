@@ -76,7 +76,7 @@ export default {
         _this.adList = res.adList;
         if (res.pagetitle) {
           wx.setNavigationBarTitle({
-            title: "String"
+            title: res.pagetitle
           });
         }
       });
@@ -116,6 +116,7 @@ export default {
 }
 .main-ad-list {
   @include main-box;
+  margin: 20px auto 35px auto;
   .line {
     height: 1px;
     margin: 10px 0 0 0;

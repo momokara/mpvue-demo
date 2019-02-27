@@ -7,6 +7,9 @@ const config = {
   // 云函数环境id-生产
   env: "zhijia-75abfd",
   
+  // 登录保持时间 单位秒
+  loginKeepTime: 86400,
+
   // 静态只读数据
   // 基准地址
   static_url_basic: "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com",

@@ -21,13 +21,13 @@ exports.main = async (event, context) => {
   let openid = wxContext.OPENID;
   let unionid = wxContext.UNIONID;
   let appid = wxContext.APPID;
-  
+  let _nTime = new Date().getTime();
   let trywork;
   // 写入错误记录
   try {
     trywork = true;
     if (!wxContext.OPENID) {
-      let _nTime = new Date().getTime();
+     
       await db.collection('error_log').add({
         data: {
           function_name: "getOpenId",
@@ -63,6 +63,7 @@ exports.main = async (event, context) => {
     openid,
     unionid,
     appid,
-    trywork
+    trywork,
+    time: _nTime
   }
 }

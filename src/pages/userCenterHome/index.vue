@@ -18,6 +18,7 @@
               is-link
               @click="clearStorage()"
               @longpress="longpress()"
+              id="cleanStorage"
             />
           </van-cell-group>
           <view slot="right">删除</view>
@@ -45,7 +46,8 @@ import { pagelogs } from "@/utils/logs";
 export default {
   data() {
     return {
-      tapcleanTimes: 0
+      tapcleanTimes: 0,
+      openid: ""
     };
   },
   // 使用的 vue 组件
@@ -124,18 +126,21 @@ export default {
           });
       } else {
         this.tapcleanTimes++;
-        if(this.tapcleanTimes>=3){
+        if (this.tapcleanTimes >= 3) {
           wx.showToast({
-            title: `长按${6-this.tapcleanTimes}次后显示调试`,
-            icon: 'none'
+            title: `长按${6 - this.tapcleanTimes}次后显示调试`,
+            icon: "none"
           });
         }
       }
     }
   },
-  onLoad() {},
+  onLoad() {
+    this.openid = basicInfo.state.openid;
+  },
   onShow() {
     this.tapcleanTimes = 0;
+    
     pagelogs();
   }
 };

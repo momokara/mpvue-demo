@@ -11,10 +11,8 @@ import {
 import dialog from "@/../static/components/dialog-mo/dialog";
 import config from '@/config.js'
 
-
 // 获取首页信息
 export const getHomeInfo = async () => {
-
   let commonheader = await getcommonheader();
   let url = `${config.static_url_basic}${config.static_url_file}/home_data.json`;
   // decryptheader();
@@ -38,10 +36,9 @@ export const getcommonheader = async () => {
   let commonheader = {};
   if (basicInfo.state.islogin) {
     commonheader = {
-      appid: basicInfo.state.userInfo.appid,
-      openid: basicInfo.state.userInfo.openid
+      appid: basicInfo.state.appid,
+      openid: basicInfo.state.openid
     }
-
   }
   return commonheader
 }
@@ -57,14 +54,11 @@ const decryptheader = async () => {
   console.log("解密结果", decrypt_data);
 }
 
-
 const Api = {};
 Api.getcommonheader = getcommonheader;
 Api.getHomeInfo = getHomeInfo;
 Api.ajax = ajax;
 export default Api;
-
-
 
 module.export = {
   getcommonheader,
