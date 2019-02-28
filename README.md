@@ -7,7 +7,7 @@
 
 ``` bash
 # 先下载并安装node
-附地址 http://nodejs.cn/download/ 
+附地址 [http://nodejs.cn/download/](http://nodejs.cn/download/)
 
 # install dependencies
 npm install
