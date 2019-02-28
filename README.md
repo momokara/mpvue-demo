@@ -7,8 +7,8 @@
 
 ``` bash
 # 先下载并安装node
-附地址 [http://nodejs.cn/download/](http://nodejs.cn/download/)
-[点击前往谷歌搜索](https://www.google.com.hk/)
+附地址 [http://nodejs.cn/download/]
+[点击前往谷歌搜索]("https://www.google.com.hk/")
 
 # install dependencies
 npm install
