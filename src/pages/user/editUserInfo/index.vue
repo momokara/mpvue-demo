@@ -83,7 +83,7 @@
         <div>
           <input
             type="text"
-            v-model="userData.basicInfo.idcardNum"
+            v-model="userData.basicInfo.idcardNo"
             placeholder="请输入身份证"
             maxlength="20"
           >
@@ -118,7 +118,7 @@ export default {
         basicInfo: {
           realName: "",
           phone: "",
-          idcardNum: ""
+          idcardNo: ""
         }
       }
     };

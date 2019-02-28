@@ -7,7 +7,7 @@
       mode="widthFix"
     >
     <div class="tips fz-11pt color-888">{{tip}}</div>
-    <v-button
+    <van-button
       custom-class='button'
       type='primary'
       open-type="getUserInfo"
@@ -15,7 +15,7 @@
       @getuserinfo="getUserInfo"
     >
       授权登录
-    </v-button>
+    </van-button>
   </div>
 </template>
 
