@@ -1,12 +1,21 @@
 // 小程序的配置
 
 const config = {
+
+  // 登录重试次数
+  loginRetryTimes: 3,
+  // 登录重试延迟 单位ms
+  loginRetryDelay: 500,
+  
+  // 访问基本地址
+  host: "http://192.168.1.127:80",
+
   // 云函数配置
   // 云函数环境id-开发
   dev_env: "zhijia-75abfd",
   // 云函数环境id-生产
   env: "zhijia-75abfd",
-  
+
   // 登录保持时间 单位秒
   loginKeepTime: 86400,
 

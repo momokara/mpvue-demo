@@ -36,6 +36,7 @@ export const getOpenid = () => {
           reject(error)
         })
       } else {
+        console.log("load Storage：", openid);
         basicInfo.commit('updataByKey', openid);
         resolve(openid);
       }

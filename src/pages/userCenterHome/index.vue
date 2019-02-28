@@ -58,18 +58,7 @@ export default {
     userCardInfo() {
       // 直接跳转
       this.goLoginPage();
-
-      let userInfo = basicInfo.state.openid ? basicInfo.state.userInfo : {};
-      let openid = basicInfo.state.openid;
-      let userNo = basicInfo.state.userNo;
-      let _basicinfo = basicInfo.state.basicInfo;
-      let res = {
-        openid,
-        userNo,
-        userInfo,
-        basicInfo: _basicinfo
-      };
-      return res;
+      return basicInfo.state;
     }
   },
   // 页面中的方法
@@ -92,9 +81,10 @@ export default {
      * @param {Boolean} isjump  是否跳转
      */
     goLoginPage: function(isjump) {
+      console.log(basicInfo.state.userInfo);
       isjump = isjump
         ? isjump
-        : !basicInfo.state.userInfo && basicInfo.state.islogin;
+        : !basicInfo.state.userInfo && basicInfo.state.isgetinfo;
       if (isjump) {
         let currentPage = getCurrentPages();
         currentPage = currentPage[currentPage.length - 1];
@@ -140,7 +130,7 @@ export default {
   },
   onShow() {
     this.tapcleanTimes = 0;
-    
+
     pagelogs();
   }
 };

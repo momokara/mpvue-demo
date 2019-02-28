@@ -1,11 +1,11 @@
 // 清除缓存并重新登录
 import basicInfo from "@/store/basicInfo.js";
-import { getUserInfo } from "@/utils/cloudfunc/getUserInfo";
+import { getUserInfoSer } from "@/api/api";
 
 export const reLogin = () => {
   wx.clearStorageSync();
   basicInfo.commit("clean", true);
-  return getUserInfo()
+  return getUserInfoSer()
 }
 
 const tools = {};

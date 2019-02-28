@@ -105,6 +105,7 @@
 import basicInfo from "../../../store/basicInfo.js";
 import { upLoadFile } from "@/utils/cos/cosfunc";
 import { saveUserInfo, deCrypt } from "@/utils/cloudfunc/getUserInfo";
+import { saveEditUser } from "@/api/api";
 // 页面记录
 import { pagelogs } from "@/utils/logs";
 export default {
@@ -194,17 +195,32 @@ export default {
     },
     // 保存用户信息
     saveUserInfo: function() {
-      saveUserInfo(this.userData).then(res => {
-        wx.showToast({
-          title: "保存成功",
-          icon: "success"
-        });
+      let _this = this;
+      const savedata = {
+        avatarUrl: _this.userData.userInfo.avatarUrl,
+        nickName: _this.userData.userInfo.nickName,
+        realName: _this.userData.basicInfo.realName,
+        phone: _this.userData.basicInfo.phone,
+        idcardNo: _this.userData.basicInfo.idcardNo
+      };
+      saveEditUser(savedata).then(res => {
+        if (res.errMsg) {
+          wx.showToast({
+            title: res.errMsg,
+            icon: "none"
+          });
+        } else {
+          wx.showToast({
+            title: "保存成功",
+            icon: "success"
+          });
+        }
       });
+      // saveUserInfo(this.userData).then(res => {
+      // });
     },
     // 验证信息
-    validFormData:function(){
-      
-    }
+    validFormData: function() {}
   },
 
   // 监听页面加载

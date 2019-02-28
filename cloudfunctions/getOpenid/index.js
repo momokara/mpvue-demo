@@ -58,12 +58,12 @@ exports.main = async (event, context) => {
       unionid = unionid.toString("base64");
     }
   }
-
+  let loginReqid = context.request_id;
   return {
     openid,
     unionid,
     appid,
-    trywork,
+    loginReqid,
     time: _nTime
   }
 }

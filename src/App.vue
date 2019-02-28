@@ -1,6 +1,6 @@
 <script>
-import Api from "@/api/api";
-import { getUserInfo } from "@/utils/cloudfunc/getUserInfo";
+import { getUserInfoSer } from "@/api/api";
+
 import config from "@/config.js";
 var appInst = getApp();
 
@@ -26,8 +26,8 @@ export default {
   // 当小程序启动，或从后台进入前台显示
   onShow() {
     console.log("App onShow OK!");
-    getUserInfo().then(res => {
-      console.log("login Ok!", res);
+    getUserInfoSer().then(res => {
+      console.log("login ok!:", res);
     });
   },
   // 当小程序从前台进入后台
