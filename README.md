@@ -2,9 +2,13 @@
 
 > A Mpvue project
 
+
 ## Build Setup
 
 ``` bash
+# 先下载并安装node
+附地址 http://nodejs.cn/download/ 
+
 # install dependencies
 npm install
 
