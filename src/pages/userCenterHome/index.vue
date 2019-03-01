@@ -81,7 +81,6 @@ export default {
      * @param {Boolean} isjump  是否跳转
      */
     goLoginPage: function(isjump) {
-      console.log(basicInfo.state.userInfo);
       isjump = isjump
         ? isjump
         : !basicInfo.state.userInfo && basicInfo.state.isgetinfo;

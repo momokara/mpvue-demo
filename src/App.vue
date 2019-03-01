@@ -31,9 +31,8 @@ export default {
     });
   },
   // 当小程序从前台进入后台
-  onHide() {},
-  globalData: {
-    userInfo: {}
+  onHide() {
+    console.log("app on hide!")
   }
 };
 </script>

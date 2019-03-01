@@ -22,12 +22,13 @@ exports.main = async (event, context) => {
   let unionid = wxContext.UNIONID;
   let appid = wxContext.APPID;
   let _nTime = new Date().getTime();
+  let token;
   let trywork;
   // 写入错误记录
   try {
     trywork = true;
     if (!wxContext.OPENID) {
-     
+
       await db.collection('error_log').add({
         data: {
           function_name: "getOpenId",
@@ -47,6 +48,16 @@ exports.main = async (event, context) => {
   }
 
   if (event.isEncode) {
+    let data = {
+      appid,
+      openid,
+      unionid,
+      time:_nTime
+    }
+    data = JSON.stringify(data);
+    token = dataCrypt.encrypt(data, key.pubKey);
+    token = token.toString("base64");
+    // token = data;
     // 加密appid
     appid = dataCrypt.encrypt(appid, key.pubKey);
     appid = appid.toString("base64");
@@ -60,6 +71,7 @@ exports.main = async (event, context) => {
   }
   let loginReqid = context.request_id;
   return {
+    token,
     openid,
     unionid,
     appid,
