@@ -46,8 +46,7 @@ export const getUserInfoSer = async (retryTimes) => {
     } else {
       if (res.openid) {
         let commonheader = {
-          appid: res.appid,
-          openid: res.openid
+          token: res.token
         }
         return ajaxAll(url, "GET", {}, commonheader).then(res => {
           let resdata = res.result;
@@ -108,11 +107,9 @@ export const getcommonheader = async () => {
 
 // 解密请求头内的appid 和 openid
 const decryptheader = async () => {
-  let _aid = await decrypt(basicInfo.state.appid);
-  let _oid = await decrypt(basicInfo.state.openid);
+  let token = await decrypt(basicInfo.state.token);
   let decrypt_data = {
-    appid: _aid,
-    openid: _oid
+    token
   }
   console.log("解密结果", decrypt_data);
 }

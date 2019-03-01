@@ -59,22 +59,22 @@ exports.main = async (event, context) => {
     token = token.toString("base64");
     // token = data;
     // 加密appid
-    appid = dataCrypt.encrypt(appid, key.pubKey);
-    appid = appid.toString("base64");
+    // appid = dataCrypt.encrypt(appid, key.pubKey);
+    // appid = appid.toString("base64");
     // 加密openid
     openid = dataCrypt.encrypt(openid, key.pubKey);
     openid = openid.toString("base64");
-    if (unionid) {
-      unionid = dataCrypt.encrypt(unionid, key.pubKey);
-      unionid = unionid.toString("base64");
-    }
+    // if (unionid) {
+    //   unionid = dataCrypt.encrypt(unionid, key.pubKey);
+    //   unionid = unionid.toString("base64");
+    // }
   }
   let loginReqid = context.request_id;
   return {
     token,
     openid,
-    unionid,
-    appid,
+    // unionid,
+    // appid,
     loginReqid,
     time: _nTime
   }
