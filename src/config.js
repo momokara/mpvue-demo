@@ -17,7 +17,7 @@ const config = {
   env: "zhijia-75abfd",
 
   // 登录保持时间 单位秒
-  loginKeepTime: 86400,
+  loginKeepTime: 7200,
 
   // 静态只读数据
   // 基准地址
