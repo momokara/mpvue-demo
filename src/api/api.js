@@ -21,11 +21,24 @@ export const getHomeInfo = async () => {
   let commonheader = await getcommonheader();
   let url = `${config.static_url_basic}${config.static_url_file}/home_data.json`;
   // decryptheader();
-
   return ajaxAll(url, "GET", {}, commonheader).then(res => {
     let resdata = res;
     return resdata;
   })
+}
+
+/**
+ * 获取文章列表
+ * @param {*} id 列表分类id
+ * @param {*} requestType 请求方式 0-(默认值) 请求静态数据地址 1-请求服务器接口
+ */
+export const getArticleList = async (id, requestType) => {
+  let commonheader = await getcommonheader();
+  let urlCos = `${config.static_url_basic}${config.static_url_file}/articlelist/${id}.json`;
+  let urlSer = `${config.host}/articlelist`;
+  if (requestType == 1) {
+
+  }
 }
 
 

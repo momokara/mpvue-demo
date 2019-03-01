@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -97,6 +97,14 @@
 					"id": -1,
 					"name": "动态表单",
 					"pathName": "pages/test/componentsDemo_vue/formTable/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "文章列表",
+					"pathName": "pages/Article/menu/main",
+					"query": "id=1",
 					"scene": null
 				}
 			]

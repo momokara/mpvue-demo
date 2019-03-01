@@ -82,6 +82,13 @@
       ]
     },
     {
+      "root": "pages/Article",
+      "pages": [
+        "menu/main",
+        "detail/main"
+      ]
+    },
+    {
       "root": "pages/user",
       "pages": [
         "editUserInfo/main",
