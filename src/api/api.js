@@ -57,13 +57,7 @@ export const getArticleList = async (data, requestType, retryTimes) => {
         title: '网络异常！',
         icon: 'none'
       });
-      // 自动重试 
-      // if (retryTimes < config.loginRetryTimes - 1) {
-      //   retryTimes++
-      //   await setTimeout(function () {
-      //     return getArticleList(id, 1, retryTimes);
-      //   }, config.loginRetryDelay)
-      // }
+
     })
   } else {
     return new Promise((resolve, reject) => {
@@ -211,9 +205,17 @@ export const ajax = async (url, method, params) => {
  */
 export const getcommonheader = async () => {
   let commonheader = {};
-  if (basicInfo.state.islogin) {
+  if (basicInfo.state.token) {
     commonheader = {
       token: basicInfo.state.token
+    }
+  } else {
+    // 如果本地state中没有token 则重新获取
+    let logindata = await getOpenid().then(res => {
+      return res;
+    });
+    commonheader = {
+      token: logindata.token
     }
   }
   return commonheader

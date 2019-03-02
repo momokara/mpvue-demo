@@ -72,7 +72,7 @@ exports.main = async (event, context) => {
   let loginReqid = context.request_id;
   return {
     token,
-    openid,
+    // openid,
     // unionid,
     // appid,
     loginReqid,

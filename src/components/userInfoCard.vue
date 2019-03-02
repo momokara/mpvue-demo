@@ -8,7 +8,7 @@
       >
     </block>
     <div class="info-box-1 ta-c">
-      <div class="user-name fsp14 fc-semi">{{userInfo.openid?userInfo.userInfo.nickName:"登陆中..."}}
+      <div class="user-name fsp14 fc-semi">{{userInfo.token?userInfo.userInfo.nickName:"登陆中..."}}
         <span v-if="userInfo.realName">
           ({{userInfo.realName}})
         </span>
