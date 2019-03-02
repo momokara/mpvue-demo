@@ -173,7 +173,10 @@ export const isReLogin = () => {
   console.log("config", config.loginKeepTime >= pastTime);
   if (config.loginKeepTime >= pastTime) {
     return openid;
-  } else {
+  } else {  
+    // 移除登录信息
+    wx.removeStorageSync('openid');
+    basicInfo.commit("clean", true);
     return false
   }
 }

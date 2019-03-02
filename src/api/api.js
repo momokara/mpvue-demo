@@ -97,7 +97,7 @@ export const getArticleDetail = async (data, requestType, retryTimes) => {
   let commonheader = await getcommonheader();
   let urlCos = `${config.static_url_basic}${config.static_url_file}/articledetail/${data.id}.json`;
   let urlSer = `${config.host}/content/article/${data.id}`;
-  console.log("getArticleDetail",requestType)
+  console.log("getArticleDetail", requestType)
   if (requestType == 1) {
     return ajaxAll(urlSer, "GET", {}, commonheader).then(res => {
       let resdata = {};
@@ -146,8 +146,8 @@ export const getUserInfoSer = async (retryTimes) => {
   retryTimes = retryTimes | 0;
   let url = `${config.host}/userInfo`;
   return getOpenid().then(async (res) => {
-    console.log("res.islogin", res.islogin)
-    if (res.islogin) {
+    console.log("getOpenid", res);
+    if (res.isgetinfo) {
       return res;
     } else {
       if (res.token) {

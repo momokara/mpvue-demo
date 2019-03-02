@@ -34,7 +34,7 @@ const basicInfo = new Vuex.Store({
           obj[key] = element;
         }
       }
-      if (obj.openid) {
+      if (obj.token) {
         obj.islogin = true
       }
     },
