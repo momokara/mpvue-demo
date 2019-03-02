@@ -4,6 +4,7 @@
       v-for="item in dataList"
       :key="item"
       :item-id="item.id"
+      class="ad-card-cell"
     >
       <a
         @click="golink(item.url)"
@@ -11,9 +12,9 @@
       >
         <van-card
           :thumb="item.imgUrl"
-          height="85px"
+          height="80px"
           imgheight="75px"
-          imgwidth="140px"
+          imgwidth="145px"
         >
           <div
             class="card-title fsp14 fc-black line-clamp_1"
@@ -91,8 +92,7 @@ export default {
     margin-bottom: 5px;
   }
   .van-card__thumb {
-    left: 0px;
-
+    left: 10px;
     image {
       width: 130px; /*px*/
       border-radius: 5px;

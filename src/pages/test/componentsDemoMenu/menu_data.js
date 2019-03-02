@@ -306,7 +306,7 @@ const menuData = {
           title: "upLoad_Images",
           cn_name: "图片上传",
           label: "图片上传组件-vue 组件",
-          url: "/componentsDemo_vue/upLoad_imgs/main"
+          url: "/componentsDemo_vue/upLoadImgs/main"
         },
         {
           title: "formTable",

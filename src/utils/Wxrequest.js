@@ -1,7 +1,8 @@
 /* jshint esversion: 6 */
 
 import {
-  toPromise
+  toPromise,
+  isJsonString
 } from './tools';
 
 /**
@@ -49,9 +50,18 @@ export const ajaxAll = (url, method, params, header) => {
 
   try {
     return ajax(url, method, params, header)
+      .then(res => {
+        let _testdata = typeof (res) == "object" ? JSON.stringify(res) : res;
+        // 只返回json 数据
+        if (isJsonString(_testdata)) {
+          return res;
+        } else {
+          return null;
+        }
+      })
       // 错误则调取云函数
       .catch(err => {
-        console.log("getHomecatch", err);
+        console.log("ajaxAll request error", err);
         if (method == 'GET' || method == 'get') {
           let _params = ''
           if (params) {
@@ -70,7 +80,10 @@ export const ajaxAll = (url, method, params, header) => {
             header: header
           }
         }).then(res => {
-          let resdata = res.result;
+          let resdata = {};
+          if (res) {
+            resdata = res.result;
+          }
           resdata.type = "cloudfunc"
           return resdata;
         })

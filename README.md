@@ -21,6 +21,9 @@ npm install -d sass-loader
 ## 小程序sdk
 npm install -d wafer2-client-sdk
 
+## mpvue-wxparse
+npm install -d mpvue-wxparse
+
 # serve with hot reload at localhost:8080
 npm run dev
 

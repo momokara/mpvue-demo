@@ -1,5 +1,8 @@
 {
   "cloud": true,
+  "networkTimeout": {
+    "request": 6000
+  },
   "pages": [
     "pages/home/main",
     "pages/testApiHome/main",

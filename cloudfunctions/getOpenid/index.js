@@ -1,8 +1,8 @@
 // 云函数模板
 // 部署：在 cloud-functions/login 文件夹右击选择 “上传并部署”
 
-const cloud = require('wx-server-sdk')
-const dataCrypt = require('./dataCrypt')
+const cloud = require('wx-server-sdk');
+const dataCrypt = require('./dataCrypt');
 const key = require('./key');
 // 初始化 cloud
 cloud.init()
