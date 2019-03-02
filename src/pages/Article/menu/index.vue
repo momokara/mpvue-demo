@@ -117,6 +117,9 @@ export default {
     pagelogs();
     this.getPageData(true);
   },
+  onHide() {
+    pagelogs(true);
+  },
   // 监听用户下拉动作
   onPullDownRefresh() {
     this.getPageData(true);

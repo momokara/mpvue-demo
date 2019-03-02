@@ -86,6 +86,9 @@ export default {
   onShow() {
     pagelogs();
     this.getHomeInfo();
+  },
+  onHide() {
+    pagelogs(true);
   }
 };
 </script>

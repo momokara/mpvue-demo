@@ -10,7 +10,7 @@
       @preview="preview"
       @navigate="navigate"
     ></wxParse>
-     <div class="fsp12">阅读次数:{{pagedata.viewtimes}}</div>
+    <div class="fsp12">阅读次数:{{pagedata.viewtimes}}</div>
   </div>
 </template>
 <script>
@@ -61,9 +61,9 @@ export default {
     pagelogs();
     this.getPageData();
   },
-
-  // 监听页面卸载
-  onUnload() {},
+  onHide() {
+    pagelogs(true);
+  },
   // 监听用户下拉动作
   onPullDownRefresh() {},
 

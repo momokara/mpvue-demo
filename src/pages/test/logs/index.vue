@@ -38,6 +38,9 @@ export default {
       return log;
     });
     pagelogs();
+  },
+  onHide() {
+    pagelogs(true);
   }
 };
 </script>

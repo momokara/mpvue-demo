@@ -73,6 +73,9 @@ export default {
   // 监听页面显示
   onShow() {
     pagelogs();
+  },
+  onHide() {
+    pagelogs(true);
   }
 };
 </script>

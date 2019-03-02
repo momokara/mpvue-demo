@@ -44,6 +44,9 @@ export default {
   created() {},
   onShow() {
     pagelogs();
+  },
+  onHide() {
+    pagelogs(true);
   }
 };
 </script>

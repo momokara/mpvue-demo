@@ -158,6 +158,9 @@ export default {
     this.storageData = this.getstorageData();
     this.storageDataDetail = this.getstorageDataDetail();
     pagelogs();
+  },
+  onHide() {
+    pagelogs(true);
   }
 };
 </script>

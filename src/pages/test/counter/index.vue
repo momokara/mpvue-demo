@@ -30,6 +30,9 @@ export default {
   },
   onShow() {
     pagelogs();
+  },
+  onHide() {
+    pagelogs(true);
   }
 };
 </script>

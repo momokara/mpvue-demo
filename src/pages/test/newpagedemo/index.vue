@@ -82,6 +82,7 @@ export default {
   // 监听页面隐藏
   onHide() {
     console.log("demopage-onHide", this.msg);
+    pagelogs(true);
   },
   // 监听页面卸载
   onUnload() {

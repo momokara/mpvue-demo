@@ -129,8 +129,10 @@ export default {
   },
   onShow() {
     this.tapcleanTimes = 0;
-
     pagelogs();
+  },
+  onHide() {
+    pagelogs(true);
   }
 };
 </script>

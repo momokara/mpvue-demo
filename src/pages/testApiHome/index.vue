@@ -135,26 +135,28 @@ export default {
       // console.log(this.testdata);
       // let testdata = JSON.parse(this.testdata);
       // console.log(testdata);
-      ajax(this.testurl, this.testreqtype).then(res => {
-        console.log(res);
-        dialog
-          .alert({
-            title: "返回结果",
-            message: JSON.stringify(res)
-          })
-          .then(() => {
-            // on close
-          });
-      }).catch(err=>{
-        dialog
-          .alert({
-            title: "返回结果",
-            message: JSON.stringify(err)
-          })
-          .then(() => {
-            // on close
-          });
-      });
+      ajax(this.testurl, this.testreqtype)
+        .then(res => {
+          console.log(res);
+          dialog
+            .alert({
+              title: "返回结果",
+              message: JSON.stringify(res)
+            })
+            .then(() => {
+              // on close
+            });
+        })
+        .catch(err => {
+          dialog
+            .alert({
+              title: "返回结果",
+              message: JSON.stringify(err)
+            })
+            .then(() => {
+              // on close
+            });
+        });
     },
     reqTypeChange: function(e) {
       this.testreqtype = e.mp.detail;
@@ -178,6 +180,9 @@ export default {
   onShow() {
     this.isTestEnv = process.env.NODE_ENV !== "production";
     pagelogs();
+  },
+  onHide() {
+    pagelogs(true);
   }
 };
 </script>
