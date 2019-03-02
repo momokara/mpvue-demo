@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-    <div class="title">{{pagedata.name}}</div>
-    <div class="fsp12">
-      <span>{{pagedata.author}}</span>
-      <span>{{pagedata.creatTime}}</span>
+    <div class="fsp20 fc-black header-title">{{pagedata.name}}</div>
+    <div class="fsp12 header-info">
+      <span class="author fc-semi">{{pagedata.author}}</span>
+      <span class="fc-grey">{{pagedata.creatTime}}</span>
     </div>
     <wxParse
       :content="pagedata.data"
       @preview="preview"
       @navigate="navigate"
     ></wxParse>
-    <div class="fsp12">阅读次数:{{pagedata.viewtimes}}</div>
+    <div class="fsp12 fc-grey footer">阅读次数:{{pagedata.viewtimes}}</div>
   </div>
 </template>
 <script>
@@ -42,7 +42,7 @@ export default {
     },
     getPageData(pageconfig) {
       let _this = this;
-      getArticleDetail(_this.pageconfig, 1)
+      getArticleDetail(_this.pageconfig, 0)
         .then(res => {
           _this.pagedata = res;
         })
@@ -75,4 +75,16 @@ export default {
 
 <style lang="scss">
 @import url("~mpvue-wxparse/src/wxParse.css");
+.container {
+  padding: 15px;
+  .header-info{
+    margin: 10px auto;
+    .author{
+      margin-right: 15px;
+    }
+  }
+  .footer{
+    margin: 10px auto;
+  }
+}
 </style>

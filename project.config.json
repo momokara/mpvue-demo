@@ -33,13 +33,14 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "组件列表",
 					"pathName": "pages/test/componentsDemoMenu/main",
-					"query": ""
+					"query": "test=test1",
+					"scene": null
 				},
 				{
 					"id": 1,
