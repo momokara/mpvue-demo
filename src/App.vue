@@ -22,13 +22,17 @@ export default {
     );
   },
   // 初始化
-  onLaunch() {},
+  onLaunch() {
+    
+  
+  },
   // 当小程序启动，或从后台进入前台显示
   onShow() {
     console.log("App onShow OK!");
     getUserInfoSer().then(res => {
       console.log("login ok!:", res);
     });
+   
   },
   // 当小程序从前台进入后台
   onHide() {

@@ -11,7 +11,7 @@ const config = {
   host: "http://192.168.1.135:80",
 
   // 云函数配置
-  // 云函数环境id-开发
+  // 云函数环境id-开发 
   dev_env: "zhijia-75abfd",
   // 云函数环境id-生产
   env: "zhijia-75abfd",

@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-    <div class="fsp20 fc-black header-title">{{pagedata.name}}</div>
+    <div class="fsp20 fc-black header-title">{{data.name}}</div>
     <div class="fsp12 header-info">
-      <span class="author fc-semi">{{pagedata.author}}</span>
-      <span class="fc-grey">{{pagedata.creatTime}}</span>
+      <span class="author fc-semi">{{data.author}}</span>
+      <span class="fc-grey">{{data.creatTime}}</span>
     </div>
     <wxParse
-      :content="pagedata.data"
+      :content="data.data"
       @preview="preview"
       @navigate="navigate"
     ></wxParse>
-    <div class="fsp12 fc-grey footer">阅读次数:{{pagedata.viewtimes}}</div>
+    <div class="fsp12 fc-grey footer">阅读次数:{{data.viewtimes}}</div>
   </div>
 </template>
 <script>
@@ -24,7 +24,7 @@ export default {
       pageconfig: {
         id: ""
       },
-      pagedata: {}
+      data: {}
     };
   },
   // 使用的 vue 组件
@@ -44,7 +44,7 @@ export default {
       let _this = this;
       getArticleDetail(_this.pageconfig, 0)
         .then(res => {
-          _this.pagedata = res;
+          _this.data = res;
         })
         .catch(err => {
           console.log("getPageDataerr", err);

@@ -1,41 +1,51 @@
 <template>
   <!-- 首页顶部轮播 -->
-  <swiper
-    class="swiper"
-    :class="customClass"
-    :indicator-dots="useConfig.indicatorDots"
-    :indicator-color="useConfig.indicatorColor"
-    :indicator-active-color="useConfig.indicatorActiveColor"
-    :autoplay="useConfig.autoplay"
-    :interval="useConfig.interval"
-    :duration="useConfig.duration"
-    :circular="true"
-    :vertical="useConfig.vertical"
-    :previous-margin="useConfig.previousMargin"
-    :next-margin="useConfig.nextMargin"
-    :displayMultipleItems="useConfig.displayMultipleItems"
-    :current="current"
-    :current-item-id="currentItemId"
-    @change="swiperChange"
-    @animationfinish="animationFinish"
-  >
-    <swiper-item
-      v-for="item in swiperList"
-      :key="item"
-      :item-id="item.id"
+  <div class="contant">
+    <swiper
+      v-if="swiperList"
+      class="swiper"
+      :class="customClass"
+      :indicator-dots="useConfig.indicatorDots"
+      :indicator-color="useConfig.indicatorColor"
+      :indicator-active-color="useConfig.indicatorActiveColor"
+      :autoplay="useConfig.autoplay"
+      :interval="useConfig.interval"
+      :duration="useConfig.duration"
+      :circular="true"
+      :vertical="useConfig.vertical"
+      :previous-margin="useConfig.previousMargin"
+      :next-margin="useConfig.nextMargin"
+      :displayMultipleItems="useConfig.displayMultipleItems"
+      :current="current"
+      :current-item-id="currentItemId"
+      @change="swiperChange"
+      @animationfinish="animationFinish"
     >
-      <a
-        @click="golink(item.url)"
-        class="link"
+      <swiper-item
+        v-for="item in swiperList"
+        :key="item"
+        :item-id="item.id"
       >
-        <img
-          :src="item.imgUrl"
-          mode="scaleToFill"
-          class="slide-image"
-        />
-      </a>
-    </swiper-item>
-  </swiper>
+        <a
+          @click="golink(item.url)"
+          class="link"
+        >
+          <img
+            :src="item.imgUrl"
+            mode="scaleToFill"
+            class="slide-image"
+          />
+        </a>
+      </swiper-item>
+    </swiper>
+    <div
+      v-else
+      class="swiper no-data-box"
+    >
+      <div class="link">nodata</div>
+
+    </div>
+  </div>
 
 </template>
 
@@ -105,6 +115,10 @@ export default {
 </script>
 
 <style lang="scss">
+.contant {
+  width: 100%;
+  height: 100%;
+}
 .swiper {
   width: 100%;
   height: 100%;

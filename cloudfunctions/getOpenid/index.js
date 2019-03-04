@@ -15,7 +15,7 @@ const db = cloud.database({
  * event 参数包含小程序端调用传入的 data
  * 
  */
-exports.main = async (event, context) => {
+exports.main = async(event, context) => {
   // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）
   const wxContext = await cloud.getWXContext()
   let openid = wxContext.OPENID;
@@ -52,9 +52,11 @@ exports.main = async (event, context) => {
       appid,
       openid,
       unionid,
-      time:_nTime
+      time: _nTime
     }
+
     data = JSON.stringify(data);
+    console.log(data, data.length);
     token = dataCrypt.encrypt(data, key.pubKey);
     token = token.toString("base64");
     // token = data;
@@ -69,6 +71,7 @@ exports.main = async (event, context) => {
     //   unionid = unionid.toString("base64");
     // }
   }
+
   let loginReqid = context.request_id;
   return {
     token,

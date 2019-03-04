@@ -25,7 +25,7 @@ export const getHomeInfo = async () => {
   let url = `${config.static_url_basic}${config.static_url_file}/home_data.json`;
   // decryptheader();
   return ajaxAll(url, "GET", {}, commonheader).then(res => {
-    let resdata = res;
+    // let resdata = res;
     return resdata;
   })
 }
@@ -91,7 +91,6 @@ export const getArticleDetail = async (data, requestType, retryTimes) => {
   let commonheader = await getcommonheader();
   let urlCos = `${config.static_url_basic}${config.static_url_file}/articledetail/${data.id}.json`;
   let urlSer = `${config.host}/content/article/${data.id}`;
-  console.log("getArticleDetail", requestType)
   if (requestType == 1) {
     return ajaxAll(urlSer, "GET", {}, commonheader).then(res => {
       let resdata = {};
