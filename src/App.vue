@@ -1,5 +1,6 @@
 <script>
 import { getUserInfoSer } from "@/api/api";
+import { checkIsForbidden } from "@/api/dataTools";
 
 import config from "@/config.js";
 var appInst = getApp();
@@ -22,21 +23,18 @@ export default {
     );
   },
   // 初始化
-  onLaunch() {
-    
-  
-  },
+  onLaunch() {},
   // 当小程序启动，或从后台进入前台显示
   onShow() {
     console.log("App onShow OK!");
+    checkIsForbidden();
     getUserInfoSer().then(res => {
       console.log("login ok!:", res);
     });
-   
   },
   // 当小程序从前台进入后台
   onHide() {
-    console.log("app on hide!")
+    console.log("app on hide!");
   }
 };
 </script>
@@ -56,6 +54,7 @@ $fs-11: 11pt;
 $fsp-32: 32px;
 $fsp-24: 24px;
 $fsp-20: 20px;
+$fsp-18: 18px;
 $fsp-16: 16px;
 $fsp-14: 14px;
 $fsp-12: 12px;
@@ -106,6 +105,9 @@ $opacity-disable: 10%;
 .fsp20 {
   font-size: $fsp-20; /*px*/
 }
+.fsp18 {
+  font-size: $fsp-18; /*px*/
+}
 .fsp16 {
   font-size: $fsp-16; /*px*/
 }
@@ -118,6 +120,9 @@ $opacity-disable: 10%;
 }
 .fc-black {
   color: $fc-black;
+}
+.fc-fff{
+  color: #fff;
 }
 .fc-semi {
   color: $fc-semi;

@@ -32,7 +32,7 @@ export default {
 
   onShow() {
     const logs = wx.getStorageSync("logs") || [];
-    console.log(logs);
+    console.table(logs);
     this.logs = logs.map(log => {
       log.time = formatTime(new Date(log.time));
       return log;

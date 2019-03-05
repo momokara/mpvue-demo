@@ -20,7 +20,6 @@
       "root": "pages/test",
       "pages": [
         "counter/main",
-        "logs/main",
 
         "componentsDemoMenu/main",
 
@@ -82,6 +81,7 @@
     {
       "root": "pages/mockExam",
       "pages": [
+        "examHome/main",
         "qlist/main"
       ]
     },
@@ -96,7 +96,9 @@
       "root": "pages/user",
       "pages": [
         "editUserInfo/main",
-        "watchData/main"
+        "watchData/main",
+        "logs/main",
+        "forbidden/main"
       ]
     }
   ],
@@ -110,6 +112,12 @@
         "iconPath": "static/images/icon/home.png",
         "selectedIconPath": "static/images/icon/home1.png",
         "text": "首页"
+      },
+      {
+        "pagePath": "pages/mockExamHome/main",
+        "iconPath": "static/images/icon/car.png",
+        "selectedIconPath": "static/images/icon/car1.png",
+        "text": "学车"
       },
       {
         "pagePath": "pages/userCenterHome/main",

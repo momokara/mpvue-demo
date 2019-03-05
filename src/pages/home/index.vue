@@ -1,15 +1,13 @@
 <template>
   <div class="home-container">
     <!-- 顶部轮播 -->
-    <div class="header-swiper-box">
-      <headerSwiper
-        :swiperList="swiper.data"
-        :config="swiper.config"
-        @change="swiperChange"
-        @animationfinish="swiperChange"
-      >
-      </headerSwiper>
-    </div>
+    <headerSwiper
+      :swiperList="swiper.data"
+      :config="swiper.config"
+      @change="swiperChange"
+      @animationfinish="swiperChange"
+    >
+    </headerSwiper>
     <!-- 导航栏 -->
     <div class="header-nav-box">
       <homeNav
@@ -100,19 +98,6 @@ export default {
   border-radius: 16px;
   padding: 10px;
   background-color: #fff;
-}
-.header-swiper-box {
-  height: 200px;
-  margin: 12px auto;
-  width: 375px;
-  .swiper {
-    .link {
-      width: 350px;
-      margin: auto;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-  }
 }
 .header-nav-box {
   @include main-box;

@@ -25,7 +25,7 @@ export const getHomeInfo = async () => {
   let url = `${config.static_url_basic}${config.static_url_file}/home_data.json`;
   // decryptheader();
   return ajaxAll(url, "GET", {}, commonheader).then(res => {
-    // let resdata = res;
+    let resdata = res;
     return resdata;
   })
 }
@@ -40,8 +40,10 @@ export const getHomeInfo = async () => {
 export const getArticleList = async (data, requestType, retryTimes) => {
   retryTimes = retryTimes | 0;
   let commonheader = await getcommonheader();
+  // 请求地址
   let urlCos = `${config.static_url_basic}${config.static_url_file}/articlelist/${data.id}/${data.page}.json`;
   let urlSer = `${config.host}/content/article/list`;
+  
   if (requestType == 1) {
     return ajaxAll(urlSer, "POST", data, commonheader).then(res => {
       let resdata = {};

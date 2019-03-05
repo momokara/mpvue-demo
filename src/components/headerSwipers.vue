@@ -1,6 +1,6 @@
 <template>
   <!-- 首页顶部轮播 -->
-  <div class="contant">
+  <div class="header-swiper-box">
     <swiper
       v-if="swiperList"
       class="swiper"
@@ -42,7 +42,7 @@
       v-else
       class="swiper no-data-box"
     >
-      <div class="link">nodata</div>
+      <div class="link"></div>
 
     </div>
   </div>
@@ -115,17 +115,31 @@ export default {
 </script>
 
 <style lang="scss">
-.contant {
-  width: 100%;
-  height: 100%;
+.header-swiper-box {
+  height: 200px;
+  margin: 12px auto;
+  width: 375px;
+  .swiper {
+    .link {
+      width: 350px;
+      margin: auto;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  }
 }
 .swiper {
   width: 100%;
   height: 100%;
-  a,
+  .link,
   .slide-image {
     height: 100%;
     width: 100%;
+  }
+}
+.no-data-box{
+  .link{
+    background-color: #fff;
   }
 }
 </style>

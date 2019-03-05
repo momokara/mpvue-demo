@@ -16,7 +16,7 @@
       <van-cell
         is-link
         title="Logs"
-        url="/pages/test/logs/main"
+        url="/pages/user/logs/main"
       />
       <van-cell
         is-link

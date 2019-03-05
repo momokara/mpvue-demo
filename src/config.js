@@ -28,6 +28,7 @@ const config = {
   // 文件上传cos配置
   // 临时授权请求地址
   serverPrefix: 'https://www.momokara.cc/sts/',
+
   // 腾讯云cos上的bucket名字
   Bucket: 'hh-image-small-1254083899',
   // 腾讯云cos上的Region名字 
@@ -35,7 +36,9 @@ const config = {
 
   // 一些默认信息
   defaultData: {
-    headerImg: "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/default_header_img.png"
+    // 默认头像
+    headerImg: "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/default_header_img.png",
+    icon:"https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/default_icon.png"
   }
 
 };

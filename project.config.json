@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": false,
 		"minified": true,
@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 10,
 			"list": [
 				{
 					"id": 0,
@@ -55,10 +55,11 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "个人中心",
 					"pathName": "pages/userCenterHome/main",
-					"query": ""
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": -1,
@@ -92,6 +93,19 @@
 					"name": "文章详情",
 					"pathName": "pages/Article/detail/main",
 					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "学车",
+					"pathName": "pages/mockExamHome/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "笔试首页",
+					"pathName": "pages/mockExam/examHome/main",
 					"scene": null
 				}
 			]
