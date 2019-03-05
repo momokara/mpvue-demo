@@ -34,7 +34,7 @@
   </div>
 </template>
 <script>
-import basicInfo from "../../store/basicInfo.js";
+import basicInfo from "@/store/basicInfo.js";
 import userInfoCard from "@/components/userInfoCard";
 import { reLogin } from "@/api/dataTools";
 import { golink } from "@/utils/tools";

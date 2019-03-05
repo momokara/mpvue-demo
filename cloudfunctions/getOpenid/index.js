@@ -51,7 +51,7 @@ exports.main = async(event, context) => {
     let data = {
       appid,
       openid,
-      unionid,
+      // unionid,
       time: _nTime
     }
 
