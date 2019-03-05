@@ -27,5 +27,5 @@ export const pagelogs = (isleave) => {
 }
 
 module.export = {
-  pagelogs,
+  pagelogs
 };
