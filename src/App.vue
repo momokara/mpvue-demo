@@ -1,5 +1,6 @@
 <script>
 import { getUserInfoSer } from "@/api/api";
+import { getUserInfo } from "@/utils/cloudfunc/getUserInfo";
 import { checkIsForbidden } from "@/api/dataTools";
 
 import config from "@/config.js";
@@ -35,6 +36,9 @@ export default {
   // 当小程序从前台进入后台
   onHide() {
     console.log("app on hide!");
+  },
+  onError(err) {
+    console.log("err", err);
   }
 };
 </script>
@@ -121,7 +125,7 @@ $opacity-disable: 10%;
 .fc-black {
   color: $fc-black;
 }
-.fc-fff{
+.fc-fff {
   color: #fff;
 }
 .fc-semi {

@@ -6,7 +6,7 @@ const config = {
   loginRetryTimes: 3,
   // 登录重试延迟 单位ms
   loginRetryDelay: 500,
-  
+
   // 访问基本地址
   host: "http://192.168.1.135:80",
 
@@ -38,7 +38,9 @@ const config = {
   defaultData: {
     // 默认头像
     headerImg: "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/default_header_img.png",
-    icon:"https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/default_icon.png"
+    icon: "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/default_icon.png",
+    questionType: "c1",
+    qusetionSubject: 1
   }
 
 };

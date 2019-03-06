@@ -4,7 +4,9 @@ import {
   toPromise,
   isJsonString
 } from './tools';
-
+import {
+  errlogs
+} from './logs';
 /**
  * 发送ajax 请求
  * @param {String} url    请求的地址
@@ -62,6 +64,7 @@ export const ajaxAll = (url, method, params, header) => {
       // 错误则调取云函数
       .catch(err => {
         console.log("ajaxAll request error", err);
+        errlogs(url, method, params, header, err);
         if (method == 'GET' || method == 'get') {
           let _params = ''
           if (params) {

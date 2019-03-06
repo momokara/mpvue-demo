@@ -77,6 +77,7 @@
 </template>
 <script>
 import basicInfo from "@/store/basicInfo.js";
+import qusetionData from "@/store/questionData.js";
 import { golink } from "@/utils/tools";
 
 // 页面记录
@@ -161,6 +162,8 @@ export default {
   // 监听页面显示
   onShow() {
     pagelogs();
+    console.log(qusetionData.state)
+    qusetionData.commit("clean")
   },
 
   // 监听页面隐藏

@@ -25,6 +25,9 @@
 <script>
 import headerSwiper from "@/components/headerSwipers";
 import examHomeNav from "@/components/exam/examHomeNav";
+
+// 页面记录
+import { pagelogs } from "@/utils/logs";
 export default {
   data() {
     return {
@@ -60,7 +63,14 @@ export default {
   created() {},
 
   // 监听页面显示
-  onShow() {}
+  onShow() {
+    pagelogs();
+  },
+
+  // 监听页面隐藏
+  onHide() {
+    pagelogs(true);
+  }
 };
 </script>
 

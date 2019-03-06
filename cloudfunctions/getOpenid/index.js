@@ -18,6 +18,7 @@ const db = cloud.database({
 exports.main = async(event, context) => {
   // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）
   const wxContext = await cloud.getWXContext()
+  console.log(wxContext);
   let openid = wxContext.OPENID;
   let unionid = wxContext.UNIONID;
   let appid = wxContext.APPID;
@@ -49,10 +50,10 @@ exports.main = async(event, context) => {
 
   if (event.isEncode) {
     let data = {
-      appid,
-      openid,
-      // unionid,
-      time: _nTime
+      a:appid,
+      o:openid,
+      u:unionid,
+      t: _nTime
     }
 
     data = JSON.stringify(data);
@@ -60,24 +61,16 @@ exports.main = async(event, context) => {
     token = dataCrypt.encrypt(data, key.pubKey);
     token = token.toString("base64");
     // token = data;
-    // 加密appid
-    // appid = dataCrypt.encrypt(appid, key.pubKey);
-    // appid = appid.toString("base64");
+
     // 加密openid
-    openid = dataCrypt.encrypt(openid, key.pubKey);
-    openid = openid.toString("base64");
-    // if (unionid) {
-    //   unionid = dataCrypt.encrypt(unionid, key.pubKey);
-    //   unionid = unionid.toString("base64");
-    // }
+    openid = "";
+
   }
 
   let loginReqid = context.request_id;
   return {
     token,
-    // openid,
-    // unionid,
-    // appid,
+    openid,
     loginReqid,
     time: _nTime
   }

@@ -130,6 +130,7 @@ export const saveUserInfo = (data) => {
 /**
  * 解密用户信息
  * @param {Object} data 解密需要的信息 
+ * data.code 
  * data.encryptedData 接口获取的加密信息，
  * data.iv 接口解密向量
  * @return {Object} 解密后的结果

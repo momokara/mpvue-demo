@@ -102,7 +102,7 @@
   </div>
 </template>
 <script>
-import basicInfo from "../../../store/basicInfo.js";
+import basicInfo from "@/store/basicInfo.js";
 import { upLoadFile } from "@/utils/cos/cosfunc";
 import { saveUserInfo, deCrypt } from "@/utils/cloudfunc/getUserInfo";
 import { saveEditUser } from "@/api/api";
@@ -184,6 +184,7 @@ export default {
     getPhoneNumber: function(e) {
       let _this = this;
       if (e.mp.detail.encryptedData) {
+        console.log(e.mp.detail)
         // 解密信息
         deCrypt(e.mp.detail).then(res => {
           console.log("用户同意 getPhoneNumber:", res);

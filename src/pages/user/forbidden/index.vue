@@ -8,17 +8,13 @@
         srcset=""
       >
     </div>
-
     <div
       id="msg"
       class="ta-c fsp14 fc-grey "
     >{{msg}}</div>
-
   </div>
 </template>
 <script>
-import demoBlock from "@/components/demoBlock";
-
 // 页面记录
 import { pagelogs } from "@/utils/logs";
 export default {
@@ -28,20 +24,15 @@ export default {
     };
   },
   // 使用的 vue 组件
-  components: {
-    demoBlock
-  },
+  components: {},
 
   // 页面中的方法
   methods: {},
   // VUE 钩子 常用
 
-  onLoad() {
-    console.log("demopage-onLoad", this.msg);
-  },
+  onLoad() {},
   // 监听页面显示
   onShow() {
-    console.log("demopage-onShow", this.msg);
     pagelogs();
   }
 };
