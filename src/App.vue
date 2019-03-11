@@ -24,7 +24,9 @@ export default {
     );
   },
   // 初始化
-  onLaunch() {},
+  onLaunch(options) {
+    console.log("启动参数：",options);
+  },
   // 当小程序启动，或从后台进入前台显示
   onShow() {
     console.log("App onShow OK!");

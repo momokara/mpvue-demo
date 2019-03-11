@@ -7,9 +7,7 @@ import config from '@/config.js'
 export const getOpenid = () => {
   return new Promise((resolve, reject) => {
     if (wx.cloud) {
-      wx.cloud.init({
-        traceUser: true
-      });
+     
       let openid = isReLogin();
       if (!openid) {
         // 获取的权限
@@ -27,6 +25,7 @@ export const getOpenid = () => {
             isEncode: true
           },
         }).then(res => {
+          console.log("loginres", res);
           let _data = res.result;
           wx.setStorageSync('openid', _data);
           basicInfo.commit('updataByKey', _data);
@@ -54,9 +53,7 @@ export const getOpenid = () => {
 export const getUserInfo = () => {
   return new Promise((resolve, reject) => {
     if (wx.cloud) {
-      wx.cloud.init({
-        traceUser: true
-      });
+     
       let openid = isReLogin();
       if (!openid) {
         // 当前获取的权限
@@ -174,7 +171,7 @@ export const isReLogin = () => {
   console.log("config", config.loginKeepTime >= pastTime);
   if (config.loginKeepTime >= pastTime) {
     return openid;
-  } else {  
+  } else {
     // 移除登录信息
     wx.removeStorageSync('openid');
     basicInfo.commit("clean", true);

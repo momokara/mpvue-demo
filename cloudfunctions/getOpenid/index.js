@@ -63,7 +63,7 @@ exports.main = async(event, context) => {
     // token = data;
 
     // 加密openid
-    openid = "";
+    openid = undefined;
 
   }
 
