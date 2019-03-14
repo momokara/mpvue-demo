@@ -31,7 +31,37 @@ import { pagelogs } from "@/utils/logs";
 export default {
   data() {
     return {
-      swiper: {},
+      swiper: {
+        config: {
+          indicatorDots: true,
+          indicatorColor: "rgba(0, 0, 0, .6)",
+          indicatorActiveColor: "rgba(0, 0, 0, .6)",
+          autoplay: true,
+          interval: 3000,
+          duration: 500,
+          vertical: false
+        },
+        data: [
+          {
+            id: "XXX1",
+            url: "#",
+            imgUrl:
+              "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/test_img.jpg"
+          },
+          {
+            id: "XXX1",
+            url: "#",
+            imgUrl:
+              "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/test_img.jpg"
+          },
+          {
+            id: "XXX1",
+            url: "#",
+            imgUrl:
+              "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/test_img.jpg"
+          }
+        ]
+      },
       nav: [
         {
           imgUrl:
@@ -41,6 +71,13 @@ export default {
           info: "题库齐全解释准确"
         },
         {
+          imgUrl:
+            "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/images/%E9%A2%84%E7%BA%A6%E5%AD%A6%E8%BD%A6.png",
+          url: "",
+          name: "预约练车",
+          info: "在线预约自由练车"
+        },
+          {
           imgUrl:
             "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/images/%E9%A2%84%E7%BA%A6%E5%AD%A6%E8%BD%A6.png",
           url: "",

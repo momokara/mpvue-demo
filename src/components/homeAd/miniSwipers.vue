@@ -12,7 +12,7 @@
       :autoplay="useConfig.autoplay"
       :interval="useConfig.interval"
       :duration="useConfig.duration"
-      :circular="true"
+      :circular="useConfig.circular"
       :vertical="useConfig.vertical"
       :previous-margin="useConfig.previousMargin"
       :next-margin="useConfig.nextMargin"
