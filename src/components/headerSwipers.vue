@@ -16,8 +16,6 @@
       :previous-margin="useConfig.previousMargin"
       :next-margin="useConfig.nextMargin"
       :displayMultipleItems="useConfig.displayMultipleItems"
-      :current="current"
-      :current-item-id="currentItemId"
       @change="swiperChange"
       @animationfinish="animationFinish"
     >

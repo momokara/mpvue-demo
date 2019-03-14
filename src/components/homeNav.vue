@@ -25,7 +25,8 @@
               :src="item.imgUrl"
             >
           </div>
-          {{item.name}}
+          <span class="icon_name line-clamp_1">{{item.name}}</span>
+
         </van-tabbar-item>
       </div>
 
@@ -81,6 +82,10 @@ export default {
   .nav-icon {
     width: 60px;
     height: 60px;
+  }
+  .icon_name {
+    width: 100%;
+    overflow: hidden;
   }
 }
 </style>

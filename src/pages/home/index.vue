@@ -77,16 +77,21 @@ export default {
             title: res.pagetitle
           });
         }
+
+        wx.stopPullDownRefresh();
       });
     }
   },
-  onLoad() {},
   onShow() {
     pagelogs();
     this.getHomeInfo();
   },
   onHide() {
     pagelogs(true);
+  },
+
+  onPullDownRefresh() {
+    this.getHomeInfo();
   }
 };
 </script>

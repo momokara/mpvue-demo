@@ -91,7 +91,8 @@ export default {
         _this.isend = false;
       }
       if (!_this.isend) {
-        let reqtype = _this.pageconfig.keyword ? 1 : 0;
+        // let reqtype = _this.pageconfig.keyword ? 1 : 0;
+        let reqtype = 1;
         getArticleList(_this.pageconfig, reqtype).then(res => {
           console.log("getArticleList res", res);
           if (res) {

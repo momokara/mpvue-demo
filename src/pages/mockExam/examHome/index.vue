@@ -48,6 +48,7 @@
               title="我的题库"
               value="内容"
               is-link
+              @click="golink('pages/mockExam/selectClass/main')"
             />
           </div>
         </div>
@@ -78,7 +79,8 @@
 <script>
 import basicInfo from "@/store/basicInfo.js";
 import qusetionData from "@/store/questionData.js";
-import { golink } from "@/utils/tools";
+import { golink, showModal } from "@/utils/tools";
+import { getHomeInfo } from "@/api/api.exam";
 
 // 页面记录
 import { pagelogs } from "@/utils/logs";
@@ -162,8 +164,9 @@ export default {
   // 监听页面显示
   onShow() {
     pagelogs();
-    console.log(qusetionData.state)
-    qusetionData.commit("clean")
+    console.log(qusetionData.state);
+    qusetionData.commit("clean");
+
   },
 
   // 监听页面隐藏

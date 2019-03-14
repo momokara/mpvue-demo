@@ -42,7 +42,7 @@ export default {
     },
     getPageData(pageconfig) {
       let _this = this;
-      getArticleDetail(_this.pageconfig, 0)
+      getArticleDetail(_this.pageconfig, 1)
         .then(res => {
           _this.data = res;
         })

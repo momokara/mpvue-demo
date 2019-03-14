@@ -3,7 +3,7 @@
 import {
   ajaxAll
 } from "@/utils/Wxrequest";
-import basicInfo from "../store/basicInfo.js";
+import basicInfo from "@/store/basicInfo.js";
 import {
   decrypt
 } from "@/utils/cloudfunc/crypt";
@@ -22,10 +22,24 @@ import config from '@/config.js'
  */
 export const getHomeInfo = async () => {
   let commonheader = await getcommonheader();
-  let url = `${config.static_url_basic}${config.static_url_file}/home_data.json`;
+  // let url = `${config.static_url_basic}${config.static_url_file}/home_data.json`;
+  let url = `${config.host}/home_data/1`;
   // decryptheader();
   return ajaxAll(url, "GET", {}, commonheader).then(res => {
     let resdata = res;
+    return resdata;
+  })
+}
+
+/**
+ * 获取学车首页信息
+ * @return {Promise} 返回结果
+ */
+export const getLearnHomeInfo = async () => {
+  let commonheader = await getcommonheader();
+  let url = `${config.host}/lean/home`;
+  return ajaxAll(url, "GET", {}, commonheader).then(res => {
+    let resdata = res.result;
     return resdata;
   })
 }
@@ -42,7 +56,7 @@ export const getArticleList = async (data, requestType, retryTimes) => {
   let commonheader = await getcommonheader();
   // 请求地址
   let urlCos = `${config.static_url_basic}${config.static_url_file}/articlelist/${data.id}/${data.page}.json`;
-  let urlSer = `${config.host}/content/article/list`;
+  let urlSer = `${config.host}/content/article/list/${data.id}`;
   
   if (requestType == 1) {
     return ajaxAll(urlSer, "POST", data, commonheader).then(res => {
@@ -92,7 +106,7 @@ export const getArticleDetail = async (data, requestType, retryTimes) => {
   retryTimes = retryTimes | 0;
   let commonheader = await getcommonheader();
   let urlCos = `${config.static_url_basic}${config.static_url_file}/articledetail/${data.id}.json`;
-  let urlSer = `${config.host}/content/article/${data.id}`;
+  let urlSer = `${config.host}/content/article/detail/${data.id}`;
   if (requestType == 1) {
     return ajaxAll(urlSer, "GET", {}, commonheader).then(res => {
       let resdata = {};
@@ -231,18 +245,9 @@ const decryptheader = async () => {
   console.log("解密结果", decrypt_data);
 }
 
-const Api = {};
-Api.getcommonheader = getcommonheader;
-Api.getUserInfoSer = getUserInfoSer;
-Api.saveEditUser = saveEditUser;
-Api.getArticleList = getArticleList;
-Api.getArticleDetail = getArticleDetail;
-Api.getHomeInfo = getHomeInfo;
-Api.ajax = ajax;
-export default Api;
-
 module.export = {
   getcommonheader,
+  getLearnHomeInfo,
   getUserInfoSer,
   getArticleList,
   getArticleDetail,

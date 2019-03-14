@@ -63,7 +63,11 @@ export const ajaxAll = (url, method, params, header) => {
       })
       // 错误则调取云函数
       .catch(err => {
-        console.log("ajaxAll request error", err);
+        console.log({
+          msg: "ajaxAll request error",
+          err,
+          url
+        });
         errlogs(url, method, params, header, err);
         if (method == 'GET' || method == 'get') {
           let _params = ''

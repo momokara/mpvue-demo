@@ -8,7 +8,7 @@ const config = {
   loginRetryDelay: 500,
 
   // 访问基本地址
-  host: "http://192.168.1.135:80",
+  host: "http://139.199.74.34:3000/mock/19",
 
   // 云函数配置
   // 云函数环境id-开发 

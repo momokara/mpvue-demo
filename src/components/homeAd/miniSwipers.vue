@@ -17,7 +17,6 @@
       :previous-margin="useConfig.previousMargin"
       :next-margin="useConfig.nextMargin"
       :displayMultipleItems="useConfig.displayMultipleItems"
-      :current="current"
       @change="swiperChange"
       @animationfinish="animationFinish"
     >
@@ -67,9 +66,6 @@ export default {
       default: {}
     },
     customClass: {
-      type: String
-    },
-    current: {
       type: String
     }
   },

@@ -2,8 +2,8 @@
   <div class="exam-home-container">
     <!-- 顶部轮播 -->
     <headerSwiper
-      :swiperList="swiper.data"
-      :config="swiper.config"
+      :swiperList="data.swiper.data"
+      :config="data.swiper.config"
       @change="swiperChange"
       @animationfinish="swiperChange"
     >
@@ -11,7 +11,7 @@
 
     <div class="main-nav-box">
       <block
-        v-for="(item, index) in nav"
+        v-for="(item, index) in data.nav"
         :key="index"
       >
         <examHomeNav :data="item"></examHomeNav>
@@ -25,66 +25,17 @@
 <script>
 import headerSwiper from "@/components/headerSwipers";
 import examHomeNav from "@/components/exam/examHomeNav";
+import { getLearnHomeInfo } from "@/api/api";
 
 // 页面记录
 import { pagelogs } from "@/utils/logs";
 export default {
   data() {
     return {
-      swiper: {
-        config: {
-          indicatorDots: true,
-          indicatorColor: "rgba(0, 0, 0, .6)",
-          indicatorActiveColor: "rgba(0, 0, 0, .6)",
-          autoplay: true,
-          interval: 3000,
-          duration: 500,
-          vertical: false
-        },
-        data: [
-          {
-            id: "XXX1",
-            url: "#",
-            imgUrl:
-              "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/test_img.jpg"
-          },
-          {
-            id: "XXX1",
-            url: "#",
-            imgUrl:
-              "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/test_img.jpg"
-          },
-          {
-            id: "XXX1",
-            url: "#",
-            imgUrl:
-              "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/test_img.jpg"
-          }
-        ]
-      },
-      nav: [
-        {
-          imgUrl:
-            "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/images/%E7%AC%94%E8%AF%95%E7%BB%83%E4%B9%A0.png",
-          url: "pages/mockExam/examHome/main",
-          name: "文科联系",
-          info: "题库齐全解释准确"
-        },
-        {
-          imgUrl:
-            "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/images/%E9%A2%84%E7%BA%A6%E5%AD%A6%E8%BD%A6.png",
-          url: "",
-          name: "预约练车",
-          info: "在线预约自由练车"
-        },
-          {
-          imgUrl:
-            "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/images/%E9%A2%84%E7%BA%A6%E5%AD%A6%E8%BD%A6.png",
-          url: "",
-          name: "预约练车",
-          info: "在线预约自由练车"
-        }
-      ]
+      data: {
+        swiper: {},
+        nav: {}
+      }
     };
   },
   // 使用的 vue 组件
@@ -102,6 +53,10 @@ export default {
   // 监听页面显示
   onShow() {
     pagelogs();
+    getLearnHomeInfo().then(res => {
+      console.log("getLearnHomeInfo", res);
+      this.data = res;
+    });
   },
 
   // 监听页面隐藏
