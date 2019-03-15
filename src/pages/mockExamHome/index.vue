@@ -44,7 +44,15 @@ export default {
     examHomeNav
   },
   // 页面中的方法
-  methods: {},
+  methods: {
+    getPageData: function() {
+      let _this = this;
+      getLearnHomeInfo().then(res => {
+        console.log("getLearnHomeInfo", res);
+        _this.data = res;
+      });
+    }
+  },
   // VUE 钩子 常用
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
@@ -53,10 +61,7 @@ export default {
   // 监听页面显示
   onShow() {
     pagelogs();
-    getLearnHomeInfo().then(res => {
-      console.log("getLearnHomeInfo", res);
-      this.data = res;
-    });
+    this.getPageData();
   },
 
   // 监听页面隐藏

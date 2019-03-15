@@ -15,7 +15,11 @@ export default {
 
   computed: {},
   // 页面中的方法
-  methods: {},
+  methods: {
+    getPageData: function() {
+      let _this = this;
+    }
+  },
 
   // 监听页面加载
   onLoad() {},

@@ -122,6 +122,9 @@ export default {
           });
         }
       }
+    },
+    getPageData:function(){
+      
     }
   },
   onLoad() {

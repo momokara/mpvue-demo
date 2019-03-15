@@ -66,7 +66,7 @@ export default {
   },
 
   methods: {
-    getHomeInfo() {
+    getPageData() {
       let _this = this;
       getHomeInfo().then(res => {
         _this.swiper = res.swiper;
@@ -84,14 +84,14 @@ export default {
   },
   onShow() {
     pagelogs();
-    this.getHomeInfo();
+    this.getPageData();
   },
   onHide() {
     pagelogs(true);
   },
 
   onPullDownRefresh() {
-    this.getHomeInfo();
+    this.getPageData();
   }
 };
 </script>
