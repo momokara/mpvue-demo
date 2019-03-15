@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-
+    <div class="res-list">
+      <van-cell-group>
+        <van-cell
+          v-for="(item, index) in data.data"
+          :key="index"
+          :title="'得分:'+item.score"
+          :value="item.time"
+        />
+      </van-cell-group>
+    </div>
   </div>
 </template>
 <script>
@@ -24,7 +33,7 @@ export default {
     getPageData: function() {
       let _this = this;
       getExamHis().then(res => {
-        console.log("getExamHis", res);
+        _this.data = res;
       });
     }
   },
@@ -46,4 +55,9 @@ export default {
 
 
 <style lang="scss">
+.res-list {
+  width: 350px;
+  box-shadow: 0 0 5px #ddd;
+  margin: 10px auto;
+}
 </style>

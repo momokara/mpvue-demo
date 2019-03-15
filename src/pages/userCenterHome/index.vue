@@ -123,8 +123,8 @@ export default {
         }
       }
     },
-    getPageData:function(){
-      
+    getPageData: function() {
+      let _this = this;
     }
   },
   onLoad() {

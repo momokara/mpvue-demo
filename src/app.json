@@ -130,7 +130,6 @@
     ]
   },
   "usingComponents": {
-    
     "van-action-sheet": "/static/components/action-sheet/index",
     "van-area": "/static/components/area/index",
     "van-badge": "/static/components/badge/index",
