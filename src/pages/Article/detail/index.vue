@@ -5,7 +5,12 @@
       <span class="author fc-semi">{{data.author}}</span>
       <span class="fc-grey">{{data.creatTime}}</span>
     </div>
+    <web-view
+      v-if="data.isWechatUrl"
+      :src="data.data"
+    ></web-view>
     <wxParse
+      v-else
       :content="data.data"
       @preview="preview"
       @navigate="navigate"
@@ -14,7 +19,8 @@
   </div>
 </template>
 <script>
-import { getArticleDetail } from "@/api/api";
+import { getArticleDetail } from "@/api/api.article";
+import { golink } from "@/utils/tools";
 import wxParse from "mpvue-wxparse";
 // 页面记录
 import { pagelogs } from "@/utils/logs";
@@ -42,9 +48,12 @@ export default {
     },
     getPageData(pageconfig) {
       let _this = this;
+      console.log(getArticleDetail);
       getArticleDetail(_this.pageconfig, 1)
         .then(res => {
           _this.data = res;
+          let reg = /^https\:\/\//;
+          _this.data.isWechatUrl = reg.test(res.data);
         })
         .catch(err => {
           console.log("getPageDataerr", err);
@@ -77,13 +86,13 @@ export default {
 @import url("~mpvue-wxparse/src/wxParse.css");
 .container {
   padding: 15px;
-  .header-info{
+  .header-info {
     margin: 10px auto;
-    .author{
+    .author {
       margin-right: 15px;
     }
   }
-  .footer{
+  .footer {
     margin: 10px auto;
   }
 }

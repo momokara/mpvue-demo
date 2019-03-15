@@ -37,7 +37,7 @@
   </div>
 </template>
 <script>
-import { getArticleList } from "@/api/api";
+import { getArticleList } from "@/api/api.article";
 import infocardList from "@/components/homeAd/infoCardList";
 // 页面记录
 import { pagelogs } from "@/utils/logs";
