@@ -16,13 +16,22 @@
           <div class="count-row">
             <div class="cell ta-c">
               <div class="fsp12 fc-grey cell-title">已完成的题目</div>
-              <div class="fsp20 fc-black count">45/666</div>
-              <div class="fsp14 fc-fff golink">顺序练习</div>
+              <div
+                v-if="data.doneHis"
+                class="fsp20 fc-black count "
+              >{{data.doneHis.length}}/{{data.total}}</div>
+              <div
+                class="fsp14 fc-fff golink"
+                @click="golink('pages/mockExam/qlist/main')"
+              >顺序练习</div>
             </div>
             <div class="cell ta-c">
-              <div class="fsp12 fc-grey cell-title">已完成的题目</div>
-              <div class="fsp20 fc-black count">45/666</div>
-              <div class="fsp14 fc-fff golink">顺序练习</div>
+              <div class="fsp12 fc-grey cell-title">最高得分</div>
+              <div class="fsp20 fc-black count">{{data.heightScore}}</div>
+              <div
+                class="fsp14 fc-fff golink"
+                @click="golink('pages/mockExam/examResult/main')"
+              >模拟考试</div>
             </div>
           </div>
           <div class="menu-row">
@@ -48,6 +57,7 @@
               title="我的题库"
               value="内容"
               is-link
+              @click="golink('pages/mockExam/selectClass/main')"
             />
           </div>
         </div>
@@ -76,9 +86,9 @@
   </div>
 </template>
 <script>
-import basicInfo from "@/store/basicInfo.js";
 import qusetionData from "@/store/questionData.js";
-import { golink } from "@/utils/tools";
+import { golink, showModal } from "@/utils/tools";
+import { getHomeInfo } from "@/api/api.exam";
 
 // 页面记录
 import { pagelogs } from "@/utils/logs";
@@ -88,61 +98,7 @@ export default {
       active: 0,
       tableList: ["科目一", "科目四"],
       pageconfig: {},
-      data: {
-        headerNav: [
-          {
-            imgUrl:
-              "https://cdn.huibaoming.com/haivit/public/image/20181024124250_76/随机练习.png",
-            name: "随机练习",
-            url: ""
-          },
-          {
-            imgUrl:
-              "https://cdn.huibaoming.com/haivit/public/image/20181024124250_76/收藏夹.png",
-            name: "我的收藏",
-            url: ""
-          },
-          {
-            imgUrl:
-              "https://cdn.huibaoming.com/haivit/public/image/20181024124250_76/错题本.png",
-            name: "错题记录",
-            url: ""
-          },
-          {
-            imgUrl:
-              "https://cdn.huibaoming.com/haivit/public/image/20181024124250_76/考试成绩.png",
-            name: "考试成绩",
-            url: ""
-          }
-        ],
-        // 答题技巧列表
-        menuNav: [
-          {
-            name: "交通题",
-            url: "#"
-          },
-          {
-            name: "停车题",
-            url: "#"
-          },
-          {
-            name: "处罚题",
-            url: "#"
-          },
-          {
-            name: "距离题",
-            url: "#"
-          },
-          {
-            name: "速度题",
-            url: "#"
-          },
-          {
-            name: "手势题",
-            url: "#"
-          }
-        ]
-      }
+      data: {}
     };
   },
   // 使用的 vue 组件
@@ -154,7 +110,12 @@ export default {
     golink,
     tabChange: function(e) {
       console.log(e);
-      console.log("basicInfo", basicInfo.state);
+    },
+    getPageData: function() {
+      let _this = this;
+      getHomeInfo().then(res => {
+        _this.data = res;
+      });
     }
   },
 
@@ -162,8 +123,7 @@ export default {
   // 监听页面显示
   onShow() {
     pagelogs();
-    console.log(qusetionData.state)
-    qusetionData.commit("clean")
+    this.getPageData();
   },
 
   // 监听页面隐藏

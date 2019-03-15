@@ -82,7 +82,9 @@
       "root": "pages/mockExam",
       "pages": [
         "examHome/main",
-        "qlist/main"
+        "qlist/main",
+        "selectClass/main",
+        "examResult/main"
       ]
     },
     {
@@ -128,7 +130,6 @@
     ]
   },
   "usingComponents": {
-    
     "van-action-sheet": "/static/components/action-sheet/index",
     "van-area": "/static/components/area/index",
     "van-badge": "/static/components/badge/index",

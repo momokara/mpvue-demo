@@ -41,7 +41,6 @@
   </div>
 </template>
 <script>
-
 let testarr = [
   [1, 365],
   [2541, 2640],
@@ -72,9 +71,7 @@ export default {
     };
   },
   // 使用的 vue 组件
-  components: {
-    
-  },
+  components: {},
   // 页面中的方法
   methods: {
     checkIsInArray(array, index) {
@@ -151,7 +148,8 @@ export default {
       }
 
       // this.current_id = e.mp.detail.currentItemId;
-    }
+    },
+    getPageData: function() {}
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据

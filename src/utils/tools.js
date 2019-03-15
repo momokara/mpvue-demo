@@ -67,10 +67,29 @@ export function golink(url) {
 }
 
 /**
+ * 显示原生弹出框
+ * @param {Object} obj 弹出矿参数
+ * @param {String} obj.title 提示的标题 (必填)
+ * @param {String} obj.content 提示的内容 (必填)
+ * @param {boolean} obj.cancelText 取消按钮的文字，最多 4 个字符 ('取消')
+ * @param {String} obj.cancelColor 取消按钮的文字颜色，必须是 16 进制格式的颜色字符串 (#000000)
+ * @param {String} obj.confirmText 确认按钮的文字，最多 4 个字符 ('确定')
+ * @param {String} obj.confirmColor 确认按钮的文字颜色，必须是 16 进制格式的颜色字符串 (#576B95)
+ */
+export const showModal = (obj = {}) => {
+  console.log("obj in showModal", obj);
+  let _showModal = toPromise(wx.showModal);
+  obj.title = obj.title ? obj.title : "提示";
+  obj.content = obj.content ? obj.content : " ";
+  return _showModal(obj);
+}
+
+/**
  * 判断string 是否是 json
  * @param {String} string 需要判断的String
  */
 export const isJsonString = (string) => {
+
   let res = false;
   try {
     if (typeof JSON.parse(string) == "object") {
@@ -80,18 +99,11 @@ export const isJsonString = (string) => {
   return res;
 }
 
-const tools = {};
-tools.toPromise = toPromise;
-tools.formatNumber = formatNumber;
-tools.formatTime = formatTime;
-tools.golink = golink;
-tools.isJsonString = isJsonString;
-export default tools;
-
 module.export = {
   toPromise,
   formatNumber,
   formatTime,
   golink,
+  showModal,
   isJsonString
 }

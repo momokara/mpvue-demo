@@ -37,7 +37,7 @@
   </div>
 </template>
 <script>
-import { getArticleList } from "@/api/api";
+import { getArticleList } from "@/api/api.article";
 import infocardList from "@/components/homeAd/infoCardList";
 // 页面记录
 import { pagelogs } from "@/utils/logs";
@@ -91,7 +91,8 @@ export default {
         _this.isend = false;
       }
       if (!_this.isend) {
-        let reqtype = _this.pageconfig.keyword ? 1 : 0;
+        // let reqtype = _this.pageconfig.keyword ? 1 : 0;
+        let reqtype = 1;
         getArticleList(_this.pageconfig, reqtype).then(res => {
           console.log("getArticleList res", res);
           if (res) {

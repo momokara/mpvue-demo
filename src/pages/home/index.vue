@@ -66,7 +66,7 @@ export default {
   },
 
   methods: {
-    getHomeInfo() {
+    getPageData() {
       let _this = this;
       getHomeInfo().then(res => {
         _this.swiper = res.swiper;
@@ -77,16 +77,21 @@ export default {
             title: res.pagetitle
           });
         }
+
+        wx.stopPullDownRefresh();
       });
     }
   },
-  onLoad() {},
   onShow() {
     pagelogs();
-    this.getHomeInfo();
+    this.getPageData();
   },
   onHide() {
     pagelogs(true);
+  },
+
+  onPullDownRefresh() {
+    this.getPageData();
   }
 };
 </script>

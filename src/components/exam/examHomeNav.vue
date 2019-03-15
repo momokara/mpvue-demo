@@ -7,7 +7,7 @@
       class="icon"
       :src="data.imgUrl"
       :alt="name"
-      mode="widthFix"
+      mode="scaleToFill"
     >
     <div class="exam-nav-name fsp18 fc-black">{{data.name}}</div>
     <div class="exam-nav-info fsp12 fc-grey">{{data.info}}</div>
@@ -44,6 +44,7 @@ export default {
   padding: 15px;
   .icon{
     width: 60px;
+    height: 60px;
     margin: 5px 0;
   }
 }

@@ -39,7 +39,11 @@ export default {
   },
   computed: {},
   // 页面中的方法
-  methods: {},
+  methods: {
+    getPageData: function() {
+      let _this = this;
+    }
+  },
   // VUE 钩子 常用
   // 页面初始化钩子 可以加载本地配置
   beforeCreate() {

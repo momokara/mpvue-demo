@@ -3,7 +3,7 @@
 import {
   ajaxAll
 } from "@/utils/Wxrequest";
-import basicInfo from "../store/basicInfo.js";
+import basicInfo from "@/store/basicInfo.js";
 import {
   decrypt
 } from "@/utils/cloudfunc/crypt";
@@ -22,7 +22,8 @@ import config from '@/config.js'
  */
 export const getHomeInfo = async () => {
   let commonheader = await getcommonheader();
-  let url = `${config.static_url_basic}${config.static_url_file}/home_data.json`;
+  // let url = `${config.static_url_basic}${config.static_url_file}/home_data.json`;
+  let url = `${config.host}/home_data/1`;
   // decryptheader();
   return ajaxAll(url, "GET", {}, commonheader).then(res => {
     let resdata = res;
@@ -31,103 +32,18 @@ export const getHomeInfo = async () => {
 }
 
 /**
- * 获取文章列表
- * @param {Object} data data.id 列表分类id data.page 页码 data.size 单页大小
- * @param {Number} requestType 请求方式 0-(默认值) 请求静态数据地址 1-请求服务器接口
- * @param {Number} retryTimes 重试次数
+ * 获取学车首页信息
  * @return {Promise} 返回结果
  */
-export const getArticleList = async (data, requestType, retryTimes) => {
-  retryTimes = retryTimes | 0;
+export const getLearnHomeInfo = async () => {
   let commonheader = await getcommonheader();
-  // 请求地址
-  let urlCos = `${config.static_url_basic}${config.static_url_file}/articlelist/${data.id}/${data.page}.json`;
-  let urlSer = `${config.host}/content/article/list`;
-  
-  if (requestType == 1) {
-    return ajaxAll(urlSer, "POST", data, commonheader).then(res => {
-      let resdata = {};
-      if (res) {
-        resdata = res.result;
-        return resdata;
-      } else {
-        console.error("getArticleList no data")
-      }
-    }).catch(async (err) => {
-      console.error("getArticleList error type:1", err);
-      wx.showToast({
-        title: '网络异常！',
-        icon: 'none'
-      });
-
-    })
-  } else {
-    return new Promise((resolve, reject) => {
-      ajaxAll(urlCos, "GET", {}, commonheader).then(res => {
-        if (res) {
-          resolve(res)
-        } else {
-          reject("err nodata")
-        }
-      }).catch(err => {
-        reject("err", err)
-      })
-    }).catch(err => {
-      console.error("getArticleList error type:0", err);
-      if (!requestType) {
-        getArticleList(data, 1, 1)
-      }
-    });
-  }
+  let url = `${config.host}/lean/home`;
+  return ajaxAll(url, "GET", {}, commonheader).then(res => {
+    let resdata = res.result;
+    return resdata;
+  })
 }
 
-/**
- * 获取文章详情
- * @param {Object} data data.id 文章id 
- * @param {Number} requestType 请求方式 0-(默认值) 请求静态数据地址 1-请求服务器接口
- * @param {Number} retryTimes 重试次数
- * @return {Promise} 返回结果
- */
-export const getArticleDetail = async (data, requestType, retryTimes) => {
-  retryTimes = retryTimes | 0;
-  let commonheader = await getcommonheader();
-  let urlCos = `${config.static_url_basic}${config.static_url_file}/articledetail/${data.id}.json`;
-  let urlSer = `${config.host}/content/article/${data.id}`;
-  if (requestType == 1) {
-    return ajaxAll(urlSer, "GET", {}, commonheader).then(res => {
-      let resdata = {};
-      if (res) {
-        resdata = res.result;
-        return resdata;
-      } else {
-        console.error("getArticleDetail no data")
-      }
-    }).catch(async (err) => {
-      console.error("getArticleDetail error type:1", err);
-      wx.showToast({
-        title: '网络异常！',
-        icon: 'none'
-      });
-    });
-  } else {
-    return new Promise((resolve, reject) => {
-      ajaxAll(urlCos, "GET", {}, commonheader).then(res => {
-        if (res) {
-          resolve(res)
-        } else {
-          reject("err nodata")
-        }
-      }).catch(err => {
-        reject("err", err)
-      })
-    }).catch(err => {
-      console.error("getArticleDetail error type:0", err);
-      if (!requestType) {
-        getArticleDetail(data, 1, 1)
-      }
-    });
-  }
-}
 
 // 用户接口
 
@@ -231,21 +147,10 @@ const decryptheader = async () => {
   console.log("解密结果", decrypt_data);
 }
 
-const Api = {};
-Api.getcommonheader = getcommonheader;
-Api.getUserInfoSer = getUserInfoSer;
-Api.saveEditUser = saveEditUser;
-Api.getArticleList = getArticleList;
-Api.getArticleDetail = getArticleDetail;
-Api.getHomeInfo = getHomeInfo;
-Api.ajax = ajax;
-export default Api;
-
 module.export = {
   getcommonheader,
+  getLearnHomeInfo,
   getUserInfoSer,
-  getArticleList,
-  getArticleDetail,
   saveEditUser,
   getHomeInfo,
   ajax
