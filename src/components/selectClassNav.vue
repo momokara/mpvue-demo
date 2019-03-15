@@ -16,13 +16,14 @@
         v-for="item in data"
         :key="item"
         class="nav-cell fs12 ta-c"
+        :class="[item.name==actived?'actived':'']"
         :style="'width:'+100/config.rowsize+'%'"
       >
         <van-tabbar-item @click="callgolink(item)">
           <div slot="icon">
             <img
               class="nav-icon"
-              :src="item.imgUrl"
+              :src="item.name==actived?item.imgUrl:item.bgimgUrl"
             >
           </div>
           <span class="icon_name line-clamp_1">{{item.name}}</span>
@@ -53,8 +54,8 @@ export default {
     data: {
       type: Array
     },
-    noticeData: {
-      type: Array
+    actived: {
+      type: String
     },
     isLink: {
       type: Boolean,

@@ -10,9 +10,14 @@ Vue.use(Vuex)
 
 const basicInfo = new Vuex.Store({
   state: {
-    qusetions: [],
-    answers: [],
-    collects: [],
+    id: "1",
+    // 显示的标签
+    tag: defaultData.questionTag,
+    // 显示的证件类型中文名
+    cName: defaultData.questionClassName,
+    // 所属的科目
+    subject: defaultData.qusetionSubject,
+    // 是否加载
     isLoad: false
   },
   mutations: {
