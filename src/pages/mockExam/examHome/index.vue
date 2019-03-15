@@ -84,7 +84,7 @@
   </div>
 </template>
 <script>
-import qusetionData from "@/store/questionData.js";
+import questionType from "@/store/questionType.js";
 import { golink, showModal } from "@/utils/tools";
 import { getHomeInfo, loadqType } from "@/api/api.exam";
 
@@ -104,7 +104,7 @@ export default {
   computed: {
     qData() {
       loadqType();
-      return qusetionData.state;
+      return questionType.state;
     }
   },
   // 页面中的方法
@@ -112,7 +112,7 @@ export default {
     golink,
     tabChange: function(e) {
       let subject = e.mp.detail.index == 1 ? 4 : 1;
-      qusetionData.commit("updataByKey", { subject });
+      questionType.commit("updataByKey", { subject });
       this.getPageData();
     },
     getPageData: function() {

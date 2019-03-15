@@ -41,7 +41,7 @@
 import selectClassNav from "@/components/selectClassNav";
 import { getClassList, loadqType } from "@/api/api.exam";
 import { golink } from "@/utils/tools";
-import qusetionData from "@/store/questionData.js";
+import questionType from "@/store/questionType.js";
 
 // 页面记录
 import { pagelogs } from "@/utils/logs";
@@ -83,7 +83,7 @@ export default {
     },
     confirm: function() {
       let _this = this;
-      qusetionData.commit("updataByKey", _this.qdata);
+      questionType.commit("updataByKey", _this.qdata);
       wx.setStorageSync("qType", _this.qdata);
       golink("pages/mockExam/examHome/main");
     }
@@ -97,12 +97,7 @@ export default {
   onShow() {
     pagelogs();
     this.getPageData();
-    this.qdata = {
-      id: qusetionData.state.id,
-      tag: qusetionData.state.tag,
-      cName: qusetionData.state.cName,
-      info: qusetionData.state.info
-    };
+    this.qdata = questionType.state;
   },
 
   // 监听页面隐藏

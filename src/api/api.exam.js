@@ -6,16 +6,16 @@ import {
 import {
   getcommonheader
 } from "@/api/api.js";
-import questionData from "@/store/questionData.js";
+import questionType from "@/store/questionType.js";
 import config from '@/config.js'
 
 
 // 页面接口 
 const qtypedata = () => {
   return {
-    id: questionData.state.id,
-    tag: questionData.state.tag,
-    subject: questionData.state.subject
+    id: questionType.state.id,
+    tag: questionType.state.tag,
+    subject: questionType.state.subject
   }
 }
 
@@ -60,14 +60,15 @@ export const getExamHis = async () => {
 
 // 加载本地题目信息
 export const loadqType = () => {
-  if (!questionData.state.isLoad) {
+  if (!questionType.state.isLoad) {
     wx.getStorage({
       key: "qType",
       success: function (res) {
         try {
           console.log(res);
           res.data.isLoad = true
-          questionData.commit("updataByKey", res.data);
+          questionType.commit("updataByKey", res.data);
+          console.log(questionType.state)
         } catch (error) {}
       }
     });
