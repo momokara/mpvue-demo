@@ -40,6 +40,8 @@ const config = {
     headerImg: "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/default_header_img.png",
     icon: "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/default_icon.png",
     questionType: "c1",
+    questionTag: "C1/C2/C3",
+    questionClassName: "小车",
     qusetionSubject: 1
   }
 

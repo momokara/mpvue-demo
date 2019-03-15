@@ -50,20 +50,27 @@ export function formatTime(date) {
  */
 export function golink(url) {
   url = `/${url}`;
-  wx.navigateTo({
-    url: url,
-    fail: function () {
-      wx.switchTab({
-        url: url,
-        fail: function () {
-          wx.showToast({
-            title: "打开失败",
-            icon: "none"
-          });
-        }
-      });
-    }
-  });
+  return new Promise((resolve, reject) => {
+    wx.navigateTo({
+      url: url,
+      success: function () {
+        resolve(url);
+      },
+      fail: function () {
+        wx.switchTab({
+          url: url,
+          fail: function () {
+            wx.showToast({
+              title: "打开失败",
+              icon: "none"
+            });
+            reject(url);
+          }
+        });
+      }
+    });
+  })
+
 }
 
 /**

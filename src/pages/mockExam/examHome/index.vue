@@ -1,7 +1,6 @@
 <template>
   <div class="exam-home-container">
     <van-tabs
-      :active="active"
       @change="tabChange"
       type="card"
       color="#3ac569"
@@ -55,7 +54,7 @@
           <div class="select-row">
             <van-cell
               title="我的题库"
-              value="内容"
+              :value="qData.cName+'('+qData.tag+')'"
               is-link
               @click="golink('pages/mockExam/selectClass/main')"
             />
@@ -63,7 +62,6 @@
         </div>
         <div class="exam-menu-box">
           <van-cell-group>
-
             <van-cell
               v-for="(item_menu, index_menu) in data.menuNav"
               :key="index_menu"
@@ -88,14 +86,13 @@
 <script>
 import qusetionData from "@/store/questionData.js";
 import { golink, showModal } from "@/utils/tools";
-import { getHomeInfo } from "@/api/api.exam";
+import { getHomeInfo, loadqType } from "@/api/api.exam";
 
 // 页面记录
 import { pagelogs } from "@/utils/logs";
 export default {
   data() {
     return {
-      active: 0,
       tableList: ["科目一", "科目四"],
       pageconfig: {},
       data: {}
@@ -104,12 +101,19 @@ export default {
   // 使用的 vue 组件
   components: {},
   watch: {},
-  computed: {},
+  computed: {
+    qData() {
+      loadqType();
+      return qusetionData.state;
+    }
+  },
   // 页面中的方法
   methods: {
     golink,
     tabChange: function(e) {
-      console.log(e);
+      let subject = e.mp.detail.index == 1 ? 4 : 1;
+      qusetionData.commit("updataByKey", { subject });
+      this.getPageData();
     },
     getPageData: function() {
       let _this = this;
