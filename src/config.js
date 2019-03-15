@@ -11,10 +11,10 @@ const config = {
   host: process.env.NODE_ENV == "production" ? "http://666" : "http://139.199.74.34:3000/mock/19",
 
   // 云函数配置
-  // 云函数环境id-开发 
-  dev_env: "zhijia-75abfd",
-  // 云函数环境id-生产
-  env: "zhijia-75abfd",
+  // 云函数环境id- 第一个是生产 第二个是开发环境 
+  env: process.env.NODE_ENV == "production" ?"zhijia-worker-dcad94":"zhijia-75abfd",
+  // 小程序id 小程序在后台的唯一标识
+  mpid: "wx7e28d99c40baf7a8",
 
   // 登录保持时间 单位秒
   loginKeepTime: 7200,
@@ -23,7 +23,7 @@ const config = {
   // 基准地址
   static_url_basic: "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com",
   // 文件路径
-  static_url_file: "/wechatfile/pagedata/wx7e28d99c40baf7a8",
+  static_url_file: "/wechatfile/pagedata/",
 
   // 文件上传cos配置
   // 临时授权请求地址

@@ -13,14 +13,14 @@ export default {
     } else {
       // 云函数使用的环境
       wx.cloud.init({
-        env: process.env.NODE_ENV == "production" ? config.env : config.dev_env,
+        env: config.env,
         traceUser: true
       });
     }
     console.log(
       `运行环境：${
         process.env.NODE_ENV == "production" ? "生产环境" : "开发环境"
-      }(${process.env.NODE_ENV})`
+      }(${process.env.NODE_ENV}/${config.env}/${config.host}/)`
     );
   },
   // 初始化

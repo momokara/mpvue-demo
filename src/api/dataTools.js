@@ -6,8 +6,12 @@ import {
   getUserInfoSer,
   ajax
 } from "@/api/api";
+import {
+  decrypt
+} from "@/utils/cloudfunc/crypt";
 import config from '@/config.js'
 
+// 重新登录
 export const reLogin = () => {
   wx.clearStorageSync();
   basicInfo.commit("clean", true);
@@ -16,7 +20,7 @@ export const reLogin = () => {
 
 // 检测小程序是否被禁用
 export const checkIsForbidden = () => {
-  let url = `${config.static_url_basic}${config.static_url_file}/isForbidden.json`
+  let url = `${config.static_url_basic}${config.static_url_file}${config.mpid}/isForbidden.json`
 
   ajax(url, "GET", {}).then(res => {
     try {
@@ -30,19 +34,23 @@ export const checkIsForbidden = () => {
 
     }
   }).catch(err => {
-    console.log(err)
+    console.err("checkIsForbidden err", err)
   })
-
-
 }
 
-const tools = {};
-tools.reLogin = reLogin;
-tools.checkIsForbidden = checkIsForbidden;
-
-export default tools;
+// 解密请求头内的token
+export const decryptToken = async () => {
+  let token = await decrypt(basicInfo.state.token);
+  let decrypt_data = {
+    token: JSON.parse(token)
+  }
+  console.group("解密结果");
+  console.table(decrypt_data);
+  console.groupEnd();
+}
 
 module.export = {
   reLogin,
-  checkIsForbidden
+  checkIsForbidden,
+  decryptToken
 }

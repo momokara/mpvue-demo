@@ -5,9 +5,6 @@ import {
 } from "@/utils/Wxrequest";
 import basicInfo from "@/store/basicInfo.js";
 import {
-  decrypt
-} from "@/utils/cloudfunc/crypt";
-import {
   getOpenid
 } from "@/utils/cloudfunc/getUserInfo";
 
@@ -22,9 +19,8 @@ import config from '@/config.js'
  */
 export const getHomeInfo = async () => {
   let commonheader = await getcommonheader();
-  // let url = `${config.static_url_basic}${config.static_url_file}/home_data.json`;
-  let url = `${config.host}/home_data/1`;
-  // decryptheader();
+  // let url = `${config.static_url_basic}${config.static_url_file}/${config.mpid}/home_data.json`;
+  let url = `${config.host}/home_data/${config.mpid}`;
   return ajaxAll(url, "GET", {}, commonheader).then(res => {
     let resdata = res;
     return resdata;
@@ -57,7 +53,6 @@ export const getUserInfoSer = async (retryTimes) => {
   retryTimes = retryTimes | 0;
   let url = `${config.host}/userInfo`;
   return getOpenid().then(async (res) => {
-    console.log("getOpenid", res);
     if (res.isgetinfo) {
       return res;
     } else {
@@ -135,16 +130,11 @@ export const getcommonheader = async () => {
       token: logindata.token
     }
   }
-  return commonheader
-}
-
-// 解密请求头内的appid 和 openid
-const decryptheader = async () => {
-  let token = await decrypt(basicInfo.state.token);
-  let decrypt_data = {
-    token
+  // 如果没有载入个人信息则尝试重新获取
+  if (!basicInfo.state.userInfo.avatarUrl) {
+    getUserInfoSer();
   }
-  console.log("解密结果", decrypt_data);
+  return commonheader
 }
 
 module.export = {
