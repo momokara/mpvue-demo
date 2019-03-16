@@ -26,7 +26,14 @@ export const pagelogs = (isleave) => {
   wx.setStorageSync("logs", logs);
 }
 
-export const errlogs = (url, method, options, header, msg) => {
+
+export const errlogs = ({
+  url,
+  method,
+  options,
+  header,
+  msg
+}) => {
   let time = Date.now();
   let errdata = {
     url,
@@ -36,6 +43,7 @@ export const errlogs = (url, method, options, header, msg) => {
     msg,
     time
   }
+  console.log("errdata:", errdata);
   let errlogs = wx.getStorageSync("errlogs") || [];
   errlogs.push(errdata);
   wx.setStorageSync("errlogs", errlogs);

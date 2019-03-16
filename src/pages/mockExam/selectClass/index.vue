@@ -98,6 +98,7 @@ export default {
     pagelogs();
     this.getPageData();
     this.qdata = questionType.state;
+  
   },
 
   // 监听页面隐藏

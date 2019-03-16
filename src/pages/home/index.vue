@@ -2,8 +2,9 @@
   <div class="home-container">
     <!-- 顶部轮播 -->
     <headerSwiper
-      :swiperList="swiper.data"
-      :config="swiper.config"
+      v-if="data.swiper"
+      :swiperList="data.swiper.data"
+      :config="data.swiper.config"
       @change="swiperChange"
       @animationfinish="swiperChange"
     >
@@ -11,17 +12,21 @@
     <!-- 导航栏 -->
     <div class="header-nav-box">
       <homeNav
-        :config="nav.config"
-        :data="nav.data"
-        :noticeData="nav.noticeData"
+        v-if="data.nav"
+        :config="data.nav.config"
+        :data="data.nav.data"
+        :noticeData="data.nav.noticeData"
       >
       </homeNav>
     </div>
 
-    <div class="main-ad-list">
+    <div
+      class="main-ad-list"
+      v-if="data.adList"
+    >
 
       <div
-        v-for="(item, index) in adList"
+        v-for="(item, index) in data.adList"
         :key="index"
       >
         <div
@@ -53,9 +58,7 @@ import { pagelogs } from "@/utils/logs";
 export default {
   data() {
     return {
-      swiper: {},
-      nav: {},
-      adList: []
+      data: {}
     };
   },
 
@@ -69,9 +72,7 @@ export default {
     getPageData() {
       let _this = this;
       getHomeInfo().then(res => {
-        _this.swiper = res.swiper;
-        _this.nav = res.nav;
-        _this.adList = res.adList;
+        _this.data = res;
         if (res.pagetitle) {
           wx.setNavigationBarTitle({
             title: res.pagetitle

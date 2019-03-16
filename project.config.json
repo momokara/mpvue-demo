@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 11,
 			"list": [
 				{
 					"id": 0,
@@ -107,6 +107,13 @@
 					"id": -1,
 					"name": "选择题库",
 					"pathName": "pages/mockExam/selectClass/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "logs",
+					"pathName": "pages/user/logs/main",
 					"query": "",
 					"scene": null
 				}

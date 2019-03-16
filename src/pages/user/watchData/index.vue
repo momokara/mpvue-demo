@@ -1,7 +1,7 @@
 <template>
   <div class="container demo">
 
-    <div class="title">basicInfo_store 的内容:</div>
+    <div class="title">basicInfo 的内容:</div>
     <div class="fsp12 databox">
       <van-collapse
         :value="storeTag"
@@ -9,7 +9,7 @@
         data-key="storeTag"
       >
         <block
-          v-for="(item, index) in storeData"
+          v-for="(item, index) in storebasicInfo"
           :key="index"
         >
           <van-collapse-item
@@ -26,6 +26,33 @@
 
       </van-collapse>
     </div>
+
+    <div class="title">questionType 的内容:</div>
+    <div class="fsp12 databox">
+      <van-collapse
+        :value="storeTag"
+        @change="onChange"
+        data-key="storeTag"
+      >
+        <block
+          v-for="(item, index) in storequestionType"
+          :key="index"
+        >
+          <van-collapse-item
+            :title="item.key"
+            :name="index"
+          >
+            <div class="databox">
+              <jsonTable :data="item.data"></jsonTable>
+            </div>
+
+          </van-collapse-item>
+
+        </block>
+
+      </van-collapse>
+    </div>
+
     <div class="title">storageData 概况:</div>
     <div class="fsp12 databox">
       <van-collapse
@@ -76,8 +103,10 @@
   </div>
 </template>
 <script>
-import basicInfo from "../../../store/basicInfo.js";
+import basicInfo from "@/store/basicInfo.js";
+import questionType from "@/store/questionType.js";
 import jsonTable from "@/components/jsonTable";
+import { jsonToArray } from "@/utils/tools";
 
 // 页面记录
 import { pagelogs } from "@/utils/logs";
@@ -96,40 +125,19 @@ export default {
   components: { jsonTable },
 
   computed: {
-    storeData: function() {
-      let showdata = [];
-      for (const key in basicInfo.state) {
-        if (key) {
-          let saveData = basicInfo.state[key];
-          saveData = JSON.stringify(saveData);
-          let rowdata = {
-            key,
-            data: saveData
-          };
-          showdata.push(rowdata);
-        }
-      }
-      return showdata;
+    storebasicInfo: function() {
+      return jsonToArray(basicInfo.state);
+    },
+    storequestionType: function() {
+      return jsonToArray(questionType.state);
     }
   },
   // 页面中的方法
   methods: {
     // 获取信息
     getstorageData: function() {
-      let showdata = [];
       let socuredata = wx.getStorageInfoSync();
-      for (const key in socuredata) {
-        if (key) {
-          let saveData = socuredata[key];
-          saveData = JSON.stringify(saveData);
-          let rowdata = {
-            key,
-            data: saveData
-          };
-          showdata.push(rowdata);
-        }
-      }
-      return showdata;
+      return jsonToArray(socuredata);
     },
     // 遍历storage
     getstorageDataDetail: function() {

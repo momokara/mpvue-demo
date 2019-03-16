@@ -7,6 +7,9 @@ import basicInfo from "@/store/basicInfo.js";
 import {
   getOpenid
 } from "@/utils/cloudfunc/getUserInfo";
+import {
+  errlogs
+} from "@/utils/logs";
 
 import dialog from "@/../static/components/dialog-mo/dialog";
 import config from '@/config.js'
@@ -21,8 +24,8 @@ export const getHomeInfo = async () => {
   let commonheader = await getcommonheader();
   // let url = `${config.static_url_basic}${config.static_url_file}/${config.mpid}/home_data.json`;
   let url = `${config.host}/home_data/${config.mpid}`;
-  return ajaxAll(url, "GET", {}, commonheader).then(res => {
-    let resdata = res;
+  return ajaxAll(url, "GET", null, commonheader).then(res => {
+    let resdata = res.result;
     return resdata;
   })
 }

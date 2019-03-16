@@ -70,7 +70,6 @@ export function golink(url) {
       }
     });
   })
-
 }
 
 /**
@@ -106,11 +105,28 @@ export const isJsonString = (string) => {
   return res;
 }
 
+export const jsonToArray = (json) => {
+  let resArray = [];
+  for (const key in json) {
+    if (key) {
+      let saveData = json[key];
+      saveData = JSON.stringify(saveData);
+      let rowdata = {
+        key,
+        data: saveData
+      };
+      resArray.push(rowdata);
+    }
+  }
+  return resArray;
+}
+
 module.export = {
   toPromise,
   formatNumber,
   formatTime,
   golink,
   showModal,
-  isJsonString
+  isJsonString,
+  jsonToArray
 }

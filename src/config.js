@@ -8,7 +8,7 @@ const config = {
   loginRetryDelay: 500,
 
   // 访问基本地址 第一个是 生产地址 第二个是开发地址
-  host: process.env.NODE_ENV == "production" ? "http://666" : "http://139.199.74.34:3000/mock/19",
+  host: process.env.NODE_ENV == "production" ? "https://mptrymomo.momokara.cc/mock/19" : "http://139.199.74.34:3000/mock/19",
 
   // 云函数配置
   // 云函数环境id- 第一个是生产 第二个是开发环境 
