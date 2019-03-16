@@ -3,7 +3,7 @@
     <div class="res-list">
       <van-cell-group>
         <van-cell
-          v-for="(item, index) in data.data"
+          v-for="(item, index) in data.array"
           :key="index"
           :title="'得分:'+item.score"
           :value="item.time"

@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": false,
 		"minified": true,
@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
@@ -41,18 +41,6 @@
 					"pathName": "pages/test/componentsDemoMenu/main",
 					"query": "test=test1",
 					"scene": null
-				},
-				{
-					"id": 1,
-					"name": "login",
-					"pathName": "pages/loginpage/main",
-					"query": ""
-				},
-				{
-					"id": 3,
-					"name": "编辑个人信息",
-					"pathName": "pages/user/editUserInfo/main",
-					"query": ""
 				},
 				{
 					"id": 3,
@@ -83,13 +71,6 @@
 					"scene": null
 				},
 				{
-					"id": 11,
-					"name": "文章详情",
-					"pathName": "pages/Article/detail/main",
-					"query": "id=1",
-					"scene": null
-				},
-				{
 					"id": -1,
 					"name": "学车",
 					"pathName": "pages/mockExamHome/main",
@@ -107,13 +88,6 @@
 					"id": -1,
 					"name": "选择题库",
 					"pathName": "pages/mockExam/selectClass/main",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "logs",
-					"pathName": "pages/user/logs/main",
 					"query": "",
 					"scene": null
 				}

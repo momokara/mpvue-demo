@@ -36,7 +36,7 @@ export const getHomeInfo = async () => {
  */
 export const getLearnHomeInfo = async () => {
   let commonheader = await getcommonheader();
-  let url = `${config.host}/lean/home`;
+  let url = `${config.host}/learn/home`;
   return ajaxAll(url, "GET", {}, commonheader).then(res => {
     let resdata = res.result;
     return resdata;

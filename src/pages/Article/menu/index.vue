@@ -100,7 +100,7 @@ export default {
           if (res.array) {
             _this.data.array = _this.data.array.concat(...res.array);
             _this.pageconfig.page++;
-            if (_this.data.length >= res.total) {
+            if (_this.data.array.length >= res.total) {
               _this.isend = true;
             }
           }
