@@ -57,16 +57,22 @@ export const ajaxAll = (url, method, params, header) => {
         // 只返回json 数据
         if (isJsonString(_testdata)) {
           if (res.code != 200) {
+            console.log(res, res.errMsg | res.errmsg);
             errlogs({
               url,
               method,
               params,
               header,
               msg: {
-                code: res.code,
-                errMsg: res.errMsg
+                code: res.code ? res.code : res.errcode,
+                errMsg: res.errMsg ? res.errMsg : res.errmsg
               }
             });
+            if (res.errcode) {
+              wx.showToast({
+                title: res.errmsg
+              });
+            }
           }
           return res;
         } else {

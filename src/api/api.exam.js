@@ -25,7 +25,7 @@ const qtypedata = () => {
  */
 export const getHomeInfo = async () => {
   let commonheader = await getcommonheader();
-  let url = `${config.host}/exam/home`;
+  let url = `${config.host}/driving_service/exam/home`;
   return ajaxAll(url, "POST", qtypedata(), commonheader).then(res => {
     let resdata = res.result;
     return resdata;
@@ -38,7 +38,7 @@ export const getHomeInfo = async () => {
  */
 export const getClassList = async () => {
   let commonheader = await getcommonheader();
-  let url = `${config.host}/exam/getClasses`;
+  let url = `${config.host}/driving_service/exam/getClasses`;
   return ajaxAll(url, "GET", null, commonheader).then(res => {
     let resdata = res.result;
     return resdata;
@@ -51,7 +51,7 @@ export const getClassList = async () => {
  */
 export const getExamHis = async () => {
   let commonheader = await getcommonheader();
-  let url = `${config.host}/exam/getResultList`;
+  let url = `${config.host}/driving_service/exam/getResultList`;
   return ajaxAll(url, "POST", qtypedata(), commonheader).then(res => {
     let resdata = res.result;
     return resdata;

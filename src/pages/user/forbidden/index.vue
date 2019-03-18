@@ -30,7 +30,11 @@ export default {
   methods: {},
   // VUE 钩子 常用
 
-  onLoad() {},
+  onLoad() {
+    wx.setNavigationBarTitle({
+      title: "小马帮技术支持"
+    });
+  },
   // 监听页面显示
   onShow() {
     pagelogs();

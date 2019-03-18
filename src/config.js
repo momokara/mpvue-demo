@@ -3,12 +3,12 @@
 const config = {
 
   // 登录重试次数
-  loginRetryTimes: 3,
+  loginRetryTimes: 0,
   // 登录重试延迟 单位ms
   loginRetryDelay: 500,
 
-  // 访问基本地址 第一个是 生产地址 第二个是开发地址
-  host: process.env.NODE_ENV == "production" ? "https://mptrymomo.momokara.cc/mock/19" : "http://139.199.74.34:3000/mock/19",
+  // 访问基本地址 第一个是 生产地址 第二个是开发地址 (测试地址 ：http://139.199.74.34:3000/mock/19/xmb_zhijia_cloud)
+  host: process.env.NODE_ENV == "production" ? "https://mptrymomo.momokara.cc/mock/19/xmb_zhijia_cloud" : "https://mptrymomo.momokara.cc/mock/19/xmb_zhijia_cloud",
 
   // 云函数配置
   // 云函数环境id- 第一个是生产 第二个是开发环境 

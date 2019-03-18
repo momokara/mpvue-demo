@@ -20,8 +20,8 @@ export const reLogin = () => {
 
 // 检测小程序是否被禁用
 export const checkIsForbidden = () => {
-  let url = `${config.static_url_basic}${config.static_url_file}${config.mpid}/isForbidden.json`
-
+  // let url = `${config.static_url_basic}${config.static_url_file}${config.mpid}/isForbidden.json`
+  let url = `${config.host}/isforbidden/${config.mpid}`
   ajax(url, "GET", {}).then(res => {
     try {
       if (res.isForbidden) {

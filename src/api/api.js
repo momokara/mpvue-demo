@@ -7,9 +7,6 @@ import basicInfo from "@/store/basicInfo.js";
 import {
   getOpenid
 } from "@/utils/cloudfunc/getUserInfo";
-import {
-  errlogs
-} from "@/utils/logs";
 
 import dialog from "@/../static/components/dialog-mo/dialog";
 import config from '@/config.js'
@@ -22,8 +19,7 @@ import config from '@/config.js'
  */
 export const getHomeInfo = async () => {
   let commonheader = await getcommonheader();
-  // let url = `${config.static_url_basic}${config.static_url_file}/${config.mpid}/home_data.json`;
-  let url = `${config.host}/home_data/${config.mpid}`;
+  let url = `${config.host}/marking_service/home_data/${config.mpid}`;
   return ajaxAll(url, "GET", null, commonheader).then(res => {
     let resdata = res.result;
     return resdata;
@@ -36,7 +32,7 @@ export const getHomeInfo = async () => {
  */
 export const getLearnHomeInfo = async () => {
   let commonheader = await getcommonheader();
-  let url = `${config.host}/learn/home`;
+  let url = `${config.host}/dirving_service/home`;
   return ajaxAll(url, "GET", {}, commonheader).then(res => {
     let resdata = res.result;
     return resdata;
@@ -54,7 +50,7 @@ export const getLearnHomeInfo = async () => {
  */
 export const getUserInfoSer = async (retryTimes) => {
   retryTimes = retryTimes | 0;
-  let url = `${config.host}/userInfo`;
+  let url = `${config.host}/user_service/getUserBaseInfo`;
   return getOpenid().then(async (res) => {
     if (res.isgetinfo) {
       return res;
@@ -92,8 +88,8 @@ export const getUserInfoSer = async (retryTimes) => {
  */
 export const saveEditUser = async (data) => {
   let commonheader = await getcommonheader();
-  let url = `${config.host}/editUser`;
-  return ajaxAll(url, "POST", data, commonheader).then(res => {
+  let url = `${config.host}/user_service/editUser`;
+  return ajaxAll(url, "PUT", data, commonheader).then(res => {
     let resdata = res;
     return resdata;
   })
