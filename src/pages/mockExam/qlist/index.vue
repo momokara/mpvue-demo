@@ -1,108 +1,237 @@
 <template>
   <div class="container">
+    <div
+      class="main-qinfo"
+      v-if="arrShowQid.length>0"
+    >
+      <div class="fr">({{actIndex+1}}/{{sumQlength}})</div>
+      <questionDetail
+        :data="questionDetail"
+        :answer="questionAnswer"
+        @choose="choose"
+      ></questionDetail>
+    </div>
+    <div
+      class="main-qinfo"
+      v-else
+    >
+      加载中...
+    </div>
+    <van-popup
+      v-if="arrShowQid.length>0"
+      :show="isShowPop"
+      custom-class="question-menu"
+      @close="popToggle"
+      position="bottom"
+    >
+      <questionMenu
+        :data="arrShowQid"
+        :active="actIndex"
+        @goQuestion="goQuestion"
+      ></questionMenu>
+    </van-popup>
+    <div class="footer-menu">
+      <van-button
+        custom-class="footer-btn"
+        @clickbtn="goprev"
+        type="primary"
+        size="mini"
+        :disabled="pageconfig.nChapter<=0&&pageconfig.nActive<=0"
+      >上一题</van-button>
 
+      <span @click="popToggle">选题目</span>
+      <van-button
+        custom-class="footer-btn fr"
+        @clickbtn="gonext"
+        type="primary"
+        size="mini"
+        :disabled="pageconfig.nChapter>=arrShowQid.length-1&&actIndex>=sumQlength-1"
+      >下一题</van-button>
+    </div>
   </div>
 </template>
 <script>
+import { getQusetionList, getQuestionData } from "@/api/api.exam";
+import questionDetail from "@/components/exam/questionDetail";
+import questionMenu from "@/components/exam/questionMenu";
+// 页面记录
+import { pagelogs } from "@/utils/logs";
 export default {
   data() {
     return {
       pageconfig: {
-        // 当前显示位置
-        nActive: 0
+        // 当前章节
+        nChapter: 0,
+        // 当前题号
+        nActive: 0,
+        sAcitveid: ""
       },
-
       data: {
+        // 题目id 数组
         arrQid: [],
-        arrQData: [],
-        arrAnswer: [],
-        arrCollect: []
-      }
+        // 题目数据
+        objQData: {},
+        // 用户答案
+        objAnswer: {},
+        // 收藏数据
+        objCollect: {}
+      },
+      actIndex: 0,
+      // 题目总长
+      sumQlength: 0,
+      isShowPop: false,
+      // 当前显示内容
+      questionDetail: {},
+      questionAnswer: []
     };
   },
   // 使用的 vue 组件
-  components: {},
+  components: { questionMenu, questionDetail },
+  computed: {
+    // 显示的题目数组
+    arrShowQid() {
+      let _showdata = this.data.arrQid;
+      if (_showdata.length > 0) {
+        let i = 0;
+        _showdata.forEach(element => {
+          element.data = element.data.map(e => {
+            let isWrong;
+            e = {
+              data: e,
+              index: i,
+              isWrong
+            };
+            i++;
+            return e;
+          });
+        });
+        this.sumQlength = i;
+      }
+      return _showdata;
+    }
+  },
+  watch: {
+    "pageconfig.nActive": {
+      handler: function(val, oldval) {}
+    }
+  },
   // 页面中的方法
   methods: {
-    checkIsInArray(array, index) {
-      let isIn = -1;
-      let i = 0;
-      for (const key in array) {
-        if (array.hasOwnProperty(key)) {
-          const e = array[key];
-          if (index >= e[0] && index <= e[e.length - 1]) {
-            // console.log(e);
-            isIn = i;
-            break;
-          }
-          i++;
-        }
+    /**
+     * 题目改变方法
+     * @param {Number} num +1 上一题，-1 下一题
+     * @return {String} 题目id
+     */
+    change: function(num) {
+      let _this = this;
+      let _nActive = _this.pageconfig.nActive + num;
+      let _nChapter = _this.pageconfig.nChapter;
+      if (
+        _nActive > _this.arrShowQid[_nChapter].data.length - 1 ||
+        _nActive < 0
+      ) {
+        _nChapter = _nChapter + num;
+        _nActive = num < 0 ? _this.arrShowQid[_nChapter].data.length - 1 : 0;
       }
-      return isIn;
+      return _this.goQuestion({ Chapter: _nChapter, Index: _nActive });
     },
-    getBefore(array, index) {
-      index = parseInt(index);
-      console.log("getBefore", index);
-      let before;
-      if (this.checkIsInArray(array, index - 1) >= 0) {
-        before = index - 1;
-        return before;
-      }
-      if (this.checkIsInArray(array, index) >= 1) {
-        let resRange = array[this.checkIsInArray(testarr, index) - 1];
-        before = resRange[resRange.length - 1];
-        return before;
-      }
-      console.log("no data");
-    },
-    getAfter(array, index) {
-      index = parseInt(index);
-      console.log("getAfter", index);
-      let after;
-      if (this.checkIsInArray(array, index + 1) >= 0) {
-        after = index + 1;
-        return after;
-      }
-      if (this.checkIsInArray(array, index) < array.length - 1) {
-        let resRange = array[this.checkIsInArray(testarr, index) + 1];
-        after = resRange[0];
-        return after;
-      }
-      console.log("no data");
-    },
-    goCheck() {
-      let res = this.checkIsInArray(testarr, this.index);
+    /**
+     * 跳转到指定题目
+     * @param {Number} Chapter 题目章节
+     * @param {Number} Index 题目在章节中的序号
+     */
+    goQuestion: function({ Chapter, Index }) {
+      this.pageconfig.nChapter = Chapter;
+      this.pageconfig.nActive = Index;
 
-      console.log(testarr[res]);
-      console.log("getBefore", this.getBefore(testarr, this.index));
-      console.log("getAfter", this.getAfter(testarr, this.index));
+      return this.freshActiveId();
     },
-    getPageData: function() {}
-  },
+    // 更新当前显示的 题目id
+    freshActiveId: function() {
+      this.pageconfig.sAcitveid = this.arrShowQid[
+        this.pageconfig.nChapter
+      ].data[this.pageconfig.nActive].data;
+      // 更新标记点
+      this.actIndex = this.arrShowQid[this.pageconfig.nChapter].data[
+        this.pageconfig.nActive
+      ].index;
+      this.getQdata(this.pageconfig.sAcitveid);
+      return this.pageconfig.sAcitveid;
+    },
+    /**
+     * 获取题目信息
+     * @param {String} id 题目id
+     */
+    getQdata(id) {
+      let _this = this;
+      _this.questionDetail = _this.data.objQData[id]
+        ? _this.data.objQData[id]
+        : null;
+      if (!_this.questionDetail) {
+        return getQuestionData(id).then(res => {
+          _this.data.objQData[id] = res;
+          _this.questionDetail = _this.data.objQData[id];
+        });
+      }
+    },
+    // 上一题
+    goprev: function(e) {
+      let _this = this;
+      console.log(_this.change(-1));
+    },
 
-  // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  created() {
-    console.log("demopage-created", this.msg);
-    for (let index = 0; index <= 1330; index++) {
-      this.data.arrQid.push(index);
+    // 下一题
+    gonext: function(e) {
+      let _this = this;
+      console.log(_this.change(+1));
+    },
+    // 选择答案
+    choose: function(e) {
+      console.log("choose", e);
+    },
+    // 开关弹出层
+    popToggle: function() {
+      this.isShowPop = !this.isShowPop;
+      if (this.isShowPop) {
+        wx.stopPullDownRefresh();
+      }
+    },
+
+    // 获取页面信息
+    getPageData: function() {
+      let _this = this;
+      getQusetionList(0).then(res => {
+        _this.data.arrQid = res.questionList;
+        _this.goQuestion({ Chapter: 0, Index: 0 });
+      });
     }
   },
 
   // 监听页面显示
   onShow() {
-    console.log("demopage-onShow", this.msg);
+    pagelogs();
+    this.getPageData();
+  },
+
+  // 监听页面隐藏
+  onHide() {
+    pagelogs(true);
   }
 };
 </script>
 
 
 <style lang="scss">
-.scroll-box {
-  white-space: nowrap;
-  .item {
-    display: inline-block;
+.fr {
+  float: right;
+}
+.container {
+  padding: 10px 0 50px 0;
+  .footer-menu {
+    position: fixed;
+    background-color: #ddd;
+    bottom: 0;
     width: 100%;
-    border: 1px solid #ddd;
   }
 }
 </style>

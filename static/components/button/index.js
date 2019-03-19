@@ -24,6 +24,7 @@ VantComponent({
     onClick: function onClick() {
       if (!this.data.disabled && !this.data.loading) {
         this.$emit('click');
+        this.$emit('clickbtn');
       }
     }
   }

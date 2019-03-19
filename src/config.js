@@ -3,7 +3,7 @@
 const config = {
 
   // 登录重试次数
-  loginRetryTimes: 0,
+  loginRetryTimes: 0 ,
   // 登录重试延迟 单位ms
   loginRetryDelay: 500,
 
@@ -39,6 +39,7 @@ const config = {
     // 默认头像
     headerImg: "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/default_header_img.png",
     icon: "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/default_icon.png",
+    // 默认选中的驾照类型
     questionType: "c1",
     questionTag: "C1/C2/C3",
     questionClassName: "小车",
