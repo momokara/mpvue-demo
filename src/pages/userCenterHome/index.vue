@@ -2,9 +2,30 @@
   <div class="container">
     <userInfoCard
       :userInfo="userCardInfo"
+      :accountData="data.userInfo.account"
+      :bgImg="data.userInfo.bgImg"
       @tapHeaderImg="tapHeaderImg()"
     >
     </userInfoCard>
+
+    <div
+      class="main-ad-list"
+      v-if="data.menuList"
+    >
+      <div
+        class="maim-ad-box"
+        v-for="(item, index) in data.menuList"
+        :key="index"
+        :class="[{'shadow-box':item.config.isBorder}]"
+      >
+        <adBox
+          :data="item.data"
+          :config="item.config"
+        ></adBox>
+
+      </div>
+    </div>
+
     <div class="group-box">
 
       <van-cell-group custom-class="cell-group">
@@ -26,16 +47,17 @@
 
       </van-cell-group>
 
-      <van-cell-group custom-class="cell-group">
-
-      </van-cell-group>
     </div>
     <van-dialog id="van-dialog" />
   </div>
 </template>
 <script>
 import basicInfo from "@/store/basicInfo.js";
-import userInfoCard from "@/components/userInfoCard";
+import { getUserCenterHomeInfo } from "@/api/api";
+
+import userInfoCard from "@/components/userCenter/userInfoCard";
+import adBox from "@/components/homeAd/adBox";
+
 import { reLogin } from "@/api/dataTools";
 import { golink } from "@/utils/tools";
 import dialog from "@/../static/components/dialog-mo/dialog";
@@ -47,12 +69,17 @@ export default {
   data() {
     return {
       tapcleanTimes: 0,
-      openid: ""
+      openid: "",
+      data: {
+        userInfo: {
+        }
+      }
     };
   },
   // 使用的 vue 组件
   components: {
-    userInfoCard
+    userInfoCard,
+    adBox
   },
   computed: {
     userCardInfo() {
@@ -65,7 +92,7 @@ export default {
   methods: {
     tapHeaderImg: function() {
       // this.goLoginPage();
-
+      console.log(" @click.stop");
       wx.navigateTo({
         url: "/pages/user/editUserInfo/main",
         success: function(res) {
@@ -125,6 +152,9 @@ export default {
     },
     getPageData: function() {
       let _this = this;
+      getUserCenterHomeInfo().then(res => {
+        _this.data = res;
+      });
     }
   },
   onLoad() {
@@ -132,6 +162,7 @@ export default {
   },
   onShow() {
     this.tapcleanTimes = 0;
+    this.getPageData();
     pagelogs();
   },
   onHide() {
@@ -142,12 +173,33 @@ export default {
 
 
 <style lang="scss">
-.group-box {
+@mixin main-box {
+  margin: 0 auto 5px auto;
   width: 340px;
-  margin: 0 auto;
+}
+@mixin shadow-box {
+  box-shadow: 0 0 3px #ddd;
+  background-color: #fff;
+}
+.shadow-box {
+  @include shadow-box;
+}
+.group-box {
+  @include main-box;
   .cell-group {
     margin-bottom: 15px;
-    box-shadow: 0 0 3px #ddd;
+  }
+}
+.main-ad-list {
+  .maim-ad-box {
+    @include main-box;
+    width: 340px;
+    border-radius: 5px;
+    overflow: hidden;
+    .ad-box-title {
+      padding: 15px;
+      box-sizing: border-box;
+    }
   }
 }
 </style>

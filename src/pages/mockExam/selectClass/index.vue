@@ -38,7 +38,7 @@
   </div>
 </template>
 <script>
-import selectClassNav from "@/components/selectClassNav";
+import selectClassNav from "@/components/exam/selectClassNav";
 import { getClassList, loadqType } from "@/api/api.exam";
 import { golink } from "@/utils/tools";
 import questionType from "@/store/questionType.js";

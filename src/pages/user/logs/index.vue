@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import jsonTable from "@/components/jsonTable";
+import jsonTable from "@/components/userCenter/jsonTable";
 import { formatTime, golink, jsonToArray } from "@/utils/tools";
 // 页面记录
 import { pagelogs } from "@/utils/logs";

@@ -28,7 +28,14 @@ export default {
     return {
       tableKeys: [
         {
-          lab: "LabKey1",
+          lab: "标签1",
+          name: "key1",
+          value:"",
+          placeholder: "Key1value",
+          maxlength:3
+        },
+          {
+          lab: "标签1",
           name: "key1",
           value: "Key1value"
         }

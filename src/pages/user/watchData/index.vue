@@ -105,7 +105,7 @@
 <script>
 import basicInfo from "@/store/basicInfo.js";
 import questionType from "@/store/questionType.js";
-import jsonTable from "@/components/jsonTable";
+import jsonTable from "@/components/userCenter/jsonTable";
 import { jsonToArray } from "@/utils/tools";
 
 // 页面记录

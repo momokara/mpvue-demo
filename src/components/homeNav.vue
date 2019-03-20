@@ -16,9 +16,9 @@
         v-for="item in data"
         :key="item"
         class="nav-cell fs12 ta-c"
-        :style="'width:'+100/config.rowsize+'%'"
+        :style="lineColumn"
       >
-        <van-tabbar-item @click="callgolink(item)">
+        <van-tabbar-item @click="callgolink(item)" :info="item.msgNum">
           <div slot="icon">
             <img
               class="nav-icon"
@@ -63,6 +63,17 @@ export default {
   },
   components: {
     noticeSwipers
+  },
+  computed: {
+    lineColumn: function() {
+      let _lineColumn = `width:25%`;
+      if (this.config.rowsize) {
+        _lineColumn = `width:${100 / this.config.rowsize}%`;
+      } else if (this.config.displayMultipleItems) {
+        _lineColumn = `width:${100 / this.config.displayMultipleItems}%`;
+      }
+      return _lineColumn;
+    }
   },
   methods: {
     golink,

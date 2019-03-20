@@ -143,7 +143,6 @@ export default {
     goQuestion: function({ Chapter, Index }) {
       this.pageconfig.nChapter = Chapter;
       this.pageconfig.nActive = Index;
-
       return this.freshActiveId();
     },
     // 更新当前显示的 题目id
@@ -187,7 +186,7 @@ export default {
     },
     // 选择答案
     choose: function(e) {
-      console.log("choose", e);
+      console.log("choose", e,this.pageconfig.sAcitveid);
     },
     // 开关弹出层
     popToggle: function() {

@@ -39,6 +39,18 @@ export const getLearnHomeInfo = async () => {
   })
 }
 
+/**
+ * 获取个人中心首页信息
+ * @return {Promise} 返回结果
+ */
+export const getUserCenterHomeInfo = async () => {
+  let commonheader = await getcommonheader();
+  let url = `${config.host}/user_service/home`;
+  return ajaxAll(url, "GET", {}, commonheader).then(res => {
+    let resdata = res.result;
+    return resdata;
+  })
+}
 
 // 用户接口
 
@@ -142,5 +154,6 @@ module.export = {
   getUserInfoSer,
   saveEditUser,
   getHomeInfo,
+  getUserCenterHomeInfo,
   ajax
 }

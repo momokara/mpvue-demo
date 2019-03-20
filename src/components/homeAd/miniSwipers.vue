@@ -83,7 +83,7 @@ export default {
         previousMargin: "0px",
         nextMargin: "0px",
         displayMultipleItems: 1,
-        isShowName: true,
+        isShowName: false,
         imgHeight: "150rpx"
       },
       useConfig: {}
