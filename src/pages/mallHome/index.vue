@@ -20,27 +20,6 @@
       </homeNav>
     </div>
 
-    <div
-      class="main-ad-list"
-      v-if="data.adList"
-    >
-
-      <div
-        v-for="(item, index) in data.adList"
-        :key="index"
-      >
-        <div
-          v-if="index>0"
-          class="bg-green line"
-        ></div>
-        <adBox
-          :data="item.data"
-          :config="item.config"
-        ></adBox>
-
-      </div>
-    </div>
-
     <van-dialog id="van-dialog" />
   </div>
 </template>
@@ -50,7 +29,7 @@ import headerSwiper from "@/components/headerSwipers";
 import homeNav from "@/components/homeNav";
 import adBox from "@/components/homeAd/adBox";
 
-import { getHomeInfo } from "@/api/api";
+import { getMallHomeInfo } from "@/api/api.mall";
 
 // 页面记录
 import { pagelogs } from "@/utils/logs";
@@ -71,14 +50,10 @@ export default {
   methods: {
     getPageData() {
       let _this = this;
-      getHomeInfo().then(res => {
+        console.log("getMallHomeInfo");
+      getMallHomeInfo().then(res => {
+        console.log("getMallHomeInfo", res);
         _this.data = res;
-        if (res.pagetitle) {
-          wx.setNavigationBarTitle({
-            title: res.pagetitle
-          });
-        }
-
         wx.stopPullDownRefresh();
       });
     }
@@ -107,13 +82,5 @@ export default {
 }
 .header-nav-box {
   @include main-box;
-}
-.main-ad-list {
-  @include main-box;
-  margin: 20px auto 35px auto;
-  .line {
-    height: 1px;
-    margin: 10px 0 0 0;
-  }
 }
 </style>

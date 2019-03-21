@@ -7,11 +7,11 @@
     </div>
     <web-view
       v-if="data.isWechatUrl"
-      :src="data.data"
+      :src="data.html"
     ></web-view>
     <wxParse
       v-else
-      :content="data.data"
+      :content="data.html"
       @preview="preview"
       @navigate="navigate"
     ></wxParse>
@@ -53,7 +53,7 @@ export default {
         .then(res => {
           _this.data = res;
           let reg = /^https\:\/\//;
-          _this.data.isWechatUrl = reg.test(res.data);
+          _this.data.isWechatUrl = reg.test(res.html);
         })
         .catch(err => {
           console.log("getPageDataerr", err);
@@ -74,7 +74,9 @@ export default {
     pagelogs(true);
   },
   // 监听用户下拉动作
-  onPullDownRefresh() {},
+  onPullDownRefresh() {
+    this.getPageData();
+  },
 
   // 用户点击右上角分享
   onShareAppMessage() {}

@@ -5,9 +5,6 @@ import {
 } from "@/utils/Wxrequest";
 import basicInfo from "@/store/basicInfo.js";
 import {
-  decrypt
-} from "@/utils/cloudfunc/crypt";
-import {
   getOpenid
 } from "@/utils/cloudfunc/getUserInfo";
 
@@ -22,11 +19,9 @@ import config from '@/config.js'
  */
 export const getHomeInfo = async () => {
   let commonheader = await getcommonheader();
-  // let url = `${config.static_url_basic}${config.static_url_file}/home_data.json`;
-  let url = `${config.host}/home_data/1`;
-  // decryptheader();
-  return ajaxAll(url, "GET", {}, commonheader).then(res => {
-    let resdata = res;
+  let url = `${config.host}/marking_service/home_data/${config.mpid}`;
+  return ajaxAll(url, "GET", null, commonheader).then(res => {
+    let resdata = res.result;
     return resdata;
   })
 }
@@ -37,13 +32,25 @@ export const getHomeInfo = async () => {
  */
 export const getLearnHomeInfo = async () => {
   let commonheader = await getcommonheader();
-  let url = `${config.host}/lean/home`;
+  let url = `${config.host}/dirving_service/home`;
   return ajaxAll(url, "GET", {}, commonheader).then(res => {
     let resdata = res.result;
     return resdata;
   })
 }
 
+/**
+ * 获取个人中心首页信息
+ * @return {Promise} 返回结果
+ */
+export const getUserCenterHomeInfo = async () => {
+  let commonheader = await getcommonheader();
+  let url = `${config.host}/user_service/home`;
+  return ajaxAll(url, "GET", {}, commonheader).then(res => {
+    let resdata = res.result;
+    return resdata;
+  })
+}
 
 // 用户接口
 
@@ -55,9 +62,8 @@ export const getLearnHomeInfo = async () => {
  */
 export const getUserInfoSer = async (retryTimes) => {
   retryTimes = retryTimes | 0;
-  let url = `${config.host}/userInfo`;
+  let url = `${config.host}/user_service/getUserBaseInfo`;
   return getOpenid().then(async (res) => {
-    console.log("getOpenid", res);
     if (res.isgetinfo) {
       return res;
     } else {
@@ -94,8 +100,8 @@ export const getUserInfoSer = async (retryTimes) => {
  */
 export const saveEditUser = async (data) => {
   let commonheader = await getcommonheader();
-  let url = `${config.host}/editUser`;
-  return ajaxAll(url, "POST", data, commonheader).then(res => {
+  let url = `${config.host}/user_service/editUser`;
+  return ajaxAll(url, "PUT", data, commonheader).then(res => {
     let resdata = res;
     return resdata;
   })
@@ -135,16 +141,11 @@ export const getcommonheader = async () => {
       token: logindata.token
     }
   }
-  return commonheader
-}
-
-// 解密请求头内的appid 和 openid
-const decryptheader = async () => {
-  let token = await decrypt(basicInfo.state.token);
-  let decrypt_data = {
-    token
+  // 如果没有载入个人信息则尝试重新获取
+  if (!basicInfo.state.userInfo.avatarUrl) {
+    getUserInfoSer();
   }
-  console.log("解密结果", decrypt_data);
+  return commonheader
 }
 
 module.export = {
@@ -153,5 +154,6 @@ module.export = {
   getUserInfoSer,
   saveEditUser,
   getHomeInfo,
+  getUserCenterHomeInfo,
   ajax
 }

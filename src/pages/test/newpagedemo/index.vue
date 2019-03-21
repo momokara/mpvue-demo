@@ -6,11 +6,11 @@
       v-model="msg"
     >
     <div>
-      组件:
+      组件:XX
     </div>
     <demoBlock :title="msg">
       <div>
-        插槽内容
+        插槽内容 显示的插槽
       </div>
     </demoBlock>
 

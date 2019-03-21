@@ -17,7 +17,7 @@
     </div>
     <div class="main-list-box">
       <infocardList
-        :dataList="data"
+        :dataList="data.array"
         :config="config"
       ></infocardList>
     </div>
@@ -51,7 +51,9 @@ export default {
         page: 1,
         size: 10
       },
-      data: [],
+      data: {
+        array: []
+      },
       // 是否终止
       isend: false
     };
@@ -87,7 +89,7 @@ export default {
       let _this = this;
       if (isReset) {
         _this.pageconfig.page = 1;
-        _this.data = [];
+        _this.data.array = [];
         _this.isend = false;
       }
       if (!_this.isend) {
@@ -95,10 +97,10 @@ export default {
         let reqtype = 1;
         getArticleList(_this.pageconfig, reqtype).then(res => {
           console.log("getArticleList res", res);
-          if (res) {
-            _this.data = _this.data.concat(...res.data);
+          if (res.array) {
+            _this.data.array = _this.data.array.concat(...res.array);
             _this.pageconfig.page++;
-            if (_this.data.length >= res.total) {
+            if (_this.data.array.length >= res.total) {
               _this.isend = true;
             }
           }

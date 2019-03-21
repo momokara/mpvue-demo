@@ -25,7 +25,7 @@ const qtypedata = () => {
  */
 export const getHomeInfo = async () => {
   let commonheader = await getcommonheader();
-  let url = `${config.host}/exam/home`;
+  let url = `${config.host}/driving_service/exam/home`;
   return ajaxAll(url, "POST", qtypedata(), commonheader).then(res => {
     let resdata = res.result;
     return resdata;
@@ -38,7 +38,7 @@ export const getHomeInfo = async () => {
  */
 export const getClassList = async () => {
   let commonheader = await getcommonheader();
-  let url = `${config.host}/exam/getClasses`;
+  let url = `${config.host}/driving_service/exam/getClasses`;
   return ajaxAll(url, "GET", null, commonheader).then(res => {
     let resdata = res.result;
     return resdata;
@@ -51,14 +51,43 @@ export const getClassList = async () => {
  */
 export const getExamHis = async () => {
   let commonheader = await getcommonheader();
-  let url = `${config.host}/exam/getResultList`;
+  let url = `${config.host}/driving_service/exam/getResultList`;
   return ajaxAll(url, "POST", qtypedata(), commonheader).then(res => {
     let resdata = res.result;
     return resdata;
   })
 }
 
-// 加载本地题目信息
+
+/**
+ * 获取题目数组
+ * @param {Number} type 请求type 0-顺序练习 1-随机练习 3-模拟考试 4-错题 5-收藏
+ * @return {Promise} 返回结果
+ */
+export const getQusetionList = async (type) => {
+  let commonheader = await getcommonheader();
+  let url = `${config.host}/driving_service/exam/getQusetionList/${type}`;
+  return ajaxAll(url, "POST", qtypedata(), commonheader).then(res => {
+    let resdata = res.result;
+    return resdata;
+  })
+}
+/**
+ * 获取题详情
+ * @param {Number} id 题目id
+ * @return {Promise} 返回结果
+ */
+export const getQuestionData = async (id) => {
+  let commonheader = await getcommonheader();
+  let url = `${config.host}/driving_service/exam/getQuestionData/${id}`;
+  return ajaxAll(url, "GET", null, commonheader).then(res => {
+    let resdata = res.result;
+    return resdata;
+  })
+}
+
+
+// 加载本地选中题库信息
 export const loadqType = () => {
   if (!questionType.state.isLoad) {
     wx.getStorage({
@@ -79,5 +108,6 @@ module.export = {
   getHomeInfo,
   getClassList,
   getExamHis,
-  loadqType
+  loadqType,
+  getQusetionList
 }

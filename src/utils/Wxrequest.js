@@ -56,19 +56,49 @@ export const ajaxAll = (url, method, params, header) => {
         let _testdata = typeof (res) == "object" ? JSON.stringify(res) : res;
         // 只返回json 数据
         if (isJsonString(_testdata)) {
+          if (res.code != 200) {
+            console.log(res, res.errMsg | res.errmsg);
+            errlogs({
+              url,
+              method,
+              params,
+              header,
+              msg: {
+                code: res.code ? res.code : res.errcode,
+                errMsg: res.errMsg ? res.errMsg : res.errmsg
+              }
+            });
+            if (res.errcode) {
+              wx.showToast({
+                title: res.errmsg
+              });
+            }
+          }
           return res;
         } else {
+          errlogs({
+            url,
+            method,
+            params,
+            header,
+            msg: {
+              msg: "Data is not Josn",
+              data: _testdata
+            }
+          });
           return null;
         }
       })
       // 错误则调取云函数
       .catch(err => {
-        console.log({
-          msg: "ajaxAll request error",
-          err,
-          url
+        // 写入错误记录
+        errlogs({
+          url,
+          method,
+          params,
+          header,
+          msg: err
         });
-        errlogs(url, method, params, header, err);
         if (method == 'GET' || method == 'get') {
           let _params = ''
           if (params) {

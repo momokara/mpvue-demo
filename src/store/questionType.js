@@ -17,6 +17,7 @@ const basicInfo = new Vuex.Store({
     cName: defaultData.questionClassName,
     // 所属的科目
     subject: defaultData.qusetionSubject,
+    info:"未选择驾照类型",
     // 是否加载
     isLoad: false
   },
