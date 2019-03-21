@@ -3,7 +3,6 @@
     class="contant"
     v-if="data"
   >
-  <img src="/123.jpg" alt="">
     <div class="header-title">
       {{qtypename[data.type]}}
     </div>
@@ -12,6 +11,7 @@
     </div>
     <div class="header-img">
       <img
+        class="question-img"
         v-if="data.imgUrl"
         :src="data.imgUrl"
       >
@@ -245,9 +245,16 @@ export default {
 </script>
 
 <style lang="scss">
+.header-img {
+  width: 350px;
+  margin: 5px auto;
+  .question-img{
+    width: 100%;
+  }
+}
 .main-option {
   .select-icon {
-    margin:0 5px 0 -5px;
+    margin: 0 5px 0 -5px;
     .section-name {
       height: 20px; /*px*/
       line-height: 20px; /*px*/

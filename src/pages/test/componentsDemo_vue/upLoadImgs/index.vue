@@ -60,12 +60,15 @@ export default {
   },
   // 页面中的方法
   methods: {
+    // 添加图片回调
     addImg: function(event) {
       console.log("addImg", event);
     },
+    // 删除图片回调
     deleteImg: function(event) {
       console.log("deleteImg", event);
     },
+    // 上传图片回调
     upLoadImgs: function(event) {
       console.log("upLoadImgs", event);
     },

@@ -232,7 +232,7 @@ export default {
   float: right;
 }
 .container {
-  padding: 10px 0 50px 0;
+  padding: 0px 0px 50px 0px;
   .footer-menu {
     position: fixed;
     background-color: #ddd;

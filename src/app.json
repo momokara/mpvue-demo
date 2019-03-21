@@ -6,6 +6,7 @@
   "pages": [
     "pages/home/main",
     "pages/testApiHome/main",
+    "pages/mallHome/main",
     "pages/userCenterHome/main",
     "pages/mockExamHome/main",
     "pages/loginpage/main"
@@ -121,6 +122,13 @@
         "selectedIconPath": "static/images/icon/car1.png",
         "text": "学车"
       },
+      {
+        "pagePath": "pages/mallHome/main",
+        "iconPath": "static/images/icon/market.png",
+        "selectedIconPath": "static/images/icon/market1.png",
+        "text": "商城"
+      },
+
       {
         "pagePath": "pages/userCenterHome/main",
         "iconPath": "static/images/icon/user.png",
