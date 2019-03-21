@@ -29,7 +29,7 @@ import headerSwiper from "@/components/headerSwipers";
 import homeNav from "@/components/homeNav";
 import adBox from "@/components/homeAd/adBox";
 
-import { getHomeInfo } from "@/api/api";
+import { getMallHomeInfo } from "@/api/api.mall";
 
 // 页面记录
 import { pagelogs } from "@/utils/logs";
@@ -50,14 +50,10 @@ export default {
   methods: {
     getPageData() {
       let _this = this;
-      getHomeInfo().then(res => {
+        console.log("getMallHomeInfo");
+      getMallHomeInfo().then(res => {
+        console.log("getMallHomeInfo", res);
         _this.data = res;
-        if (res.pagetitle) {
-          wx.setNavigationBarTitle({
-            title: res.pagetitle
-          });
-        }
-
         wx.stopPullDownRefresh();
       });
     }
@@ -87,5 +83,4 @@ export default {
 .header-nav-box {
   @include main-box;
 }
-
 </style>
