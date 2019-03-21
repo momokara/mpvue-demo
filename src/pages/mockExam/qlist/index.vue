@@ -4,10 +4,11 @@
       class="main-qinfo"
       v-if="arrShowQid.length>0"
     >
-      <div class="fr">({{actIndex+1}}/{{sumQlength}})</div>
+      <div class="fr fc-grey"><span class="fc-green">{{actIndex+1}}</span>/{{sumQlength}}</div>
       <questionDetail
         :data="questionDetail"
         :answer="questionAnswer"
+        :qnum="actIndex+1"
         @choose="choose"
         @fail="chooseFail"
         :canChoose="canChoose"
@@ -233,6 +234,9 @@ export default {
 }
 .container {
   padding: 0px 0px 50px 0px;
+  .fr{
+    margin: 3px 5px;
+  }
   .footer-menu {
     position: fixed;
     background-color: #ddd;

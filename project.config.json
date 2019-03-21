@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": 0,
@@ -103,6 +103,12 @@
 					"name": "商城首页",
 					"pathName": "pages/mallHome/main",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "日历",
+					"pathName": "pages/test/componentsDemo/Calendar/main",
 					"scene": null
 				}
 			]

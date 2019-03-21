@@ -22,6 +22,7 @@
         @lastMonth="tapCalendar"
         @nextMonth="tapCalendar"
         @tapDay="tapCalendar"
+        @dayNum="dayNum"
       >
         <div>标题</div>
       </van-calendar>
@@ -101,7 +102,7 @@ export default {
   // 页面中的方法
   methods: {
     tapCalendar(event) {
-      console.log(event);
+      console.log("tapCalendar",event);
     },
     // 输入信息
     changeInput: function(event) {
@@ -111,6 +112,9 @@ export default {
       this.demodata[event.currentTarget.dataset.name] = event.mp.detail.split(
         ","
       );
+    },
+    dayNum: function(e) {
+      console.log("dayNum", e.mp.detail);
     }
   },
   onLoad(option) {

@@ -3,11 +3,14 @@
     class="contant"
     v-if="data"
   >
-    <div class="header-title">
-      {{qtypename[data.type]}}
-    </div>
-    <div class="header-question">
-      {{data.question}}
+    <div class="header">
+      <div class="header-title fsp12 fc-fff">
+        {{qtypename[data.type]}}
+      </div>
+      <div class="header-question">
+        {{qnum}}、{{data.question}}
+      </div>
+
     </div>
     <div class="header-img">
       <img
@@ -143,8 +146,13 @@
       </block>
     </div>
     <div class="footer-explan">
-      <div>{{data.answer}}</div>
-      <div>{{data.explain}}</div>
+      <div class="answer-row">
+        <van-tag type="success">参考答案</van-tag>
+        <span class="value fsp14">{{data.answer}}</span>
+      </div>
+      <div class="explan-row fsp14">
+        <van-tag type="success">参考答案</van-tag>{{data.explain}}
+      </div>
     </div>
   </div>
 
@@ -167,6 +175,9 @@ export default {
     canChoose: {
       type: Boolean,
       default: true
+    },
+    qnum: {
+      type: Number
     }
   },
   data() {
@@ -245,10 +256,28 @@ export default {
 </script>
 
 <style lang="scss">
+.header {
+  background-color: #fff;
+  .header-title {
+    background: url(https://cdn.jiapeiyun.cn/haivit/public/image/20181218165638_948/题目标记.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    height: 25px;
+    width: 150px;
+    line-height: 24px;
+    text-indent: 5px;
+    display: inline-block;
+    margin: 0 0 5px 0;
+  }
+  .header-question {
+    padding: 5px 10px;
+  }
+}
 .header-img {
   width: 350px;
   margin: 5px auto;
-  .question-img{
+  .question-img {
     width: 100%;
   }
 }
@@ -276,5 +305,10 @@ export default {
       color: #fff;
     }
   }
+}
+.footer-explan {
+  margin: 15px 0;
+  padding: 10px 15px;
+  background-color: #fff;
 }
 </style>

@@ -142,6 +142,7 @@ export default {
 .exam-menu-box {
   box-sizing: border-box;
 }
+
 .exam-home-container {
   padding: 10px 0 0 0;
   .user-info-box {
