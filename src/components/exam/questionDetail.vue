@@ -3,6 +3,7 @@
     class="contant"
     v-if="data"
   >
+  <img src="/123.jpg" alt="">
     <div class="header-title">
       {{qtypename[data.type]}}
     </div>
@@ -16,6 +17,7 @@
       >
     </div>
     <div class="main-option">
+      <!-- 多选题 -->
       <block v-if="data.type==3">
         <van-checkbox-group
           :value="answer"
@@ -43,18 +45,35 @@
                     :name="item.name"
                     :class="'check-box-'+item.name"
                     @click.stop
+                    :disabled="isDiable"
                   >
                     <div
                       slot="icon-default"
-                      class="section-name fsp14"
+                      class="section-name ta-c fsp14"
                     >
                       {{item.name}}
                     </div>
                     <div
                       slot="icon-active"
-                      class="section-name fsp14 active"
+                      class="section-name ta-c fsp14 active"
                     >
-                      {{item.name}}
+                      <van-icon
+                        v-if="item.isanswer"
+                        custom-class="act-icon"
+                        name="checked"
+                        size="22px"
+                        color="#3AC569"
+                      />
+                      <van-icon
+                        v-else
+                        custom-class="act-icon"
+                        name="clear"
+                        size="22px"
+                        color="#F64C4C"
+                      />
+                    </div>
+                    <div slot="icon-disabled">
+                      <div class="section-name ta-c fsp14 disabled">{{item.name}}</div>
                     </div>
                   </van-checkbox>
                 </div>
@@ -65,6 +84,7 @@
 
         </van-checkbox-group>
       </block>
+      <!-- 单选/判断 -->
       <block v-else>
         <van-radio-group :value="answer[0]">
           <van-cell-group>
@@ -89,13 +109,28 @@
                     use-icon-slot
                   >
                     <div slot="icon-default">
-                      <div class="section-name fsp14">{{item.name}}</div>
+                      <div class="section-name ta-c fsp14">{{item.name}}</div>
                     </div>
                     <div slot="icon-active">
-                      <div class="section-name fsp14 active">{{item.name}}</div>
+
+                      <van-icon
+                        v-if="item.isanswer"
+                        custom-class="act-icon"
+                        name="checked"
+                        size="22px"
+                        color="#3AC569"
+                      />
+                      <van-icon
+                        v-else
+                        custom-class="act-icon"
+                        name="clear"
+                        size="22px"
+                        color="#F64C4C"
+                      />
+
                     </div>
                     <div slot="icon-disabled">
-                      <div class="section-name fsp14 disabled">{{item.name}}</div>
+                      <div class="section-name ta-c fsp14 disabled">{{item.name}}</div>
                     </div>
                   </van-radio>
                 </div>
@@ -122,7 +157,17 @@ export default {
       type: Object,
       default: {}
     },
-    answer: []
+    answer: [],
+    // 是否禁用选项
+    isDiable: {
+      type: Boolean,
+      default: false
+    },
+    // 是否可以选择答案
+    canChoose: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
@@ -160,27 +205,40 @@ export default {
     },
     // 多选
     clickCheckbox: function(e) {
-      this[e.mp.currentTarget.dataset.name] = e.mp.detail;
-      let _answer = "";
-      this.answer.forEach(e => {
-        _answer = _answer + e;
-      });
-      this.sendChoose(_answer);
+      if (this.canChoose) {
+        this[e.mp.currentTarget.dataset.name] = e.mp.detail;
+        let _answer = "";
+        this.answer.forEach(e => {
+          _answer = _answer + e;
+        });
+        this.sendChoose(_answer);
+      } else {
+        this.sendFail(e.mp);
+      }
     },
     // 单选
     clickRadio: function(e) {
-      this[e.mp.currentTarget.dataset.key] = [e.mp.currentTarget.dataset.value];
-      let _answer = this.answer[0];
-      this.sendChoose(_answer);
+      if (this.canChoose) {
+        this[e.mp.currentTarget.dataset.key] = [
+          e.mp.currentTarget.dataset.value
+        ];
+        let _answer = this.answer[0];
+        this.sendChoose(_answer);
+      } else {
+        this.sendFail(e.mp);
+      }
     },
+    // 选择答案
     sendChoose: function(answer) {
-      console.log(answer, this.data.answer);
       let isWrong = answer == this.data.answer ? false : true;
       let data = {
         answer: this.answer,
         isWrong
       };
       this.$emit("choose", data);
+    },
+    sendFail: function(data) {
+      this.$emit("fail", data);
     }
   }
 };
@@ -188,13 +246,28 @@ export default {
 
 <style lang="scss">
 .main-option {
-  .answer {
-    .active {
-      background-color: green;
+  .select-icon {
+    margin:0 5px 0 -5px;
+    .section-name {
+      height: 20px; /*px*/
+      line-height: 20px; /*px*/
+      width: 20px; /*px*/
+      border-radius: 50%;
+      border: 1px solid #ddd;
     }
-  }
-  .active {
-    background-color: red;
+    .disabled {
+      background: #ddd;
+    }
+    // 正确答案
+    .answer {
+      .active {
+        background-color: #3ac569;
+      }
+    }
+    .active {
+      background-color: #e61f19;
+      color: #fff;
+    }
   }
 }
 </style>

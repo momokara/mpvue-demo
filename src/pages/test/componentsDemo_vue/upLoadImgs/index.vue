@@ -45,9 +45,9 @@ export default {
       msg: "这里是消息",
       autoUpLoad: false,
       imgArr: [
-        "https://cdn.huibaoming.com/haivit/public/image/20181112155409_979/wx7e28d99c40baf7a8.o6zAJs0VYBlymN8fYVEUKSPcEawI.DSXlZRmdFiq153b8b378d15905c5ed2e65c281061b91.jpg",
-        "https://cdn.huibaoming.com/haivit/public/image/20181112155409_979/wx7e28d99c40baf7a8.o6zAJs0VYBlymN8fYVEUKSPcEawI.DSXlZRmdFiq153b8b378d15905c5ed2e65c281061b91.jpg",
-        "https://cdn.huibaoming.com/haivit/public/image/20181112155409_979/wx7e28d99c40baf7a8.o6zAJs0VYBlymN8fYVEUKSPcEawI.DSXlZRmdFiq153b8b378d15905c5ed2e65c281061b91.jpg"
+        // "https://cdn.huibaoming.com/haivit/public/image/20181112155409_979/wx7e28d99c40baf7a8.o6zAJs0VYBlymN8fYVEUKSPcEawI.DSXlZRmdFiq153b8b378d15905c5ed2e65c281061b91.jpg",
+        // "https://cdn.huibaoming.com/haivit/public/image/20181112155409_979/wx7e28d99c40baf7a8.o6zAJs0VYBlymN8fYVEUKSPcEawI.DSXlZRmdFiq153b8b378d15905c5ed2e65c281061b91.jpg",
+        // "https://cdn.huibaoming.com/haivit/public/image/20181112155409_979/wx7e28d99c40baf7a8.o6zAJs0VYBlymN8fYVEUKSPcEawI.DSXlZRmdFiq153b8b378d15905c5ed2e65c281061b91.jpg"
       ],
       table_api: apiData.api,
       table_event: apiData.event

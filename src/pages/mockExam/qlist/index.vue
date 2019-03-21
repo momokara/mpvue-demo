@@ -9,6 +9,8 @@
         :data="questionDetail"
         :answer="questionAnswer"
         @choose="choose"
+        @fail="chooseFail"
+        :canChoose="canChoose"
       ></questionDetail>
     </div>
     <div
@@ -82,7 +84,8 @@ export default {
       isShowPop: false,
       // 当前显示内容
       questionDetail: {},
-      questionAnswer: []
+      questionAnswer: [],
+      canChoose: true
     };
   },
   // 使用的 vue 组件
@@ -143,6 +146,7 @@ export default {
     goQuestion: function({ Chapter, Index }) {
       this.pageconfig.nChapter = Chapter;
       this.pageconfig.nActive = Index;
+      // this.canChoose = Math.random(0, 1) > 0.5 ? true : false;
       return this.freshActiveId();
     },
     // 更新当前显示的 题目id
@@ -186,7 +190,10 @@ export default {
     },
     // 选择答案
     choose: function(e) {
-      console.log("choose", e,this.pageconfig.sAcitveid);
+      console.log("choose", e, this.pageconfig.sAcitveid);
+    },
+    chooseFail: function(e) {
+      console.log("chooseFail", e);
     },
     // 开关弹出层
     popToggle: function() {

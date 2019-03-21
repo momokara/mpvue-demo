@@ -27,7 +27,6 @@
     </div>
 
     <div class="group-box">
-
       <van-cell-group custom-class="cell-group">
         <van-swipe-cell>
           <view slot="left">选择</view>
