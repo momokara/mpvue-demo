@@ -108,7 +108,8 @@
       "root": "pages/poster",
       "pages": [
         "posterHome/main",
-        "posterList/main"
+        "posterList/main",
+        "posterDetail/main"
       ]
     }
   ],

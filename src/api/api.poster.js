@@ -10,7 +10,7 @@ import questionType from "@/store/questionType.js";
 import config from '@/config.js'
 
 /**
- * 获取学车首页信息
+ * 获取全民营销首页
  * @return {Promise} 返回结果
  */
 export const getPosterHomeInfo = async () => {
@@ -23,7 +23,7 @@ export const getPosterHomeInfo = async () => {
   })
 }
 /**
- * 获取学车首页信息
+ * 获取海报分类列表
  * @return {Promise} 返回结果
  */
 export const getPosterList = async (data) => {
@@ -38,8 +38,24 @@ export const getPosterList = async (data) => {
     return resdata;
   })
 }
+/**
+ * 获取海报详情
+ * @return {Promise} 返回结果
+ */
+export const getPosterDetail = async (data) => {
+  let commonheader = await getcommonheader();
+  if (!data.id) {
+    data.id = null
+  }
+  let url = `${config.host}/marking_service/poster/detail/${data.id}`;
+  return ajaxAll(url, "GET", {}, commonheader).then(res => {
+    let resdata = res.result;
+    return resdata;
+  })
+}
 
 module.export = {
   getPosterHomeInfo,
-  getPosterList
+  getPosterList,
+  getPosterDetail
 }
