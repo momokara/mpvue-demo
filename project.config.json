@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 11,
 			"list": [
 				{
 					"id": 0,
@@ -109,6 +109,13 @@
 					"id": 10,
 					"name": "全民营销",
 					"pathName": "pages/poster/posterHome/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "全民营销-分类列表",
+					"pathName": "pages/poster/posterList/main",
 					"query": "",
 					"scene": null
 				}

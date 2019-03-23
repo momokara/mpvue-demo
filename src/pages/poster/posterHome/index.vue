@@ -20,8 +20,8 @@
       </homeNav>
     </div>
     <!-- 推荐位 -->
-    <div>
-
+    <div class="poster-ad-box">
+      <posterList :data="data.adList.data"></posterList>
     </div>
     <van-dialog id="van-dialog" />
   </div>
@@ -30,7 +30,7 @@
 <script>
 import headerSwiper from "@/components/headerSwipers";
 import homeNav from "@/components/homeAd/homeNav";
-import adBox from "@/components/homeAd/adBox";
+import posterList from "@/components/poster/posterList";
 
 import { getPosterHomeInfo } from "@/api/api.poster";
 
@@ -47,7 +47,7 @@ export default {
   components: {
     headerSwiper,
     homeNav,
-    adBox
+    posterList
   },
 
   methods: {
@@ -81,8 +81,13 @@ export default {
   border-radius: 16px;
   padding: 10px;
   background-color: #fff;
+  box-sizing: border-box;
 }
 .header-nav-box {
   @include main-box;
+}
+.poster-ad-box {
+  @include main-box;
+  padding: 15px;
 }
 </style>

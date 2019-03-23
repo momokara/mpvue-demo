@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="home-container">
     <div id="search_bar">
       <van-search
         :value="pageconfig.keyword"
@@ -16,10 +16,7 @@
       </van-search>
     </div>
     <div class="main-list-box">
-      <infocardList
-        :dataList="data.array"
-        :config="config"
-      ></infocardList>
+      <posterList :data="data.array"></posterList>
     </div>
     <div
       class="ta-c fsp12 fc-grey more"
@@ -36,12 +33,13 @@
     </div>
   </div>
 </template>
+
 <script>
-import { getArticleList } from "@/api/api.article";
-import infocardList from "@/components/homeAd/infoCardList";
+import { getPosterList } from "@/api/api.poster";
+import posterList from "@/components/poster/posterList";
 // 页面记录
 import { pagelogs } from "@/utils/logs";
-import { error } from "util";
+
 export default {
   data() {
     return {
@@ -59,11 +57,7 @@ export default {
     };
   },
 
-  components: {
-    infocardList
-  },
-  watch: {},
-  computed: {},
+  components: { posterList },
 
   methods: {
     // 搜索框改变事件
@@ -94,9 +88,8 @@ export default {
       }
       if (!_this.isend) {
         // let reqtype = _this.pageconfig.keyword ? 1 : 0;
-        let reqtype = 1;
-        getArticleList(_this.pageconfig, reqtype).then(res => {
-          console.log("getArticleList res", res);
+        getPosterList(_this.pageconfig).then(res => {
+          console.log("getPosterList res", res);
           if (res.array) {
             _this.data.array = _this.data.array.concat(...res.array);
             _this.pageconfig.page++;
@@ -104,32 +97,23 @@ export default {
               _this.isend = true;
             }
           }
-          if (res.title) {
-            wx.setNavigationBarTitle({
-              title: `${res.title}`
-            });
-          }
         });
       }
     }
   },
-
-  // 原生钩子
-  // 监听页面加载
   onLoad(options) {
     console.log(options);
     this.pageconfig.id = options.id;
     this.pageconfig.keyword = options.keyword;
   },
-  // 监听页面显示
   onShow() {
     pagelogs();
-    this.getPageData(true);
+    this.getPageData();
   },
   onHide() {
     pagelogs(true);
   },
-  // 监听用户下拉动作
+
   onPullDownRefresh() {
     this.getPageData(true);
   },
@@ -140,19 +124,20 @@ export default {
 };
 </script>
 
-
 <style lang="scss">
+@mixin main-box {
+  margin: auto;
+  padding: 10px;
+  box-sizing: border-box;
+}
 .main-list-box {
-  width: 700rpx;
-  margin: 0 auto;
-  .ad-card-cell {
-    margin-bottom: 10px;
-    box-shadow: 0 0 3px #ddd;
-    border-radius: 5px;
-    overflow: hidden;
+  @include main-box;
+  padding: 15px;
+  .poster-list .link .image-box {
+    height: 210px;
   }
 }
-.more {
-  margin: 10px auto 30px auto;
+.more{
+  margin-bottom: 50px;
 }
 </style>
