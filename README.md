@@ -21,13 +21,13 @@ npm install -d sass-loader
 ## 小程序sdk
 npm install -d wafer2-client-sdk
 
-## mpvue-wxparse
+## mpvue-wxparse 小程序富文本工具
 npm install -d mpvue-wxparse
 
-# serve with hot reload at localhost:8080
+# 开发时候使用命令运行,项目会监听文件变化实时刷新
 npm run dev
 
-# build for production with minification
+# 生产打包需要使用此命令,会移除无用的包和内容
 npm run build
 
 # build for production and view the bundle analyzer report
