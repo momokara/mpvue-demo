@@ -19,17 +19,20 @@
       >
       </homeNav>
     </div>
+    <!-- 推荐位 -->
+    <div>
 
+    </div>
     <van-dialog id="van-dialog" />
   </div>
 </template>
 
 <script>
 import headerSwiper from "@/components/headerSwipers";
-import homeNav from "@/components/homeNav";
+import homeNav from "@/components/homeAd/homeNav";
 import adBox from "@/components/homeAd/adBox";
 
-import { getMallHomeInfo } from "@/api/api.mall";
+import { getPosterHomeInfo } from "@/api/api.poster";
 
 // 页面记录
 import { pagelogs } from "@/utils/logs";
@@ -50,9 +53,8 @@ export default {
   methods: {
     getPageData() {
       let _this = this;
-        console.log("getMallHomeInfo");
-      getMallHomeInfo().then(res => {
-        console.log("getMallHomeInfo", res);
+      getPosterHomeInfo().then(res => {
+        console.log("getPosterHomeInfo", res);
         _this.data = res;
         wx.stopPullDownRefresh();
       });

@@ -2,15 +2,7 @@
 <template>
   <!-- 选择科目 -->
   <div>
-    <div
-      class="notice-box"
-      v-if="config.isShowNotice"
-    >
-      <noticeSwipers
-        :swiperList="noticeData"
-        icon-url="https://cdn.huibaoming.com/haivit/public/image/20181105181545_89/公告.png"
-      ></noticeSwipers>
-    </div>
+
     <div class="nav-box">
       <div
         v-for="item in data"
@@ -40,7 +32,6 @@
 </template>
 
 <script>
-import noticeSwipers from "@/components/noticeSwipers";
 import { golink } from "@/utils/tools";
 export default {
   props: {
@@ -62,9 +53,7 @@ export default {
       default: true
     }
   },
-  components: {
-    noticeSwipers
-  },
+  components: {},
   methods: {
     golink,
     callgolink: function(item) {

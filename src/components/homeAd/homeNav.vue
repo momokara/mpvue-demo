@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import noticeSwipers from "@/components/noticeSwipers";
+import noticeSwipers from "@/components/homeAd/noticeSwipers";
 import { golink } from "@/utils/tools";
 export default {
   props: {

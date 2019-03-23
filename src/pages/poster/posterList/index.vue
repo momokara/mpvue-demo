@@ -26,7 +26,7 @@
 
 <script>
 import headerSwiper from "@/components/headerSwipers";
-import homeNav from "@/components/homeNav";
+import homeNav from "@/components/homeAd/homeNav";
 import adBox from "@/components/homeAd/adBox";
 
 import { getMallHomeInfo } from "@/api/api.mall";

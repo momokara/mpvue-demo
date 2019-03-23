@@ -75,7 +75,7 @@
 import miniSwipers from "@/components/homeAd/miniSwipers";
 import imgAdList from "@/components/homeAd/imgAdList";
 import infocardList from "@/components/homeAd/infoCardList";
-import homeNav from "@/components/homeNav";
+import homeNav from "@/components/homeAd/homeNav";
 import cellMenu from "@/components/userCenter/cellMenu";
 
 import { golink } from "@/utils/tools";
