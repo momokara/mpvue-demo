@@ -99,13 +99,6 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "商城首页",
-					"pathName": "pages/mallHome/main",
-					"query": "",
-					"scene": null
-				},
-				{
 					"id": 10,
 					"name": "全民营销",
 					"pathName": "pages/poster/posterHome/main",
@@ -116,6 +109,13 @@
 					"id": -1,
 					"name": "全民营销-分类列表",
 					"pathName": "pages/poster/posterList/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "登录页面",
+					"pathName": "pages/loginpage/main",
 					"query": "",
 					"scene": null
 				}

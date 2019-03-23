@@ -32,9 +32,7 @@ export default {
         // let reqtype = _this.pageconfig.keyword ? 1 : 0;
         getPosterDetail(_this.pageconfig).then(res => {
           console.log("getPosterDetail res", res);
-          if (res.array) {
-            _this.data = res;
-          }
+          _this.data = res;
         });
       }
     }

@@ -3,7 +3,7 @@
 const config = {
 
   // 登录重试次数
-  loginRetryTimes: 0 ,
+  loginRetryTimes: 0,
   // 登录重试延迟 单位ms
   loginRetryDelay: 500,
 
@@ -12,7 +12,7 @@ const config = {
 
   // 云函数配置
   // 云函数环境id- 第一个是生产 第二个是开发环境 
-  env: process.env.NODE_ENV == "production" ?"zhijia-worker-dcad94":"zhijia-75abfd",
+  env: process.env.NODE_ENV == "production" ? "zhijia-worker-dcad94" : "zhijia-75abfd",
   // 小程序id 小程序在后台的唯一标识
   mpid: "wx7e28d99c40baf7a8",
 
@@ -36,14 +36,23 @@ const config = {
 
   // 一些默认信息
   defaultData: {
+    // 登录页图标
+    loginPageIcon: "https://cdn.jiapeiyun.cn/haivit/public/image/20181017162601_890/关于粤安@3x.png",
+    // 登录页提示信息
+    loginPageTips: "请授权登录以获取更好的服务",
+    // 登录页按钮文字
+    loginPageButtionText: "测试小程序-授权登录",
     // 默认头像
     headerImg: "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/default_header_img.png",
     icon: "https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/default_icon.png",
+
     // 默认选中的驾照类型
     questionType: "c1",
     questionTag: "C1/C2/C3",
     questionClassName: "小车",
-    qusetionSubject: 1
+    qusetionSubject: 1,
+
+
   }
 
 };

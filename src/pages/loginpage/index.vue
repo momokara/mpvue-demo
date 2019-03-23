@@ -14,22 +14,23 @@
       lang="zh_CN"
       @getuserinfo="getUserInfo"
     >
-      授权登录
+      {{btnText}}
     </van-button>
   </div>
 </template>
 
 <script>
 import Api from "@/api/api";
+import config from '@/config.js'
 import { saveUserInfo } from "@/utils/cloudfunc/getUserInfo";
 // 页面记录
 import { pagelogs } from "@/utils/logs";
 export default {
   data() {
     return {
-      imgurl:
-        "https://cdn.jiapeiyun.cn/haivit/public/image/20181017162601_890/关于粤安@3x.png",
-      tip: "这里显示的tips",
+      imgurl: config.defaultData.loginPageIcon,
+      tip: config.defaultData.loginPageTips,
+      btnText: config.defaultData.loginPageButtionText,
       fromUrl: ""
     };
   },

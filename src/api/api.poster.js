@@ -48,7 +48,7 @@ export const getPosterDetail = async (data) => {
     data.id = null
   }
   let url = `${config.host}/marking_service/poster/detail/${data.id}`;
-  return ajaxAll(url, "GET", {}, commonheader).then(res => {
+  return ajaxAll(url, "GET", null, commonheader).then(res => {
     let resdata = res.result;
     return resdata;
   })
