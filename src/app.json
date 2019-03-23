@@ -103,6 +103,13 @@
         "logs/main",
         "forbidden/main"
       ]
+    },
+    {
+      "root": "pages/poster",
+      "pages": [
+        "posterHome/main",
+        "posterList/main"
+      ]
     }
   ],
   "tabBar": {

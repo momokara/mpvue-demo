@@ -12,12 +12,14 @@
         <div class="question-box">
           <div
             class="col-box fsp14 ta-c fc-grey"
-            :class="[{'active':active==col.index},{'right':col.isWrong==0},{'wrong':col.isWrong==1}]"
+            :class="[{'active':active==col.index},{'right':answerData[col.id]?!answerData[col.id].isWrong:false},{'wrong':answerData[col.id]?answerData[col.id].isWrong:false}]"
             v-for="(col, col_index) in chapter.data"
             :key="col_index"
             @click="goQuestion(chapter_index,col_index)"
           >
-            <div class="num">{{col.index+1}}</div>
+            <div class="num">
+              {{col.index+1}}
+            </div>
           </div>
         </div>
       </div>
@@ -32,6 +34,9 @@ export default {
     data: {
       type: Array,
       default: []
+    },
+    answerData: {
+      type: Array
     },
     active: {
       type: String

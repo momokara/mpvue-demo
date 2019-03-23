@@ -1,6 +1,6 @@
 
 <template>
-  <!-- 首页的导航 -->
+  <!-- 选择科目 -->
   <div>
     <div
       class="notice-box"

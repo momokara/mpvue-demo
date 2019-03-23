@@ -92,10 +92,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 8,
 					"name": "笔试练习",
 					"pathName": "pages/mockExam/qlist/main",
-					"query": "",
+					"query": "mode=5",
 					"scene": null
 				},
 				{
@@ -106,9 +106,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 10,
 					"name": "日历",
-					"pathName": "pages/test/componentsDemo/Calendar/main",
+					"pathName": "pages/poster/posterHome/main",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -56,10 +56,7 @@
                     >
                       {{item.name}}
                     </div>
-                    <div
-                      slot="icon-active"
-                      class="section-name ta-c fsp14 active"
-                    >
+                    <div slot="icon-active">
                       <van-icon
                         v-if="item.isanswer"
                         custom-class="act-icon"
@@ -115,7 +112,6 @@
                       <div class="section-name ta-c fsp14">{{item.name}}</div>
                     </div>
                     <div slot="icon-active">
-
                       <van-icon
                         v-if="item.isanswer"
                         custom-class="act-icon"
@@ -130,7 +126,6 @@
                         size="22px"
                         color="#F64C4C"
                       />
-
                     </div>
                     <div slot="icon-disabled">
                       <div class="section-name ta-c fsp14 disabled">{{item.name}}</div>

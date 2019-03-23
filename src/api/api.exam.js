@@ -69,6 +69,7 @@ export const getQusetionList = async (type) => {
   let url = `${config.host}/driving_service/exam/getQusetionList/${type}`;
   return ajaxAll(url, "POST", qtypedata(), commonheader).then(res => {
     let resdata = res.result;
+    resdata.qtypedata = qtypedata();
     return resdata;
   })
 }
@@ -82,6 +83,7 @@ export const getQuestionData = async (id) => {
   let url = `${config.host}/driving_service/exam/getQuestionData/${id}`;
   return ajaxAll(url, "GET", null, commonheader).then(res => {
     let resdata = res.result;
+
     return resdata;
   })
 }

@@ -4,8 +4,23 @@
       class="main-qinfo"
       v-if="arrShowQid.length>0"
     >
-      <div class="fr fc-grey"><span class="fc-green">{{actIndex+1}}</span>/{{sumQlength}}</div>
+      <div class="fr fc-grey"> <span @click="toggleCollect(pageconfig.sAcitveid)">
+          <van-icon
+            v-if="data.objCollect[pageconfig.sAcitveid]"
+            custom-class="foot-icon"
+            name="https://cdn.jiapeiyun.cn/haivit/public/image/20181218145810_379/已收藏星星.png"
+            size="16px"
+          />
+          <van-icon
+            v-else
+            custom-class="foot-icon"
+            name="https://cdn.jiapeiyun.cn/haivit/public/image/20181218145810_379/未收藏.png"
+            size="16px"
+          /></span>
+        <span class="fc-green">{{actIndex+1}}</span>/{{sumQlength}}
+      </div>
       <questionDetail
+        v-if="questionDetail"
         :data="questionDetail"
         :answer="questionAnswer"
         :qnum="actIndex+1"
@@ -13,6 +28,7 @@
         @fail="chooseFail"
         :canChoose="canChoose"
       ></questionDetail>
+      <div v-else>什么都没有</div>
     </div>
     <div
       class="main-qinfo"
@@ -29,27 +45,70 @@
     >
       <questionMenu
         :data="arrShowQid"
+        :answerData="data.objAnswer"
         :active="actIndex"
         @goQuestion="goQuestion"
       ></questionMenu>
     </van-popup>
     <div class="footer-menu">
       <van-button
-        custom-class="footer-btn"
+        custom-class="footer-btn fl"
         @clickbtn="goprev"
         type="primary"
-        size="mini"
         :disabled="pageconfig.nChapter<=0&&pageconfig.nActive<=0"
-      >上一题</van-button>
+      >
+        <van-icon
+          custom-class="foot-icon"
+          name="arrow-left"
+          size="28px"
+        />
+      </van-button>
+      <div class="footer-middle">
+        <div class="menu-box">
+          <div class="info-cell">
+            <van-icon
+              custom-class="foot-icon"
+              name="checked"
+              size="20px"
+              color="#3AC569"
+            />
+            <span class="num">{{dolength-wrongNum}}</span>
+          </div>
 
-      <span @click="popToggle">选题目</span>
+          <div class="info-cell">
+            <van-icon
+              custom-class="foot-icon"
+              name="clear"
+              size="20px"
+              color="#F64C4C"
+            />
+            <span class="num">{{wrongNum}}</span>
+          </div>
+          <div class="info-cell">
+            <span class="menu">
+              <van-icon
+                @click="popToggle"
+                custom-class="foot-icon"
+                name="https://cdn.jiapeiyun.cn/haivit/public/image/20181218145810_379/菜单栏.png"
+                size="20px"
+                color="#3AC569"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
       <van-button
         custom-class="footer-btn fr"
         @clickbtn="gonext"
         type="primary"
-        size="mini"
         :disabled="pageconfig.nChapter>=arrShowQid.length-1&&actIndex>=sumQlength-1"
-      >下一题</van-button>
+      >
+        <van-icon
+          custom-class="foot-icon"
+          name="arrow"
+          size="28px"
+        />
+      </van-button>
     </div>
   </div>
 </template>
@@ -57,6 +116,8 @@
 import { getQusetionList, getQuestionData } from "@/api/api.exam";
 import questionDetail from "@/components/exam/questionDetail";
 import questionMenu from "@/components/exam/questionMenu";
+
+import questionType from "@/store/questionType.js";
 // 页面记录
 import { pagelogs } from "@/utils/logs";
 export default {
@@ -79,12 +140,15 @@ export default {
         // 收藏数据
         objCollect: {}
       },
-      actIndex: 0,
+      wrongNum: 0,
+      dolength: 0,
       // 题目总长
       sumQlength: 0,
+      // 是否显示弹出层
       isShowPop: false,
       // 当前显示内容
-      questionDetail: {},
+      actIndex: 0,
+      questionDetail: "",
       questionAnswer: [],
       canChoose: true
     };
@@ -94,22 +158,30 @@ export default {
   computed: {
     // 显示的题目数组
     arrShowQid() {
-      let _showdata = this.data.arrQid;
+      let _this = this;
+      let _showdata;
+      if (_this.pageconfig.options.mode == 4) {
+        _showdata = _this.findErr();
+      } else if (_this.pageconfig.options.mode == 5) {
+        _showdata = _this.getCollect();
+      } else {
+        _showdata = _this.data.arrQid;
+      }
       if (_showdata.length > 0) {
         let i = 0;
         _showdata.forEach(element => {
-          element.data = element.data.map(e => {
-            let isWrong;
-            e = {
-              data: e,
-              index: i,
-              isWrong
-            };
-            i++;
-            return e;
-          });
+          if (element.data.length > 0) {
+            element.data = element.data.map(e => {
+              const _e = {
+                id: e.id ? e.id : e,
+                index: i
+              };
+              i++;
+              return _e;
+            });
+          }
         });
-        this.sumQlength = i;
+        _this.sumQlength = i;
       }
       return _showdata;
     }
@@ -154,12 +226,14 @@ export default {
     freshActiveId: function() {
       this.pageconfig.sAcitveid = this.arrShowQid[
         this.pageconfig.nChapter
-      ].data[this.pageconfig.nActive].data;
+      ].data[this.pageconfig.nActive].id;
       // 更新标记点
       this.actIndex = this.arrShowQid[this.pageconfig.nChapter].data[
         this.pageconfig.nActive
       ].index;
       this.getQdata(this.pageconfig.sAcitveid);
+      this.conutScore();
+      this.questionAnswer = this.loadChoose(this.pageconfig.sAcitveid);
       return this.pageconfig.sAcitveid;
     },
     /**
@@ -191,10 +265,114 @@ export default {
     },
     // 选择答案
     choose: function(e) {
-      console.log("choose", e, this.pageconfig.sAcitveid);
+      this.questionAnswer = e.answer;
+      this.saveChoose(this.pageconfig.sAcitveid, e);
+      this.conutScore();
     },
     chooseFail: function(e) {
       console.log("chooseFail", e);
+    },
+    // 保存选择
+    saveChoose: function(id, data) {
+      this.data.objAnswer[id] = data;
+    },
+    // 获取错题
+    findErr: function() {
+      let err = [{ data: [] }];
+      let answerData = this.data.objAnswer;
+      let i = 0;
+      for (const key in answerData) {
+        if (answerData.hasOwnProperty(key)) {
+          const element = answerData[key];
+          if (element.isWrong) {
+            let row = {
+              id: key,
+              index: i
+            };
+            i++;
+            err[0].data.push(row);
+          }
+        }
+      }
+      return err;
+    },
+    /**
+     * 切换收藏状态
+     * @param {String} id 题目id
+     */
+    toggleCollect: function(id) {
+      this.data.objCollect[id] = !this.data.objCollect[id];
+      console.log(id, this.data.objCollect[id]);
+    },
+    // 获取收藏
+    getCollect: function() {
+      let collect = [{ data: [] }];
+      let collectData = this.data.objCollect;
+      let i = 0;
+      for (const key in collectData) {
+        if (collectData.hasOwnProperty(key)) {
+          const element = collectData[key];
+          if (element) {
+            let row = {
+              id: key,
+              index: i
+            };
+            i++;
+            collect[0].data.push(row);
+          }
+        }
+      }
+      console.log('collect',collect);
+      return collect;
+    },
+    // 加载选择
+    loadChoose: function(id) {
+      let _answer = this.data.objAnswer[id]
+        ? this.data.objAnswer[id].answer
+        : {};
+      return _answer;
+    },
+    getsaveName: function() {
+      return `oQdata_${questionType.state.tag}_${questionType.state.subject}`;
+    },
+    // 全局保存记录
+    saveQdata: function() {
+      let fileName = this.getsaveName();
+      wx.setStorageSync(fileName, this.data);
+    },
+    // 加载缓存记录
+    loadQdata: function() {
+      let fileName = this.getsaveName();
+      return new Promise((resolve, reject) => {
+        wx.getStorage({
+          key: fileName,
+          success: function(res) {
+            resolve(res.data);
+          },
+          fail: function(err) {
+            reject(err);
+          }
+        });
+      });
+    },
+    // 统计成绩
+    conutScore: function(e) {
+      let _objAnswer = this.data.objAnswer;
+      let wrongNum = 0;
+      let dolength = 0;
+      for (const key in _objAnswer) {
+        if (_objAnswer.hasOwnProperty(key)) {
+          dolength++;
+          const element = _objAnswer[key];
+          if (element.isWrong) {
+            wrongNum++;
+          }
+        }
+      }
+      this.wrongNum = wrongNum;
+      this.dolength = dolength;
+      this.saveQdata();
+      return { wrongNum, dolength };
     },
     // 开关弹出层
     popToggle: function() {
@@ -207,17 +385,34 @@ export default {
     // 获取页面信息
     getPageData: function() {
       let _this = this;
-      getQusetionList(0).then(res => {
+      getQusetionList(_this.pageconfig.options.mode).then(res => {
         _this.data.arrQid = res.questionList;
         _this.goQuestion({ Chapter: 0, Index: 0 });
       });
     }
   },
-
+  onLoad(options) {
+    this.pageconfig.options = options;
+  },
   // 监听页面显示
   onShow() {
     pagelogs();
-    this.getPageData();
+    let _this = this;
+    this.loadQdata()
+      .then(res => {
+        _this.data = res;
+        if (
+          _this.pageconfig.options.mode == 2 ||
+          _this.pageconfig.options.mode == 3
+        ) {
+          _this.getPageData();
+        } else {
+          _this.goQuestion({ Chapter: 0, Index: 0 });
+        }
+      })
+      .catch(err => {
+        _this.getPageData();
+      });
   },
 
   // 监听页面隐藏
@@ -229,19 +424,64 @@ export default {
 
 
 <style lang="scss">
+@mixin line-height($height) {
+  height: $height;
+  line-height: $height;
+  margin: 0;
+  padding: 0;
+}
 .fr {
   float: right;
 }
+.fl {
+  float: left;
+}
 .container {
   padding: 0px 0px 50px 0px;
-  .fr{
+  .fr {
     margin: 3px 5px;
   }
   .footer-menu {
     position: fixed;
-    background-color: #ddd;
+    background: #fff;
+    box-shadow: 0 0 5px #333;
     bottom: 0;
     width: 100%;
+    @include line-height(50px);
+    .footer-btn {
+      @include line-height(50px);
+      position: relative;
+      width: 50px;
+      .foot-icon {
+        position: absolute;
+        top: 5px;
+        left: 8px;
+      }
+    }
+    .footer-middle {
+      display: inline-block;
+      width: 245px;
+      padding: 0 15px;
+      position: relative;
+      .menu-box {
+        display: flex;
+        .info-cell {
+          flex: 1;
+          .foot-icon {
+            position: absolute;
+            top: 12px;
+          }
+          .menu {
+            .foot-icon {
+              right: 10px;
+            }
+          }
+          .num {
+            margin-left: 25px;
+          }
+        }
+      }
+    }
   }
 }
 </style>
