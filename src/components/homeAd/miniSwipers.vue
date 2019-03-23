@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="swiperList.length>0"
     :style="boxHeight"
     class="mini-swiper-box"
   >
@@ -128,10 +129,31 @@ export default {
       } else {
         _this.useConfig.cell_height = _this.useConfig.imgHeight;
       }
+    },
+    /**
+     * 轮播内容数量不足时候补位
+     * @param {Number} displayMultipleItems 每行数量配置信息
+     * @param {Number} swiperListLength 数组长度
+     */
+    fixswiperList: function(displayMultipleItems, swiperListLength) {
+      if (displayMultipleItems > swiperListLength) {
+        let fixLength = displayMultipleItems - swiperListLength;
+        for (let index = 0; index < fixLength; index++) {
+          const emptydata = {
+            imgUrl: "",
+            url: ""
+          };
+          this.swiperList.push(emptydata);
+        }
+      }
     }
   },
   created() {
     this.getUseConfig();
+    this.fixswiperList(
+      this.useConfig.displayMultipleItems,
+      this.swiperList.length
+    );
   }
 };
 </script>

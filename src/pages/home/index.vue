@@ -1,46 +1,51 @@
 <template>
   <div class="home-container">
-    <!-- 顶部轮播 -->
-    <headerSwiper
-      v-if="data.swiper"
-      :swiperList="data.swiper.data"
-      :config="data.swiper.config"
-      @change="swiperChange"
-      @animationfinish="swiperChange"
-    >
-    </headerSwiper>
-    <!-- 导航栏 -->
-    <div class="header-nav-box">
-      <homeNav
-        v-if="data.nav"
-        :config="data.nav.config"
-        :data="data.nav.data"
-        :noticeData="data.nav.noticeData"
-      >
-      </homeNav>
-    </div>
+    <block v-if="!isLoading">
 
-    <div
-      class="main-ad-list"
-      v-if="data.adList"
-    >
+      <!-- 顶部轮播 -->
+      <headerSwiper
+        v-if="data.swiper"
+        :swiperList="data.swiper.data"
+        :config="data.swiper.config"
+        @change="swiperChange"
+        @animationfinish="swiperChange"
+      >
+      </headerSwiper>
+      <!-- 导航栏 -->
+      <div class="header-nav-box">
+        <homeNav
+          v-if="data.nav"
+          :config="data.nav.config"
+          :data="data.nav.data"
+          :noticeData="data.nav.noticeData"
+        >
+        </homeNav>
+      </div>
 
       <div
-        v-for="(item, index) in data.adList"
-        :key="index"
+        class="main-ad-list"
+        v-if="data.adList"
       >
+
         <div
-          v-if="index>0"
-          class="bg-green line"
-        ></div>
-        <adBox
-          :data="item.data"
-          :config="item.config"
-        ></adBox>
+          v-for="(item, index) in data.adList"
+          :key="index"
+        >
+          <div
+            v-if="index>0"
+            class="bg-green line"
+          ></div>
+          <adBox
+            :data="item.data"
+            :config="item.config"
+          ></adBox>
 
+        </div>
       </div>
-    </div>
-
+    </block>
+    <block v-else>
+      加载中
+    </block>
     <van-dialog id="van-dialog" />
   </div>
 </template>
@@ -71,8 +76,12 @@ export default {
   methods: {
     getPageData() {
       let _this = this;
+      _this.isLoading = true;
+      console.log(_this.isLoading);
       getHomeInfo().then(res => {
         _this.data = res;
+        _this.isLoading = false;
+        console.log(_this.isLoading);
         if (res.pagetitle) {
           wx.setNavigationBarTitle({
             title: res.pagetitle
