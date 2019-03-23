@@ -142,6 +142,7 @@ export default {
   width: 100%;
   .mini-swiper {
     width: 100%;
+    height: 100%;
     .link {
       box-sizing: border-box;
       padding: 0px 3px;

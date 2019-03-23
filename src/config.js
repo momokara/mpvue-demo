@@ -52,7 +52,6 @@ const config = {
     questionClassName: "小车",
     qusetionSubject: 1,
 
-
   }
 
 };
