@@ -54,6 +54,23 @@ export const getPosterDetail = async (data) => {
   })
 }
 
+/**
+ * 获取合成海报地址
+ * @return {Promise} 返回结果
+ */
+export const downLoadPoster = async (data) => {
+  let commonheader = await getcommonheader();
+  if (!data.id) {
+    data.id = null
+  }
+  let url = `${config.host}/marking_service/poster/getposter`;
+  return ajaxAll(url, "POST", data, commonheader).then(res => {
+    let resdata = res.result;
+    return resdata;
+  })
+}
+
+
 module.export = {
   getPosterHomeInfo,
   getPosterList,

@@ -1,11 +1,37 @@
 <template>
   <div class="home-container">
-    海报详情
+    <div v-if="data.type==1">
+      <customDetail
+        :id="pageconfig.id"
+        :adMsg="data.adMsg"
+        :bgUrl="data.bgUrl"
+        @downPoster="downLoadPoster"
+      ></customDetail>
+
+    </div>
+    <div v-else>
+      <traditionDetail
+        :adMsg="data.adMsg"
+        :bgUrl="data.bgUrl"
+        @downPoster="downLoadPoster"
+      >
+      </traditionDetail>
+    </div>
+    <posterPopup
+      :isShow="popupData.isShow"
+      :imgUrl="popupData.imgUrl"
+      @close="onclose"
+    ></posterPopup>
   </div>
 </template>
 
 <script>
-import { getPosterDetail } from "@/api/api.poster";
+import traditionDetail from "@/components/poster/traditionDetail";
+import customDetail from "@/components/poster/customDetail";
+
+import posterPopup from "@/components/poster/posterPopup";
+
+import { getPosterDetail, downLoadPoster } from "@/api/api.poster";
 // 页面记录
 import { pagelogs } from "@/utils/logs";
 
@@ -15,19 +41,44 @@ export default {
       pageconfig: {
         id: ""
       },
-      data: {}
+      data: {
+        adMsg: [],
+        bgUrl: []
+      },
+      popupData: {
+        isShow: false,
+        imgUrl: ""
+      }
     };
   },
 
-  components: {},
+  components: {
+    traditionDetail,
+    customDetail,
+    posterPopup
+  },
 
   methods: {
+    // 下载海报
+    downLoadPoster: function(e) {
+      let _this = this;
+      downLoadPoster(e).then(res => {
+        console.log("downLoadPoster", res);
+        if (res.imgUrl) {
+          _this.popupData.isShow = true;
+          _this.popupData.imgUrl = res.imgUrl;
+        }
+      });
+    },
+    onclose: function(e) {
+      console.log(e);
+      this.popupData.isShow = !e;
+    },
     /**
      * 获取页面信息
      */
     getPageData() {
       let _this = this;
-
       if (!_this.isend) {
         // let reqtype = _this.pageconfig.keyword ? 1 : 0;
         getPosterDetail(_this.pageconfig).then(res => {

@@ -1,6 +1,5 @@
 <template>
   <div class="poster-list ">
-
     <block v-if="data">
       <div
         v-for="item in data"

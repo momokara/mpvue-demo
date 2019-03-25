@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 12,
 			"list": [
 				{
 					"id": 0,
@@ -118,6 +118,13 @@
 					"pathName": "pages/loginpage/main",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "广告详情",
+					"pathName": "pages/poster/posterDetail/main",
+					"query": "id=666",
+					"scene": 1011
 				}
 			]
 		}
