@@ -1,7 +1,7 @@
 <template>
   <!-- 自定义海报 -->
-  <div class="contant">
-
+  <div class="custom-poster-page">
+    <!-- 展示图 -->
     <div class="show-box">
       <img
         class="show-bg"
@@ -32,7 +32,14 @@
           <div
             class="delete"
             @click="deleteLcImg(indexlc)"
-          > 删除</div>
+          >
+            <van-icon
+              custom-class="delete-icon"
+              name="clear"
+              size="20px"
+              color="#F64C4C"
+            />
+          </div>
           <div
             class="img-box fill-box"
             @click="toggleBg({bgImg:itemlcbg.imgUrl})"
@@ -66,6 +73,73 @@
           ></div>
         </swiper-item>
       </swiper>
+      <van-button
+        class="showForm-btn"
+        size="large"
+        type="primary"
+        @click="showForm"
+      >生成海报</van-button>
+    </div>
+
+    <!-- 信息输入框 -->
+    <div>
+      <van-popup
+        :show="isShowForm"
+        @close="showForm"
+      >
+        <div class="form-box">
+          <van-cell-group>
+            <van-field
+              label="姓名"
+              maxlength="12"
+              :value="formData.nickName"
+              data-key="nickName"
+              placeholder="请输入姓名"
+              :border="false"
+              clearable
+              :error-message="errlog.nickName"
+              @change="onChange"
+            />
+            <van-field
+              label="手机"
+              maxlength="11"
+              :value="formData.phone"
+              data-key="phone"
+              placeholder="请输入手机号"
+              :border="false"
+              clearable
+              :error-message="errlog.phone"
+              @change="onChange"
+            />
+            <van-field
+              label="广告词"
+              :value="formData.adMsg"
+              data-key="adMsg"
+              placeholder="请输入广告词"
+              :border="false"
+              clearable
+              :error-message="errlog.adMsg"
+              type="textarea"
+              fixed="true"
+              maxlength="150"
+              input-class="text-box"
+              @change="onChange"
+            />
+          </van-cell-group>
+          <div class="btn-box">
+            <van-button
+              class="form-btn"
+              type="primary"
+              @click="downLoadPoster"
+              :disabled="!canDownLoad"
+            >确定</van-button>
+            <van-button
+              class="form-btn"
+              @click="showForm"
+            >取消</van-button>
+          </div>
+        </div>
+      </van-popup>
     </div>
   </div>
 
@@ -84,6 +158,14 @@ export default {
     bgUrl: {
       type: Array,
       default: []
+    },
+    formData: {
+      type: Object,
+      default: {
+        nickName: "",
+        phone: "",
+        adMsg: ""
+      }
     }
   },
   data() {
@@ -91,23 +173,36 @@ export default {
       pagedata: {
         showImg: ""
       },
-      LocationImg: []
+
+      // 错误提示
+      errlog: {},
+      LocationImg: [],
+      isShowForm: false,
+      canDownLoad: true
     };
   },
   methods: {
     // 发送图片下载事件
-    downLoadPoster: function(data) {
-      this.$emit("downPoster", data);
+    downLoadPoster: function() {
+      if (this.canDownLoad) {
+        let data = {
+          bgUrl: this.pagedata.showImg,
+          nickName: this.formData.nickName,
+          phone: this.formData.phone,
+          adMsg: this.formData.adMsg
+        };
+        this.$emit("downPoster", data);
+        this.showForm();
+      }
     },
 
-    // 商城图片
+    // 上传图片
     uploadImg: function() {
       let _this = this;
       wx.chooseImage({
         success: chooseResult => {
           upLoadFile(chooseResult.tempFiles[0], `costom_poster_bg`).then(
             res => {
-              console.log("url:", res);
               _this.pagedata.showImg = `https://${res.Location}`;
               _this.LocationImg.push({ imgUrl: _this.pagedata.showImg });
               if (_this.id) {
@@ -118,7 +213,25 @@ export default {
         }
       });
     },
-
+    onChange: function(e) {
+      this.formData[e.mp.target.dataset.key] = e.mp.detail;
+      this.validForm();
+    },
+    validForm: function() {
+      let _this = this;
+      for (const key in _this.formData) {
+        if (_this.formData.hasOwnProperty(key)) {
+          const element = _this.formData[key];
+          if (element) {
+            _this.errlog[key] = "";
+            _this.canDownLoad = true;
+          } else {
+            _this.errlog[key] = "不能为空";
+            _this.canDownLoad = false;
+          }
+        }
+      }
+    },
     // 切换背景图
     toggleBg: function({ id, bgImg }) {
       this.pagedata.showImg = bgImg;
@@ -180,53 +293,78 @@ export default {
           this.bgUrl.push(emptydata);
         }
       }
+    },
+    showForm: function() {
+      this.isShowForm = !this.isShowForm;
     }
   },
   created() {
     this.fixswiperList(3, this.bgUrl.length);
     this.loadLcImg();
+    this.validForm();
   }
 };
 </script>
 
-<style lang="scss" scoped>
-.show-box {
-  width: 350px;
-  margin: auto;
-  .show-bg {
-    width: 100%;
+<style lang="scss" >
+.custom-poster-page {
+  .show-box {
+    width: 350px;
+    margin: auto;
+    .show-bg {
+      width: 100%;
+    }
   }
-}
 
-.bg-list {
-  height: 150px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  .bg-swiper {
-    height: 120px;
-    .delete {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .add-bg {
-      font-size: 60px;
-    }
-    .img-box {
-      box-sizing: border-box;
-      margin: 5px 10px;
-      height: 110px;
-      line-height: 100px;
-      .image {
-        width: 100%;
+  .bg-list {
+    height: 203px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    .bg-swiper {
+      height: 120px;
+      .delete {
+        position: absolute;
+        right: 7 px;
+        top: 1px;
+      }
+      .add-bg {
+        font-size: 60px;
+      }
+      .img-box {
+        box-sizing: border-box;
+        margin: 5px 10px;
+        height: 110px;
+        line-height: 100px;
+        .image {
+          width: 100%;
+        }
+      }
+      .fill-box {
+        background-color: #ddd;
+        color: #fff;
+        overflow: hidden;
+        box-shadow: 0 0 3px #333;
       }
     }
-    .fill-box {
-      background-color: #ddd;
-      color: #fff;
-      overflow: hidden;
-      box-shadow: 0 0 3px #333;
+  }
+  .form-box {
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    .text-box {
+      height: 140px;
+    }
+    .btn-box {
+      width: 100vw;
+      display: flex;
+      justify-content: space-around;
+      .form-btn {
+        width: 45vw;
+        .van-button {
+          width: 100%;
+        }
+      }
     }
   }
 }

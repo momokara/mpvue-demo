@@ -1,6 +1,6 @@
 <template>
   <!-- 传统海报 -->
-  <div class="tradition-contant">
+  <div class="tradition-poster-page">
     <!-- 广告词列表 -->
     <div class="ad-list">
       <block
@@ -79,7 +79,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 @mixin main-box {
   width: 330px;
   padding: 10px;
@@ -87,27 +87,29 @@ export default {
   box-shadow: 0 0 5px #333;
   border-radius: 10px;
 }
-.ad-list {
-  .data-row {
-    display: flex;
-    flex-wrap: nowrap;
-    @include main-box;
-    .info-box {
-      width: 300px;
-    }
-    .btn-box {
-      width: 30px;
+.tradition-poster-page {
+  .ad-list {
+    .data-row {
       display: flex;
-      align-items: center;
+      flex-wrap: nowrap;
+      @include main-box;
+      .info-box {
+        width: 300px;
+      }
+      .btn-box {
+        width: 30px;
+        display: flex;
+        align-items: center;
+      }
     }
   }
-}
-.bg-list {
-  @include main-box;
-  .img-box {
-    margin-bottom: 10px;
-    .image {
-      width: 100%;
+  .bg-list {
+    @include main-box;
+    .img-box {
+      margin-bottom: 10px;
+      .image {
+        width: 100%;
+      }
     }
   }
 }

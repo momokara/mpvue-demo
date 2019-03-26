@@ -58,10 +58,11 @@ export default {
               wx.saveImageToPhotosAlbum({
                 filePath: res.tempFilePath,
                 success(res) {
-                  console.log(res);
+                  
                 }
               });
             }
+            _this.$emit("close", true);
           }
         });
       }

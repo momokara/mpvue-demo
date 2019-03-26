@@ -60,9 +60,6 @@ export const getPosterDetail = async (data) => {
  */
 export const downLoadPoster = async (data) => {
   let commonheader = await getcommonheader();
-  if (!data.id) {
-    data.id = null
-  }
   let url = `${config.host}/marking_service/poster/getposter`;
   return ajaxAll(url, "POST", data, commonheader).then(res => {
     let resdata = res.result;

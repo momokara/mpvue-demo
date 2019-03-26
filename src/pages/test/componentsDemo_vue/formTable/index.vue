@@ -30,14 +30,15 @@ export default {
         {
           lab: "标签1",
           name: "key1",
-          value:"",
+          value: "",
           placeholder: "Key1value",
-          maxlength:3
+          maxlength: 3,
+          type: "textarea",
         },
-          {
+        {
           lab: "标签1",
-          name: "key1",
-          value: "Key1value"
+          name: "key2",
+          value: "Key2value",
         }
       ]
     };

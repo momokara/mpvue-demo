@@ -5,6 +5,7 @@
         :id="pageconfig.id"
         :adMsg="data.adMsg"
         :bgUrl="data.bgUrl"
+        :formData="formData"
         @downPoster="downLoadPoster"
       ></customDetail>
 
@@ -26,6 +27,7 @@
 </template>
 
 <script>
+import basicInfo from "@/store/basicInfo.js";
 import traditionDetail from "@/components/poster/traditionDetail";
 import customDetail from "@/components/poster/customDetail";
 
@@ -57,13 +59,22 @@ export default {
     customDetail,
     posterPopup
   },
-
+  computed: {
+    formData() {
+      let data = {
+        nickName: basicInfo.state.userInfo.nickName,
+        phone: basicInfo.state.basicInfo.phone,
+        adMsg: this.data.adMsg.length > 0 ? this.data.adMsg[0].info : ""
+      };
+      return data;
+    }
+  },
   methods: {
     // 下载海报
     downLoadPoster: function(e) {
       let _this = this;
+      e.id = _this.pageconfig.id;
       downLoadPoster(e).then(res => {
-        console.log("downLoadPoster", res);
         if (res.imgUrl) {
           _this.popupData.isShow = true;
           _this.popupData.imgUrl = res.imgUrl;

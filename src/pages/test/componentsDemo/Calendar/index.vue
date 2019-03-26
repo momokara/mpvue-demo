@@ -23,6 +23,7 @@
         @nextMonth="tapCalendar"
         @tapDay="tapCalendar"
         @dayNum="dayNum"
+        @getAlldata="getAllData"
       >
         <div>标题</div>
       </van-calendar>
@@ -92,7 +93,8 @@ export default {
       table_api: apiData.api,
       table_custom_class: apiData.custom_class,
       table_event: apiData.event,
-      table_slot: apiData.slot
+      table_slot: apiData.slot,
+      isfresh: false
     };
   },
   // 使用的 vue 组件
@@ -102,7 +104,7 @@ export default {
   // 页面中的方法
   methods: {
     tapCalendar(event) {
-      console.log("tapCalendar",event);
+      console.log("tapCalendar", event);
     },
     // 输入信息
     changeInput: function(event) {
@@ -115,6 +117,12 @@ export default {
     },
     dayNum: function(e) {
       console.log("dayNum", e.mp.detail);
+    },
+    getAllData(e) {
+      console.log("getAllData============================", e);
+      if (!this.isfresh) {
+        this.isfresh = true;
+      }
     }
   },
   onLoad(option) {
