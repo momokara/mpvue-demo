@@ -6,7 +6,8 @@
   "pages": [
     "pages/home/main",
     "pages/mockExamHome/main",
-    "pages/mallHome/main"
+    "pages/mallHome/main",
+    "pages/userCenterHome/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -29,6 +30,23 @@
         "qlist/main",
         "selectClass/main",
         "examResult/main"
+      ]
+    },
+    {
+      "root": "pages/user",
+      "pages": [
+        "editUserInfo/main",
+        "watchData/main",
+        "logs/main",
+        "forbidden/main"
+      ]
+    },
+    {
+      "root": "pages/poster",
+      "pages": [
+        "posterHome/main",
+        "posterList/main",
+        "posterDetail/main"
       ]
     }
   ],
@@ -55,6 +73,12 @@
         "iconPath": "static/images/icon/market.png",
         "selectedIconPath": "static/images/icon/market1.png",
         "text": "商城"
+      },
+      {
+        "pagePath": "pages/userCenterHome/main",
+        "iconPath": "static/images/icon/user.png",
+        "selectedIconPath": "static/images/icon/user1.png",
+        "text": "我的"
       }
     ]
   },
