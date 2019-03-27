@@ -24,6 +24,11 @@ export default {
   // 初始化
   onLaunch (options) {
     console.log('启动参数：', options)
+    if (options.query.shareId) {
+      wx.showToast({
+        title: `邀请id是${options.query.shareId}`
+      })
+    }
   },
   // 当小程序启动，或从后台进入前台显示
   onShow () {

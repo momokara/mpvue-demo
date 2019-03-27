@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -67,6 +67,21 @@
 					"id": -1,
 					"name": "海报详情",
 					"pathName": "pages/poster/posterDetail/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "测试首页",
+					"pathName": "pages/testApiHome/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "首页带参",
+					"pathName": "pages/home/main",
+					"query": "testid=1&?&shareId=676305933",
 					"scene": null
 				}
 			]

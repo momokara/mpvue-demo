@@ -303,7 +303,7 @@ const menuData = {
     title_tag: 'vue',
     title_name: '页面功能组件_vue组件',
     child_menu: [{
-      title: 'upLoad_Images',
+      title: 'upLoadImages',
       cn_name: '图片上传',
       label: '图片上传组件-vue 组件',
       url: '/componentsDemo_vue/upLoadImgs/main'

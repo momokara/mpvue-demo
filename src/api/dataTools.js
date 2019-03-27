@@ -48,9 +48,31 @@ export const decryptToken = async () => {
   console.table(decryptData)
   console.groupEnd()
 }
-
+export const getShareData = (path, title, imageUrl) => {
+  let _params = ''
+  let options = {}
+  if (!path) {
+    // eslint-disable-next-line no-undef
+    path = getCurrentPages()
+    path = path[path.length - 1]
+    options = path.options
+    path = path.route
+  }
+  options.shareId = basicInfo.state.userNo
+  for (const key in options) {
+    _params = `${_params}&${key}=${options[key]}`
+  }
+  path = `${path}?${_params}`
+  console.log(path)
+  return {
+    path,
+    title,
+    imageUrl
+  }
+}
 module.export = {
   reLogin,
   checkIsForbidden,
-  decryptToken
+  decryptToken,
+  getShareData
 }

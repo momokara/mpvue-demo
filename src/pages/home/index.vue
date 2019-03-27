@@ -3,43 +3,29 @@
     <block v-if="!isLoading">
 
       <!-- 顶部轮播 -->
-      <headerSwiper
-        v-if="data.swiper"
-        :swiperList="data.swiper.data"
-        :config="data.swiper.config"
-        @change="swiperChange"
-        @animationfinish="swiperChange"
-      >
+      <headerSwiper v-if="data.swiper"
+                    :swiperList="data.swiper.data"
+                    :config="data.swiper.config"
+                    @change="swiperChange"
+                    @animationfinish="swiperChange">
       </headerSwiper>
       <!-- 导航栏 -->
       <div class="header-nav-box">
-        <homeNav
-          v-if="data.nav"
-          :config="data.nav.config"
-          :data="data.nav.data"
-          :noticeData="data.nav.noticeData"
-        >
+        <homeNav v-if="data.nav"
+                 :config="data.nav.config"
+                 :data="data.nav.data"
+                 :noticeData="data.nav.noticeData">
         </homeNav>
       </div>
+      <div class="main-ad-list"
+           v-if="data.adList">
 
-      <div
-        class="main-ad-list"
-        v-if="data.adList"
-      >
-
-        <div
-          v-for="(item, index) in data.adList"
-          :key="index"
-        >
-          <div
-            v-if="index>0"
-            class="bg-green line"
-          ></div>
-          <adBox
-            :data="item.data"
-            :config="item.config"
-          ></adBox>
-
+        <div v-for="(item, index) in data.adList"
+             :key="index">
+          <div v-if="index>0"
+               class="bg-green line"></div>
+          <adBox :data="item.data"
+                 :config="item.config"></adBox>
         </div>
       </div>
     </block>
@@ -56,6 +42,7 @@ import homeNav from '@/components/homeAd/homeNav'
 import adBox from '@/components/homeAd/adBox'
 
 import { getHomeInfo } from '@/api/api'
+import { getShareData } from '@/api/dataTools'
 
 // 页面记录
 import { pagelogs } from '@/utils/logs'
@@ -102,6 +89,9 @@ export default {
 
   onPullDownRefresh () {
     this.getPageData()
+  },
+  onShareAppMessage (res) {
+    return getShareData('', '小程序首页')
   }
 }
 </script>
