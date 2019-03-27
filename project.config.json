@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -60,6 +60,13 @@
 					"id": -1,
 					"name": "编辑信息",
 					"pathName": "pages/user/editUserInfo/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "海报详情",
+					"pathName": "pages/poster/posterDetail/main",
 					"scene": null
 				}
 			]

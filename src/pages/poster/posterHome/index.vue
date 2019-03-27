@@ -1,27 +1,25 @@
 <template>
   <div class="home-container">
-    <!-- 顶部轮播 -->
-    <headerSwiper
-      v-if="data.swiper"
-      :swiperList="data.swiper.data"
-      :config="data.swiper.config"
-      @change="swiperChange"
-      @animationfinish="swiperChange"
-    >
-    </headerSwiper>
-    <!-- 导航栏 -->
-    <div class="header-nav-box">
-      <homeNav
-        v-if="data.nav"
-        :config="data.nav.config"
-        :data="data.nav.data"
-        :noticeData="data.nav.noticeData"
-      >
-      </homeNav>
-    </div>
-    <!-- 推荐位 -->
-    <div class="poster-ad-box">
-      <posterList :data="data.adList.data"></posterList>
+    <div v-if="data.adList">
+      <!-- 顶部轮播 -->
+      <headerSwiper v-if="data.swiper"
+                    :swiperList="data.swiper.data"
+                    :config="data.swiper.config"
+                    @change="swiperChange"
+                    @animationfinish="swiperChange">
+      </headerSwiper>
+      <!-- 导航栏 -->
+      <div class="header-nav-box">
+        <homeNav v-if="data.nav"
+                 :config="data.nav.config"
+                 :data="data.nav.data"
+                 :noticeData="data.nav.noticeData">
+        </homeNav>
+      </div>
+      <!-- 推荐位 -->
+      <div class="poster-ad-box">
+        <posterList :data="data.adList.data"></posterList>
+      </div>
     </div>
     <van-dialog id="van-dialog" />
   </div>
