@@ -72,13 +72,13 @@
 </template>
 
 <script>
-import miniSwipers from "@/components/homeAd/miniSwipers";
-import imgAdList from "@/components/homeAd/imgAdList";
-import infocardList from "@/components/homeAd/infoCardList";
-import homeNav from "@/components/homeAd/homeNav";
-import cellMenu from "@/components/userCenter/cellMenu";
+import miniSwipers from '@/components/homeAd/miniSwipers'
+import imgAdList from '@/components/homeAd/imgAdList'
+import infocardList from '@/components/homeAd/infoCardList'
+import homeNav from '@/components/homeAd/homeNav'
+import cellMenu from '@/components/userCenter/cellMenu'
 
-import { golink } from "@/utils/tools";
+import { golink } from '@/utils/tools'
 export default {
   props: {
     config: {
@@ -104,7 +104,7 @@ export default {
   methods: {
     golink
   }
-};
+}
 </script>
 
 <style lang="scss">

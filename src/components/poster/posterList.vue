@@ -22,22 +22,22 @@
 </template>
 
 <script>
-import { golink } from "@/utils/tools";
+import { golink } from '@/utils/tools'
 export default {
   props: {
     data: {
       type: Array
     }
   },
-  data() {
-    return {};
+  data () {
+    return {}
   },
   watch: {},
   computed: {},
   methods: {
     golink
   }
-};
+}
 </script>
 
 <style lang="scss">

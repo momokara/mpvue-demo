@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { golink } from "@/utils/tools";
+import { golink } from '@/utils/tools'
 export default {
   props: {
     swiperList: {
@@ -68,48 +68,48 @@ export default {
       type: String
     }
   },
-  data() {
+  data () {
     return {
       defaultconfig: {
         indicatorDots: false,
-        indicatorColor: "rgba(0, 0, 0, 0.3)",
-        indicatorActiveColor: "#000",
+        indicatorColor: 'rgba(0, 0, 0, 0.3)',
+        indicatorActiveColor: '#000',
         autoplay: false,
         interval: 5000,
         duration: 500,
         circular: false,
         vertical: false,
-        previousMargin: "0px",
-        nextMargin: "0px",
+        previousMargin: '0px',
+        nextMargin: '0px',
         displayMultipleItems: 1
       },
       useConfig: {}
-    };
+    }
   },
   watch: {
     config: {
-      handler: function(val, oldval) {
-        this.getUseConfig();
+      handler: function (val, oldval) {
+        this.getUseConfig()
       },
       deep: true
     }
   },
   methods: {
     golink,
-    swiperChange(event) {
-      this.$emit("change", event);
+    swiperChange (event) {
+      this.$emit('change', event)
     },
-    animationFinish(event) {
-      this.$emit("animationfinish", event);
+    animationFinish (event) {
+      this.$emit('animationfinish', event)
     },
-    getUseConfig() {
-      this.useConfig = Object.assign({}, this.defaultconfig, this.config);
+    getUseConfig () {
+      this.useConfig = Object.assign({}, this.defaultconfig, this.config)
     }
   },
-  created() {
-    this.getUseConfig();
+  created () {
+    this.getUseConfig()
   }
-};
+}
 </script>
 
 <style lang="scss">

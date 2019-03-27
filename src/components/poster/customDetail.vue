@@ -146,7 +146,7 @@
 </template>
 
 <script>
-import { upLoadFile } from "@/utils/cos/cosfunc";
+import { upLoadFile } from '@/utils/cos/cosfunc'
 export default {
   props: {
     id: {
@@ -162,16 +162,16 @@ export default {
     formData: {
       type: Object,
       default: {
-        nickName: "",
-        phone: "",
-        adMsg: ""
+        nickName: '',
+        phone: '',
+        adMsg: ''
       }
     }
   },
-  data() {
+  data () {
     return {
       pagedata: {
-        showImg: ""
+        showImg: ''
       },
 
       // 错误提示
@@ -179,102 +179,102 @@ export default {
       LocationImg: [],
       isShowForm: false,
       canDownLoad: true
-    };
+    }
   },
   methods: {
     // 发送图片下载事件
-    downLoadPoster: function() {
+    downLoadPoster: function () {
       if (this.canDownLoad) {
         let data = {
           bgUrl: this.pagedata.showImg,
           nickName: this.formData.nickName,
           phone: this.formData.phone,
           adMsg: this.formData.adMsg
-        };
-        this.$emit("downPoster", data);
-        this.showForm();
+        }
+        this.$emit('downPoster', data)
+        this.showForm()
       }
     },
 
     // 上传图片
-    uploadImg: function() {
-      let _this = this;
+    uploadImg: function () {
+      let _this = this
       wx.chooseImage({
         success: chooseResult => {
           upLoadFile(chooseResult.tempFiles[0], `costom_poster_bg`).then(
             res => {
-              _this.pagedata.showImg = `https://${res.Location}`;
-              _this.LocationImg.push({ imgUrl: _this.pagedata.showImg });
+              _this.pagedata.showImg = `https://${res.Location}`
+              _this.LocationImg.push({ imgUrl: _this.pagedata.showImg })
               if (_this.id) {
-                _this.saveLcImg();
+                _this.saveLcImg()
               }
             }
-          );
+          )
         }
-      });
+      })
     },
-    onChange: function(e) {
-      this.formData[e.mp.target.dataset.key] = e.mp.detail;
-      this.validForm();
+    onChange: function (e) {
+      this.formData[e.mp.target.dataset.key] = e.mp.detail
+      this.validForm()
     },
-    validForm: function() {
-      let _this = this;
+    validForm: function () {
+      let _this = this
       for (const key in _this.formData) {
         if (_this.formData.hasOwnProperty(key)) {
-          const element = _this.formData[key];
+          const element = _this.formData[key]
           if (element) {
-            _this.errlog[key] = "";
-            _this.canDownLoad = true;
+            _this.errlog[key] = ''
+            _this.canDownLoad = true
           } else {
-            _this.errlog[key] = "不能为空";
-            _this.canDownLoad = false;
+            _this.errlog[key] = '不能为空'
+            _this.canDownLoad = false
           }
         }
       }
     },
     // 切换背景图
-    toggleBg: function({ id, bgImg }) {
-      this.pagedata.showImg = bgImg;
+    toggleBg: function ({ id, bgImg }) {
+      this.pagedata.showImg = bgImg
     },
 
     // 缓存文件名
-    getFileName: function() {
-      return `posterPageBg_${this.id}`;
+    getFileName: function () {
+      return `posterPageBg_${this.id}`
     },
     // 移除本地文件
 
     // 保存本地图片信息
-    saveLcImg: function() {
-      wx.setStorageSync(this.getFileName(), this.LocationImg);
+    saveLcImg: function () {
+      wx.setStorageSync(this.getFileName(), this.LocationImg)
     },
 
     // 删除本地缓存图片
-    deleteLcImg: function(index) {
-      let _this = this;
-      _this.LocationImg.splice(index, 1);
+    deleteLcImg: function (index) {
+      let _this = this
+      _this.LocationImg.splice(index, 1)
       if (_this.id) {
-        _this.saveLcImg();
+        _this.saveLcImg()
       }
     },
 
     // 加载本地图片记录，在id存在时有效
-    loadLcImg: function() {
-      let _this = this;
+    loadLcImg: function () {
+      let _this = this
       if (_this.id) {
-        _this.LocationImg = wx.getStorageSync(_this.getFileName());
+        _this.LocationImg = wx.getStorageSync(_this.getFileName())
       }
-      _this.pagedata.showImg = _this.getDefaultBg();
+      _this.pagedata.showImg = _this.getDefaultBg()
     },
 
     // 获取默认背景图
-    getDefaultBg: function() {
-      let defaultBg = "";
+    getDefaultBg: function () {
+      let defaultBg = ''
       if (this.LocationImg.length > 0) {
-        defaultBg = this.LocationImg[0].imgUrl;
+        defaultBg = this.LocationImg[0].imgUrl
       } else if (this.bgUrl.length > 0) {
-        defaultBg = this.bgUrl[0].imgUrl;
+        defaultBg = this.bgUrl[0].imgUrl
       }
-      return defaultBg;
+      return defaultBg
     },
 
     /**
@@ -282,28 +282,28 @@ export default {
      * @param {Number} displayMultipleItems 每行数量配置信息
      * @param {Number} swiperListLength 数组长度
      */
-    fixswiperList: function(displayMultipleItems, swiperListLength) {
+    fixswiperList: function (displayMultipleItems, swiperListLength) {
       if (displayMultipleItems > swiperListLength) {
-        let fixLength = displayMultipleItems - swiperListLength;
+        let fixLength = displayMultipleItems - swiperListLength
         for (let index = 0; index < fixLength; index++) {
           const emptydata = {
-            imgUrl: "",
-            id: ""
-          };
-          this.bgUrl.push(emptydata);
+            imgUrl: '',
+            id: ''
+          }
+          this.bgUrl.push(emptydata)
         }
       }
     },
-    showForm: function() {
-      this.isShowForm = !this.isShowForm;
+    showForm: function () {
+      this.isShowForm = !this.isShowForm
     }
   },
-  created() {
-    this.fixswiperList(3, this.bgUrl.length);
-    this.loadLcImg();
-    this.validForm();
+  created () {
+    this.fixswiperList(3, this.bgUrl.length)
+    this.loadLcImg()
+    this.validForm()
   }
-};
+}
 </script>
 
 <style lang="scss" >

@@ -32,43 +32,43 @@ export default {
     },
     isloading: false
   },
-  data() {
-    return {};
+  data () {
+    return {}
   },
   methods: {
-    onClose: function() {
-      this.$emit("close", true);
+    onClose: function () {
+      this.$emit('close', true)
     },
-    downLoadPoster: function() {
-      let _this = this;
+    downLoadPoster: function () {
+      let _this = this
 
       if (!_this.isloading) {
-        _this.isloading = true;
+        _this.isloading = true
         wx.showToast({
-          title: "图片加载中",
-          icon: "loading"
-        });
+          title: '图片加载中',
+          icon: 'loading'
+        })
         wx.downloadFile({
           url: _this.imgUrl, // 仅为示例，并非真实的资源
-          success(res) {
+          success (res) {
             // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
             if (res.statusCode === 200) {
-              _this.isloading = false;
-              wx.hideToast();
+              _this.isloading = false
+              wx.hideToast()
               wx.saveImageToPhotosAlbum({
                 filePath: res.tempFilePath,
-                success(res) {
-                  
+                success (res) {
+
                 }
-              });
+              })
             }
-            _this.$emit("close", true);
+            _this.$emit('close', true)
           }
-        });
+        })
       }
     }
   }
-};
+}
 </script>
 
 <style lang="scss">
