@@ -70,37 +70,37 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
-import Toast from "@/../static/components/toast/toast";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
+import Toast from '@/../static/components/toast/toast'
 
 export default {
-  data() {
+  data () {
     return {
-      column1: ["杭州", "宁波", "温州", "嘉兴", "湖州"],
+      column1: ['杭州', '宁波', '温州', '嘉兴', '湖州'],
       column2: [
-        { text: "杭州", disabled: true },
-        { text: "宁波" },
-        { text: "温州" }
+        { text: '杭州', disabled: true },
+        { text: '宁波' },
+        { text: '温州' }
       ],
       column3: {
         浙江: [
-          "杭州",
-          { text: "宁波" },
-          { text: "温州", disabled: true },
-          "嘉兴",
-          "湖州"
+          '杭州',
+          { text: '宁波' },
+          { text: '温州', disabled: true },
+          '嘉兴',
+          '湖州'
         ],
-        福建: ["福州", "厦门", "莆田", "三明", "泉州"]
+        福建: ['福州', '厦门', '莆田', '三明', '泉州']
       },
       column4: [
         {
-          values: ["浙江", "福建"],
-          className: "column1"
+          values: ['浙江', '福建'],
+          className: 'column1'
         },
         {
-          values: ["杭州", "宁波", "温州", "嘉兴", "湖州"],
-          className: "column2",
+          values: ['杭州', '宁波', '温州', '嘉兴', '湖州'],
+          className: 'column2',
           defaultIndex: 2
         }
       ],
@@ -109,32 +109,32 @@ export default {
       table_columns_Picker: apiData.columns,
       table_class_Picker: apiData.class,
       table_func_Picker: apiData.func
-    };
+    }
   },
   methods: {
-    onChange1(event) {
-      console.log(event);
-      const { value, index } = event.mp.detail;
-      Toast(`Value: ${value}, Index：${index}`);
+    onChange1 (event) {
+      console.log(event)
+      const { value, index } = event.mp.detail
+      Toast(`Value: ${value}, Index：${index}`)
     },
 
-    onConfirm(event) {
-      const { value, index } = event.mp.detail;
-      Toast(`Value: ${value}, Index：${index}`);
+    onConfirm (event) {
+      const { value, index } = event.mp.detail
+      Toast(`Value: ${value}, Index：${index}`)
     },
 
-    onCancel() {
-      Toast("取消");
+    onCancel () {
+      Toast('取消')
     },
 
-    onChange2(event) {
-      const { picker, value } = event.mp.detail;
-      picker.setColumnValues(1, this.column3[value[0]]);
+    onChange2 (event) {
+      const { picker, value } = event.mp.detail
+      picker.setColumnValues(1, this.column3[value[0]])
     },
     // 设置picker方法
-    setPicker() {
-      let basicpaicker = this.$mp.page.selectComponent(".basic-picker");
-      basicpaicker.setValues(["温州"]);
+    setPicker () {
+      let basicpaicker = this.$mp.page.selectComponent('.basic-picker')
+      basicpaicker.setValues(['温州'])
     }
   },
   // 使用的 vue 组件
@@ -143,13 +143,13 @@ export default {
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  created() {
-    console.log("demopage-created", this.msg);
+  created () {
+    console.log('demopage-created', this.msg)
   },
-  mounted() {
-    this.setPicker();
+  mounted () {
+    this.setPicker()
   }
-};
+}
 </script>
 
 

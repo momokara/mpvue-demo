@@ -99,27 +99,27 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 export default {
-  data() {
+  data () {
     return {
-      title: "",
-      msg: "这里是消息",
+      title: '',
+      msg: '这里是消息',
       score: 1.5,
       UseHalfStar: false,
-      width: "",
-      height: "",
+      width: '',
+      height: '',
       halfStarImg:
-        "https://momokarapage.oss-cn-shenzhen.aliyuncs.com/static/%E6%98%9F%E6%98%9F.png",
+        'https://momokarapage.oss-cn-shenzhen.aliyuncs.com/static/%E6%98%9F%E6%98%9F.png',
       fullStarImg:
-        "https://momokarapage.oss-cn-shenzhen.aliyuncs.com/static/%E6%B4%BB%E5%8A%A8%2C%E4%BA%94%E8%A7%92%E6%98%9F%2C%E6%98%9F.png",
+        'https://momokarapage.oss-cn-shenzhen.aliyuncs.com/static/%E6%B4%BB%E5%8A%A8%2C%E4%BA%94%E8%A7%92%E6%98%9F%2C%E6%98%9F.png',
       emptyStarImg:
-        "https://momokarapage.oss-cn-shenzhen.aliyuncs.com/static/%E7%BB%8F%E5%85%B8%E6%A1%88%E4%BE%8B_%E7%A9%BA%E4%BA%94%E8%A7%92%E6%98%9F_%E6%94%B6%E8%97%8F.png",
+        'https://momokarapage.oss-cn-shenzhen.aliyuncs.com/static/%E7%BB%8F%E5%85%B8%E6%A1%88%E4%BE%8B_%E7%A9%BA%E4%BA%94%E8%A7%92%E6%98%9F_%E6%94%B6%E8%97%8F.png',
       table_api: apiData.api,
       table_event: apiData.event,
       table_custom_class: apiData.custom_class
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -128,23 +128,23 @@ export default {
   // 页面中的方法
   methods: {
     // 输入信息
-    changeInput: function(event) {
-      this[event.currentTarget.dataset.name] = event.mp.detail;
+    changeInput: function (event) {
+      this[event.currentTarget.dataset.name] = event.mp.detail
     },
-    ChangeSwitch: function(event) {
-      console.log(event.mp.detail);
-      this.UseHalfStar = event.mp.detail;
+    ChangeSwitch: function (event) {
+      console.log(event.mp.detail)
+      this.UseHalfStar = event.mp.detail
     },
-    clickstar: function(event) {
-      console.log(event.mp.detail);
+    clickstar: function (event) {
+      console.log(event.mp.detail)
     }
   },
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

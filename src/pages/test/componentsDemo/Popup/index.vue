@@ -90,12 +90,12 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       show: {
         middle: false,
         top: false,
@@ -107,7 +107,7 @@ export default {
       table_event: apiData.event,
       table_slot: apiData.slot,
       table_custom_class: apiData.custom_class
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -115,38 +115,38 @@ export default {
   },
   // 页面中的方法
   methods: {
-    _toggle(type) {
-      this.show[type] = !this.show[type];
+    _toggle (type) {
+      this.show[type] = !this.show[type]
     },
-    togglePopup() {
-      this._toggle("middle");
+    togglePopup () {
+      this._toggle('middle')
     },
-    toggleRightPopup() {
-      this._toggle("right");
-    },
-
-    toggleRightPopup2() {
-      this._toggle("right2");
+    toggleRightPopup () {
+      this._toggle('right')
     },
 
-    toggleBottomPopup() {
-      this._toggle("bottom");
+    toggleRightPopup2 () {
+      this._toggle('right2')
     },
 
-    toggleTopPopup() {
-      this._toggle("top");
+    toggleBottomPopup () {
+      this._toggle('bottom')
+    },
+
+    toggleTopPopup () {
+      this._toggle('top')
       setTimeout(() => {
-        this._toggle("top");
-      }, 2000);
+        this._toggle('top')
+      }, 2000)
     }
   },
 
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

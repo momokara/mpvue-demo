@@ -42,33 +42,34 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+// eslint-disable-next-line no-unused-vars
+import apiData from './api_data'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       active: 0,
       steps: [
         {
-          text: "步骤一",
-          desc: "描述信息"
+          text: '步骤一',
+          desc: '描述信息'
         },
         {
-          text: "步骤二",
-          desc: "描述信息"
+          text: '步骤二',
+          desc: '描述信息'
         },
         {
-          text: "步骤三",
-          desc: "描述信息"
+          text: '步骤三',
+          desc: '描述信息'
         },
         {
-          text: "步骤四",
-          desc: "描述信息"
+          text: '步骤四',
+          desc: '描述信息'
         }
       ]
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -76,18 +77,18 @@ export default {
   },
   // 页面中的方法
   methods: {
-    nextStep() {
-      this.active = ++this.active % 4;
+    nextStep () {
+      this.active = ++this.active % 4
     }
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

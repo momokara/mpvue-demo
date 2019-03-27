@@ -97,27 +97,27 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       active: 0,
       active2: 0,
       icon: {
         normal:
-          "https://cdn.jiapeiyun.cn/haivit/public/image/20181017163403_639/最新资讯@3x.png",
+          'https://cdn.jiapeiyun.cn/haivit/public/image/20181017163403_639/最新资讯@3x.png',
         active:
-          "https://cdn.jiapeiyun.cn/haivit/public/image/20181017163420_937/名师教练@3x.png"
+          'https://cdn.jiapeiyun.cn/haivit/public/image/20181017163420_937/名师教练@3x.png'
       },
       table_api_tabbar: apiData.api_tabbar,
       table_api_item: apiData.api_item,
       table_event: apiData.event,
       table_slot: apiData.slot,
       table_class: apiData.custom_class
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -125,18 +125,18 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onChange(event) {
-      console.log(event.mp.detail);
+    onChange (event) {
+      console.log(event.mp.detail)
     }
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

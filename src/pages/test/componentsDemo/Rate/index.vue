@@ -63,13 +63,13 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       value1: 3,
       value2: 3,
       value3: 4,
@@ -77,7 +77,7 @@ export default {
       table_api: apiData.api,
       table_event: apiData.event,
       table_class: apiData.class
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -85,18 +85,18 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onChange(event) {
-      const { key } = event.currentTarget.dataset;
-      this[key] = event.detail;
+    onChange (event) {
+      const { key } = event.currentTarget.dataset
+      this[key] = event.detail
     }
   },
 
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

@@ -50,18 +50,18 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       table_api: apiData.api,
       table_slot: apiData.slot,
       table_event: apiData.event,
       table_class: apiData.custom_class
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -69,22 +69,22 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onClickLeft() {
-      wx.showToast({ title: "点击返回", icon: "none" });
+    onClickLeft () {
+      wx.showToast({ title: '点击返回', icon: 'none' })
     },
 
-    onClickRight() {
-      wx.showToast({ title: "点击按钮", icon: "none" });
+    onClickRight () {
+      wx.showToast({ title: '点击按钮', icon: 'none' })
     }
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

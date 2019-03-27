@@ -68,35 +68,35 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       iconTable: [
-        { title: "基础图标", name: "basic" },
-        { title: "线框风格", name: "full" },
-        { title: "实线风格", name: "filled" }
+        { title: '基础图标', name: 'basic' },
+        { title: '线框风格', name: 'full' },
+        { title: '实线风格', name: 'filled' }
       ],
       iconlist: apiData.icon_name_list,
       table_api: apiData.api,
       table_event: apiData.event,
       table_slot: apiData.slot,
       table_custom_class: apiData.custom_class
-    };
+    }
   },
   // 使用的 vue 组件
   components: { apiTable },
   // 页面中的方法
   methods: {},
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 
