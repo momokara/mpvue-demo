@@ -1,8 +1,6 @@
 <template>
-  <div
-    class="contant"
-    v-if="data"
-  >
+  <div class="contant"
+       v-if="data">
     <div class="header">
       <div class="header-title fsp12 fc-fff">
         {{qtypename[data.type]}}
@@ -13,64 +11,46 @@
 
     </div>
     <div class="header-img">
-      <img
-        class="question-img"
-        v-if="data.imgUrl"
-        :src="data.imgUrl"
-      >
+      <img class="question-img"
+           v-if="data.imgUrl"
+           :src="data.imgUrl">
     </div>
     <div class="main-option">
       <!-- 多选题 -->
       <block v-if="data.type==3">
-        <van-checkbox-group
-          :value="answer"
-          data-name="answer"
-          @change="clickCheckbox"
-        >
+        <van-checkbox-group :value="answer"
+                            data-name="answer"
+                            @change="clickCheckbox">
           <van-cell-group>
-            <block
-              v-for="(item, index) in optionName"
-              :key="item"
-            >
-              <van-cell
-                v-if="data['option'+(index+1)]"
-                :title="data['option'+(index+1)]"
-                :class="[{'answer':item.isanswer}]"
-                @click="toggle"
-                :data-name="item.name"
-              >
-                <div
-                  slot="icon"
-                  class="select-icon"
-                >
-                  <van-checkbox
-                    use-icon-slot
-                    :name="item.name"
-                    :class="'check-box-'+item.name"
-                    @click.stop
-                    :disabled="isDiable"
-                  >
-                    <div
-                      slot="icon-default"
-                      class="section-name ta-c fsp14"
-                    >
+            <block v-for="(item, index) in optionName"
+                   :key="item">
+              <van-cell v-if="data['option'+(index+1)]"
+                        :title="data['option'+(index+1)]"
+                        :class="[{'answer':item.isanswer}]"
+                        @click="toggle"
+                        :data-name="item.name">
+                <div slot="icon"
+                     class="select-icon">
+                  <van-checkbox use-icon-slot
+                                :name="item.name"
+                                :class="'check-box-'+item.name"
+                                @click.stop
+                                :disabled="isDiable">
+                    <div slot="icon-default"
+                         class="section-name ta-c fsp14">
                       {{item.name}}
                     </div>
                     <div slot="icon-active">
-                      <van-icon
-                        v-if="item.isanswer"
-                        custom-class="act-icon"
-                        name="checked"
-                        size="22px"
-                        color="#3AC569"
-                      />
-                      <van-icon
-                        v-else
-                        custom-class="act-icon"
-                        name="clear"
-                        size="22px"
-                        color="#F64C4C"
-                      />
+                      <van-icon v-if="item.isanswer"
+                                custom-class="act-icon"
+                                name="checked"
+                                size="22px"
+                                color="#3AC569" />
+                      <van-icon v-else
+                                custom-class="act-icon"
+                                name="clear"
+                                size="22px"
+                                color="#F64C4C" />
                     </div>
                     <div slot="icon-disabled">
                       <div class="section-name ta-c fsp14 disabled">{{item.name}}</div>
@@ -88,44 +68,32 @@
       <block v-else>
         <van-radio-group :value="answer[0]">
           <van-cell-group>
-            <block
-              v-for="(item, index) in optionName"
-              :key="index"
-            >
-              <van-cell
-                v-if="data['option'+(index+1)]"
-                :title="data['option'+(index+1)]"
-                :class="[{'answer':item.isanswer}]"
-                data-key="answer"
-                :data-value="item.name"
-                @click="clickRadio"
-              >
-                <div
-                  slot="icon"
-                  class="select-icon"
-                >
-                  <van-radio
-                    :name="item.name"
-                    use-icon-slot
-                  >
+            <block v-for="(item, index) in optionName"
+                   :key="index">
+              <van-cell v-if="data['option'+(index+1)]"
+                        :title="data['option'+(index+1)]"
+                        :class="[{'answer':item.isanswer}]"
+                        data-key="answer"
+                        :data-value="item.name"
+                        @click="clickRadio">
+                <div slot="icon"
+                     class="select-icon">
+                  <van-radio :name="item.name"
+                             use-icon-slot>
                     <div slot="icon-default">
                       <div class="section-name ta-c fsp14">{{item.name}}</div>
                     </div>
                     <div slot="icon-active">
-                      <van-icon
-                        v-if="item.isanswer"
-                        custom-class="act-icon"
-                        name="checked"
-                        size="22px"
-                        color="#3AC569"
-                      />
-                      <van-icon
-                        v-else
-                        custom-class="act-icon"
-                        name="clear"
-                        size="22px"
-                        color="#F64C4C"
-                      />
+                      <van-icon v-if="item.isanswer"
+                                custom-class="act-icon"
+                                name="checked"
+                                size="22px"
+                                color="#3AC569" />
+                      <van-icon v-else
+                                custom-class="act-icon"
+                                name="clear"
+                                size="22px"
+                                color="#F64C4C" />
                     </div>
                     <div slot="icon-disabled">
                       <div class="section-name ta-c fsp14 disabled">{{item.name}}</div>
@@ -200,6 +168,8 @@ export default {
           }
         })
       }
+      let _arrAnswer = _this.optionName
+      return _arrAnswer
     }
   },
   methods: {

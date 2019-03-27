@@ -98,12 +98,13 @@ export default {
   components: {},
   computed: {
     userInfoStore () {
+      let _userStore = basicInfo.state
       if (basicInfo.state.islogin) {
-        if (basicInfo.state.userInfo.avatarUrl) {
-          this.userInfo = basicInfo.state.userInfo
-          if (basicInfo.state.userInfo) {
-            const userbasicInfo = basicInfo.state.basicInfo
-              ? basicInfo.state.basicInfo
+        if (_userStore.userInfo.avatarUrl) {
+          this.userInfo = _userStore.userInfo
+          if (_userStore.userInfo) {
+            const userbasicInfo = _userStore.basicInfo
+              ? _userStore.basicInfo
               : {}
             if (userbasicInfo.phone) {
               this.basicInfo = userbasicInfo
@@ -113,6 +114,7 @@ export default {
       } else {
         console.log('登录中...')
       }
+      return _userStore
     }
   },
   // 页面中的方法
@@ -159,8 +161,8 @@ export default {
             icon: 'none'
           })
         } else {
-          console.log(basicInfo.state)
-          wx.setStorageSync('openid', basicInfo.state)
+          // console.log(basicInfo.state)
+          // wx.setStorageSync('openid', basicInfo.state)
           wx.showToast({
             title: '保存成功',
             icon: 'success'
