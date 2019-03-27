@@ -27,21 +27,21 @@
 </template>
 
 <script>
-import basicInfo from "@/store/basicInfo.js";
-import traditionDetail from "@/components/poster/traditionDetail";
-import customDetail from "@/components/poster/customDetail";
+import basicInfo from '@/store/basicInfo.js'
+import traditionDetail from '@/components/poster/traditionDetail'
+import customDetail from '@/components/poster/customDetail'
 
-import posterPopup from "@/components/poster/posterPopup";
+import posterPopup from '@/components/poster/posterPopup'
 
-import { getPosterDetail, downLoadPoster } from "@/api/api.poster";
+import { getPosterDetail, downLoadPoster } from '@/api/api.poster'
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 
 export default {
-  data() {
+  data () {
     return {
       pageconfig: {
-        id: ""
+        id: ''
       },
       data: {
         adMsg: [],
@@ -49,9 +49,9 @@ export default {
       },
       popupData: {
         isShow: false,
-        imgUrl: ""
+        imgUrl: ''
       }
-    };
+    }
   },
 
   components: {
@@ -60,60 +60,60 @@ export default {
     posterPopup
   },
   computed: {
-    formData() {
+    formData () {
       let data = {
         nickName: basicInfo.state.userInfo.nickName,
         phone: basicInfo.state.basicInfo.phone,
-        adMsg: this.data.adMsg.length > 0 ? this.data.adMsg[0].info : ""
-      };
-      return data;
+        adMsg: this.data.adMsg.length > 0 ? this.data.adMsg[0].info : ''
+      }
+      return data
     }
   },
   methods: {
     // 下载海报
-    downLoadPoster: function(e) {
-      let _this = this;
-      e.id = _this.pageconfig.id;
+    downLoadPoster: function (e) {
+      let _this = this
+      e.id = _this.pageconfig.id
       downLoadPoster(e).then(res => {
         if (res.imgUrl) {
-          _this.popupData.isShow = true;
-          _this.popupData.imgUrl = res.imgUrl;
+          _this.popupData.isShow = true
+          _this.popupData.imgUrl = res.imgUrl
         }
-      });
+      })
     },
-    onclose: function(e) {
-      console.log(e);
-      this.popupData.isShow = !e;
+    onclose: function (e) {
+      console.log(e)
+      this.popupData.isShow = !e
     },
     /**
      * 获取页面信息
      */
-    getPageData() {
-      let _this = this;
+    getPageData () {
+      let _this = this
       if (!_this.isend) {
         // let reqtype = _this.pageconfig.keyword ? 1 : 0;
         getPosterDetail(_this.pageconfig).then(res => {
-          console.log("getPosterDetail res", res);
-          _this.data = res;
-        });
+          console.log('getPosterDetail res', res)
+          _this.data = res
+        })
       }
     }
   },
-  onLoad(options) {
-    this.pageconfig.id = options.id;
+  onLoad (options) {
+    this.pageconfig.id = options.id
   },
-  onShow() {
-    pagelogs();
-    this.getPageData();
+  onShow () {
+    pagelogs()
+    this.getPageData()
   },
-  onHide() {
-    pagelogs(true);
+  onHide () {
+    pagelogs(true)
   },
 
-  onPullDownRefresh() {
-    this.getPageData(true);
+  onPullDownRefresh () {
+    this.getPageData(true)
   }
-};
+}
 </script>
 
 <style lang="scss">

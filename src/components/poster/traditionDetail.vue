@@ -51,32 +51,32 @@ export default {
       type: Array
     }
   },
-  data() {
-    return {};
+  data () {
+    return {}
   },
   methods: {
     // 复制文本信息
-    setClipboardData: function(data) {
+    setClipboardData: function (data) {
       wx.setClipboardData({
         data,
-        success(res) {
+        success (res) {
           wx.getClipboardData({
-            success(res) {
-              console.log(res.data); // data
+            success (res) {
+              console.log(res.data) // data
             }
-          });
+          })
         }
-      });
+      })
     },
-    downLoadPoster: function({ id, bgImg }) {
+    downLoadPoster: function ({ id, bgImg }) {
       let data = {
         id,
         bgImg
-      };
-      this.$emit("downPoster", data);
+      }
+      this.$emit('downPoster', data)
     }
   }
-};
+}
 </script>
 
 <style lang="scss" >

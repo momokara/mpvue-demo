@@ -1,7 +1,6 @@
-# mpvue-demo
+# customer
 
-> A Mpvue project
-
+> 驾校员工端小程序
 
 ## Build Setup
 
@@ -11,8 +10,6 @@
 
 # install dependencies
 npm install
-
-# 需要安装以下插件 (从下往下依次安装 npm 命令即可)
 
 ## sass 支持
 npm install -d node-sass
@@ -30,16 +27,33 @@ npm run dev
 # 生产打包需要使用此命令,会移除无用的包和内容
 npm run build
 
-# build for production and view the bundle analyzer report
+# 开发时构建
+npm dev
+
+# 打包构建
+npm build
+
+# 指定平台的开发时构建(微信、百度、头条、支付宝)
+npm dev:wx
+npm dev:swan
+npm dev:tt
+npm dev:my
+
+# 指定平台的打包构建
+npm build:wx
+npm build:swan
+npm build:tt
+npm build:my
+
+# 生成 bundle 分析报告
 npm run build --report
 ```
+
 
 如果想要了解此项目详细工作原理,可浏览 
 [mpvue-docs](http://mpvue.com/) , 
 [mpvue](https://github.com/Meituan-Dianping/mpvue), 
 [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
-
 
 ## 项目目录 参考
 ``` bash
@@ -118,10 +132,6 @@ npm run build --report
 └── package.json             项目的package配置  
 └── project.config.json      小程序开发工具的配置  
 ```
-
-## 一些说明
-
-``` bash
 
 ## 如果出现 px2rpx-loader 到/*px*/ 注释 标注依然 会失效到情况 可以尝试以下解决方案：
 

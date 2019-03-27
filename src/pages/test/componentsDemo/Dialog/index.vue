@@ -88,22 +88,22 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
-import Dialog from "@/../static/components/dialog/dialog";
-const message = "yooo";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
+import Dialog from '@/../static/components/dialog/dialog'
+const message = 'yooo'
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       show: false,
-      username: "",
-      password: "",
+      username: '',
+      password: '',
       table_func: apiData.func,
       table_options: apiData.options,
       table_api: apiData.api,
-      table_event: apiData.event,
-    };
+      table_event: apiData.event
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -111,59 +111,59 @@ export default {
   },
   // 页面中的方法
   methods: {
-    showCustomDialog() {
-      this.show = true;
+    showCustomDialog () {
+      this.show = true
     },
 
-    onClickAlert() {
+    onClickAlert () {
       Dialog.alert({
-        title: "标题",
+        title: '标题',
         message
-      });
+      })
     },
 
-    getUserInfo(event) {
-      console.log(event.detail);
+    getUserInfo (event) {
+      console.log(event.detail)
     },
 
-    onClickAlert2() {
+    onClickAlert2 () {
       Dialog.alert({
         message
-      });
+      })
     },
 
-    onClickConfirm() {
+    onClickConfirm () {
       Dialog.confirm({
-        title: "confirm标题",
+        title: 'confirm标题',
         message
       })
         .then(res => {
-          console.log("confirm yes", res);
+          console.log('confirm yes', res)
         })
         .catch(res => {
-          console.log("cancel", res);
-        });
+          console.log('cancel', res)
+        })
     },
 
-    onClose(event) {
-      let _this = this;
-      if (event.mp.detail === "confirm") {
+    onClose (event) {
+      let _this = this
+      if (event.mp.detail === 'confirm') {
         setTimeout(() => {
-          _this.show = false;
-        }, 1000);
+          _this.show = false
+        }, 1000)
       } else {
-        _this.show = false;
+        _this.show = false
       }
     }
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

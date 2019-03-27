@@ -53,14 +53,14 @@
 </template>
 
 <script>
-import config from "@/config.js";
-import { golink } from "@/utils/tools";
+import config from '@/config.js'
+import { golink } from '@/utils/tools'
 export default {
-  data() {
+  data () {
     return {
       // 默认信息
       defaultData: config.defaultData
-    };
+    }
   },
   props: {
     userInfo: {
@@ -81,11 +81,11 @@ export default {
   },
   methods: {
     golink,
-    tapheadimg: function() {
-      this.$emit("tapHeaderImg");
+    tapheadimg: function () {
+      this.$emit('tapHeaderImg')
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

@@ -15,24 +15,24 @@
 </template>
 
 <script>
-import { golink } from "@/utils/tools";
-import config from "@/config.js";
+import { golink } from '@/utils/tools'
+import config from '@/config.js'
 export default {
   props: {
     data: {
       type: Object,
       default: {
         imgUrl: `${config.defaultData.icon}`,
-        url: "#",
-        name: "#",
-        info: "#"
+        url: '#',
+        name: '#',
+        info: '#'
       }
     }
   },
   methods: {
     golink
   }
-};
+}
 </script>
 
 <style lang="scss">

@@ -75,20 +75,20 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
-import Dialog from "@/../static/components/dialog/dialog";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
+import Dialog from '@/../static/components/dialog/dialog'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       checked: true,
       checked2: true,
       table_api: apiData.api,
       table_event: apiData.event,
       table_class: apiData.class
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -96,26 +96,26 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onChange(e) {
-      this.checked = e.mp.detail;
+    onChange (e) {
+      this.checked = e.mp.detail
     },
 
-    onChange2(e) {
+    onChange2 (e) {
       Dialog.confirm({
-        title: "提示",
-        message: "是否切换开关？"
+        title: '提示',
+        message: '是否切换开关？'
       }).then(res => {
-        this.checked2 = e.mp.detail;
-      });
+        this.checked2 = e.mp.detail
+      })
     }
   },
 
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

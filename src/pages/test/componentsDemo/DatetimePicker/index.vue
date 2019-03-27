@@ -51,12 +51,12 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       minHour: 10,
       maxHour: 20,
       minDate: new Date(2018, 0, 1).getTime(),
@@ -64,12 +64,12 @@ export default {
       currentDate1: new Date(2018, 2, 1).getTime(),
       currentDate2: null,
       currentDate3: new Date(2018, 0, 1),
-      currentDate4: "12:00",
+      currentDate4: '12:00',
       loading: false,
       table_api_DatetimePicker: apiData.api_DatetimePicker,
       table_event_DatetimePicker: apiData.event_DatetimePicker,
       table_func_DatetimePicker: apiData.func_DatetimePicker
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -77,16 +77,16 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onChange(e) {
-      console.log(e);
+    onChange (e) {
+      console.log(e)
     }
   },
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

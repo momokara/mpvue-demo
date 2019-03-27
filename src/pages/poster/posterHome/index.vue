@@ -1,47 +1,45 @@
 <template>
   <div class="home-container">
-    <!-- 顶部轮播 -->
-    <headerSwiper
-      v-if="data.swiper"
-      :swiperList="data.swiper.data"
-      :config="data.swiper.config"
-      @change="swiperChange"
-      @animationfinish="swiperChange"
-    >
-    </headerSwiper>
-    <!-- 导航栏 -->
-    <div class="header-nav-box">
-      <homeNav
-        v-if="data.nav"
-        :config="data.nav.config"
-        :data="data.nav.data"
-        :noticeData="data.nav.noticeData"
-      >
-      </homeNav>
-    </div>
-    <!-- 推荐位 -->
-    <div class="poster-ad-box">
-      <posterList :data="data.adList.data"></posterList>
+    <div v-if="data.adList">
+      <!-- 顶部轮播 -->
+      <headerSwiper v-if="data.swiper"
+                    :swiperList="data.swiper.data"
+                    :config="data.swiper.config"
+                    @change="swiperChange"
+                    @animationfinish="swiperChange">
+      </headerSwiper>
+      <!-- 导航栏 -->
+      <div class="header-nav-box">
+        <homeNav v-if="data.nav"
+                 :config="data.nav.config"
+                 :data="data.nav.data"
+                 :noticeData="data.nav.noticeData">
+        </homeNav>
+      </div>
+      <!-- 推荐位 -->
+      <div class="poster-ad-box">
+        <posterList :data="data.adList.data"></posterList>
+      </div>
     </div>
     <van-dialog id="van-dialog" />
   </div>
 </template>
 
 <script>
-import headerSwiper from "@/components/headerSwipers";
-import homeNav from "@/components/homeAd/homeNav";
-import posterList from "@/components/poster/posterList";
+import headerSwiper from '@/components/headerSwipers'
+import homeNav from '@/components/homeAd/homeNav'
+import posterList from '@/components/poster/posterList'
 
-import { getPosterHomeInfo } from "@/api/api.poster";
+import { getPosterHomeInfo } from '@/api/api.poster'
 
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 
 export default {
-  data() {
+  data () {
     return {
       data: {}
-    };
+    }
   },
 
   components: {
@@ -51,27 +49,27 @@ export default {
   },
 
   methods: {
-    getPageData() {
-      let _this = this;
+    getPageData () {
+      let _this = this
       getPosterHomeInfo().then(res => {
-        console.log("getPosterHomeInfo", res);
-        _this.data = res;
-        wx.stopPullDownRefresh();
-      });
+        console.log('getPosterHomeInfo', res)
+        _this.data = res
+        wx.stopPullDownRefresh()
+      })
     }
   },
-  onShow() {
-    pagelogs();
-    this.getPageData();
+  onShow () {
+    pagelogs()
+    this.getPageData()
   },
-  onHide() {
-    pagelogs(true);
+  onHide () {
+    pagelogs(true)
   },
 
-  onPullDownRefresh() {
-    this.getPageData();
+  onPullDownRefresh () {
+    this.getPageData()
   }
-};
+}
 </script>
 
 <style lang="scss">

@@ -1,48 +1,46 @@
 <script>
-import { getUserInfoSer } from "@/api/api";
-import { getUserInfo } from "@/utils/cloudfunc/getUserInfo";
-import { checkIsForbidden } from "@/api/dataTools";
+import { getUserInfoSer } from '@/api/api'
+import { checkIsForbidden } from '@/api/dataTools'
 
-import config from "@/config.js";
-var appInst = getApp();
+import config from '@/config.js'
 
 export default {
-  created() {
+  created () {
     if (!wx.cloud) {
-      console.error("请使用 2.2.3 或以上的基础库以使用云能力");
+      console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
       // 云函数使用的环境
       wx.cloud.init({
         env: config.env,
         traceUser: true
-      });
+      })
     }
     console.log(
       `运行环境：${
-        process.env.NODE_ENV == "production" ? "生产环境" : "开发环境"
+        process.env.NODE_ENV === 'production' ? '生产环境' : '开发环境'
       }(${process.env.NODE_ENV}/${config.env}/${config.host}/)`
-    );
+    )
   },
   // 初始化
-  onLaunch(options) {
-    console.log("启动参数：", options);
+  onLaunch (options) {
+    console.log('启动参数：', options)
   },
   // 当小程序启动，或从后台进入前台显示
-  onShow() {
-    console.log("App onShow OK!");
-    checkIsForbidden();
+  onShow () {
+    console.log('App onShow OK!')
+    checkIsForbidden()
     getUserInfoSer().then(res => {
-      console.log("login ok!:", res);
-    });
+      console.log('login ok!:', res)
+    })
   },
   // 当小程序从前台进入后台
-  onHide() {
-    console.log("app on hide!");
+  onHide () {
+    console.log('app on hide!')
   },
-  onError(err) {
-    console.log("err", err);
+  onError (err) {
+    console.log('err', err)
   }
-};
+}
 </script>
 
 <style lang="scss">

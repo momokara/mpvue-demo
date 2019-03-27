@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import noticeSwipers from "@/components/homeAd/noticeSwipers";
-import { golink } from "@/utils/tools";
+import noticeSwipers from '@/components/homeAd/noticeSwipers'
+import { golink } from '@/utils/tools'
 export default {
   props: {
     config: {
@@ -65,34 +65,34 @@ export default {
     noticeSwipers
   },
   computed: {
-    lineColumn: function() {
-      let _lineColumn = `width:25%`;
+    lineColumn: function () {
+      let _lineColumn = `width:25%`
       if (this.config.rowsize) {
-        _lineColumn = `width:${100 / this.config.rowsize}%`;
+        _lineColumn = `width:${100 / this.config.rowsize}%`
       } else if (this.config.displayMultipleItems) {
-        _lineColumn = `width:${100 / this.config.displayMultipleItems}%`;
+        _lineColumn = `width:${100 / this.config.displayMultipleItems}%`
       }
-      return _lineColumn;
+      return _lineColumn
     }
   },
   methods: {
     golink,
-    callgolink: function(item) {
-      let _this = this;
+    callgolink: function (item) {
+      let _this = this
       if (_this.isLink) {
         golink(item.url)
           .then(res => {
-            console.log("success", res);
+            console.log('success', res)
           })
           .catch(err => {
-            console.log("fail", err);
-          });
+            console.log('fail', err)
+          })
       } else {
-        _this.$emit("golink", item);
+        _this.$emit('golink', item)
       }
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

@@ -35,99 +35,99 @@
 </template>
 
 <script>
-import { getPosterList } from "@/api/api.poster";
-import posterList from "@/components/poster/posterList";
+import { getPosterList } from '@/api/api.poster'
+import posterList from '@/components/poster/posterList'
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 
 export default {
-  data() {
+  data () {
     return {
       pageconfig: {
-        id: "",
-        keyword: "",
+        id: '',
+        keyword: '',
         page: 1,
         size: 10,
-        title: ""
+        title: ''
       },
       data: {
         array: []
       },
       // 是否终止
       isend: false
-    };
+    }
   },
 
   components: { posterList },
 
   methods: {
     // 搜索框改变事件
-    onChange(e) {
-      this.pageconfig.keyword = e.mp.detail;
+    onChange (e) {
+      this.pageconfig.keyword = e.mp.detail
     },
     // 搜索方法
-    onSearch(event) {
-      let _this = this;
+    onSearch (event) {
+      let _this = this
       if (this.pageconfig.keyword) {
         wx.showToast({
-          title: "搜索：" + this.pageconfig.keyword,
-          icon: "none"
-        });
+          title: '搜索：' + this.pageconfig.keyword,
+          icon: 'none'
+        })
       }
-      _this.getPageData(true);
+      _this.getPageData(true)
     },
     /**
      * 获取页面信息
      * @param {Boolean} isReset 是否重新请求
      */
-    getPageData(isReset) {
-      let _this = this;
+    getPageData (isReset) {
+      let _this = this
       if (isReset) {
-        _this.pageconfig.page = 1;
-        _this.data.array = [];
-        _this.isend = false;
+        _this.pageconfig.page = 1
+        _this.data.array = []
+        _this.isend = false
       }
       if (!_this.isend) {
         // let reqtype = _this.pageconfig.keyword ? 1 : 0;
         getPosterList(_this.pageconfig).then(res => {
-          console.log("getPosterList res", res);
+          console.log('getPosterList res', res)
           if (res.array) {
-            _this.data.array = _this.data.array.concat(...res.array);
-            _this.pageconfig.page++;
+            _this.data.array = _this.data.array.concat(...res.array)
+            _this.pageconfig.page++
             if (_this.data.array.length >= res.total) {
-              _this.isend = true;
+              _this.isend = true
             }
           }
           if (res.title) {
             wx.setNavigationBarTitle({
               title: `全民营销-${res.title}`
-            });
+            })
           }
-        });
+        })
       }
     }
   },
-  onLoad(options) {
-    console.log(options);
-    this.pageconfig.id = options.id;
-    this.pageconfig.keyword = options.keyword;
+  onLoad (options) {
+    console.log(options)
+    this.pageconfig.id = options.id
+    this.pageconfig.keyword = options.keyword
   },
-  onShow() {
-    pagelogs();
-    this.getPageData();
+  onShow () {
+    pagelogs()
+    this.getPageData()
   },
-  onHide() {
-    pagelogs(true);
+  onHide () {
+    pagelogs(true)
   },
 
-  onPullDownRefresh() {
-    this.getPageData(true);
+  onPullDownRefresh () {
+    this.getPageData(true)
   },
   // 页面上拉触底事件的处理函数
-  onReachBottom() {
-    this.getPageData();
+  onReachBottom () {
+    this.getPageData()
   }
-};
+}
 </script>
 
 <style lang="scss">

@@ -25,20 +25,20 @@
 </template>
 
 <script>
-import headerSwiper from "@/components/headerSwipers";
-import homeNav from "@/components/homeAd/homeNav";
-import adBox from "@/components/homeAd/adBox";
+import headerSwiper from '@/components/headerSwipers'
+import homeNav from '@/components/homeAd/homeNav'
+import adBox from '@/components/homeAd/adBox'
 
-import { getMallHomeInfo } from "@/api/api.mall";
+import { getMallHomeInfo } from '@/api/api.mall'
 
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 
 export default {
-  data() {
+  data () {
     return {
       data: {}
-    };
+    }
   },
 
   components: {
@@ -48,28 +48,28 @@ export default {
   },
 
   methods: {
-    getPageData() {
-      let _this = this;
-        console.log("getMallHomeInfo");
+    getPageData () {
+      let _this = this
+      console.log('getMallHomeInfo')
       getMallHomeInfo().then(res => {
-        console.log("getMallHomeInfo", res);
-        _this.data = res;
-        wx.stopPullDownRefresh();
-      });
+        console.log('getMallHomeInfo', res)
+        _this.data = res
+        wx.stopPullDownRefresh()
+      })
     }
   },
-  onShow() {
-    pagelogs();
-    this.getPageData();
+  onShow () {
+    pagelogs()
+    this.getPageData()
   },
-  onHide() {
-    pagelogs(true);
+  onHide () {
+    pagelogs(true)
   },
 
-  onPullDownRefresh() {
-    this.getPageData();
+  onPullDownRefresh () {
+    this.getPageData()
   }
-};
+}
 </script>
 
 <style lang="scss">

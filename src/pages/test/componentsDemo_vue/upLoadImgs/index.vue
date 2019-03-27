@@ -36,13 +36,13 @@
   </div>
 </template>
 <script>
-import upLoadImages from "@/components/upLoadImages";
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import upLoadImages from '@/components/upLoadImages'
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 export default {
-  data() {
+  data () {
     return {
-      msg: "这里是消息",
+      msg: '这里是消息',
       autoUpLoad: false,
       imgArr: [
         // "https://cdn.huibaoming.com/haivit/public/image/20181112155409_979/wx7e28d99c40baf7a8.o6zAJs0VYBlymN8fYVEUKSPcEawI.DSXlZRmdFiq153b8b378d15905c5ed2e65c281061b91.jpg",
@@ -51,7 +51,7 @@ export default {
       ],
       table_api: apiData.api,
       table_event: apiData.event
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -61,23 +61,23 @@ export default {
   // 页面中的方法
   methods: {
     // 添加图片回调
-    addImg: function(event) {
-      console.log("addImg", event);
+    addImg: function (event) {
+      console.log('addImg', event)
     },
     // 删除图片回调
-    deleteImg: function(event) {
-      console.log("deleteImg", event);
+    deleteImg: function (event) {
+      console.log('deleteImg', event)
     },
     // 上传图片回调
-    upLoadImgs: function(event) {
-      console.log("upLoadImgs", event);
+    upLoadImgs: function (event) {
+      console.log('upLoadImgs', event)
     },
-    onChange: function(event) {
-      console.log(event.mp.detail);
-      this.autoUpLoad = event.mp.detail;
+    onChange: function (event) {
+      console.log(event.mp.detail)
+      this.autoUpLoad = event.mp.detail
     }
   }
-};
+}
 </script>
 
 

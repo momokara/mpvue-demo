@@ -37,19 +37,19 @@
 </template>
 
 <script>
-import jsonTable from "@/components/userCenter/jsonTable";
-import { formatTime, golink, jsonToArray } from "@/utils/tools";
+import jsonTable from '@/components/userCenter/jsonTable'
+import { formatTime, golink } from '@/utils/tools'
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 
 export default {
   components: { jsonTable },
-  data() {
+  data () {
     return {
       logs: [],
       errlogs: [],
       errActice: []
-    };
+    }
   },
 
   methods: {
@@ -59,39 +59,39 @@ export default {
      * @param keyName {String} 需要读取数据的名称
      * @return {Array} 返回结果
      */
-    getStorageItem: function(keyName) {
-      const arr = wx.getStorageSync(keyName) || [];
+    getStorageItem: function (keyName) {
+      const arr = wx.getStorageSync(keyName) || []
       return arr.map(e => {
-        e.time = formatTime(new Date(e.time));
-        return e;
-      });
+        e.time = formatTime(new Date(e.time))
+        return e
+      })
     },
-    onChange(e) {
-      const { key } = e.mp.currentTarget.dataset;
-      this[key] = e.mp.detail;
+    onChange (e) {
+      const { key } = e.mp.currentTarget.dataset
+      this[key] = e.mp.detail
     },
 
-    getStorageData: function() {
-      this.logs = this.getStorageItem("logs");
+    getStorageData: function () {
+      this.logs = this.getStorageItem('logs')
 
-      this.errlogs = this.getStorageItem("errlogs");
+      this.errlogs = this.getStorageItem('errlogs')
 
       // 格式化错误数据
       this.errlogs.map(e => {
-        e.data = JSON.stringify(e);
-        return e;
-      });
+        e.data = JSON.stringify(e)
+        return e
+      })
     }
   },
 
-  onShow() {
-    this.getStorageData();
-    pagelogs();
+  onShow () {
+    this.getStorageData()
+    pagelogs()
   },
-  onHide() {
-    pagelogs(true);
+  onHide () {
+    pagelogs(true)
   }
-};
+}
 </script>
 
 <style lang="scss">

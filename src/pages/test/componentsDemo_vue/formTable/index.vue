@@ -19,29 +19,29 @@
   </div>
 </template>
 <script>
-import formTable from "@/components/formTable";
+import formTable from '@/components/formTable'
 
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 export default {
-  data() {
+  data () {
     return {
       tableKeys: [
         {
-          lab: "标签1",
-          name: "key1",
-          value: "",
-          placeholder: "Key1value",
+          lab: '标签1',
+          name: 'key1',
+          value: '',
+          placeholder: 'Key1value',
           maxlength: 3,
-          type: "textarea",
+          type: 'textarea'
         },
         {
-          lab: "标签1",
-          name: "key2",
-          value: "Key2value",
+          lab: '标签1',
+          name: 'key2',
+          value: 'Key2value'
         }
       ]
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -52,40 +52,40 @@ export default {
   // 页面中的方法
   methods: {
     // 调用提交方法
-    getFormData: function() {
-      this.$refs.formTabe.submit();
+    getFormData: function () {
+      this.$refs.formTabe.submit()
     },
     // 获取表单中的数据
-    getData: function(e) {
-      console.log("getData", e);
+    getData: function (e) {
+      console.log('getData', e)
       wx.showToast({
         title: JSON.stringify(e),
-        icon: "none"
-      });
+        icon: 'none'
+      })
     },
     // 给表单添加一行
-    addrow: function() {
-      let index = this.tableKeys.length + 1;
+    addrow: function () {
+      let index = this.tableKeys.length + 1
       let rowdata = {
         lab: `LabKey_${index}`,
         name: `key_${index}`,
         value: `Key${index}value`
-      };
-      this.tableKeys.push(rowdata);
+      }
+      this.tableKeys.push(rowdata)
     }
   },
 
   // 原生钩子
   // 监听页面加载
-  onLoad() {},
+  onLoad () {},
   // 监听页面显示
-  onShow() {
-    pagelogs();
+  onShow () {
+    pagelogs()
   },
-  onHide() {
-    pagelogs(true);
+  onHide () {
+    pagelogs(true)
   }
-};
+}
 </script>
 
 <style lang="scss">

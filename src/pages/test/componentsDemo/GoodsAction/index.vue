@@ -83,18 +83,18 @@
   </div>
 </template>
 <script>
-import Toast from "@/../static/components/toast/toast";
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import Toast from '@/../static/components/toast/toast'
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       table_api_icon: apiData.api_icon,
       table_api_button: apiData.api_button,
       table_event: apiData.event,
       table_slot: apiData.slot
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -102,20 +102,20 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onClickIcon() {
-      Toast("点击图标");
+    onClickIcon () {
+      Toast('点击图标')
     },
 
-    onClickButton() {
-      Toast("点击按钮");
+    onClickButton () {
+      Toast('点击按钮')
     }
   },
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

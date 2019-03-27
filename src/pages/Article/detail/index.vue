@@ -19,68 +19,67 @@
   </div>
 </template>
 <script>
-import { getArticleDetail } from "@/api/api.article";
-import { golink } from "@/utils/tools";
-import wxParse from "mpvue-wxparse";
+import { getArticleDetail } from '@/api/api.article'
+import wxParse from 'mpvue-wxparse'
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 export default {
-  data() {
+  data () {
     return {
       pageconfig: {
-        id: ""
+        id: ''
       },
       data: {}
-    };
+    }
   },
   // 使用的 vue 组件
   components: { wxParse },
 
   // 页面中的方法
   methods: {
-    preview(src, e) {
-      console.log(src, e);
+    preview (src, e) {
+      console.log(src, e)
       // do something
     },
-    navigate(href, e) {
-      console.log(href, e);
+    navigate (href, e) {
+      console.log(href, e)
       // do something
     },
-    getPageData(pageconfig) {
-      let _this = this;
-      console.log(getArticleDetail);
+    getPageData (pageconfig) {
+      let _this = this
+      console.log(getArticleDetail)
       getArticleDetail(_this.pageconfig, 1)
         .then(res => {
-          _this.data = res;
-          let reg = /^https\:\/\//;
-          _this.data.isWechatUrl = reg.test(res.html);
+          _this.data = res
+          let reg = /^https:\/\//
+          _this.data.isWechatUrl = reg.test(res.html)
         })
         .catch(err => {
-          console.log("getPageDataerr", err);
-        });
+          console.log('getPageDataerr', err)
+        })
     }
   },
 
   // 监听页面加载
-  onLoad(options) {
-    this.pageconfig.id = options.id;
+  onLoad (options) {
+    this.pageconfig.id = options.id
   },
   // 监听页面显示
-  onShow() {
-    pagelogs();
-    this.getPageData();
+  onShow () {
+    pagelogs()
+    this.getPageData()
   },
-  onHide() {
-    pagelogs(true);
+  onHide () {
+    pagelogs(true)
   },
   // 监听用户下拉动作
-  onPullDownRefresh() {
-    this.getPageData();
+  onPullDownRefresh () {
+    this.getPageData()
   },
 
   // 用户点击右上角分享
-  onShareAppMessage() {}
-};
+  onShareAppMessage () {}
+}
 </script>
 
 

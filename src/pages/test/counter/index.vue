@@ -11,30 +11,30 @@
 
 <script>
 // Use Vuex
-import store from "./store";
+import store from './store'
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 export default {
   computed: {
-    count() {
-      return store.state.count;
+    count () {
+      return store.state.count
     }
   },
   methods: {
-    increment() {
-      store.commit("increment");
+    increment () {
+      store.commit('increment')
     },
-    decrement() {
-      store.commit("decrement");
+    decrement () {
+      store.commit('decrement')
     }
   },
-  onShow() {
-    pagelogs();
+  onShow () {
+    pagelogs()
   },
-  onHide() {
-    pagelogs(true);
+  onHide () {
+    pagelogs(true)
   }
-};
+}
 </script>
 
 <style>

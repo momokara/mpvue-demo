@@ -25,30 +25,30 @@
   </div>
 </template>
 <script>
-import menuData from "./menu_data";
+import menuData from './menu_data'
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 
 export default {
-  data() {
+  data () {
     return {
-      components_root_url: "/pages/test",
+      components_root_url: '/pages/test',
       menudata: menuData.menuData
-    };
+    }
   },
 
   components: {},
 
   methods: {},
 
-  created() {},
-  onShow() {
-    pagelogs();
+  created () {},
+  onShow () {
+    pagelogs()
   },
-  onHide() {
-    pagelogs(true);
+  onHide () {
+    pagelogs(true)
   }
-};
+}
 </script>
 <style>
 page {

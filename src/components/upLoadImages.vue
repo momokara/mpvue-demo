@@ -43,12 +43,12 @@
 
 <script>
 // import Api from "@/api/api";
-import { upLoadimgs } from "@/utils/cos/cosfunc";
+import { upLoadimgs } from '@/utils/cos/cosfunc'
 export default {
   props: {
     title: {
       type: String,
-      default: ""
+      default: ''
     },
     max: {
       type: Number,
@@ -63,67 +63,67 @@ export default {
       default: []
     }
   },
-  data() {
+  data () {
     return {
       tempFilePaths: [],
       tempFiles: [],
       uploadresFilePaths: []
-    };
+    }
   },
   methods: {
     // 选择图片
-    addImage: function(e) {
-      let _this = this;
+    addImage: function (e) {
+      let _this = this
       wx.chooseImage({
         count: 6,
-        sizeType: ["original", "compressed"],
-        sourceType: ["album", "camera"],
+        sizeType: ['original', 'compressed'],
+        sourceType: ['album', 'camera'],
         success: res => {
           if (_this.autoUpLoad) {
-            _this.tempFilePaths = res.tempFilePaths;
-            _this.tempFiles = res.tempFiles;
+            _this.tempFilePaths = res.tempFilePaths
+            _this.tempFiles = res.tempFiles
             _this.upLoadImgs().then(res => {
-              _this.$emit("upLoadImgs", _this.imageList);
-            });
+              _this.$emit('upLoadImgs', _this.imageList)
+            })
           } else {
-            _this.tempFilePaths = _this.tempFilePaths.concat(res.tempFilePaths);
-            _this.tempFiles = _this.tempFiles.concat(res.tempFiles);
+            _this.tempFilePaths = _this.tempFilePaths.concat(res.tempFilePaths)
+            _this.tempFiles = _this.tempFiles.concat(res.tempFiles)
           }
           let _delRes = {
             imageList: this.imageList,
             tempFilePaths: this.tempFilePaths
-          };
-          _this.$emit("addImg", _delRes);
+          }
+          _this.$emit('addImg', _delRes)
         }
-      });
+      })
     },
     /**
      * 删除图片
      * @param {*} index 图片序号
      */
-    deleteImage: function(index, istemp) {
-      let tempFilePaths = istemp ? this.tempFilePaths : this.imageList;
-      tempFilePaths.splice(index, 1);
+    deleteImage: function (index, istemp) {
+      let tempFilePaths = istemp ? this.tempFilePaths : this.imageList
+      tempFilePaths.splice(index, 1)
       let _delRes = {
         imageList: this.imageList,
         tempFilePaths: this.tempFilePaths
-      };
-      this.$emit("deleteImg", _delRes);
+      }
+      this.$emit('deleteImg', _delRes)
     },
     // 上传图片
-    upLoadImgs() {
-      let _this = this;
+    upLoadImgs () {
+      let _this = this
       return upLoadimgs(this.tempFiles).then(res => {
-        _this.imageList = _this.imageList ? _this.imageList.concat(res) : res;
+        _this.imageList = _this.imageList ? _this.imageList.concat(res) : res
         if (!_this.autoUpLoad) {
-          _this.$emit("upLoadImgs", _this.imageList);
-          _this.tempFilePaths = [];
+          _this.$emit('upLoadImgs', _this.imageList)
+          _this.tempFilePaths = []
         }
-        return res;
-      });
+        return res
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

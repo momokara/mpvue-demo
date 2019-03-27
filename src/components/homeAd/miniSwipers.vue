@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { golink } from "@/utils/tools";
+import { golink } from '@/utils/tools'
 export default {
   props: {
     swiperList: {
@@ -70,64 +70,65 @@ export default {
       type: String
     }
   },
-  data() {
+  data () {
     return {
       defaultconfig: {
         indicatorDots: false,
-        indicatorColor: "rgba(0, 0, 0, 0.3)",
-        indicatorActiveColor: "#000",
+        indicatorColor: 'rgba(0, 0, 0, 0.3)',
+        indicatorActiveColor: '#000',
         autoplay: false,
         interval: 5000,
         duration: 500,
         circular: false,
         vertical: false,
-        previousMargin: "0px",
-        nextMargin: "0px",
+        previousMargin: '0px',
+        nextMargin: '0px',
         displayMultipleItems: 1,
         isShowName: false,
-        imgHeight: "150rpx"
+        imgHeight: '150rpx'
       },
       useConfig: {}
-    };
+    }
   },
   watch: {
     config: {
-      handler: function(val, oldval) {
-        this.getUseConfig();
+      handler: function (val, oldval) {
+        this.getUseConfig()
       },
       deep: true
     }
   },
   computed: {
-    boxHeight() {
-      let _height = this.useConfig.cell_height / 750 * 100;
-      return `height: ${_height.toFixed(2)}vw`;
+    boxHeight () {
+      let _height = this.useConfig.cell_height / 750 * 100
+      return `height: ${_height.toFixed(2)}vw`
     },
-    imgHeight() {
-      let _height = this.useConfig.imgHeight / 750 * 100;
-      return `height: ${_height.toFixed(2)}vw`;
+    imgHeight () {
+      let _height = this.useConfig.imgHeight / 750 * 100
+      return `height: ${_height.toFixed(2)}vw`
     }
   },
   methods: {
     golink,
-    swiperChange(event) {
-      this.$emit("change", event);
+    swiperChange (event) {
+      this.$emit('change', event)
     },
-    animationFinish(event) {
-      this.$emit("animationfinish", event);
+    animationFinish (event) {
+      this.$emit('animationfinish', event)
     },
-    getUseConfig() {
-      let _this = this;
-      _this.useConfig = Object.assign({}, _this.defaultconfig, _this.config);
-      let ltr = _this.useConfig.imgHeight.match(/[a-z|A-Z]+$/gi);
-      let num = _this.useConfig.imgHeight.match(/^\d+/gi);
+    getUseConfig () {
+      let _this = this
+      _this.useConfig = Object.assign({}, _this.defaultconfig, _this.config)
+      let ltr = _this.useConfig.imgHeight.match(/[a-z|A-Z]+$/gi)
+      let num = _this.useConfig.imgHeight.match(/^\d+/gi)
       // 单位是 px 转成2倍做rpx
-      _this.useConfig.imgHeight = ltr == "px" ? num * 2 : num;
+      // eslint-disable-next-line eqeqeq
+      _this.useConfig.imgHeight = ltr == 'px' ? num * 2 : num
       // 如果要显示名称则需要加高高度
       if (_this.useConfig.isShowName) {
-        _this.useConfig.cell_height = parseInt(_this.useConfig.imgHeight) + 60;
+        _this.useConfig.cell_height = parseInt(_this.useConfig.imgHeight) + 60
       } else {
-        _this.useConfig.cell_height = _this.useConfig.imgHeight;
+        _this.useConfig.cell_height = _this.useConfig.imgHeight
       }
     },
     /**
@@ -135,27 +136,27 @@ export default {
      * @param {Number} displayMultipleItems 每行数量配置信息
      * @param {Number} swiperListLength 数组长度
      */
-    fixswiperList: function(displayMultipleItems, swiperListLength) {
+    fixswiperList: function (displayMultipleItems, swiperListLength) {
       if (displayMultipleItems > swiperListLength) {
-        let fixLength = displayMultipleItems - swiperListLength;
+        let fixLength = displayMultipleItems - swiperListLength
         for (let index = 0; index < fixLength; index++) {
           const emptydata = {
-            imgUrl: "",
-            url: ""
-          };
-          this.swiperList.push(emptydata);
+            imgUrl: '',
+            url: ''
+          }
+          this.swiperList.push(emptydata)
         }
       }
     }
   },
-  created() {
-    this.getUseConfig();
+  created () {
+    this.getUseConfig()
     this.fixswiperList(
       this.useConfig.displayMultipleItems,
       this.swiperList.length
-    );
+    )
   }
-};
+}
 </script>
 
 <style lang="scss">

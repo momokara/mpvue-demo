@@ -7,13 +7,12 @@ import config from '@/config.js'
 export const getOpenid = () => {
   return new Promise((resolve, reject) => {
     if (wx.cloud) {
-     
-      let openid = isReLogin();
+      let openid = isReLogin()
       if (!openid) {
         // 获取的权限
         wx.getSetting({
           success: res => {
-            console.log("getSetting", res)
+            console.log('getSetting', res)
           }
         })
         wx.cloud.callFunction({
@@ -21,27 +20,28 @@ export const getOpenid = () => {
           name: 'getOpenid',
           // 传给云函数的参数
           data: {
-            //是否加密传输
+            // 是否加密传输
             isEncode: true
-          },
+          }
         }).then(res => {
-          console.log("loginres", res);
-          let _data = res.result;
-          wx.setStorageSync('openid', _data);
-          basicInfo.commit('updataByKey', _data);
-          resolve(_data);
+          console.log('loginres', res)
+          let _data = res.result
+          wx.setStorageSync('openid', _data)
+          basicInfo.commit('updataByKey', _data)
+          resolve(_data)
         }).catch(error => {
-          console.error(error);
+          console.error(error)
           reject(error)
         })
       } else {
-        console.log("load Storage：", openid);
-        basicInfo.commit('updataByKey', openid);
-        resolve(openid);
+        console.log('load Storage：', openid)
+        basicInfo.commit('updataByKey', openid)
+        resolve(openid)
       }
     } else {
-      console.error("请使用 2.2.3 或以上的基础库以使用云能力");
-      reject("请使用 2.2.3 或以上的基础库以使用云能力")
+      console.error('请使用 2.2.3 或以上的基础库以使用云能力')
+      let err = '请使用 2.2.3 或以上的基础库以使用云能力'
+      reject(err)
     }
   })
 }
@@ -53,38 +53,36 @@ export const getOpenid = () => {
 export const getUserInfo = () => {
   return new Promise((resolve, reject) => {
     if (wx.cloud) {
-     
-      let openid = isReLogin();
+      let openid = isReLogin()
       if (!openid) {
         // 当前获取的权限
         wx.getSetting({
           success: res => {
-            console.log("getSetting", res)
+            console.log('getSetting', res)
           }
         })
         wx.cloud.callFunction({
           // 云函数名称
           name: 'login',
           // 传给云函数的参数
-          data: {},
+          data: {}
         }).then(res => {
-          let _data = res.result;
-          wx.setStorageSync('openid', _data);
-          basicInfo.commit('updataByKey', _data);
-          resolve(_data);
+          let _data = res.result
+          wx.setStorageSync('openid', _data)
+          basicInfo.commit('updataByKey', _data)
+          resolve(_data)
         }).catch(error => {
-          console.error(error);
+          console.error(error)
           reject(error)
         })
       } else {
-        basicInfo.commit('updataByKey', openid);
-        resolve(openid);
+        basicInfo.commit('updataByKey', openid)
+        resolve(openid)
       }
     } else {
-      console.error("请使用 2.2.3 或以上的基础库以使用云能力");
+      console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     }
   })
-
 }
 /**
  * 写入用户信息
@@ -93,8 +91,8 @@ export const getUserInfo = () => {
  */
 export const saveUserInfo = (data) => {
   let _data = {
-    userinfo: data.userInfo,
-  };
+    userinfo: data.userInfo
+  }
   if (data.basicInfo) {
     _data.basicinfo = data.basicInfo
   }
@@ -103,31 +101,31 @@ export const saveUserInfo = (data) => {
     if (wx.cloud) {
       wx.cloud.callFunction({
         // 云函数名称
-        name: "saveUserInfo",
+        name: 'saveUserInfo',
         // 传给云函数的参数
         data: _data,
-        success(res) {
-          let _data = res.result;
+        success (res) {
+          let _data = res.result
           console.log(_data)
-          wx.setStorageSync('openid', _data);
-          basicInfo.commit('updataByKey', _data);
-          resolve(_data);
+          wx.setStorageSync('openid', _data)
+          basicInfo.commit('updataByKey', _data)
+          resolve(_data)
         },
-        fail(error) {
-          console.error("saveUserInfo fail:", error);
+        fail (error) {
+          console.error('saveUserInfo fail:', error)
           reject(error)
         }
-      });
+      })
     } else {
-      console.error("请使用 2.2.3 或以上的基础库以使用云能力");
+      console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     }
   })
 }
 
 /**
  * 解密用户信息
- * @param {Object} data 解密需要的信息 
- * data.code 
+ * @param {Object} data 解密需要的信息
+ * data.code
  * data.encryptedData 接口获取的加密信息，
  * data.iv 接口解密向量
  * @return {Object} 解密后的结果
@@ -136,28 +134,27 @@ export const deCrypt = (data) => {
   return new Promise((resolve, reject) => {
     wx.login({
       success: function (res) {
-        data.code = res.code;
+        data.code = res.code
         if (wx.cloud) {
           wx.cloud.callFunction({
             // 云函数名称
-            name: "decrypt",
+            name: 'decrypt',
             // 传给云函数的参数
             data: data,
-            success(res) {
-              let _data = res.result;
-              resolve(_data);
+            success (res) {
+              let _data = res.result
+              resolve(_data)
             },
-            fail(error) {
-              console.error("decrypt fail:", error);
+            fail (error) {
+              console.error('decrypt fail:', error)
               reject(error)
             }
-          });
+          })
         } else {
-          console.error("请使用 2.2.3 或以上的基础库以使用云能力");
+          console.error('请使用 2.2.3 或以上的基础库以使用云能力')
         }
       }
-    });
-
+    })
   })
 }
 /**
@@ -165,30 +162,30 @@ export const deCrypt = (data) => {
  * @return {Object/Boolean} 没有过期则返回storage中的用户信息，过期则返回false
  */
 export const isReLogin = () => {
-  let openid = wx.getStorageSync('openid');
-  let nowTime = new Date().getTime();
-  let pastTime = parseInt((nowTime - openid.time) / 1000);
-  console.log("config", config.loginKeepTime >= pastTime);
+  let openid = wx.getStorageSync('openid')
+  let nowTime = new Date().getTime()
+  let pastTime = parseInt((nowTime - openid.time) / 1000)
+  console.log('config', config.loginKeepTime >= pastTime)
   if (config.loginKeepTime >= pastTime) {
-    return openid;
+    return openid
   } else {
     // 移除登录信息
-    wx.removeStorageSync('openid');
-    basicInfo.commit("clean", true);
+    wx.removeStorageSync('openid')
+    basicInfo.commit('clean', true)
     return false
   }
 }
 
-const clouduser = {};
-clouduser.getOpenid = getOpenid;
-clouduser.getUserInfo = getUserInfo;
-clouduser.saveUserInfo = saveUserInfo;
-clouduser.deCrypt = deCrypt;
-export default clouduser;
+const clouduser = {}
+clouduser.getOpenid = getOpenid
+clouduser.getUserInfo = getUserInfo
+clouduser.saveUserInfo = saveUserInfo
+clouduser.deCrypt = deCrypt
+export default clouduser
 
 module.export = {
   getOpenid,
   getUserInfo,
   saveUserInfo,
   deCrypt
-};
+}

@@ -26,16 +26,16 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
-import Notify from "@/../static/components/notify/notify";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
+import Notify from '@/../static/components/notify/notify'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       table_api: apiData.api
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -43,27 +43,27 @@ export default {
   },
   // 页面中的方法
   methods: {
-    showNotify() {
-      Notify("通知内容");
+    showNotify () {
+      Notify('通知内容')
     },
 
-    showNotify2() {
+    showNotify2 () {
       Notify({
         duration: 1000,
-        text: "通知内容",
-        selector: "#custom-selector",
-        backgroundColor: "#1989fa"
-      });
+        text: '通知内容',
+        selector: '#custom-selector',
+        backgroundColor: '#1989fa'
+      })
     }
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

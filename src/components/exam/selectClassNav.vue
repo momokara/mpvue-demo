@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { golink } from "@/utils/tools";
+import { golink } from '@/utils/tools'
 export default {
   props: {
     config: {
@@ -56,22 +56,22 @@ export default {
   components: {},
   methods: {
     golink,
-    callgolink: function(item) {
-      let _this = this;
+    callgolink: function (item) {
+      let _this = this
       if (_this.isLink) {
         golink(item.url)
           .then(res => {
-            console.log("success", res);
+            console.log('success', res)
           })
           .catch(err => {
-            console.log("fail", err);
-          });
+            console.log('fail', err)
+          })
       } else {
-        _this.$emit("golink", item);
+        _this.$emit('golink', item)
       }
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

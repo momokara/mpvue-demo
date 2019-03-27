@@ -21,13 +21,13 @@
 </template>
 
 <script>
-import { isJsonString } from "@/utils/tools";
+import { isJsonString } from '@/utils/tools'
 
 export default {
-  data() {
+  data () {
     return {
       isJson: false
-    };
+    }
   },
   props: {
     data: {
@@ -36,29 +36,29 @@ export default {
   },
   components: {},
   computed: {
-    tableData: function() {
-      let _this = this;
-      let showdata = [];
+    tableData: function () {
+      let _this = this
+      let showdata = []
       if (isJsonString(_this.data)) {
-        _this.isJson = true;
-        let jsondata = JSON.parse(_this.data);
+        _this.isJson = true
+        let jsondata = JSON.parse(_this.data)
         for (const key in jsondata) {
           if (jsondata.hasOwnProperty(key)) {
-            const element = jsondata[key];
+            const element = jsondata[key]
             let rowdata = {
               key,
               data: JSON.stringify(element)
-            };
-            showdata.push(rowdata);
+            }
+            showdata.push(rowdata)
           }
         }
       } else {
-        showdata = _this.data;
+        showdata = _this.data
       }
-      return showdata;
+      return showdata
     }
   }
-};
+}
 </script>
 
 <style>

@@ -103,74 +103,75 @@
   </div>
 </template>
 <script>
-import basicInfo from "@/store/basicInfo.js";
-import questionType from "@/store/questionType.js";
-import jsonTable from "@/components/userCenter/jsonTable";
-import { jsonToArray } from "@/utils/tools";
+import basicInfo from '@/store/basicInfo.js'
+import questionType from '@/store/questionType.js'
+import jsonTable from '@/components/userCenter/jsonTable'
+import { jsonToArray } from '@/utils/tools'
 
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 export default {
-  data() {
+  data () {
     return {
       storageData: [],
       storeTag: [],
+      // eslint-disable-next-line no-dupe-keys
       storageData: [],
       storageDataTag: [],
       storageDataDetail: [],
       storageDataDTag: []
-    };
+    }
   },
   // 使用的 vue 组件
   components: { jsonTable },
 
   computed: {
-    storebasicInfo: function() {
-      return jsonToArray(basicInfo.state);
+    storebasicInfo: function () {
+      return jsonToArray(basicInfo.state)
     },
-    storequestionType: function() {
-      return jsonToArray(questionType.state);
+    storequestionType: function () {
+      return jsonToArray(questionType.state)
     }
   },
   // 页面中的方法
   methods: {
     // 获取信息
-    getstorageData: function() {
-      let socuredata = wx.getStorageInfoSync();
-      return jsonToArray(socuredata);
+    getstorageData: function () {
+      let socuredata = wx.getStorageInfoSync()
+      return jsonToArray(socuredata)
     },
     // 遍历storage
-    getstorageDataDetail: function() {
-      let showdatakey = wx.getStorageInfoSync("openid");
-      let showdata = [];
+    getstorageDataDetail: function () {
+      let showdatakey = wx.getStorageInfoSync('openid')
+      let showdata = []
       showdatakey.keys.forEach(key => {
-        let saveData = wx.getStorageSync(key);
-        saveData = JSON.stringify(saveData);
+        let saveData = wx.getStorageSync(key)
+        saveData = JSON.stringify(saveData)
         let rowdata = {
           key: key,
           data: saveData
-        };
-        showdata.push(rowdata);
-      });
+        }
+        showdata.push(rowdata)
+      })
 
-      return showdata;
+      return showdata
     },
-    onChange(e) {
-      const { key } = e.mp.currentTarget.dataset;
-      this[key] = e.mp.detail;
+    onChange (e) {
+      const { key } = e.mp.currentTarget.dataset
+      this[key] = e.mp.detail
     }
   },
 
   // 监听页面显示
-  onShow() {
-    this.storageData = this.getstorageData();
-    this.storageDataDetail = this.getstorageDataDetail();
-    pagelogs();
+  onShow () {
+    this.storageData = this.getstorageData()
+    this.storageDataDetail = this.getstorageDataDetail()
+    pagelogs()
   },
-  onHide() {
-    pagelogs(true);
+  onHide () {
+    pagelogs(true)
   }
-};
+}
 </script>
 
 

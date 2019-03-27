@@ -1,16 +1,15 @@
 /* jshint esversion: 6 */
-// 统一处理 页面请求 
+// 统一处理 页面请求
 import {
   ajaxAll
-} from "@/utils/Wxrequest";
+} from '@/utils/Wxrequest'
 import {
   getcommonheader
-} from "@/api/api.js";
-import questionType from "@/store/questionType.js";
+} from '@/api/api.js'
+import questionType from '@/store/questionType.js'
 import config from '@/config.js'
 
-
-// 页面接口 
+// 页面接口
 const qtypedata = () => {
   return {
     id: questionType.state.id,
@@ -24,11 +23,11 @@ const qtypedata = () => {
  * @return {Promise} 返回结果
  */
 export const getHomeInfo = async () => {
-  let commonheader = await getcommonheader();
-  let url = `${config.host}/driving_service/exam/home`;
-  return ajaxAll(url, "POST", qtypedata(), commonheader).then(res => {
-    let resdata = res.result;
-    return resdata;
+  let commonheader = await getcommonheader()
+  let url = `${config.host}/driving_service/exam/home`
+  return ajaxAll(url, 'POST', qtypedata(), commonheader).then(res => {
+    let resdata = res.result
+    return resdata
   })
 }
 
@@ -37,11 +36,11 @@ export const getHomeInfo = async () => {
  * @return {Promise} 返回结果
  */
 export const getClassList = async () => {
-  let commonheader = await getcommonheader();
-  let url = `${config.host}/driving_service/exam/getClasses`;
-  return ajaxAll(url, "GET", null, commonheader).then(res => {
-    let resdata = res.result;
-    return resdata;
+  let commonheader = await getcommonheader()
+  let url = `${config.host}/driving_service/exam/getClasses`
+  return ajaxAll(url, 'GET', null, commonheader).then(res => {
+    let resdata = res.result
+    return resdata
   })
 }
 
@@ -50,14 +49,13 @@ export const getClassList = async () => {
  * @return {Promise} 返回结果
  */
 export const getExamHis = async () => {
-  let commonheader = await getcommonheader();
-  let url = `${config.host}/driving_service/exam/getResultList`;
-  return ajaxAll(url, "POST", qtypedata(), commonheader).then(res => {
-    let resdata = res.result;
-    return resdata;
+  let commonheader = await getcommonheader()
+  let url = `${config.host}/driving_service/exam/getResultList`
+  return ajaxAll(url, 'POST', qtypedata(), commonheader).then(res => {
+    let resdata = res.result
+    return resdata
   })
 }
-
 
 /**
  * 获取题目数组
@@ -65,12 +63,12 @@ export const getExamHis = async () => {
  * @return {Promise} 返回结果
  */
 export const getQusetionList = async (type) => {
-  let commonheader = await getcommonheader();
-  let url = `${config.host}/driving_service/exam/getQusetionList/${type}`;
-  return ajaxAll(url, "POST", qtypedata(), commonheader).then(res => {
-    let resdata = res.result;
-    resdata.qtypedata = qtypedata();
-    return resdata;
+  let commonheader = await getcommonheader()
+  let url = `${config.host}/driving_service/exam/getQusetionList/${type}`
+  return ajaxAll(url, 'POST', qtypedata(), commonheader).then(res => {
+    let resdata = res.result
+    resdata.qtypedata = qtypedata()
+    return resdata
   })
 }
 /**
@@ -79,30 +77,29 @@ export const getQusetionList = async (type) => {
  * @return {Promise} 返回结果
  */
 export const getQuestionData = async (id) => {
-  let commonheader = await getcommonheader();
-  let url = `${config.host}/driving_service/exam/getQuestionData/${id}`;
-  return ajaxAll(url, "GET", null, commonheader).then(res => {
-    let resdata = res.result;
+  let commonheader = await getcommonheader()
+  let url = `${config.host}/driving_service/exam/getQuestionData/${id}`
+  return ajaxAll(url, 'GET', null, commonheader).then(res => {
+    let resdata = res.result
 
-    return resdata;
+    return resdata
   })
 }
-
 
 // 加载本地选中题库信息
 export const loadqType = () => {
   if (!questionType.state.isLoad) {
     wx.getStorage({
-      key: "qType",
+      key: 'qType',
       success: function (res) {
         try {
-          console.log(res);
+          console.log(res)
           res.data.isLoad = true
-          questionType.commit("updataByKey", res.data);
+          questionType.commit('updataByKey', res.data)
           console.log(questionType.state)
         } catch (error) {}
       }
-    });
+    })
   }
 }
 

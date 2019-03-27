@@ -23,20 +23,20 @@
   </div>
 </template>
 <script>
-import headerSwiper from "@/components/headerSwipers";
-import examHomeNav from "@/components/exam/examHomeNav";
-import { getLearnHomeInfo } from "@/api/api";
+import headerSwiper from '@/components/headerSwipers'
+import examHomeNav from '@/components/exam/examHomeNav'
+import { getLearnHomeInfo } from '@/api/api'
 
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 export default {
-  data() {
+  data () {
     return {
       data: {
         swiper: {},
         nav: {}
       }
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -45,30 +45,30 @@ export default {
   },
   // 页面中的方法
   methods: {
-    getPageData: function() {
-      let _this = this;
+    getPageData: function () {
+      let _this = this
       getLearnHomeInfo().then(res => {
-        console.log("getLearnHomeInfo", res);
-        _this.data = res;
-      });
+        console.log('getLearnHomeInfo', res)
+        _this.data = res
+      })
     }
   },
   // VUE 钩子 常用
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  created() {},
+  created () {},
 
   // 监听页面显示
-  onShow() {
-    pagelogs();
-    this.getPageData();
+  onShow () {
+    pagelogs()
+    this.getPageData()
   },
 
   // 监听页面隐藏
-  onHide() {
-    pagelogs(true);
+  onHide () {
+    pagelogs(true)
   }
-};
+}
 </script>
 
 <style lang="scss">

@@ -38,15 +38,15 @@
   </div>
 </template>
 <script>
-import selectClassNav from "@/components/exam/selectClassNav";
-import { getClassList, loadqType } from "@/api/api.exam";
-import { golink } from "@/utils/tools";
-import questionType from "@/store/questionType.js";
+import selectClassNav from '@/components/exam/selectClassNav'
+import { getClassList, loadqType } from '@/api/api.exam'
+import { golink } from '@/utils/tools'
+import questionType from '@/store/questionType.js'
 
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 export default {
-  data() {
+  data () {
     return {
       pageconfig: {},
       navconfig: {
@@ -55,7 +55,7 @@ export default {
       },
       data: {},
       qdata: {}
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -65,47 +65,46 @@ export default {
   computed: {},
   // 页面中的方法
   methods: {
-    getPageData: function() {
-      let _this = this;
+    getPageData: function () {
+      let _this = this
       getClassList().then(res => {
-        _this.data = res;
-      });
+        _this.data = res
+      })
     },
-    selectClass: function(e) {
+    selectClass: function (e) {
       let qdata = {
         id: e.id,
         tag: e.tag,
         cName: e.name,
         info: e.info
-      };
-      this.qdata = qdata;
-      console.log(qdata);
+      }
+      this.qdata = qdata
+      console.log(qdata)
     },
-    confirm: function() {
-      let _this = this;
-      questionType.commit("updataByKey", _this.qdata);
-      wx.setStorageSync("qType", _this.qdata);
-      golink("pages/mockExam/examHome/main");
+    confirm: function () {
+      let _this = this
+      questionType.commit('updataByKey', _this.qdata)
+      wx.setStorageSync('qType', _this.qdata)
+      golink('pages/mockExam/examHome/main')
     }
   },
 
   // 监听页面加载
-  onLoad() {
-    loadqType();
+  onLoad () {
+    loadqType()
   },
   // 监听页面显示
-  onShow() {
-    pagelogs();
-    this.getPageData();
-    this.qdata = questionType.state;
-  
+  onShow () {
+    pagelogs()
+    this.getPageData()
+    this.qdata = questionType.state
   },
 
   // 监听页面隐藏
-  onHide() {
-    pagelogs(true);
+  onHide () {
+    pagelogs(true)
   }
-};
+}
 </script>
 
 

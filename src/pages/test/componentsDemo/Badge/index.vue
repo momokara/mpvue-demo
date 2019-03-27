@@ -44,17 +44,17 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       table_api_BadgeGroup: apiData.api_BadgeGroup,
       table_api_Badge: apiData.api_Badge,
       table_class: apiData.class
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -62,21 +62,21 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onChange(e) {
+    onChange (e) {
       wx.showToast({
-        icon: "none",
+        icon: 'none',
         title: `切换至第${e.mp.detail}项`
-      });
+      })
     }
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

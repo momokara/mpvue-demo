@@ -121,28 +121,28 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 export default {
-  data() {
+  data () {
     return {
-      title: "",
-      msg: "这里是消息",
+      title: '',
+      msg: '这里是消息',
       checked_0: false,
       checked_1: false,
       checked_2: true,
       checked_group: [
         {
-          name: "check0",
-          info: "复选框 嵌套Group 和cell"
+          name: 'check0',
+          info: '复选框 嵌套Group 和cell'
         },
         {
-          name: "check1",
-          info: "复选框 嵌套Group 和cell"
+          name: 'check1',
+          info: '复选框 嵌套Group 和cell'
         },
         {
-          name: "check2",
-          info: "复选框 嵌套Group 和cell"
+          name: 'check2',
+          info: '复选框 嵌套Group 和cell'
         }
       ],
       checked_group_selected: [],
@@ -154,7 +154,7 @@ export default {
       table_func_checkbox: apiData.func_Checkbox,
       table_custom_class_checkbox: apiData.custom_class_Checkbox,
       table_custom_class_checkboxgroup: apiData.custom_class_CheckboxGroup
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -162,28 +162,29 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onChange(e) {
+    onChange (e) {
+      // eslint-disable-next-line standard/computed-property-even-spacing
       this[e.mp.currentTarget.dataset.name] = !this[
         e.mp.currentTarget.dataset.name
-      ];
+      ]
     },
-    onChangeGroup(e) {
-      this[e.mp.currentTarget.dataset.name] = e.mp.detail;
+    onChangeGroup (e) {
+      this[e.mp.currentTarget.dataset.name] = e.mp.detail
     },
-    toggle(e) {
-      const selected_check_box = this.$mp.page.selectComponent(
+    toggle (e) {
+      const selectedCheckBox = this.$mp.page.selectComponent(
         `.check-box-${e.mp.currentTarget.dataset.name}`
-      );
-      selected_check_box.toggle();
+      )
+      selectedCheckBox.toggle()
     },
-    noop() {}
+    noop () {}
   },
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

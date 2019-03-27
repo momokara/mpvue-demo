@@ -8,48 +8,49 @@ const getAuthorization = function (options, callback) {
     method: 'GET',
     url: config.serverPrefix, // 服务端签名地址，参考 server 目录下的两个签名例子
     dataType: 'json',
-    header:{
-      key1:"getsts"
+    header: {
+      key1: 'getsts'
     },
     success: function (result) {
-      var data = result.data;
-      var credentials = data.credentials;
+      var data = result.data
+      var credentials = data.credentials
+      // eslint-disable-next-line standard/no-callback-literal
       callback({
         TmpSecretId: credentials.tmpSecretId,
         TmpSecretKey: credentials.tmpSecretKey,
         XCosSecurityToken: credentials.sessionToken,
-        ExpiredTime: data.expiredTime, // SDK 在 ExpiredTime 时间前，不会再次调用 getAuthorization
-      });
+        ExpiredTime: data.expiredTime // SDK 在 ExpiredTime 时间前，不会再次调用 getAuthorization
+      })
     }
-  });
+  })
 }
 
 /**
  * 文件上传
- * @param {Object} file 
+ * @param {Object} file
  * @param {String} name 文件名
  */
 export const upLoadFile = (file, name) => {
   var cos = new COS({
     getAuthorization: getAuthorization
-  });
+  })
 
-  name = name ? name : "wechat_mp";
-  const date = new Date();
-  const y = date.getFullYear();
-  const m = date.getMonth() + 1;
-  const d = date.getDate();
-  let arr_filename = file.path.split(".");
-  const filetype = arr_filename[arr_filename.length - 1];
-  let filename = `${name}_${date.getTime()}.${filetype}`;
-  console.log("filename", filename, )
+  name = name || 'wechat_mp'
+  const date = new Date()
+  const y = date.getFullYear()
+  const m = date.getMonth() + 1
+  const d = date.getDate()
+  let arrFilename = file.path.split('.')
+  const filetype = arrFilename[arrFilename.length - 1]
+  let filename = `${name}_${date.getTime()}.${filetype}`
+  console.log('filename', filename)
   return new Promise((resolve, reject) => {
     cos.postObject({
       Bucket: config.Bucket,
       Region: config.Region,
       Key: `wechatfile/${y}${m}${d}/${filename}`,
       FilePath: file.path,
-      FileSize: file.size,
+      FileSize: file.size
       // TaskReady: function (taskId) {
       //   console.log("TaskReady", taskId);
       // },
@@ -61,44 +62,45 @@ export const upLoadFile = (file, name) => {
         wx.wx.showToast({
           title: 'err',
           icon: 'none'
-        });
+        })
         reject(err)
       } else {
         resolve(data)
       }
-    });
+    })
   })
 }
 // 批量上传图片
 export const upLoadimgs = async (files, basicName) => {
-  basicName = basicName ? basicName : "wechat_mp";
-  let resUrlList = [];
+  basicName = basicName || 'wechat_mp'
+  let resUrlList = []
   for (const key in files) {
     try {
-      const element = files[key];
+      const element = files[key]
       let filename = `${basicName}_${key}`
       let imgurl = await upLoadFile(element, filename).then(res => {
+        // eslint-disable-next-line eqeqeq
         if (res.statusCode == 200) {
-          return res.Location;
+          return res.Location
         } else {
-          return null;
+          return null
         }
-      });
-      imgurl = `https://${imgurl}`;
-      resUrlList.push(imgurl);
+      })
+      imgurl = `https://${imgurl}`
+      resUrlList.push(imgurl)
     } catch (error) {
       console.error(error)
     }
   }
-  return resUrlList;
+  return resUrlList
 }
 
-const cos = {};
-cos.upLoadFile = upLoadFile;
-cos.upLoadFile = upLoadimgs;
-export default cos;
+const cos = {}
+cos.upLoadFile = upLoadFile
+cos.upLoadFile = upLoadimgs
+export default cos
 
 module.export = {
   upLoadFile,
   upLoadimgs
-};
+}

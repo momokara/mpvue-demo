@@ -68,14 +68,14 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
-import WxPromis from "@/utils/Wxrequest";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
+import WxPromis from '@/utils/Wxrequest'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       areaList: {},
       loading: true,
       value: 330302,
@@ -83,7 +83,7 @@ export default {
       table_custom_class: apiData.custom_class,
       table_event: apiData.event,
       table_func: apiData.func
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -91,27 +91,27 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onChange(event) {
-      console.log(event);
+    onChange (event) {
+      console.log(event)
     }
   },
   // VUE 钩子 常用
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  created() {
+  created () {
     WxPromis.ajax(
-      "https://momokarapage.oss-cn-shenzhen.aliyuncs.com/static/getAllRegion.json"
+      'https://momokarapage.oss-cn-shenzhen.aliyuncs.com/static/getAllRegion.json'
     ).then(res => {
-      this.areaList = res.data;
-      this.loading = false;
-    });
+      this.areaList = res.data
+      this.loading = false
+    })
   },
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

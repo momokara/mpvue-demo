@@ -15,7 +15,7 @@ export default {
       type: Boolean
     }
   }
-};
+}
 </script>
 
 <style>

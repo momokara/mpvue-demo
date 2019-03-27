@@ -76,24 +76,25 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+// eslint-disable-next-line no-unused-vars
+import apiData from './api_data'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       active1: [0],
       active2: 0,
       active3: [],
-      title1: "有赞微商城",
-      title2: "有赞零售",
-      title3: "有赞美业",
-      content1: "提供多样店铺模板，快速搭建网上商城",
+      title1: '有赞微商城',
+      title2: '有赞零售',
+      title3: '有赞美业',
+      content1: '提供多样店铺模板，快速搭建网上商城',
       content2:
-        "网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失",
-      content3: "线上拓客，随时预约，贴心顺手的开单收银"
-    };
+        '网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失',
+      content3: '线上拓客，随时预约，贴心顺手的开单收银'
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -101,19 +102,19 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onChange(e) {
-      const { key } = e.mp.currentTarget.dataset;
-      this[key] = e.mp.detail;
+    onChange (e) {
+      const { key } = e.mp.currentTarget.dataset
+      this[key] = e.mp.detail
     }
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

@@ -3,10 +3,10 @@
 import {
   toPromise,
   isJsonString
-} from './tools';
+} from './tools'
 import {
   errlogs
-} from './logs';
+} from './logs'
 /**
  * 发送ajax 请求
  * @param {String} url    请求的地址
@@ -16,13 +16,13 @@ import {
  * @return {Promise} 请求返回的结果
  */
 export const ajax = (url, method, params, header) => {
-  let _Request = toPromise(wx.request);
-  let _header_default = {
+  let _Request = toPromise(wx.request)
+  let _headerDefault = {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
-  let _header = Object.assign({}, _header_default, header)
-  method = method ? method : 'GET';
-  if (method == 'GET' || method == 'get') {
+  let _header = Object.assign({}, _headerDefault, header)
+  method = method || 'GET'
+  if (method === 'GET' || method === 'get') {
     let _params = ''
     if (params) {
       for (const key in params) {
@@ -30,14 +30,13 @@ export const ajax = (url, method, params, header) => {
       }
       url = `${url}?${_params}`
     }
-
   }
   return _Request({
     url: url,
     method: method,
     data: params,
     header: _header
-  });
+  })
 }
 
 /**
@@ -49,15 +48,15 @@ export const ajax = (url, method, params, header) => {
  * @return {Promise} 请求返回的结果
  */
 export const ajaxAll = (url, method, params, header) => {
-
   try {
     return ajax(url, method, params, header)
       .then(res => {
-        let _testdata = typeof (res) == "object" ? JSON.stringify(res) : res;
+        let _testdata = typeof (res) === 'object' ? JSON.stringify(res) : res
         // 只返回json 数据
         if (isJsonString(_testdata)) {
+          // eslint-disable-next-line eqeqeq
           if (res.code != 200) {
-            console.log(res, res.errMsg | res.errmsg);
+            console.log(res, res.errMsg | res.errmsg)
             errlogs({
               url,
               method,
@@ -67,14 +66,14 @@ export const ajaxAll = (url, method, params, header) => {
                 code: res.code ? res.code : res.errcode,
                 errMsg: res.errMsg ? res.errMsg : res.errmsg
               }
-            });
+            })
             if (res.errcode) {
               wx.showToast({
                 title: res.errmsg
-              });
+              })
             }
           }
-          return res;
+          return res
         } else {
           errlogs({
             url,
@@ -82,11 +81,11 @@ export const ajaxAll = (url, method, params, header) => {
             params,
             header,
             msg: {
-              msg: "Data is not Josn",
+              msg: 'Data is not Josn',
               data: _testdata
             }
-          });
-          return null;
+          })
+          return null
         }
       })
       // 错误则调取云函数
@@ -98,7 +97,8 @@ export const ajaxAll = (url, method, params, header) => {
           params,
           header,
           msg: err
-        });
+        })
+        // eslint-disable-next-line eqeqeq
         if (method == 'GET' || method == 'get') {
           let _params = ''
           if (params) {
@@ -117,25 +117,25 @@ export const ajaxAll = (url, method, params, header) => {
             header: header
           }
         }).then(res => {
-          let resdata = {};
+          let resdata = {}
           if (res) {
-            resdata = res.result;
+            resdata = res.result
           }
-          resdata.type = "cloudfunc"
-          return resdata;
+          resdata.type = 'cloudfunc'
+          return resdata
         })
-      });
+      })
   } catch (error) {
-    console.log("ajaxAllerror", error)
+    console.log('ajaxAllerror', error)
   }
 }
 
-const WxPromis = {};
-WxPromis.ajax = ajax;
-WxPromis.ajaxAll = ajaxAll;
-export default WxPromis;
+const WxPromis = {}
+WxPromis.ajax = ajax
+WxPromis.ajaxAll = ajaxAll
+export default WxPromis
 
 module.export = {
   ajax,
-  ajaxAll,
-};
+  ajaxAll
+}

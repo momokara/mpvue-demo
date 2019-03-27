@@ -51,20 +51,20 @@
 </template>
 
 <script>
-import headerSwiper from "@/components/headerSwipers";
-import homeNav from "@/components/homeAd/homeNav";
-import adBox from "@/components/homeAd/adBox";
+import headerSwiper from '@/components/headerSwipers'
+import homeNav from '@/components/homeAd/homeNav'
+import adBox from '@/components/homeAd/adBox'
 
-import { getHomeInfo } from "@/api/api";
+import { getHomeInfo } from '@/api/api'
 
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 
 export default {
-  data() {
+  data () {
     return {
       data: {}
-    };
+    }
   },
 
   components: {
@@ -74,36 +74,36 @@ export default {
   },
 
   methods: {
-    getPageData() {
-      let _this = this;
-      _this.isLoading = true;
-      console.log(_this.isLoading);
+    getPageData () {
+      let _this = this
+      _this.isLoading = true
+      console.log(_this.isLoading)
       getHomeInfo().then(res => {
-        _this.data = res;
-        _this.isLoading = false;
-        console.log(_this.isLoading);
+        _this.data = res
+        _this.isLoading = false
+        console.log(_this.isLoading)
         if (res.pagetitle) {
           wx.setNavigationBarTitle({
             title: res.pagetitle
-          });
+          })
         }
 
-        wx.stopPullDownRefresh();
-      });
+        wx.stopPullDownRefresh()
+      })
     }
   },
-  onShow() {
-    pagelogs();
-    this.getPageData();
+  onShow () {
+    pagelogs()
+    this.getPageData()
   },
-  onHide() {
-    pagelogs(true);
+  onHide () {
+    pagelogs(true)
   },
 
-  onPullDownRefresh() {
-    this.getPageData();
+  onPullDownRefresh () {
+    this.getPageData()
   }
-};
+}
 </script>
 
 <style lang="scss">

@@ -45,18 +45,17 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
-import Toast from "@/../static/components/toast/toast";
-import { setTimeout } from "timers";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
+import Toast from '@/../static/components/toast/toast'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       table_func: apiData.func,
       table_option: apiData.option
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -64,55 +63,55 @@ export default {
   },
   // 页面中的方法
   methods: {
-    showToast() {
-      Toast("提示内容");
+    showToast () {
+      Toast('提示内容')
     },
 
-    showLongToast() {
-      Toast("这是一条长文字提示，超过一定字数就会换行");
+    showLongToast () {
+      Toast('这是一条长文字提示，超过一定字数就会换行')
     },
 
-    showLoadingToast() {
-      Toast.loading({ mask: true, message: "加载中..." });
+    showLoadingToast () {
+      Toast.loading({ mask: true, message: '加载中...' })
     },
 
-    showSuccessToast() {
-      Toast.success("成功文案");
+    showSuccessToast () {
+      Toast.success('成功文案')
     },
 
-    showFailToast() {
-      Toast.fail("失败提示");
+    showFailToast () {
+      Toast.fail('失败提示')
     },
 
-    showCustomizedToast(duration) {
-      const text = second => `倒计时 ${second} 秒`;
+    showCustomizedToast (duration) {
+      const text = second => `倒计时 ${second} 秒`
       const toast = Toast.loading({
         duration: 0,
         forbidClick: true,
-        loadingType: "spinner",
+        loadingType: 'spinner',
         message: text(3)
-      });
+      })
 
-      let second = 3;
+      let second = 3
       const timer = setInterval(() => {
-        second--;
+        second--
         if (second) {
-          toast.setData({ message: text(second) });
+          toast.setData({ message: text(second) })
         } else {
-          clearInterval(timer);
-          Toast.clear();
+          clearInterval(timer)
+          Toast.clear()
         }
-      }, 1000);
+      }, 1000)
     }
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

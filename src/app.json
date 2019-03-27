@@ -5,11 +5,10 @@
   },
   "pages": [
     "pages/home/main",
-    "pages/testApiHome/main",
+    "pages/mockExamHome/main",
     "pages/mallHome/main",
     "pages/userCenterHome/main",
-    "pages/mockExamHome/main",
-    "pages/loginpage/main"
+    "pages/testApiHome/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,7 +16,41 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
-  "subPackages": [{
+  "subPackages": [
+    {
+      "root": "pages/Article",
+      "pages": [
+        "menu/main",
+        "detail/main"
+      ]
+    },
+    {
+      "root": "pages/mockExam",
+      "pages": [
+        "examHome/main",
+        "qlist/main",
+        "selectClass/main",
+        "examResult/main"
+      ]
+    },
+    {
+      "root": "pages/user",
+      "pages": [
+        "editUserInfo/main",
+        "watchData/main",
+        "logs/main",
+        "forbidden/main"
+      ]
+    },
+    {
+      "root": "pages/poster",
+      "pages": [
+        "posterHome/main",
+        "posterList/main",
+        "posterDetail/main"
+      ]
+    },
+    {
       "root": "pages/test",
       "pages": [
         "counter/main",
@@ -78,39 +111,6 @@
         "componentsDemo_vue/formTable/main",
         "componentsDemo_vue/upLoadImgs/main"
       ]
-    },
-    {
-      "root": "pages/mockExam",
-      "pages": [
-        "examHome/main",
-        "qlist/main",
-        "selectClass/main",
-        "examResult/main"
-      ]
-    },
-    {
-      "root": "pages/Article",
-      "pages": [
-        "menu/main",
-        "detail/main"
-      ]
-    },
-    {
-      "root": "pages/user",
-      "pages": [
-        "editUserInfo/main",
-        "watchData/main",
-        "logs/main",
-        "forbidden/main"
-      ]
-    },
-    {
-      "root": "pages/poster",
-      "pages": [
-        "posterHome/main",
-        "posterList/main",
-        "posterDetail/main"
-      ]
     }
   ],
   "tabBar": {
@@ -118,7 +118,8 @@
     "selectedColor": "#6BB72D",
     "borderStyle": "black",
     "backgroundColor": "#fff",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/home/main",
         "iconPath": "static/images/icon/home.png",
         "selectedIconPath": "static/images/icon/home1.png",
@@ -136,7 +137,6 @@
         "selectedIconPath": "static/images/icon/market1.png",
         "text": "商城"
       },
-
       {
         "pagePath": "pages/userCenterHome/main",
         "iconPath": "static/images/icon/user.png",

@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import { golink } from "@/utils/tools";
+import { golink } from '@/utils/tools'
 export default {
-  data() {
-    return {};
+  data () {
+    return {}
   },
   props: {
     data: {
@@ -29,7 +29,7 @@ export default {
     config: {
       type: Object,
       default: {
-        size: "",
+        size: '',
         isLink: true,
         border: true
       }
@@ -40,7 +40,7 @@ export default {
   },
   components: {},
   methods: { golink }
-};
+}
 </script>
 
 <style>

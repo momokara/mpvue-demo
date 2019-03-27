@@ -4,17 +4,17 @@
 		"urlCheck": false,
 		"es6": true,
 		"postcss": false,
-		"minified": true,
+		"minified": false,
 		"newFeature": true,
 		"autoAudits": false,
-		"uglifyFileName": true
+		"uglifyFileName": false
 	},
 	"miniprogramRoot": "dist/wx/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"compileType": "miniprogram",
 	"appid": "wx7e28d99c40baf7a8",
-	"projectname": "mpvue-demo",
-	"libVersion": "2.6.1",
+	"projectname": "customer%20%E9%A9%BE%E6%A0%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%20%E5%AE%A2%E6%88%B7%E7%AB%AF",
+	"libVersion": "2.6.4",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -33,17 +33,24 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 13,
+			"current": 4,
 			"list": [
 				{
-					"id": 0,
-					"name": "组件列表",
-					"pathName": "pages/test/componentsDemoMenu/main",
-					"query": "test=test1",
+					"id": -1,
+					"name": "习题",
+					"pathName": "pages/mockExam/qlist/main",
+					"query": "",
 					"scene": null
 				},
 				{
-					"id": 3,
+					"id": -1,
+					"name": "营销海报",
+					"pathName": "pages/poster/posterHome/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
 					"name": "个人中心",
 					"pathName": "pages/userCenterHome/main",
 					"query": "",
@@ -51,86 +58,15 @@
 				},
 				{
 					"id": -1,
-					"name": "测试首页",
-					"pathName": "pages/testApiHome/main",
+					"name": "编辑信息",
+					"pathName": "pages/user/editUserInfo/main",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "信息",
-					"pathName": "pages/user/watchData/main",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 10,
-					"name": "文章列表",
-					"pathName": "pages/Article/menu/main",
-					"query": "id=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "学车",
-					"pathName": "pages/mockExamHome/main",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "笔试首页",
-					"pathName": "pages/mockExam/examHome/main",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "选择题库",
-					"pathName": "pages/mockExam/selectClass/main",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 8,
-					"name": "笔试练习",
-					"pathName": "pages/mockExam/qlist/main",
-					"query": "mode=5",
-					"scene": null
-				},
-				{
-					"id": 10,
-					"name": "全民营销",
-					"pathName": "pages/poster/posterHome/main",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "全民营销-分类列表",
-					"pathName": "pages/poster/posterList/main",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "登录页面",
-					"pathName": "pages/loginpage/main",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 12,
-					"name": "广告详情",
+					"name": "海报详情",
 					"pathName": "pages/poster/posterDetail/main",
-					"query": "id=666",
-					"scene": 1011
-				},
-				{
-					"id": -1,
-					"name": "表单组件",
-					"pathName": "pages/test/componentsDemo_vue/formTable/main",
-					"query": "id=666",
 					"scene": null
 				}
 			]

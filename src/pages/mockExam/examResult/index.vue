@@ -13,16 +13,16 @@
   </div>
 </template>
 <script>
-import { getExamHis } from "@/api/api.exam";
+import { getExamHis } from '@/api/api.exam'
 
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 export default {
-  data() {
+  data () {
     return {
       pageconfig: {},
       data: {}
-    };
+    }
   },
   // 使用的 vue 组件
   components: {},
@@ -30,27 +30,27 @@ export default {
   computed: {},
   // 页面中的方法
   methods: {
-    getPageData: function() {
-      let _this = this;
+    getPageData: function () {
+      let _this = this
       getExamHis().then(res => {
-        _this.data = res;
-      });
+        _this.data = res
+      })
     }
   },
 
   // 监听页面显示
-  onShow() {
-    pagelogs();
-    this.getPageData();
+  onShow () {
+    pagelogs()
+    this.getPageData()
   },
 
   // 监听页面隐藏
-  onHide() {
-    pagelogs(true);
+  onHide () {
+    pagelogs(true)
   },
 
-  onPullDownRefresh() {}
-};
+  onPullDownRefresh () {}
+}
 </script>
 
 

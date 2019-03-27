@@ -16,12 +16,12 @@
 </template>
 <script>
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 export default {
-  data() {
+  data () {
     return {
-      msg: "小程序已经被禁用!"
-    };
+      msg: '小程序已经被禁用!'
+    }
   },
   // 使用的 vue 组件
   components: {},
@@ -30,16 +30,16 @@ export default {
   methods: {},
   // VUE 钩子 常用
 
-  onLoad() {
+  onLoad () {
     wx.setNavigationBarTitle({
-      title: "小马帮技术支持"
-    });
+      title: '小马帮技术支持'
+    })
   },
   // 监听页面显示
-  onShow() {
-    pagelogs();
+  onShow () {
+    pagelogs()
   }
-};
+}
 </script>
 
 

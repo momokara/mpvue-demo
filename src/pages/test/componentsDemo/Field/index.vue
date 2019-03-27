@@ -164,29 +164,28 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 export default {
-  data() {
+  data () {
     return {
-      title: "",
-      sms: "",
-      value: "",
-      password: "",
-      username: "",
-      username2: "",
-      message: "",
-      phone: "1365577",
+      title: '',
+      sms: '',
+      value: '',
+      password: '',
+      username: '',
+      username2: '',
+      message: '',
+      phone: '1365577',
       inputval: {
-        info_normal: "",
-        info_error: "内容标记错误样式"
+        info_normal: '',
+        info_error: '内容标记错误样式'
       },
       table_api_Field: apiData.api_Field,
       table_event_Field: apiData.event_Field,
-      table_event_Field: apiData.event_Field,
       table_Slot_Field: apiData.slot_Field,
       table_class_Field: apiData.class_Field
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -194,41 +193,41 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onClickIcon() {
+    onClickIcon () {
       wx.showToast({
-        icon: "none",
-        title: "点击图标"
-      });
+        icon: 'none',
+        title: '点击图标'
+      })
     },
-    clear(){
-      console.log(clear)
+    clear () {
+      console.log('clear')
     }
   },
   watch: {
     // 深度监听,这么写会监听变量子属性的变化
     inputval: {
-      handler: function(val, oldval) {
+      handler: function (val, oldval) {
         for (const key in val) {
-          console.log(key, val[key]);
+          console.log(key, val[key])
         }
       },
-      deep: true //对象内部的属性监听，也叫深度监听
+      deep: true // 对象内部的属性监听，也叫深度监听
     },
     /**
      * 监听单一属性的变化
      * @param {string} val 当前的 input 的值
      * @param {string} oldval 改变之前 input 的值
      */
-    "inputval.info_normal": function(val, oldval) {
-      console.log(val, "|oldval:", oldval);
+    'inputval.info_normal': function (val, oldval) {
+      console.log(val, '|oldval:', oldval)
     }
   },
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

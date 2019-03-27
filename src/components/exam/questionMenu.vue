@@ -44,11 +44,11 @@ export default {
   },
 
   methods: {
-    goQuestion: function(Chapter, Index) {
-      this.$emit("goQuestion", { Chapter, Index });
+    goQuestion: function (Chapter, Index) {
+      this.$emit('goQuestion', { Chapter, Index })
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

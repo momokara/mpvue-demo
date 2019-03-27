@@ -31,17 +31,17 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       items: [
         {
           // 导航名称
-          text: "所有城市",
+          text: '所有城市',
           // 该导航下所有的可选项
           children: [...apiData.pro1, ...apiData.pro2]
         },
@@ -63,7 +63,7 @@ export default {
       ],
       mainActiveIndex: 0,
       activeId: 1
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -71,24 +71,24 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onClickNav(e) {
-      console.log(e.mp.detail);
-      this.mainActiveIndex = e.mp.detail.index || 0;
+    onClickNav (e) {
+      console.log(e.mp.detail)
+      this.mainActiveIndex = e.mp.detail.index || 0
     },
 
-    onClickItem(e) {
-      console.log(e.mp.detail);
-      this.activeId = e.mp.detail.id;
+    onClickItem (e) {
+      console.log(e.mp.detail)
+      this.activeId = e.mp.detail.id
     }
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

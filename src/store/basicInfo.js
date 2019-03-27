@@ -14,9 +14,9 @@ const basicInfo = new Vuex.Store({
   mutations: {
     // 变更方法
     updataUserInfo: (state, userInfo) => {
-      console.log("updataUserInfo", userInfo);
-      const obj = state;
-      obj.userInfo = userInfo;
+      console.log('updataUserInfo', userInfo)
+      const obj = state
+      obj.userInfo = userInfo
       if (userInfo.openid) {
         obj.islogin = true
       }
@@ -25,13 +25,12 @@ const basicInfo = new Vuex.Store({
      * 更新指定字段的内容
      */
     updataByKey: (state, data) => {
-
-      const obj = state;
+      const obj = state
       for (const key in data) {
         if (data.hasOwnProperty(key)) {
-          const element = data[key];
+          const element = data[key]
           // console.log("updataByKey",key,element)
-          obj[key] = element;
+          obj[key] = element
         }
       }
       if (obj.token) {
@@ -39,11 +38,11 @@ const basicInfo = new Vuex.Store({
       }
     },
     clean: (state, isreset) => {
-      const obj = state;
+      const obj = state
       if (isreset) {
-        obj.userInfo = {};
-        obj.basicInfo = {};
-        obj.islogin = false;
+        obj.userInfo = {}
+        obj.basicInfo = {}
+        obj.islogin = false
       }
     }
   }

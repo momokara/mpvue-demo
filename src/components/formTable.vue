@@ -28,8 +28,8 @@
 
 <script>
 export default {
-  data() {
-    return {};
+  data () {
+    return {}
   },
   props: {
     formInfo: {
@@ -39,15 +39,15 @@ export default {
   },
   components: {},
   computed: {
-    formData() {
+    formData () {
       // 处理表单数据
-      let showdata = {};
+      let showdata = {}
       this.formInfo.forEach(element => {
         if (element.value) {
-          showdata[element.name] = element.value;
+          showdata[element.name] = element.value
         }
-      });
-      return showdata;
+      })
+      return showdata
     }
   },
   methods: {
@@ -55,19 +55,19 @@ export default {
      * 清空某一行
      * @param {String} key 需要清空的字段名
      */
-    cleanRow: function(key) {
-      console.log(key, this.formData);
-      this.formData[key] = "";
+    cleanRow: function (key) {
+      console.log(key, this.formData)
+      this.formData[key] = ''
     },
-    submit: function() {
-      let _this = this;
+    submit: function () {
+      let _this = this
       // 转json
-      let jsonData = JSON.stringify(_this.formData);
-      jsonData = JSON.parse(jsonData);
-      this.$emit("getData", jsonData);
+      let jsonData = JSON.stringify(_this.formData)
+      jsonData = JSON.parse(jsonData)
+      this.$emit('getData', jsonData)
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

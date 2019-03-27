@@ -125,20 +125,20 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       table_api_cellgroup: apiData.api_CellGroup,
       table_custom_class_cellgroup: apiData.custom_class_CellGroup,
       table_api_cell: apiData.api_Cell,
       table_event_cell: apiData.event_Cell,
       table_slot_cell: apiData.slot_Cell,
       table_custom_class_cell: apiData.custom_class_Cell
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -146,12 +146,12 @@ export default {
   },
   // 页面中的方法
   methods: {},
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

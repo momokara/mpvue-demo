@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { golink } from "@/utils/tools";
+import { golink } from '@/utils/tools'
 export default {
   props: {
     dataList: {
@@ -40,44 +40,44 @@ export default {
       type: String
     }
   },
-  data() {
+  data () {
     return {
       defaultconfig: {
-        imgHeight: "150rpx"
+        imgHeight: '150rpx'
       },
       useConfig: {}
-    };
+    }
   },
   watch: {
     config: {
-      handler: function(val, oldval) {
-        this.getUseConfig();
+      handler: function (val, oldval) {
+        this.getUseConfig()
       },
       deep: true
     }
   },
   computed: {
-    imgHeight() {
-      let _height = this.useConfig.imgHeight / 750 * 100;
-      return `height: ${_height.toFixed(2)}vw`;
+    imgHeight () {
+      let _height = this.useConfig.imgHeight / 750 * 100
+      return `height: ${_height.toFixed(2)}vw`
     }
   },
   methods: {
     golink,
-    swiperChange(event) {
-      this.$emit("change", event);
+    swiperChange (event) {
+      this.$emit('change', event)
     },
-    animationFinish(event) {
-      this.$emit("animationfinish", event);
+    animationFinish (event) {
+      this.$emit('animationfinish', event)
     },
-    getUseConfig() {
-      this.useConfig = Object.assign({}, this.defaultconfig, this.config);
+    getUseConfig () {
+      this.useConfig = Object.assign({}, this.defaultconfig, this.config)
     }
   },
-  created() {
-    this.getUseConfig();
+  created () {
+    this.getUseConfig()
   }
-};
+}
 </script>
 
 <style lang="scss">

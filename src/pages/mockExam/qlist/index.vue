@@ -113,22 +113,22 @@
   </div>
 </template>
 <script>
-import { getQusetionList, getQuestionData } from "@/api/api.exam";
-import questionDetail from "@/components/exam/questionDetail";
-import questionMenu from "@/components/exam/questionMenu";
+import { getQusetionList, getQuestionData } from '@/api/api.exam'
+import questionDetail from '@/components/exam/questionDetail'
+import questionMenu from '@/components/exam/questionMenu'
 
-import questionType from "@/store/questionType.js";
+import questionType from '@/store/questionType.js'
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 export default {
-  data() {
+  data () {
     return {
       pageconfig: {
         // 当前章节
         nChapter: 0,
         // 当前题号
         nActive: 0,
-        sAcitveid: ""
+        sAcitveid: ''
       },
       data: {
         // 题目id 数组
@@ -148,47 +148,49 @@ export default {
       isShowPop: false,
       // 当前显示内容
       actIndex: 0,
-      questionDetail: "",
+      questionDetail: '',
       questionAnswer: [],
       canChoose: true
-    };
+    }
   },
   // 使用的 vue 组件
   components: { questionMenu, questionDetail },
   computed: {
     // 显示的题目数组
-    arrShowQid() {
-      let _this = this;
-      let _showdata;
+    arrShowQid () {
+      let _this = this
+      let _showdata
+      // eslint-disable-next-line eqeqeq
       if (_this.pageconfig.options.mode == 4) {
-        _showdata = _this.findErr();
+        _showdata = _this.findErr()
+      // eslint-disable-next-line eqeqeq
       } else if (_this.pageconfig.options.mode == 5) {
-        _showdata = _this.getCollect();
+        _showdata = _this.getCollect()
       } else {
-        _showdata = _this.data.arrQid;
+        _showdata = _this.data.arrQid
       }
       if (_showdata.length > 0) {
-        let i = 0;
+        let i = 0
         _showdata.forEach(element => {
           if (element.data.length > 0) {
             element.data = element.data.map(e => {
               const _e = {
                 id: e.id ? e.id : e,
                 index: i
-              };
-              i++;
-              return _e;
-            });
+              }
+              i++
+              return _e
+            })
           }
-        });
-        _this.sumQlength = i;
+        })
+        _this.sumQlength = i
       }
-      return _showdata;
+      return _showdata
     }
   },
   watch: {
-    "pageconfig.nActive": {
-      handler: function(val, oldval) {}
+    'pageconfig.nActive': {
+      handler: function (val, oldval) {}
     }
   },
   // 页面中的方法
@@ -198,228 +200,234 @@ export default {
      * @param {Number} num +1 上一题，-1 下一题
      * @return {String} 题目id
      */
-    change: function(num) {
-      let _this = this;
-      let _nActive = _this.pageconfig.nActive + num;
-      let _nChapter = _this.pageconfig.nChapter;
+    change: function (num) {
+      let _this = this
+      let _nActive = _this.pageconfig.nActive + num
+      let _nChapter = _this.pageconfig.nChapter
       if (
         _nActive > _this.arrShowQid[_nChapter].data.length - 1 ||
         _nActive < 0
       ) {
-        _nChapter = _nChapter + num;
-        _nActive = num < 0 ? _this.arrShowQid[_nChapter].data.length - 1 : 0;
+        _nChapter = _nChapter + num
+        _nActive = num < 0 ? _this.arrShowQid[_nChapter].data.length - 1 : 0
       }
-      return _this.goQuestion({ Chapter: _nChapter, Index: _nActive });
+      return _this.goQuestion({ Chapter: _nChapter, Index: _nActive })
     },
     /**
      * 跳转到指定题目
      * @param {Number} Chapter 题目章节
      * @param {Number} Index 题目在章节中的序号
      */
-    goQuestion: function({ Chapter, Index }) {
-      this.pageconfig.nChapter = Chapter;
-      this.pageconfig.nActive = Index;
+    goQuestion: function ({ Chapter, Index }) {
+      this.pageconfig.nChapter = Chapter
+      this.pageconfig.nActive = Index
       // this.canChoose = Math.random(0, 1) > 0.5 ? true : false;
-      return this.freshActiveId();
+      return this.freshActiveId()
     },
     // 更新当前显示的 题目id
-    freshActiveId: function() {
+    freshActiveId: function () {
+      // eslint-disable-next-line standard/computed-property-even-spacing
       this.pageconfig.sAcitveid = this.arrShowQid[
         this.pageconfig.nChapter
-      ].data[this.pageconfig.nActive].id;
+      ].data[this.pageconfig.nActive].id
       // 更新标记点
+      // eslint-disable-next-line standard/computed-property-even-spacing
       this.actIndex = this.arrShowQid[this.pageconfig.nChapter].data[
         this.pageconfig.nActive
-      ].index;
-      this.getQdata(this.pageconfig.sAcitveid);
-      this.conutScore();
-      this.questionAnswer = this.loadChoose(this.pageconfig.sAcitveid);
-      return this.pageconfig.sAcitveid;
+      ].index
+      this.getQdata(this.pageconfig.sAcitveid)
+      this.conutScore()
+      this.questionAnswer = this.loadChoose(this.pageconfig.sAcitveid)
+      return this.pageconfig.sAcitveid
     },
     /**
      * 获取题目信息
      * @param {String} id 题目id
      */
-    getQdata(id) {
-      let _this = this;
+    getQdata (id) {
+      let _this = this
       _this.questionDetail = _this.data.objQData[id]
         ? _this.data.objQData[id]
-        : null;
+        : null
       if (!_this.questionDetail) {
         return getQuestionData(id).then(res => {
-          _this.data.objQData[id] = res;
-          _this.questionDetail = _this.data.objQData[id];
-        });
+          _this.data.objQData[id] = res
+          _this.questionDetail = _this.data.objQData[id]
+        })
       }
     },
     // 上一题
-    goprev: function(e) {
-      let _this = this;
-      console.log(_this.change(-1));
+    goprev: function (e) {
+      let _this = this
+      console.log(_this.change(-1))
     },
 
     // 下一题
-    gonext: function(e) {
-      let _this = this;
-      console.log(_this.change(+1));
+    gonext: function (e) {
+      let _this = this
+      console.log(_this.change(+1))
     },
     // 选择答案
-    choose: function(e) {
-      this.questionAnswer = e.answer;
-      this.saveChoose(this.pageconfig.sAcitveid, e);
-      this.conutScore();
+    choose: function (e) {
+      this.questionAnswer = e.answer
+      this.saveChoose(this.pageconfig.sAcitveid, e)
+      this.conutScore()
     },
-    chooseFail: function(e) {
-      console.log("chooseFail", e);
+    chooseFail: function (e) {
+      console.log('chooseFail', e)
     },
     // 保存选择
-    saveChoose: function(id, data) {
-      this.data.objAnswer[id] = data;
+    saveChoose: function (id, data) {
+      this.data.objAnswer[id] = data
     },
     // 获取错题
-    findErr: function() {
-      let err = [{ data: [] }];
-      let answerData = this.data.objAnswer;
-      let i = 0;
+    findErr: function () {
+      let err = [{ data: [] }]
+      let answerData = this.data.objAnswer
+      let i = 0
       for (const key in answerData) {
         if (answerData.hasOwnProperty(key)) {
-          const element = answerData[key];
+          const element = answerData[key]
           if (element.isWrong) {
             let row = {
               id: key,
               index: i
-            };
-            i++;
-            err[0].data.push(row);
+            }
+            i++
+            err[0].data.push(row)
           }
         }
       }
-      return err;
+      return err
     },
     /**
      * 切换收藏状态
      * @param {String} id 题目id
      */
-    toggleCollect: function(id) {
-      this.data.objCollect[id] = !this.data.objCollect[id];
-      console.log(id, this.data.objCollect[id]);
+    toggleCollect: function (id) {
+      this.data.objCollect[id] = !this.data.objCollect[id]
+      console.log(id, this.data.objCollect[id])
     },
     // 获取收藏
-    getCollect: function() {
-      let collect = [{ data: [] }];
-      let collectData = this.data.objCollect;
-      let i = 0;
+    getCollect: function () {
+      let collect = [{ data: [] }]
+      let collectData = this.data.objCollect
+      let i = 0
       for (const key in collectData) {
         if (collectData.hasOwnProperty(key)) {
-          const element = collectData[key];
+          const element = collectData[key]
           if (element) {
             let row = {
               id: key,
               index: i
-            };
-            i++;
-            collect[0].data.push(row);
+            }
+            i++
+            collect[0].data.push(row)
           }
         }
       }
-      console.log('collect',collect);
-      return collect;
+      console.log('collect', collect)
+      return collect
     },
     // 加载选择
-    loadChoose: function(id) {
+    loadChoose: function (id) {
       let _answer = this.data.objAnswer[id]
         ? this.data.objAnswer[id].answer
-        : {};
-      return _answer;
+        : {}
+      return _answer
     },
-    getsaveName: function() {
-      return `oQdata_${questionType.state.tag}_${questionType.state.subject}`;
+    // 保存文件名
+    getsaveName: function () {
+      return `oQdata_${questionType.state.tag}_${questionType.state.subject}`
     },
     // 全局保存记录
-    saveQdata: function() {
-      let fileName = this.getsaveName();
-      wx.setStorageSync(fileName, this.data);
+    saveQdata: function () {
+      let fileName = this.getsaveName()
+      wx.setStorageSync(fileName, this.data)
     },
     // 加载缓存记录
-    loadQdata: function() {
-      let fileName = this.getsaveName();
+    loadQdata: function () {
+      let fileName = this.getsaveName()
       return new Promise((resolve, reject) => {
         wx.getStorage({
           key: fileName,
-          success: function(res) {
-            resolve(res.data);
+          success: function (res) {
+            resolve(res.data)
           },
-          fail: function(err) {
-            reject(err);
+          fail: function (err) {
+            reject(err)
           }
-        });
-      });
+        })
+      })
     },
     // 统计成绩
-    conutScore: function(e) {
-      let _objAnswer = this.data.objAnswer;
-      let wrongNum = 0;
-      let dolength = 0;
+    conutScore: function (e) {
+      let _objAnswer = this.data.objAnswer
+      let wrongNum = 0
+      let dolength = 0
       for (const key in _objAnswer) {
         if (_objAnswer.hasOwnProperty(key)) {
-          dolength++;
-          const element = _objAnswer[key];
+          dolength++
+          const element = _objAnswer[key]
           if (element.isWrong) {
-            wrongNum++;
+            wrongNum++
           }
         }
       }
-      this.wrongNum = wrongNum;
-      this.dolength = dolength;
-      this.saveQdata();
-      return { wrongNum, dolength };
+      this.wrongNum = wrongNum
+      this.dolength = dolength
+      this.saveQdata()
+      return { wrongNum, dolength }
     },
     // 开关弹出层
-    popToggle: function() {
-      this.isShowPop = !this.isShowPop;
+    popToggle: function () {
+      this.isShowPop = !this.isShowPop
       if (this.isShowPop) {
-        wx.stopPullDownRefresh();
+        wx.stopPullDownRefresh()
       }
     },
 
     // 获取页面信息
-    getPageData: function() {
-      let _this = this;
+    getPageData: function () {
+      let _this = this
       getQusetionList(_this.pageconfig.options.mode).then(res => {
-        _this.data.arrQid = res.questionList;
-        _this.goQuestion({ Chapter: 0, Index: 0 });
-      });
+        _this.data.arrQid = res.questionList
+        _this.goQuestion({ Chapter: 0, Index: 0 })
+      })
     }
   },
-  onLoad(options) {
-    this.pageconfig.options = options;
+  onLoad (options) {
+    this.pageconfig.options = options
   },
   // 监听页面显示
-  onShow() {
-    pagelogs();
-    let _this = this;
+  onShow () {
+    pagelogs()
+    let _this = this
     this.loadQdata()
       .then(res => {
-        _this.data = res;
+        _this.data = res
         if (
+          // eslint-disable-next-line eqeqeq
           _this.pageconfig.options.mode == 2 ||
+          // eslint-disable-next-line eqeqeq
           _this.pageconfig.options.mode == 3
         ) {
-          _this.getPageData();
+          _this.getPageData()
         } else {
-          _this.goQuestion({ Chapter: 0, Index: 0 });
+          _this.goQuestion({ Chapter: 0, Index: 0 })
         }
       })
       .catch(err => {
-        _this.getPageData();
-      });
+        console.log(err)
+        _this.getPageData()
+      })
   },
 
   // 监听页面隐藏
-  onHide() {
-    pagelogs(true);
+  onHide () {
+    pagelogs(true)
   }
-};
+}
 </script>
 
 

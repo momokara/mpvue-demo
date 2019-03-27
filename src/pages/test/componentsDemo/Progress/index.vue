@@ -73,15 +73,16 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+// eslint-disable-next-line no-unused-vars
+import apiData from './api_data'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       cycpercent: 10
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -89,18 +90,18 @@ export default {
   },
   // 页面中的方法
   methods: {
-    sliderChange(e) {
-      this.cycpercent = e.mp.detail.value;
+    sliderChange (e) {
+      this.cycpercent = e.mp.detail.value
     }
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 
