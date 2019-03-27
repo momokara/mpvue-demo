@@ -4,10 +4,10 @@
 		"urlCheck": false,
 		"es6": true,
 		"postcss": false,
-		"minified": true,
+		"minified": false,
 		"newFeature": true,
 		"autoAudits": false,
-		"uglifyFileName": true
+		"uglifyFileName": false
 	},
 	"miniprogramRoot": "dist/wx/",
 	"cloudfunctionRoot": "cloudfunctions/",
@@ -23,13 +23,24 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "习题",
+					"pathName": "pages/mockExam/qlist/main",
+					"scene": null
+				}
+			]
 		}
 	}
 }
