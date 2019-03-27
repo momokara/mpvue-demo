@@ -1,20 +1,20 @@
 // 存放一些通用数据处理方法
 
 // 清除缓存并重新登录
-import basicInfo from "@/store/basicInfo.js";
+import basicInfo from '@/store/basicInfo.js'
 import {
   getUserInfoSer,
   ajax
-} from "@/api/api";
+} from '@/api/api'
 import {
   decrypt
-} from "@/utils/cloudfunc/crypt";
+} from '@/utils/cloudfunc/crypt'
 import config from '@/config.js'
 
 // 重新登录
 export const reLogin = () => {
-  wx.clearStorageSync();
-  basicInfo.commit("clean", true);
+  wx.clearStorageSync()
+  basicInfo.commit('clean', true)
   return getUserInfoSer()
 }
 
@@ -22,31 +22,31 @@ export const reLogin = () => {
 export const checkIsForbidden = () => {
   // let url = `${config.static_url_basic}${config.static_url_file}${config.mpid}/isForbidden.json`
   let url = `${config.host}/isforbidden/${config.mpid}`
-  ajax(url, "GET", {}).then(res => {
+  ajax(url, 'GET', {}).then(res => {
     try {
       if (res.isForbidden) {
-        console.table([res]);
+        console.table([res])
         wx.redirectTo({
-          "url": "/pages/user/forbidden/main"
+          'url': '/pages/user/forbidden/main'
         })
       }
     } catch (error) {
 
     }
   }).catch(err => {
-    console.err("checkIsForbidden err", err)
+    console.err('checkIsForbidden err', err)
   })
 }
 
 // 解密请求头内的token
 export const decryptToken = async () => {
-  let token = await decrypt(basicInfo.state.token);
-  let decrypt_data = {
+  let token = await decrypt(basicInfo.state.token)
+  let decryptData = {
     token: JSON.parse(token)
   }
-  console.group("解密结果");
-  console.table(decrypt_data);
-  console.groupEnd();
+  console.group('解密结果')
+  console.table(decryptData)
+  console.groupEnd()
 }
 
 module.export = {

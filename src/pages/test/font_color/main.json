@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "新页面样板",
-  "usingComponents": {
-    "van-cell": "/static/components/cell/index",
-    "van-cell-group": "/static/components/cell-group/index"
-  }
-}

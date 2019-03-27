@@ -1,15 +1,8 @@
 {
-  "cloud": true,
-  "networkTimeout": {
-    "request": 6000
-  },
   "pages": [
-    "pages/home/main",
-    "pages/testApiHome/main",
-    "pages/mallHome/main",
-    "pages/userCenterHome/main",
-    "pages/mockExamHome/main",
-    "pages/loginpage/main"
+    "pages/index/main",
+    "pages/logs/main",
+    "pages/counter/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,193 +10,35 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
-  "subPackages": [{
-      "root": "pages/test",
-      "pages": [
-        "counter/main",
-
-        "componentsDemoMenu/main",
-
-        "font_color/main",
-        "newpagedemo/main",
-
-        "componentsDemo/Layout/main",
-        "componentsDemo/Button/main",
-        "componentsDemo/Cell/main",
-        "componentsDemo/Icon/main",
-        "componentsDemo/Popup/main",
-        "componentsDemo/scoreStar/main",
-        "componentsDemo/Transition/main",
-
-        "componentsDemo/CheckBox/main",
-        "componentsDemo/DatetimePicker/main",
-        "componentsDemo/Field/main",
-        "componentsDemo/Picker/main",
-        "componentsDemo/Radio/main",
-        "componentsDemo/Rate/main",
-        "componentsDemo/Search/main",
-        "componentsDemo/Slider/main",
-        "componentsDemo/Stepper/main",
-        "componentsDemo/Switch/main",
-        "componentsDemo/SwitchCell/main",
-
-        "componentsDemo/ActionSheet/main",
-        "componentsDemo/Dialog/main",
-        "componentsDemo/Loading/main",
-        "componentsDemo/Notify/main",
-        "componentsDemo/SwipeCell/main",
-        "componentsDemo/Toast/main",
-
-        "componentsDemo/Collapse/main",
-        "componentsDemo/NoticeBar/main",
-        "componentsDemo/Panel/main",
-        "componentsDemo/Progress/main",
-        "componentsDemo/Steps/main",
-        "componentsDemo/Tag/main",
-        "componentsDemo/TreeSelect/main",
-
-        "componentsDemo/Badge/main",
-        "componentsDemo/NavBar/main",
-        "componentsDemo/Tab/main",
-        "componentsDemo/Tabbar/main",
-
-        "componentsDemo/Area/main",
-        "componentsDemo/Card/main",
-        "componentsDemo/SubmitBar/main",
-        "componentsDemo/Calendar/main",
-        "componentsDemo/GoodsAction/main",
-        "componentsDemo/Lottery-Wheel/main",
-        "componentsDemo/Lottery-Table/main",
-
-        "componentsDemo_vue/formTable/main",
-        "componentsDemo_vue/upLoadImgs/main"
-      ]
-    },
-    {
-      "root": "pages/mockExam",
-      "pages": [
-        "examHome/main",
-        "qlist/main",
-        "selectClass/main",
-        "examResult/main"
-      ]
-    },
-    {
-      "root": "pages/Article",
-      "pages": [
-        "menu/main",
-        "detail/main"
-      ]
-    },
-    {
-      "root": "pages/user",
-      "pages": [
-        "editUserInfo/main",
-        "watchData/main",
-        "logs/main",
-        "forbidden/main"
-      ]
-    },
-    {
-      "root": "pages/poster",
-      "pages": [
-        "posterHome/main",
-        "posterList/main",
-        "posterDetail/main"
-      ]
-    }
-  ],
   "tabBar": {
-    "color": "#7A7E83",
-    "selectedColor": "#6BB72D",
-    "borderStyle": "black",
-    "backgroundColor": "#fff",
-    "list": [{
-        "pagePath": "pages/home/main",
-        "iconPath": "static/images/icon/home.png",
-        "selectedIconPath": "static/images/icon/home1.png",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/mockExamHome/main",
-        "iconPath": "static/images/icon/car.png",
-        "selectedIconPath": "static/images/icon/car1.png",
-        "text": "学车"
-      },
-      {
-        "pagePath": "pages/mallHome/main",
-        "iconPath": "static/images/icon/market.png",
-        "selectedIconPath": "static/images/icon/market1.png",
-        "text": "商城"
-      },
+    "color": "#999",
+    "backgroundColor": "#fafafa",
+    "selectedColor": "#333",
+    "borderStyle": "white",
 
-      {
-        "pagePath": "pages/userCenterHome/main",
-        "iconPath": "static/images/icon/user.png",
-        "selectedIconPath": "static/images/icon/user1.png",
-        "text": "我的"
-      }
-    ]
-  },
-  "usingComponents": {
-    "van-action-sheet": "/static/components/action-sheet/index",
-    "van-area": "/static/components/area/index",
-    "van-badge": "/static/components/badge/index",
-    "van-badge-group": "/static/components/badge-group/index",
-    "van-button": "/static/components/button/index",
-    "van-card": "/static/components/card-mo/index",
-    "van-calendar": "/static/components/calendar/index",
-    "van-cell": "/static/components/cell/index",
-    "van-cell-group": "/static/components/cell-group/index",
-    "van-checkbox": "/static/components/checkbox-mo/index",
-    "van-checkbox-group": "/static/components/checkbox-group-mo/index",
-    "van-col": "/static/components/col/index",
-    "van-dialog": "/static/components/dialog-mo/index",
-    "van-field": "/static/components/field-mo/index",
-    "van-goods-action": "/static/components/goods-action/index",
-    "van-goods-action-icon": "/static/components/goods-action-icon-mo/index",
-    "van-goods-action-button": "/static/components/goods-action-button/index",
-    "van-icon": "/static/components/icon/index",
-    "van-loading": "/static/components/loading/index",
-    "van-nav-bar": "/static/components/nav-bar-mo/index",
-    "van-notice-bar": "/static/components/notice-bar/index",
-    "van-notify": "/static/components/notify/index",
-    "van-panel": "/static/components/panel/index",
-    "van-popup": "/static/components/popup/index",
-    "van-progress": "/static/components/progress/index",
-    "van-progress-cycle": "/static/components/progress-cycle/index",
-    "van-radio": "/static/components/radio-mo/index",
-    "van-radio-group": "/static/components/radio-group-mo/index",
-    "van-row": "/static/components/row/index",
-    "van-search": "/static/components/search-mo/index",
-    "van-slider": "/static/components/slider/index",
-    "van-stepper": "/static/components/stepper/index",
-    "van-steps": "/static/components/steps/index",
-    "van-submit-bar": "/static/components/submit-bar/index",
-    "van-swipe-cell": "/static/components/swipe-cell/index",
-    "van-switch": "/static/components/switch/index",
-    "van-switch-cell": "/static/components/switch-cell/index",
-    "van-tab": "/static/components/tab-mo/index",
-    "van-tabs": "/static/components/tabs-mo/index",
-    "van-tabbar": "/static/components/tabbar/index",
-    "van-tabbar-item": "/static/components/tabbar-item/index",
-    "van-tag": "/static/components/tag/index",
-    "van-toast": "/static/components/toast/index",
-    "van-transition": "/static/components/transition/index",
-    "van-tree-select": "/static/components/tree-select-mo/index",
-    "van-datetime-picker": "/static/components/datetime-picker/index",
-    "van-rate": "/static/components/rate/index",
-    "van-collapse": "/static/components/collapse/index",
-    "van-collapse-item": "/static/components/collapse-item/index",
-    "van-picker": "/static/components/picker/index",
-    "score-star": "/static/components/score-star/index",
-    "lottery-table": "/static/components/lottery-table/index",
-    "lottery-wheel": "/static/components/lottery-wheel/index"
-  },
-  "permission": {
-    "scope.userInfo": {},
-    "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示"
-    }
+    "list": [{
+      "text": "首页",
+      "pagePath": "pages/index/main",
+      "iconPath": "static/tabs/home.png",
+      "selectedIconPath": "static/tabs/home-active.png"
+    }, {
+      "text": "订单",
+      "pagePath": "pages/logs/main",
+      "iconPath": "static/tabs/orders.png",
+      "selectedIconPath": "static/tabs/orders-active.png"
+    }],
+
+    "items": [{
+      "name": "首页",
+      "pagePath": "pages/index/main",
+      "icon": "static/tabs/home.png",
+      "activeIcon": "static/tabs/home-active.png"
+    }, {
+      "name": "订单",
+      "pagePath": "pages/logs/main",
+      "icon": "static/tabs/orders.png",
+      "activeIcon": "static/tabs/orders-active.png"
+    }],
+    "position": "bottom"
   }
 }

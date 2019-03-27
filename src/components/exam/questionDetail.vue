@@ -175,79 +175,80 @@ export default {
       type: Number
     }
   },
-  data() {
+  data () {
     return {
       // 题型
-      qtypename: ["~", "判断题", "单选题", "多选题"],
+      qtypename: ['~', '判断题', '单选题', '多选题'],
       // 选项名称
       optionName: [
-        { name: "A", isanswer: false },
-        { name: "B", isanswer: false },
-        { name: "C", isanswer: false },
-        { name: "D", isanswer: false }
+        { name: 'A', isanswer: false },
+        { name: 'B', isanswer: false },
+        { name: 'C', isanswer: false },
+        { name: 'D', isanswer: false }
       ]
-    };
+    }
   },
   computed: {
-    answerList: function() {
-      let _this = this;
+    answerList: function () {
+      let _this = this
       if (_this.data) {
         this.optionName.forEach((e, i) => {
           if (_this.data.answer.indexOf(e.name) >= 0) {
-            _this.optionName[i].isanswer = true;
+            _this.optionName[i].isanswer = true
           } else {
-            _this.optionName[i].isanswer = false;
+            _this.optionName[i].isanswer = false
           }
-        });
+        })
       }
     }
   },
   methods: {
-    toggle: function(e) {
-      const selected_check_box = this.$parent.$mp.page.selectComponent(
+    toggle: function (e) {
+      const selectedCheckBox = this.$parent.$mp.page.selectComponent(
         `.check-box-${e.mp.currentTarget.dataset.name}`
-      );
-      selected_check_box.toggle();
+      )
+      selectedCheckBox.toggle()
     },
     // 多选
-    clickCheckbox: function(e) {
+    clickCheckbox: function (e) {
       if (this.canChoose) {
-        this[e.mp.currentTarget.dataset.name] = e.mp.detail;
-        let _answer = "";
+        this[e.mp.currentTarget.dataset.name] = e.mp.detail
+        let _answer = ''
         this.answer.forEach(e => {
-          _answer = _answer + e;
-        });
-        this.sendChoose(_answer);
+          _answer = _answer + e
+        })
+        this.sendChoose(_answer)
       } else {
-        this.sendFail(e.mp);
+        this.sendFail(e.mp)
       }
     },
     // 单选
-    clickRadio: function(e) {
+    clickRadio: function (e) {
       if (this.canChoose) {
         this[e.mp.currentTarget.dataset.key] = [
           e.mp.currentTarget.dataset.value
-        ];
-        let _answer = this.answer[0];
-        this.sendChoose(_answer);
+        ]
+        let _answer = this.answer[0]
+        this.sendChoose(_answer)
       } else {
-        this.sendFail(e.mp);
+        this.sendFail(e.mp)
       }
     },
     // 选择答案
-    sendChoose: function(answer) {
-      let isWrong = answer == this.data.answer ? false : true;
+    sendChoose: function (answer) {
+      // eslint-disable-next-line eqeqeq
+      let isWrong = answer != this.data.answer
       let data = {
         answer: this.answer,
         isWrong
-      };
-      this.$emit("choose", data);
+      }
+      this.$emit('choose', data)
     },
-    sendFail: function(data) {
-      this.$emit("fail", data);
+    sendFail: function (data) {
+      this.$emit('fail', data)
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

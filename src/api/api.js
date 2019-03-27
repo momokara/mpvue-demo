@@ -1,28 +1,27 @@
 /* jshint esversion: 6 */
-// 统一处理 页面请求 
+// 统一处理 页面请求
 import {
   ajaxAll
-} from "@/utils/Wxrequest";
-import basicInfo from "@/store/basicInfo.js";
+} from '@/utils/Wxrequest'
+import basicInfo from '@/store/basicInfo.js'
 import {
   getOpenid
-} from "@/utils/cloudfunc/getUserInfo";
+} from '@/utils/cloudfunc/getUserInfo'
 
-import dialog from "@/../static/components/dialog-mo/dialog";
 import config from '@/config.js'
 
-// 页面接口 
+// 页面接口
 
 /**
  * 获取首页信息
  * @return {Promise} 返回结果
  */
 export const getHomeInfo = async () => {
-  let commonheader = await getcommonheader();
-  let url = `${config.host}/marking_service/home_data/${config.mpid}`;
-  return ajaxAll(url, "GET", null, commonheader).then(res => {
-    let resdata = res.result;
-    return resdata;
+  let commonheader = await getcommonheader()
+  let url = `${config.host}/marking_service/home_data/${config.mpid}`
+  return ajaxAll(url, 'GET', null, commonheader).then(res => {
+    let resdata = res.result
+    return resdata
   })
 }
 
@@ -31,11 +30,11 @@ export const getHomeInfo = async () => {
  * @return {Promise} 返回结果
  */
 export const getLearnHomeInfo = async () => {
-  let commonheader = await getcommonheader();
-  let url = `${config.host}/dirving_service/home`;
-  return ajaxAll(url, "GET", {}, commonheader).then(res => {
-    let resdata = res.result;
-    return resdata;
+  let commonheader = await getcommonheader()
+  let url = `${config.host}/dirving_service/home`
+  return ajaxAll(url, 'GET', {}, commonheader).then(res => {
+    let resdata = res.result
+    return resdata
   })
 }
 
@@ -44,11 +43,11 @@ export const getLearnHomeInfo = async () => {
  * @return {Promise} 返回结果
  */
 export const getUserCenterHomeInfo = async () => {
-  let commonheader = await getcommonheader();
-  let url = `${config.host}/user_service/home`;
-  return ajaxAll(url, "GET", {}, commonheader).then(res => {
-    let resdata = res.result;
-    return resdata;
+  let commonheader = await getcommonheader()
+  let url = `${config.host}/user_service/home`
+  return ajaxAll(url, 'GET', {}, commonheader).then(res => {
+    let resdata = res.result
+    return resdata
   })
 }
 
@@ -61,36 +60,36 @@ export const getUserCenterHomeInfo = async () => {
  * @return {Promise} 返回结果
  */
 export const getUserInfoSer = async (retryTimes) => {
-  retryTimes = retryTimes | 0;
-  let url = `${config.host}/user_service/getUserBaseInfo`;
+  retryTimes = retryTimes | 0
+  let url = `${config.host}/user_service/getUserBaseInfo`
   return getOpenid().then(async (res) => {
     if (res.isgetinfo) {
-      return res;
+      return res
     } else {
       if (res.token) {
         let commonheader = {
           token: res.token
         }
-        return ajaxAll(url, "GET", {}, commonheader).then(res => {
-          let resdata = res.result;
-          resdata.isgetinfo = true;
-          basicInfo.commit('updataByKey', resdata);
-          wx.setStorageSync('openid', basicInfo.state);
-          return resdata;
+        return ajaxAll(url, 'GET', {}, commonheader).then(res => {
+          let resdata = res.result
+          resdata.isgetinfo = true
+          basicInfo.commit('updataByKey', resdata)
+          wx.setStorageSync('openid', basicInfo.state)
+          return resdata
         })
       } else if (retryTimes < config.loginRetryTimes - 1) { // 登录重试
         retryTimes++
         await setTimeout(function () {
-          return getUserInfoSer(retryTimes);
+          return getUserInfoSer(retryTimes)
         }, config.loginRetryDelay)
       } else { // 重试超时
         wx.showToast({
           title: '网络异常，请尝试重启小程序',
           icon: 'none'
-        });
+        })
       }
     }
-  });
+  })
 }
 
 /**
@@ -99,11 +98,11 @@ export const getUserInfoSer = async (retryTimes) => {
  * @return {Promise} 返回结果
  */
 export const saveEditUser = async (data) => {
-  let commonheader = await getcommonheader();
-  let url = `${config.host}/user_service/editUser`;
-  return ajaxAll(url, "PUT", data, commonheader).then(res => {
-    let resdata = res;
-    return resdata;
+  let commonheader = await getcommonheader()
+  let url = `${config.host}/user_service/editUser`
+  return ajaxAll(url, 'PUT', data, commonheader).then(res => {
+    let resdata = res
+    return resdata
   })
 }
 
@@ -115,10 +114,10 @@ export const saveEditUser = async (data) => {
  * @return {Promise} 返回结果
  */
 export const ajax = async (url, method, params) => {
-  let commonheader = await getcommonheader();
+  let commonheader = await getcommonheader()
   return ajaxAll(url, method, params, commonheader).then(res => {
-    let resdata = res;
-    return resdata;
+    let resdata = res
+    return resdata
   })
 }
 
@@ -127,7 +126,7 @@ export const ajax = async (url, method, params) => {
  * @return {JSON} 返回当前请求头
  */
 export const getcommonheader = async () => {
-  let commonheader = {};
+  let commonheader = {}
   if (basicInfo.state.token) {
     commonheader = {
       token: basicInfo.state.token
@@ -135,15 +134,15 @@ export const getcommonheader = async () => {
   } else {
     // 如果本地state中没有token 则重新获取
     let logindata = await getOpenid().then(res => {
-      return res;
-    });
+      return res
+    })
     commonheader = {
       token: logindata.token
     }
   }
   // 如果没有载入个人信息则尝试重新获取
   if (!basicInfo.state.userInfo.avatarUrl) {
-    getUserInfoSer();
+    getUserInfoSer()
   }
   return commonheader
 }
