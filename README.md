@@ -48,6 +48,20 @@ npm build:my
 # 生成 bundle 分析报告
 npm run build --report
 ```
+# 挂代理
+## 淘宝 npm 地址： 
+http://npm.taobao.org/ 
+ 
+## 临时使用命令
+npm --registry https://registry.npm.taobao.org install express
+ 
+## 设置成永久配置
+npm config set registry https://registry.npm.taobao.org
+ 
+## 验证安装成功：
+npm config get registry 
+安装成功会输出: https://registry.npm.taobao.org
+或者 用 npm info express 应该也可以查看 
 
 
 如果想要了解此项目详细工作原理,可浏览 
