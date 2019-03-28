@@ -2,8 +2,8 @@
   <div class="container">
     <div class="main-qinfo"
          v-if="arrShowQid.length>0">
-      <div class="fr fc-grey"> <span @click="toggleCollect(pageconfig.sAcitveid)">
-          <van-icon v-if="data.objCollect[pageconfig.sAcitveid]"
+      <div class="fr fc-grey"> <span @click="toggleCollect(pageconfig.sAcitveid)">{{isCollect}}
+          <van-icon v-if="isCollect"
                     custom-class="foot-icon"
                     name="https://cdn.jiapeiyun.cn/haivit/public/image/20181218145810_379/已收藏星星.png"
                     size="16px" />
@@ -123,7 +123,8 @@ export default {
       actIndex: 0,
       questionDetail: '',
       questionAnswer: [],
-      canChoose: true
+      canChoose: true,
+      isCollect: false
     }
   },
   // 使用的 vue 组件
@@ -211,6 +212,8 @@ export default {
       this.getQdata(this.pageconfig.sAcitveid)
       this.conutScore()
       this.questionAnswer = this.loadChoose(this.pageconfig.sAcitveid)
+      // 刷新收藏
+      this.isCollect = this.data.objCollect[this.pageconfig.sAcitveid] | false
       return this.pageconfig.sAcitveid
     },
     /**
@@ -279,7 +282,7 @@ export default {
      */
     toggleCollect: function (id) {
       this.data.objCollect[id] = !this.data.objCollect[id]
-      console.log(id, this.data.objCollect[id])
+      this.isCollect = this.data.objCollect[id]
     },
     // 获取收藏
     getCollect: function () {

@@ -3,27 +3,27 @@
     class="userinfo-card"
     :style="bgImg?'background:url('+bgImg+');':''"
   >
-    <block v-if="userInfo.userInfo">
+    <block v-if="userData.nickName">
       <img
         class="head-img"
-        :src="userInfo.userInfo.avatarUrl"
+        :src="userData.avatarUrl"
         @click="tapheadimg"
       >
     </block>
     <div class="info-box-1">
-      <div class="user-name fsp18 fc-black line-clamp_2">{{userInfo.userInfo.nickName?userInfo.userInfo.nickName:"登录中..."}}
+      <div class="user-name fsp18 fc-black line-clamp_2">{{userData.nickName?userData.nickName:"登录中..."}}
         <span
-          v-if="userInfo.basicInfo.realName"
+          v-if="userData.realName"
           class="user-name fsp12 fc-semi"
         >
-          ({{userInfo.basicInfo.realName}})
+          ({{userData.realName}})
         </span>
       </div>
-      <div class="user-num fs12 fc-grey">编号:{{userInfo.userNo}}</div>
+      <div class="user-num fs12 fc-grey">编号:{{userData.userNo}}</div>
       <div
-        v-if="userInfo.coach"
+        v-if="userData.coach"
         class="user-num fs12 fc-grey"
-      >教练:{{userInfo.coach.name}}</div>
+      >教练:{{userData.coach.name}}</div>
     </div>
 
     <div
@@ -56,21 +56,14 @@
 import config from '@/config.js'
 import { golink } from '@/utils/tools'
 export default {
-  data () {
-    return {
-      // 默认信息
-      defaultData: config.defaultData
-    }
-  },
   props: {
-    userInfo: {
+    userData: {
       type: Object,
       default: {
-        userInfo: {
-          avatarUrl: config.headerImg
-        }
+        avatarUrl: config.headerImg
       }
     },
+    // 账户统计信息
     accountData: {
       type: Array,
       default: []

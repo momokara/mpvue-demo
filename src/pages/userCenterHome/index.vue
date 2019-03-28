@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <userInfoCard
-      :userInfo="userCardInfo"
+      :userData="userCardInfo"
       :accountData="data.userInfo.account"
       :bgImg="data.userInfo.bgImg"
       @tapHeaderImg="tapHeaderImg()"
@@ -84,7 +84,16 @@ export default {
     userCardInfo () {
       // 直接跳转
       this.goLoginPage()
-      return basicInfo.state
+
+      let _data = {
+        nickName: basicInfo.state.userInfo.nickName,
+        avatarUrl: basicInfo.state.userInfo.avatarUrl,
+        realName: basicInfo.state.basicInfo.realName,
+        userNo: basicInfo.state.userNo,
+        coach: basicInfo.state.coach
+      }
+      console.log('basicInfo.state=====================', _data)
+      return _data
     }
   },
   // 页面中的方法

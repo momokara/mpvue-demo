@@ -204,7 +204,10 @@ export default {
           upLoadFile(chooseResult.tempFiles[0], `costom_poster_bg`).then(
             res => {
               _this.pagedata.showImg = `https://${res.Location}`
-              _this.LocationImg.push({ imgUrl: _this.pagedata.showImg })
+              let imgList = _this.LocationImg
+              imgList.push({ imgUrl: _this.pagedata.showImg })
+              console.log(imgList)
+              _this.LocationImg = imgList
               if (_this.id) {
                 _this.saveLcImg()
               }
