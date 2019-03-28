@@ -1,113 +1,86 @@
 <template>
   <div class="container">
-    <div
-      class="main-qinfo"
-      v-if="arrShowQid.length>0"
-    >
+    <div class="main-qinfo"
+         v-if="arrShowQid.length>0">
       <div class="fr fc-grey"> <span @click="toggleCollect(pageconfig.sAcitveid)">
-          <van-icon
-            v-if="data.objCollect[pageconfig.sAcitveid]"
-            custom-class="foot-icon"
-            name="https://cdn.jiapeiyun.cn/haivit/public/image/20181218145810_379/已收藏星星.png"
-            size="16px"
-          />
-          <van-icon
-            v-else
-            custom-class="foot-icon"
-            name="https://cdn.jiapeiyun.cn/haivit/public/image/20181218145810_379/未收藏.png"
-            size="16px"
-          /></span>
+          <van-icon v-if="data.objCollect[pageconfig.sAcitveid]"
+                    custom-class="foot-icon"
+                    name="https://cdn.jiapeiyun.cn/haivit/public/image/20181218145810_379/已收藏星星.png"
+                    size="16px" />
+          <van-icon v-else
+                    custom-class="foot-icon"
+                    name="https://cdn.jiapeiyun.cn/haivit/public/image/20181218145810_379/未收藏.png"
+                    size="16px" /></span>
         <span class="fc-green">{{actIndex+1}}</span>/{{sumQlength}}
       </div>
-      <questionDetail
-        v-if="questionDetail"
-        :data="questionDetail"
-        :answer="questionAnswer"
-        :qnum="actIndex+1"
-        @choose="choose"
-        @fail="chooseFail"
-        :canChoose="canChoose"
-      ></questionDetail>
+      <questionDetail v-if="questionDetail"
+                      :data="questionDetail"
+                      :answer="questionAnswer"
+                      :qnum="actIndex+1"
+                      @choose="choose"
+                      @fail="chooseFail"
+                      :canChoose="canChoose"></questionDetail>
       <div v-else>什么都没有</div>
     </div>
-    <div
-      class="main-qinfo"
-      v-else
-    >
+    <div class="main-qinfo"
+         v-else>
       加载中...
     </div>
-    <van-popup
-      v-if="arrShowQid.length>0"
-      :show="isShowPop"
-      custom-class="question-menu"
-      @close="popToggle"
-      position="bottom"
-    >
-      <questionMenu
-        :data="arrShowQid"
-        :answerData="data.objAnswer"
-        :active="actIndex"
-        @goQuestion="goQuestion"
-      ></questionMenu>
+    <van-popup v-if="arrShowQid.length>0"
+               :show="isShowPop"
+               custom-class="question-menu"
+               @close="popToggle"
+               position="bottom">
+      <questionMenu v-if="isShowPop"
+                    :data="arrShowQid"
+                    :answerData="data.objAnswer"
+                    :active="actIndex"
+                    @goQuestion="goQuestion"></questionMenu>
     </van-popup>
     <div class="footer-menu">
-      <van-button
-        custom-class="footer-btn fl"
-        @clickbtn="goprev"
-        type="primary"
-        :disabled="pageconfig.nChapter<=0&&pageconfig.nActive<=0"
-      >
-        <van-icon
-          custom-class="foot-icon"
-          name="arrow-left"
-          size="28px"
-        />
+      <van-button custom-class="footer-btn fl"
+                  @clickbtn="goprev"
+                  type="primary"
+                  :disabled="pageconfig.nChapter<=0&&pageconfig.nActive<=0">
+        <van-icon custom-class="foot-icon"
+                  name="arrow-left"
+                  size="28px" />
       </van-button>
       <div class="footer-middle">
         <div class="menu-box">
           <div class="info-cell">
-            <van-icon
-              custom-class="foot-icon"
-              name="checked"
-              size="20px"
-              color="#3AC569"
-            />
+            <van-icon custom-class="foot-icon"
+                      name="checked"
+                      size="20px"
+                      color="#3AC569" />
             <span class="num">{{dolength-wrongNum}}</span>
           </div>
 
           <div class="info-cell">
-            <van-icon
-              custom-class="foot-icon"
-              name="clear"
-              size="20px"
-              color="#F64C4C"
-            />
+            <van-icon custom-class="foot-icon"
+                      name="clear"
+                      size="20px"
+                      color="#F64C4C" />
             <span class="num">{{wrongNum}}</span>
           </div>
           <div class="info-cell">
             <span class="menu">
-              <van-icon
-                @click="popToggle"
-                custom-class="foot-icon"
-                name="https://cdn.jiapeiyun.cn/haivit/public/image/20181218145810_379/菜单栏.png"
-                size="20px"
-                color="#3AC569"
-              />
+              <van-icon @click="popToggle"
+                        custom-class="foot-icon"
+                        name="https://cdn.jiapeiyun.cn/haivit/public/image/20181218145810_379/菜单栏.png"
+                        size="20px"
+                        color="#3AC569" />
             </span>
           </div>
         </div>
       </div>
-      <van-button
-        custom-class="footer-btn fr"
-        @clickbtn="gonext"
-        type="primary"
-        :disabled="pageconfig.nChapter>=arrShowQid.length-1&&actIndex>=sumQlength-1"
-      >
-        <van-icon
-          custom-class="foot-icon"
-          name="arrow"
-          size="28px"
-        />
+      <van-button custom-class="footer-btn fr"
+                  @clickbtn="gonext"
+                  type="primary"
+                  :disabled="pageconfig.nChapter>=arrShowQid.length-1&&actIndex>=sumQlength-1">
+        <van-icon custom-class="foot-icon"
+                  name="arrow"
+                  size="28px" />
       </van-button>
     </div>
   </div>
@@ -163,7 +136,7 @@ export default {
       // eslint-disable-next-line eqeqeq
       if (_this.pageconfig.options.mode == 4) {
         _showdata = _this.findErr()
-      // eslint-disable-next-line eqeqeq
+        // eslint-disable-next-line eqeqeq
       } else if (_this.pageconfig.options.mode == 5) {
         _showdata = _this.getCollect()
       } else {
@@ -367,8 +340,10 @@ export default {
       let dolength = 0
       for (const key in _objAnswer) {
         if (_objAnswer.hasOwnProperty(key)) {
-          dolength++
           const element = _objAnswer[key]
+          if (element.answer) {
+            dolength++
+          }
           if (element.isWrong) {
             wrongNum++
           }

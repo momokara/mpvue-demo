@@ -3,20 +3,16 @@
   <!-- 习题详情选题列表组件 -->
   <div class="contant">
     <div class="question-menu">
-      <div
-        class="chapter-box"
-        v-for="(chapter, chapter_index) in data"
-        :key="chapter_index"
-      >
+      <div class="chapter-box"
+           v-for="(chapter, chapter_index) in data"
+           :key="chapter_index">
         <div class="chapter-title fsp14">{{chapter.name}}</div>
         <div class="question-box">
-          <div
-            class="col-box fsp14 ta-c fc-grey"
-            :class="[{'active':active==col.index},{'right':answerData[col.id]?!answerData[col.id].isWrong:false},{'wrong':answerData[col.id]?answerData[col.id].isWrong:false}]"
-            v-for="(col, col_index) in chapter.data"
-            :key="col_index"
-            @click="goQuestion(chapter_index,col_index)"
-          >
+          <div class="col-box fsp14 ta-c fc-grey"
+               :class="[{'active':active==col.index},{'right':answerData[col.id]?!answerData[col.id].isWrong:false},{'wrong':answerData[col.id]?answerData[col.id].isWrong:false}]"
+               v-for="(col, col_index) in chapter.data"
+               :key="col_index"
+               @click="goQuestion(chapter_index,col_index)">
             <div class="num">
               {{col.index+1}}
             </div>
@@ -42,7 +38,12 @@ export default {
       type: String
     }
   },
-
+  computed: {
+    answerDataShow: function () {
+      console.log(this.answerData)
+      return this.answerData
+    }
+  },
   methods: {
     goQuestion: function (Chapter, Index) {
       this.$emit('goQuestion', { Chapter, Index })

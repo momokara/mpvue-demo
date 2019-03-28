@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 7,
 			"list": [
 				{
 					"id": -1,
@@ -81,6 +81,13 @@
 					"id": 6,
 					"name": "首页带参",
 					"pathName": "pages/home/main",
+					"query": "testid=1&?&shareId=676305933",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "答题首页",
+					"pathName": "pages/mockExam/qlist/main",
 					"query": "testid=1&?&shareId=676305933",
 					"scene": null
 				}
