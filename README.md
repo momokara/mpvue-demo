@@ -49,6 +49,7 @@ npm build:my
 npm run build --report
 ```
 # 挂代理
+```
 ## 淘宝 npm 地址： 
 http://npm.taobao.org/ 
  
@@ -68,6 +69,7 @@ npm config get registry
 [mpvue-docs](http://mpvue.com/) , 
 [mpvue](https://github.com/Meituan-Dianping/mpvue), 
 [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+```
 
 ## 项目目录 参考
 ``` bash
