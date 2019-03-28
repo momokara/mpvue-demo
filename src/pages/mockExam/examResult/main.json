@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "考试结果",
+  "enablePullDownRefresh": true,
   "usingComponents": {
   }
 }

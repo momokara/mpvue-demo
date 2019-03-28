@@ -51,6 +51,7 @@ export default {
       getArticleDetail(_this.pageconfig, 1)
         .then(res => {
           _this.data = res
+          wx.stopPullDownRefresh()
           let reg = /^https:\/\//
           _this.data.isWechatUrl = reg.test(res.html)
         })
@@ -63,11 +64,11 @@ export default {
   // 监听页面加载
   onLoad (options) {
     this.pageconfig.id = options.id
+    this.getPageData()
   },
   // 监听页面显示
   onShow () {
     pagelogs()
-    this.getPageData()
   },
   onHide () {
     pagelogs(true)

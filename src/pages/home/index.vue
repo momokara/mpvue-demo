@@ -74,14 +74,15 @@ export default {
             title: res.pagetitle
           })
         }
-
         wx.stopPullDownRefresh()
       })
     }
   },
+  onLoad (options) {
+    this.getPageData()
+  },
   onShow () {
     pagelogs()
-    this.getPageData()
   },
   onHide () {
     pagelogs(true)

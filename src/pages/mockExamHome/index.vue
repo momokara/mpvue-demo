@@ -48,25 +48,27 @@ export default {
     getPageData: function () {
       let _this = this
       getLearnHomeInfo().then(res => {
-        console.log('getLearnHomeInfo', res)
         _this.data = res
+        wx.stopPullDownRefresh()
       })
     }
   },
-  // VUE 钩子 常用
 
-  // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  created () {},
+  onLoad () {
+    this.getPageData()
+  },
 
   // 监听页面显示
   onShow () {
     pagelogs()
-    this.getPageData()
   },
 
   // 监听页面隐藏
   onHide () {
     pagelogs(true)
+  },
+  onPullDownRefresh () {
+    this.getPageData()
   }
 }
 </script>

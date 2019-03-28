@@ -69,6 +69,7 @@ export default {
       let _this = this
       getClassList().then(res => {
         _this.data = res
+        wx.stopPullDownRefresh()
       })
     },
     selectClass: function (e) {
@@ -92,17 +93,20 @@ export default {
   // 监听页面加载
   onLoad () {
     loadqType()
+    this.getPageData()
   },
   // 监听页面显示
   onShow () {
     pagelogs()
-    this.getPageData()
     this.qdata = questionType.state
   },
 
   // 监听页面隐藏
   onHide () {
     pagelogs(true)
+  },
+  onPullDownRefresh () {
+    this.getPageData()
   }
 }
 </script>

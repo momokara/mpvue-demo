@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "笔试练习-首页"
+  "navigationBarTitleText": "笔试练习-首页",
+  "enablePullDownRefresh": true
 }

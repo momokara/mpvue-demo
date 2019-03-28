@@ -34,14 +34,16 @@ export default {
       let _this = this
       getExamHis().then(res => {
         _this.data = res
+        wx.stopPullDownRefresh()
       })
     }
   },
-
+  onLoad (options) {
+    this.getPageData()
+  },
   // 监听页面显示
   onShow () {
     pagelogs()
-    this.getPageData()
   },
 
   // 监听页面隐藏
@@ -49,7 +51,9 @@ export default {
     pagelogs(true)
   },
 
-  onPullDownRefresh () {}
+  onPullDownRefresh () {
+    this.getPageData()
+  }
 }
 </script>
 

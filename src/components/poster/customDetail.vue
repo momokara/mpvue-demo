@@ -42,11 +42,11 @@
           </div>
           <div
             class="img-box fill-box"
-            @click="toggleBg({bgImg:itemlcbg.imgUrl})"
+            @click="toggleBg({bgImg:itemlcbg})"
           >
             <img
               class="image"
-              :src="itemlcbg.imgUrl"
+              :src="itemlcbg"
               mode="widthFix"
             >
           </div>
@@ -146,6 +146,7 @@
 </template>
 
 <script>
+// eslint-disable-next-line no-unused-vars
 import { upLoadFile } from '@/utils/cos/cosfunc'
 export default {
   props: {
@@ -201,12 +202,15 @@ export default {
       let _this = this
       wx.chooseImage({
         success: chooseResult => {
+          console.log(chooseResult, _this)
           upLoadFile(chooseResult.tempFiles[0], `costom_poster_bg`).then(
             res => {
               _this.pagedata.showImg = `https://${res.Location}`
-              let imgList = _this.LocationImg
-              imgList.push({ imgUrl: _this.pagedata.showImg })
-              console.log(imgList)
+              console.log('_this.pagedata.showImg===================', _this.pagedata.showImg)
+
+              let imgList = _this.LocationImg.length > 0 ? _this.LocationImg : []
+              imgList.push(_this.pagedata.showImg)
+              console.log('imgList===================', imgList)
               _this.LocationImg = imgList
               if (_this.id) {
                 _this.saveLcImg()
@@ -242,13 +246,20 @@ export default {
 
     // 缓存文件名
     getFileName: function () {
-      return `posterPageBg_${this.id}`
+      // 单页分开保存
+      // return `posterPageBg_${this.id}`
+      // 整体保存
+      return `posterPageBg`
     },
     // 移除本地文件
 
     // 保存本地图片信息
     saveLcImg: function () {
-      wx.setStorageSync(this.getFileName(), this.LocationImg)
+      let _posterPageBg = wx.getStorageSync(this.getFileName())
+      _posterPageBg = _posterPageBg || {}
+      console.log('saveLcImg', _posterPageBg)
+      _posterPageBg[this.id] = this.LocationImg
+      wx.setStorageSync(this.getFileName(), _posterPageBg)
     },
 
     // 删除本地缓存图片
@@ -264,7 +275,8 @@ export default {
     loadLcImg: function () {
       let _this = this
       if (_this.id) {
-        _this.LocationImg = wx.getStorageSync(_this.getFileName())
+        let _posterPageBg = wx.getStorageSync(_this.getFileName())
+        _this.LocationImg = _posterPageBg[_this.id] ? _posterPageBg[_this.id] : []
       }
       _this.pagedata.showImg = _this.getDefaultBg()
     },
@@ -273,7 +285,7 @@ export default {
     getDefaultBg: function () {
       let defaultBg = ''
       if (this.LocationImg.length > 0) {
-        defaultBg = this.LocationImg[0].imgUrl
+        defaultBg = this.LocationImg[0]
       } else if (this.bgUrl.length > 0) {
         defaultBg = this.bgUrl[0].imgUrl
       }

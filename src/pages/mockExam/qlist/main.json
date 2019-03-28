@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "顺序练习",
+  "enablePullDownRefresh": true,
   "usingComponents": {
   }
 }

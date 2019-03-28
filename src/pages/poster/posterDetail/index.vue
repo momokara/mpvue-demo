@@ -95,16 +95,17 @@ export default {
         getPosterDetail(_this.pageconfig).then(res => {
           console.log('getPosterDetail res', res)
           _this.data = res
+          wx.stopPullDownRefresh()
         })
       }
     }
   },
   onLoad (options) {
     this.pageconfig.id = options.id
+    this.getPageData()
   },
   onShow () {
     pagelogs()
-    this.getPageData()
   },
   onHide () {
     pagelogs(true)

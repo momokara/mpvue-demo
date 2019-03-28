@@ -84,7 +84,6 @@ export default {
     userCardInfo () {
       // 直接跳转
       this.goLoginPage()
-
       let _data = {
         nickName: basicInfo.state.userInfo.nickName,
         avatarUrl: basicInfo.state.userInfo.avatarUrl,
@@ -92,7 +91,6 @@ export default {
         userNo: basicInfo.state.userNo,
         coach: basicInfo.state.coach
       }
-      console.log('basicInfo.state=====================', _data)
       return _data
     }
   },
@@ -162,19 +160,23 @@ export default {
       let _this = this
       getUserCenterHomeInfo().then(res => {
         _this.data = res
+        wx.stopPullDownRefresh()
       })
     }
   },
   onLoad () {
     this.openid = basicInfo.state.openid
+    this.getPageData()
   },
   onShow () {
     this.tapcleanTimes = 0
-    this.getPageData()
     pagelogs()
   },
   onHide () {
     pagelogs(true)
+  },
+  onPullDownRefresh () {
+    this.getPageData()
   }
 }
 </script>

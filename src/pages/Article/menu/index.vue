@@ -102,6 +102,7 @@ export default {
             if (_this.data.array.length >= res.total) {
               _this.isend = true
             }
+            wx.stopPullDownRefresh()
           }
           if (res.title) {
             wx.setNavigationBarTitle({

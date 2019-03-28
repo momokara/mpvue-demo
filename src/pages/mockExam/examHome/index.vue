@@ -100,20 +100,26 @@ export default {
       let _this = this
       getHomeInfo().then(res => {
         _this.data = res
+        wx.stopPullDownRefresh()
       })
     }
   },
 
-  onLoad () {},
+  onLoad () {
+    this.getPageData()
+  },
   // 监听页面显示
   onShow () {
     pagelogs()
-    this.getPageData()
   },
 
   // 监听页面隐藏
   onHide () {
     pagelogs(true)
+  },
+
+  onPullDownRefresh () {
+    this.getPageData()
   }
 }
 </script>
