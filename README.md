@@ -150,7 +150,7 @@ npm config get registry
 ```
 
 ## 如果出现 px2rpx-loader 到/*px*/ 注释 标注依然 会失效到情况 可以尝试以下解决方案：
-
+```
 ### 1.使用 PX 代替px  如 
 width：12PX
 
