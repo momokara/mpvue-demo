@@ -151,7 +151,7 @@ const apiData = {
     'desc': '自定义搜索框右侧按钮，需要在showAction为 true 时才会显示'
   },
   {
-    'params': 'left-action',
+    'params': 'label',
     'desc': '左侧的插槽'
   }
   ]
