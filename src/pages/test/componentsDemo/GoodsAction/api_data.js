@@ -13,7 +13,7 @@ const apiData = {
   },
   {
     params: 'icon',
-    desc: '图标类型，可选值见icon组件',
+    desc: '图标类型，可选值见icon组件,可以使用图片连接',
     type: 'String',
     default: '-'
   },
@@ -221,8 +221,8 @@ const apiData = {
     desc: '说明'
   },
   {
-    params: '~',
-    desc: '图片插槽,自定义icon的图标'
+    // params: '~',
+    // desc: '图片插槽,自定义icon的图标'
   }
   ]
 }

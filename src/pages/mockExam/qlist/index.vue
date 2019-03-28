@@ -39,7 +39,7 @@
     </van-popup>
     <div class="footer-menu">
       <van-button custom-class="footer-btn fl"
-                  @clickbtn="goprev"
+                  @click="goprev"
                   type="primary"
                   :disabled="pageconfig.nChapter<=0&&pageconfig.nActive<=0">
         <van-icon custom-class="foot-icon"
@@ -75,7 +75,7 @@
         </div>
       </div>
       <van-button custom-class="footer-btn fr"
-                  @clickbtn="gonext"
+                  @click="gonext"
                   type="primary"
                   :disabled="pageconfig.nChapter>=arrShowQid.length-1&&actIndex>=sumQlength-1">
         <van-icon custom-class="foot-icon"

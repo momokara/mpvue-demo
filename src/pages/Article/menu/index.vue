@@ -12,7 +12,7 @@
           slot="action"
           @tap="onSearch"
         >搜索</view>
-        <!-- <view slot="left-action">左边</view> -->
+        <!-- <view slot="label">左边</view> -->
       </van-search>
     </div>
     <div class="main-list-box">

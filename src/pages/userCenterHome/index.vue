@@ -1,49 +1,30 @@
 <template>
   <div class="container">
-    <userInfoCard
-      :userData="userCardInfo"
-      :accountData="data.userInfo.account"
-      :bgImg="data.userInfo.bgImg"
-      @tapHeaderImg="tapHeaderImg()"
-    >
+    <userInfoCard :userData="userCardInfo"
+                  :accountData="data.userInfo.account"
+                  :bgImg="data.userInfo.bgImg"
+                  @tapHeaderImg="tapHeaderImg()">
     </userInfoCard>
 
-    <div
-      class="main-ad-list"
-      v-if="data.menuList"
-    >
-      <div
-        class="maim-ad-box"
-        v-for="(item, index) in data.menuList"
-        :key="index"
-        :class="[{'shadow-box':item.config.isBorder}]"
-      >
-        <adBox
-          :data="item.data"
-          :config="item.config"
-        ></adBox>
+    <div class="main-ad-list"
+         v-if="data.menuList">
+      <div class="maim-ad-box"
+           v-for="(item, index) in data.menuList"
+           :key="index"
+           :class="[{'shadow-box':item.config.isBorder}]">
+        <adBox :data="item.data"
+               :config="item.config"></adBox>
 
       </div>
     </div>
-
     <div class="group-box">
-      <van-cell-group custom-class="cell-group">
-        <van-swipe-cell>
-          <view slot="left">选择</view>
-          <van-cell-group>
-            <van-cell
-              icon="https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/clear_icon.png"
-              title="清除本地缓存"
-              value="内容"
-              is-link
-              @click="clearStorage()"
-              @longpress="longpress()"
-              id="cleanStorage"
-            />
-          </van-cell-group>
-          <view slot="right">删除</view>
-        </van-swipe-cell>
-
+      <van-cell-group>
+        <van-cell icon="https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/clear_icon.png"
+                  @click="clearStorage()"
+                  @longpress="longpress()"
+                  title="清除本地缓存"
+                  value="内容"
+                  id="cleanStorage" />
       </van-cell-group>
 
     </div>
@@ -70,8 +51,7 @@ export default {
       tapcleanTimes: 0,
       openid: '',
       data: {
-        userInfo: {
-        }
+        userInfo: {}
       }
     }
   },
@@ -115,7 +95,8 @@ export default {
      */
     goLoginPage: function (isjump) {
       // eslint-disable-next-line no-mixed-operators
-      isjump = isjump || !basicInfo.state.userInfo && basicInfo.state.isgetinfo
+      isjump =
+        isjump || (!basicInfo.state.userInfo && basicInfo.state.isgetinfo)
       if (isjump) {
         // eslint-disable-next-line no-undef
         let currentPage = getCurrentPages()

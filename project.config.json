@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -96,6 +96,20 @@
 					"name": "顺序练习",
 					"pathName": "pages/mockExam/qlist/main",
 					"query": "testid=1&?&shareId=676305933",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "测试首页",
+					"pathName": "pages/testApiHome/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "TreeSelect",
+					"pathName": "pages/test/componentsDemo/TreeSelect/main",
+					"query": "",
 					"scene": null
 				}
 			]
