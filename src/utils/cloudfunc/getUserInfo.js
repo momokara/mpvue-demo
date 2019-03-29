@@ -1,6 +1,7 @@
 // 通过云函数获取openid 如果有 unionid 则获取 unionid
-import basicInfo from '../../store/basicInfo.js'
+import basicInfo from '@/store/basicInfo.js'
 import config from '@/config.js'
+import { consoleGroup } from '@/utils/tools'
 /**
  * 获取openid
  */
@@ -12,7 +13,7 @@ export const getOpenid = () => {
         // 获取的权限
         wx.getSetting({
           success: res => {
-            console.log('getSetting', res)
+            consoleGroup('获取用户当前权限(getSetting):', [res])
           }
         })
         wx.cloud.callFunction({
@@ -24,7 +25,7 @@ export const getOpenid = () => {
             isEncode: true
           }
         }).then(res => {
-          console.log('loginres', res)
+          consoleGroup('云函数登录成功!(loginres)', [res])
           let _data = res.result
           wx.setStorageSync('openid', _data)
           basicInfo.commit('updataByKey', _data)
@@ -34,7 +35,7 @@ export const getOpenid = () => {
           reject(error)
         })
       } else {
-        console.log('load Storage：', openid)
+        consoleGroup('加载本地缓存(load Storage):', [openid])
         basicInfo.commit('updataByKey', openid)
         resolve(openid)
       }
@@ -58,7 +59,7 @@ export const getUserInfo = () => {
         // 当前获取的权限
         wx.getSetting({
           success: res => {
-            console.log('getSetting', res)
+            consoleGroup('获取用户当前权限(getSetting):', [res])
           }
         })
         wx.cloud.callFunction({
@@ -106,13 +107,13 @@ export const saveUserInfo = (data) => {
         data: _data,
         success (res) {
           let _data = res.result
-          console.log(_data)
+          consoleGroup('用户信息保存成功:', [_data])
           wx.setStorageSync('openid', _data)
           basicInfo.commit('updataByKey', _data)
           resolve(_data)
         },
         fail (error) {
-          console.error('saveUserInfo fail:', error)
+          consoleGroup('用户信息保存失败:', error, 'error')
           reject(error)
         }
       })
@@ -146,7 +147,7 @@ export const deCrypt = (data) => {
               resolve(_data)
             },
             fail (error) {
-              console.error('decrypt fail:', error)
+              console.error('解密失败:', error)
               reject(error)
             }
           })
@@ -165,7 +166,7 @@ export const isReLogin = () => {
   let openid = wx.getStorageSync('openid')
   let nowTime = new Date().getTime()
   let pastTime = parseInt((nowTime - openid.time) / 1000)
-  console.log('config', config.loginKeepTime >= pastTime)
+  consoleGroup('是否登录未过期:', config.loginKeepTime >= pastTime)
   if (config.loginKeepTime >= pastTime) {
     return openid
   } else {

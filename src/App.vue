@@ -1,7 +1,7 @@
 <script>
 import { getUserInfoSer } from '@/api/api'
 import { checkIsForbidden } from '@/api/dataTools'
-
+import { consoleGroup } from '@/utils/tools'
 import config from '@/config.js'
 
 export default {
@@ -23,7 +23,7 @@ export default {
   },
   // 初始化
   onLaunch (options) {
-    console.log('启动参数：', options)
+    // consoleGroup('启动参数：', [options])
     if (options.query.shareId) {
       wx.showToast({
         title: `邀请id是${options.query.shareId}`
@@ -32,10 +32,9 @@ export default {
   },
   // 当小程序启动，或从后台进入前台显示
   onShow () {
-    console.log('App onShow OK!')
     checkIsForbidden()
     getUserInfoSer().then(res => {
-      console.log('login ok!:', res)
+      consoleGroup('获取用户信息成功(getUserInfoSer):', [res])
     })
   },
   // 当小程序从前台进入后台

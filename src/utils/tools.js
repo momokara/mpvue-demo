@@ -1,3 +1,4 @@
+
 // 一些页面工具方法
 
 /**
@@ -104,6 +105,11 @@ export const isJsonString = (string) => {
   return res
 }
 
+/**
+ * JSON转数组
+ * @param {json} json 需要转换是json
+ * @return {Array} 返回的数据'[{key,data}]'
+ */
 export const jsonToArray = (json) => {
   let resArray = []
   for (const key in json) {
@@ -120,6 +126,53 @@ export const jsonToArray = (json) => {
   return resArray
 }
 
+/**
+ * 分组输出console
+ * @param {String} GroupName 组名
+ * @param {Array} arrLogData console 的数据数组
+ * @param {way} 输出方式 log，info,error,warn
+ */
+export const consoleGroup = (GroupName, arrLogData, way) => {
+  console.group(GroupName)
+  if (arrLogData.length) {
+    arrLogData.forEach(element => {
+      switch (way) {
+        case 'info':
+          console.info(element)
+          break
+        case 'error':
+          console.error(element)
+          break
+        case 'warn':
+          console.warn(element)
+          break
+        case 'table':
+          for (const key in element) {
+            if (element.hasOwnProperty(key)) {
+              let e = element[key]
+              if (typeof e === 'object') {
+                console.group(key)
+                console.table([e])
+                console.groupEnd()
+              } else {
+                console.group(key)
+                console.table([{ [key]: e }])
+                console.groupEnd()
+              }
+            }
+          }
+
+          break
+        default:
+          console.log(element)
+          break
+      }
+    })
+  } else {
+    console.log(arrLogData)
+  }
+  console.groupEnd()
+}
 module.export = {
   toPromise,
   formatNumber,
@@ -127,5 +180,6 @@ module.export = {
   golink,
   showModal,
   isJsonString,
-  jsonToArray
+  jsonToArray,
+  consoleGroup
 }

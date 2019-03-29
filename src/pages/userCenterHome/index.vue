@@ -5,7 +5,16 @@
                   :bgImg="data.userInfo.bgImg"
                   @tapHeaderImg="tapHeaderImg()">
     </userInfoCard>
-
+    <div class="group-box">
+      <van-cell-group>
+        <van-cell icon="https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/clear_icon.png"
+                  @click="clearStorage()"
+                  @longpress="longpress()"
+                  title="清除本地缓存"
+                  value="内容"
+                  id="cleanStorage" />
+      </van-cell-group>
+    </div>
     <div class="main-ad-list"
          v-if="data.menuList">
       <div class="maim-ad-box"
@@ -17,17 +26,7 @@
 
       </div>
     </div>
-    <div class="group-box">
-      <van-cell-group>
-        <van-cell icon="https://hh-image-small-1254083899.cos.ap-guangzhou.myqcloud.com/wechatfile/default/clear_icon.png"
-                  @click="clearStorage()"
-                  @longpress="longpress()"
-                  title="清除本地缓存"
-                  value="内容"
-                  id="cleanStorage" />
-      </van-cell-group>
 
-    </div>
     <van-dialog id="van-dialog" />
   </div>
 </template>
@@ -39,7 +38,7 @@ import userInfoCard from '@/components/userCenter/userInfoCard'
 import adBox from '@/components/homeAd/adBox'
 
 import { reLogin } from '@/api/dataTools'
-import { golink } from '@/utils/tools'
+import { golink, consoleGroup } from '@/utils/tools'
 import dialog from '@/../static/components/dialog-mo/dialog'
 
 // 页面记录
@@ -71,6 +70,7 @@ export default {
         userNo: basicInfo.state.userNo,
         coach: basicInfo.state.coach
       }
+      consoleGroup('userCardInfoChange', [basicInfo.state, _data])
       return _data
     }
   },
@@ -96,14 +96,14 @@ export default {
     goLoginPage: function (isjump) {
       // eslint-disable-next-line no-mixed-operators
       isjump =
-        isjump || (!basicInfo.state.userInfo && basicInfo.state.isgetinfo)
+        isjump || (!basicInfo.state.userInfo.avatarUrl && basicInfo.state.isgetinfo)
       if (isjump) {
         // eslint-disable-next-line no-undef
         let currentPage = getCurrentPages()
         currentPage = currentPage[currentPage.length - 1]
         console.log(currentPage.route)
         wx.redirectTo({
-          url: `/pages/loginpage/main?from=${currentPage.route}`
+          url: `/pages/user/loginpage/main?from=${currentPage.route}`
         })
       }
     },

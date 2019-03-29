@@ -155,14 +155,22 @@ export default {
       }
       saveEditUser(savedata).then(res => {
         // eslint-disable-next-line eqeqeq
-        if (res.code != 200) {
+        if (res.code !== 200) {
           wx.showToast({
             title: res.errMsg,
             icon: 'none'
           })
         } else {
-          // console.log(basicInfo.state)
-          // wx.setStorageSync('openid', basicInfo.state)
+          let data = {
+            userInfo: basicInfo.state.userInfo
+          }
+          data.userInfo.avatarUrl = this.userInfo.avatarUrl
+          data.userInfo.nickName = this.userInfo.nickName
+          data.basicInfo.realName = this.basicInfo.realName
+          data.basicInfo.phone = this.basicInfo.phone
+          data.basicInfo.idcardNo = this.basicInfo.idcardNo
+          basicInfo.commit('updataByKey', data)
+          wx.setStorageSync('openid', basicInfo.state)
           wx.showToast({
             title: '保存成功',
             icon: 'success'

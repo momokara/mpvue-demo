@@ -7,8 +7,7 @@
     "pages/home/main",
     "pages/mockExamHome/main",
     "pages/mallHome/main",
-    "pages/userCenterHome/main",
-    "pages/testApiHome/main"
+    "pages/userCenterHome/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -39,7 +38,8 @@
         "editUserInfo/main",
         "watchData/main",
         "logs/main",
-        "forbidden/main"
+        "forbidden/main",
+        "loginpage/main"
       ]
     },
     {
@@ -51,15 +51,18 @@
       ]
     },
     {
+      "root": "pages/testApiHome",
+      "pages": [
+        "main"
+      ]
+    },
+    {
       "root": "pages/test",
       "pages": [
         "counter/main",
-
         "componentsDemoMenu/main",
-
         "font_color/main",
         "newpagedemo/main",
-
         "componentsDemo/Layout/main",
         "componentsDemo/Button/main",
         "componentsDemo/Cell/main",
@@ -67,7 +70,6 @@
         "componentsDemo/Popup/main",
         "componentsDemo/scoreStar/main",
         "componentsDemo/Transition/main",
-
         "componentsDemo/CheckBox/main",
         "componentsDemo/DatetimePicker/main",
         "componentsDemo/Field/main",
@@ -79,14 +81,12 @@
         "componentsDemo/Stepper/main",
         "componentsDemo/Switch/main",
         "componentsDemo/SwitchCell/main",
-
         "componentsDemo/ActionSheet/main",
         "componentsDemo/Dialog/main",
         "componentsDemo/Loading/main",
         "componentsDemo/Notify/main",
         "componentsDemo/SwipeCell/main",
         "componentsDemo/Toast/main",
-
         "componentsDemo/Collapse/main",
         "componentsDemo/NoticeBar/main",
         "componentsDemo/Panel/main",
@@ -94,12 +94,10 @@
         "componentsDemo/Steps/main",
         "componentsDemo/Tag/main",
         "componentsDemo/TreeSelect/main",
-
         "componentsDemo/Badge/main",
         "componentsDemo/NavBar/main",
         "componentsDemo/Tab/main",
         "componentsDemo/Tabbar/main",
-
         "componentsDemo/Area/main",
         "componentsDemo/Card/main",
         "componentsDemo/SubmitBar/main",
@@ -107,7 +105,6 @@
         "componentsDemo/GoodsAction/main",
         "componentsDemo/Lottery-Wheel/main",
         "componentsDemo/Lottery-Table/main",
-
         "componentsDemo_vue/formTable/main",
         "componentsDemo_vue/upLoadImgs/main"
       ]
@@ -201,7 +198,6 @@
     "lottery-wheel": "/static/components/lottery-wheel/index"
   },
   "permission": {
-    "scope.userInfo": {},
     "scope.userLocation": {
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }

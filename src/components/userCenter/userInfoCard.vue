@@ -3,7 +3,7 @@
     class="userinfo-card"
     :style="bgImg?'background:url('+bgImg+');':''"
   >
-    <block v-if="userData.nickName">
+    <block >
       <img
         class="head-img"
         :src="userData.avatarUrl"
@@ -60,7 +60,7 @@ export default {
     userData: {
       type: Object,
       default: {
-        avatarUrl: config.headerImg
+        avatarUrl: config.defaultData.headerImg
       }
     },
     // 账户统计信息

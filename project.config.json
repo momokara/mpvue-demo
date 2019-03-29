@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 11,
 			"list": [
 				{
 					"id": -1,
@@ -109,6 +109,13 @@
 					"id": -1,
 					"name": "TreeSelect",
 					"pathName": "pages/test/componentsDemo/TreeSelect/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 11,
+					"name": "loginpage",
+					"pathName": "pages/user/loginpage/main",
 					"query": "",
 					"scene": null
 				}
