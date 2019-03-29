@@ -154,22 +154,13 @@ export default {
         idcardNo: _this.basicInfo.idcardNo
       }
       saveEditUser(savedata).then(res => {
-        // eslint-disable-next-line eqeqeq
         if (res.code !== 200) {
           wx.showToast({
             title: res.errMsg,
             icon: 'none'
           })
         } else {
-          let data = {
-            userInfo: basicInfo.state.userInfo
-          }
-          data.userInfo.avatarUrl = this.userInfo.avatarUrl
-          data.userInfo.nickName = this.userInfo.nickName
-          data.basicInfo.realName = this.basicInfo.realName
-          data.basicInfo.phone = this.basicInfo.phone
-          data.basicInfo.idcardNo = this.basicInfo.idcardNo
-          basicInfo.commit('updataByKey', data)
+          console.log('basicInfo.state', basicInfo.state)
           wx.setStorageSync('openid', basicInfo.state)
           wx.showToast({
             title: '保存成功',
@@ -177,8 +168,6 @@ export default {
           })
         }
       })
-      // saveUserInfo(this..then(res => {
-      // });
     },
     // 验证信息
     validFormData: function () {}

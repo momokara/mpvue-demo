@@ -52,7 +52,8 @@ export default {
     },
     jumpLink: function () {
       let gourl = this.fromUrl ? this.fromUrl : 'pages/home/main'
-      console.log('gourl', gourl)
+      gourl = gourl === 'pages/user/loginpage/main' ? 'pages/home/main' : gourl
+      console.log('loginOvergourl', gourl)
       wx.redirectTo({
         url: `/${gourl}`,
         fail: () => {

@@ -98,12 +98,9 @@ export default {
       isjump =
         isjump || (!basicInfo.state.userInfo.avatarUrl && basicInfo.state.isgetinfo)
       if (isjump) {
-        // eslint-disable-next-line no-undef
-        let currentPage = getCurrentPages()
-        currentPage = currentPage[currentPage.length - 1]
-        console.log(currentPage.route)
+        const fromUrl = 'pages/userCenterHome/main'
         wx.redirectTo({
-          url: `/pages/user/loginpage/main?from=${currentPage.route}`
+          url: `/pages/user/loginpage/main?from=${fromUrl}`
         })
       }
     },
