@@ -20,7 +20,9 @@ export const pagelogs = (isleave) => {
   const logs = wx.getStorageSync('logs') || []
 
   if (isleave) { // 刷新离开时间
-    logs[0].leavetime = Date.now()
+    if (logs[0]) {
+      logs[0].leavetime = Date.now()
+    }
   } else { // 记录访问
     logs.unshift(logdata)
   }

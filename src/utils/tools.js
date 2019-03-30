@@ -29,8 +29,9 @@ export function formatNumber (n) {
 /**
  * 格式化日期
  * @param {date} date 需要格式化的日期
+ * @param {String} formatter 格式
  */
-export function formatTime (date) {
+export function formatTime (date, formatter) {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
@@ -39,10 +40,21 @@ export function formatTime (date) {
   const minute = date.getMinutes()
   const second = date.getSeconds()
 
-  const t1 = [year, month, day].map(formatNumber).join('/')
-  const t2 = [hour, minute, second].map(formatNumber).join(':')
-
-  return `${t1} ${t2}`
+  let res = ''
+  if (formatter) {
+    formatter = formatter.replace(/YYYY/, year)
+    formatter = formatter.replace(/MM/, month)
+    formatter = formatter.replace(/DD/, day)
+    formatter = formatter.replace(/hh/, hour)
+    formatter = formatter.replace(/mm/, minute)
+    formatter = formatter.replace(/ss/, second)
+    res = formatter
+  } else {
+    const t1 = [year, month, day].map(formatNumber).join('/')
+    const t2 = [hour, minute, second].map(formatNumber).join(':')
+    res = `${t1} ${t2}`
+  }
+  return res
 }
 
 /**

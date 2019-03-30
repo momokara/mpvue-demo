@@ -13,6 +13,8 @@
                   title="清除本地缓存"
                   value="内容"
                   id="cleanStorage" />
+        <!-- <van-cell  @click="golink('pages/user/account/reword/main')"
+                  title="go account" /> -->
       </van-cell-group>
     </div>
     <div class="main-ad-list"
@@ -62,7 +64,7 @@ export default {
   computed: {
     userCardInfo () {
       // 直接跳转
-      this.goLoginPage()
+      // this.goLoginPage()
       let _data = {
         nickName: basicInfo.state.userInfo.nickName,
         avatarUrl: basicInfo.state.userInfo.avatarUrl,
@@ -76,8 +78,9 @@ export default {
   },
   // 页面中的方法
   methods: {
+    golink,
     tapHeaderImg: function () {
-      // this.goLoginPage();
+      this.goLoginPage()
       console.log(' @click.stop')
       wx.navigateTo({
         url: '/pages/user/editUserInfo/main',

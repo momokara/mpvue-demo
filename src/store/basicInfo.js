@@ -43,6 +43,7 @@ const basicInfo = new Vuex.Store({
         obj.userInfo = {}
         obj.basicInfo = {}
         obj.islogin = false
+        obj.isgetinfo = false
       }
     }
   }

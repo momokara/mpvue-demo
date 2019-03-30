@@ -1,5 +1,6 @@
 <template>
   <div class="home-container">
+    <button open-type="share" data-optype="thisdata1">share</button>
     <block v-if="!isLoading">
 
       <!-- 顶部轮播 -->
@@ -92,6 +93,7 @@ export default {
     this.getPageData()
   },
   onShareAppMessage (res) {
+    console.log('onShareAppMessage', res)
     return getShareData('', '小程序首页')
   }
 }

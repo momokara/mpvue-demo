@@ -39,7 +39,8 @@
         "watchData/main",
         "logs/main",
         "forbidden/main",
-        "loginpage/main"
+        "loginpage/main",
+        "account/reword/main"
       ]
     },
     {
