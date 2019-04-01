@@ -21,7 +21,7 @@ export const getHomeInfo = async (requestType = config.isGetDataFormCos) => {
   console.log('getHomeInfoisRetry', requestType)
   let commonheader = await getcommonheader()
   let url = `${config.host}/marking_service/home_data/${config.mpid}`
-  let urlCos = `${config.static_url_basic}${config.static_url_file}/articlelist/home_data.json`
+  let urlCos = `${config.static_url_basic}${config.static_url_file}${config.mpid}/home_data.json`
 
   if (requestType === 1) {
     return ajaxAll(url, 'GET', null, commonheader).then(res => {

@@ -22,7 +22,7 @@ export const getArticleList = async (data, requestType = config.isGetDataFormCos
   retryTimes = retryTimes | 0
   let commonheader = await getcommonheader()
   // 请求地址
-  let urlCos = `${config.static_url_basic}${config.static_url_file}/articlelist/${data.id}/${data.page}.json`
+  let urlCos = `${config.static_url_basic}${config.static_url_file}${config.mpid}/articlelist/${data.id}/${data.page}.json`
   let urlSer = `${config.host}/marking_service/article/list/${data.id}`
   if (requestType === 1) {
     return ajaxAll(urlSer, 'POST', data, commonheader).then(res => {
@@ -70,7 +70,7 @@ export const getArticleList = async (data, requestType = config.isGetDataFormCos
 export const getArticleDetail = async (data, requestType = config.isGetDataFormCos, retryTimes) => {
   retryTimes = retryTimes | 0
   let commonheader = await getcommonheader()
-  let urlCos = `${config.static_url_basic}${config.static_url_file}/articledetail/${data.id}.json`
+  let urlCos = `${config.static_url_basic}${config.static_url_file}${config.mpid}/articledetail/${data.id}.json`
   let urlSer = `${config.host}/marking_service/article/detail/${data.id}`
   if (requestType === 1) {
     return ajaxAll(urlSer, 'GET', {}, commonheader).then(res => {
