@@ -7,6 +7,9 @@ const config = {
   // 登录重试延迟 单位ms
   loginRetryDelay: 500,
 
+  // 是否请求cos 0-(默认值) 请求cos静态数据地址 1-请求服务器接口
+  isGetDataFormCos: 0,
+
   // 访问基本地址 第一个是 生产地址 第二个是开发地址 (测试地址 ：http://139.199.74.34:3000/mock/19/xmb_zhijia_cloud)
   host: process.env.NODE_ENV === 'production' ? 'https://mptrymomo.momokara.cc/mock/19/xmb_zhijia_cloud' : 'http://139.199.74.34:3000/mock/19/xmb_zhijia_cloud',
 

@@ -1,8 +1,6 @@
 <template>
   <div class="home-container">
-    <button open-type="share" data-optype="thisdata1">share</button>
     <block v-if="!isLoading">
-
       <!-- 顶部轮播 -->
       <headerSwiper v-if="data.swiper"
                     :swiperList="data.swiper.data"
@@ -66,17 +64,24 @@ export default {
       let _this = this
       _this.isLoading = true
       console.log(_this.isLoading)
-      getHomeInfo().then(res => {
-        _this.data = res
-        _this.isLoading = false
-        console.log(_this.isLoading)
-        if (res.pagetitle) {
-          wx.setNavigationBarTitle({
-            title: res.pagetitle
-          })
-        }
-        wx.stopPullDownRefresh()
-      })
+      getHomeInfo()
+        .then(res => {
+          if (res) {
+            _this.data = res
+            _this.isLoading = false
+          }
+          console.log('getHomeInfo', res)
+          console.log(_this.isLoading)
+          if (res.pagetitle) {
+            wx.setNavigationBarTitle({
+              title: res.pagetitle
+            })
+          }
+          wx.stopPullDownRefresh()
+        })
+        .catch(err => {
+          console.log('getHomeInfo', err)
+        })
     }
   },
   onLoad (options) {

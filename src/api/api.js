@@ -14,15 +14,36 @@ import config from '@/config.js'
 
 /**
  * 获取首页信息
+ * @param {Number} requestType 请求方式 0-(默认值) 请求cos静态数据地址 1-请求服务器接口
  * @return {Promise} 返回结果
  */
-export const getHomeInfo = async () => {
+export const getHomeInfo = async (requestType = config.isGetDataFormCos) => {
+  console.log('getHomeInfoisRetry', requestType)
   let commonheader = await getcommonheader()
   let url = `${config.host}/marking_service/home_data/${config.mpid}`
-  return ajaxAll(url, 'GET', null, commonheader).then(res => {
-    let resdata = res.result
-    return resdata
-  })
+  let urlCos = `${config.static_url_basic}${config.static_url_file}/articlelist/home_data.json`
+
+  if (requestType === 1) {
+    return ajaxAll(url, 'GET', null, commonheader).then(res => {
+      let resdata = res.result
+      return resdata
+    })
+  } else {
+    return new Promise((resolve, reject) => {
+      ajaxAll(urlCos, 'GET', {}, commonheader).then(res => {
+        if (res) {
+          resolve(res)
+        } else {
+          reject(new Error('err nodata'))
+        }
+      }).catch(err => {
+        reject(err)
+      })
+    }).catch(err => {
+      console.error('getHomeInfo on Cos', err)
+      return getHomeInfo(1)
+    })
+  }
 }
 
 /**

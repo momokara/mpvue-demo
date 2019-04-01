@@ -48,7 +48,7 @@ export default {
     getPageData (pageconfig) {
       let _this = this
       console.log(getArticleDetail)
-      getArticleDetail(_this.pageconfig, 1)
+      getArticleDetail(_this.pageconfig)
         .then(res => {
           _this.data = res
           wx.stopPullDownRefresh()
