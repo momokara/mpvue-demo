@@ -1,24 +1,24 @@
 <template>
   <div class="container">
-    <userAccountCard :userData="userData"
-                     :accountInfo="accountInfo">
-      <div class="btn-box">
-        <button @click="useAccount">useAccount</button>
-      </div>
-    </userAccountCard>
     <div class="his-list">
-      <userAccountHis :data="hisDate"
-                      :date="showData"
+      <userAccountHis :data="data.array"
+                      :date="showDate"
                       @prev="prevMonth"
                       @next="nextMonth"></userAccountHis>
-
+      <div class="ta-c fsp12 fc-grey more"
+           v-if="isend">
+        ———— 没有更多了 ————
+      </div>
+      <div class="ta-c fsp12 fc-grey more"
+           v-else
+           @click="getpagedata">
+        ———— 加载更多 ————
+      </div>
     </div>
   </div>
 </template>
 <script>
-import basicInfo from '@/store/basicInfo.js'
-import { getAccountNum } from '@/api/api.account.js'
-import userAccountCard from '@/components/userCenter/userAccountCard'
+import { getAccountInfo } from '@/api/api.account.js'
 import userAccountHis from '@/components/userCenter/userAccountHis'
 import { formatTime } from '@/utils/tools'
 // 页面记录
@@ -32,34 +32,27 @@ export default {
         page: 1,
         size: 10
       },
+      data: {
+        num: '',
+        array: []
+      },
+      isend: false,
       titleDate: new Date(),
-      hisDate: [],
       reqType: ['', 'Reward', 'Balance', 'Points'],
-      num: ''
+      titleName: {
+        Reward: '奖金',
+        Balance: '余额',
+        Points: '积分'
+      }
     }
   },
   computed: {
-    showData: function () {
+    showDate: function () {
       return formatTime(this.titleDate, 'YYYY年MM月')
-    },
-    userData: () => {
-      let _data = {
-        nickName: basicInfo.state.userInfo.nickName,
-        avatarUrl: basicInfo.state.userInfo.avatarUrl
-      }
-      return _data
-    },
-    accountInfo: function () {
-      let _data = {
-        type: this.pageconfig.typeid,
-        num: this.num
-      }
-      return _data
     }
   },
   // 使用的 vue 组件
   components: {
-    userAccountCard,
     userAccountHis
   },
 
@@ -81,32 +74,50 @@ export default {
       this.titleDate = nextMon
       this.getPageData()
     },
-    useAccount: function (e) {
-      console.log('useAccount')
-    },
-    getPageData: function () {
+    /**
+     * 获取页面信息
+     * @param {Boolean} isReset 是否重新请求
+     */
+    getPageData: function (isReset) {
       let _this = this
-      console.log(_this)
-      this.pageconfig.year = this.titleDate.getFullYear()
-      this.pageconfig.month = this.titleDate.getMonth()
-      wx.showToast({
-        title: '加载中....',
-        icon: 'loading'
-      })
+      if (isReset) {
+        _this.pageconfig.page = 1
+        _this.hisData = []
+        _this.isend = false
+      }
+      _this.pageconfig.year = _this.titleDate.getFullYear()
+      _this.pageconfig.month = _this.titleDate.getMonth()
 
-      getAccountNum(this.pageconfig).then(res => {
-        console.log('getAccountNum', res)
-        this.hisDate = res.hisData
-        this.num = res.num
-        wx.hideToast()
-      })
+      if (!_this.isend) {
+        wx.showToast({
+          title: '加载中....',
+          icon: 'loading'
+        })
+        getAccountInfo(_this.pageconfig).then(res => {
+          console.log('getAccountInfo', res)
+          if (res.array) {
+            _this.data.array = _this.data.array.concat(...res.array)
+            _this.pageconfig.page++
+            if (_this.data.array.length >= res.total) {
+              _this.isend = true
+            }
+          }
+          wx.hideToast()
+          wx.stopPullDownRefresh()
+        })
+      }
     }
   },
 
   onLoad (options) {
     if (options.type) {
+      // 去除空格
       this.pageconfig.typeid = options.type.replace(/\s+/g, '')
       this.pageconfig.type = this.reqType[this.pageconfig.typeid]
+      // 设置标题
+      wx.setNavigationBarTitle({
+        title: `${this.titleName[this.pageconfig.type]}详情`
+      })
     }
   },
   // 监听页面显示
@@ -121,7 +132,9 @@ export default {
   },
 
   // 页面上拉触底事件的处理函数
-  onReachBottom () {},
+  onReachBottom () {
+    this.getPageData()
+  },
   // 用户点击右上角分享
   onShareAppMessage () {}
 }
@@ -139,5 +152,8 @@ export default {
 }
 .his-list {
   @include main-box;
+  .more {
+    margin: 10px auto 30px auto;
+  }
 }
 </style>

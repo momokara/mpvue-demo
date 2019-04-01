@@ -137,7 +137,28 @@ export const jsonToArray = (json) => {
   }
   return resArray
 }
-
+/**
+ * 格式化数字,保留两位小数
+ * @param {String} value 需要格式化的值
+ * @return {Number} 返回处理结果数组
+ */
+export const formatterNum = (value) => {
+  // 清除“数字”和“.”以外的字符
+  value = value.replace(/[^\d.]/g, '')
+  // 只保留第一个. 清除多余的
+  value = value.replace(/\.{2,}/g, '.')
+  value = value
+    .replace('.', '$#$')
+    .replace(/\./g, '')
+    .replace('$#$', '.')
+  // 只能输入两个小数
+  value = value.replace(/^(-)*(\d+)\.(\d\d).*$/, '$1$2.$3')
+  if (value.indexOf('.') < 0 && value !== '') {
+    // 以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额
+    value = parseFloat(value)
+  }
+  return value
+}
 /**
  * 分组输出console
  * @param {String} GroupName 组名
@@ -193,5 +214,6 @@ module.export = {
   showModal,
   isJsonString,
   jsonToArray,
+  formatterNum,
   consoleGroup
 }

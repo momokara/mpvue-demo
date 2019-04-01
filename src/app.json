@@ -40,7 +40,9 @@
         "logs/main",
         "forbidden/main",
         "loginpage/main",
-        "account/reword/main"
+        "account/infoPage/main",
+        "account/withdraw/main",
+        "account/infoList/main"
       ]
     },
     {
@@ -64,6 +66,7 @@
         "componentsDemoMenu/main",
         "font_color/main",
         "newpagedemo/main",
+
         "componentsDemo/Layout/main",
         "componentsDemo/Button/main",
         "componentsDemo/Cell/main",

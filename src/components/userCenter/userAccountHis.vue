@@ -52,6 +52,7 @@ export default {
 .user-account-his {
   border-radius: 10px;
   background-color: #fff;
+  box-shadow: 0 0 3px #ddd;
   overflow: hidden;
   .list-header {
     display: flex;

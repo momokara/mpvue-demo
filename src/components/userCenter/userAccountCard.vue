@@ -39,7 +39,7 @@ export default {
       }
     },
     numName: {
-      type: Object,
+      type: Array,
       default: ['', '奖金', '余额', '积分']
     }
   },
@@ -54,9 +54,10 @@ export default {
   width: 350px;
   height: 205px;
   margin: 10px auto;
-  box-shadow: 0 0 3px #333;
+  box-shadow: 0 0 3px #ddd;
   border-radius: 8px;
   position: relative;
+  background-color: #fff;
   .useravatarUrl {
     width: 94px;
     height: 94px;
