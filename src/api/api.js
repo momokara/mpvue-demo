@@ -91,7 +91,7 @@ export const getUserInfoSer = async (retryTimes) => {
         let commonheader = {
           token: res.token
         }
-        return ajaxAll(url, 'GET', {}, commonheader).then(res => {
+        return ajaxAll(url, 'GET', null, commonheader).then(res => {
           let resdata = res.result
           resdata.isgetinfo = true
           basicInfo.commit('updataByKey', resdata)

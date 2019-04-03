@@ -8,6 +8,8 @@
         :icon="item.imgUrl"
         :title="item.name"
         :size="config.size"
+        :value="item.info"
+        :label="item.label"
         is-link
         :border="config.border"
         @click="golink(item.url)"

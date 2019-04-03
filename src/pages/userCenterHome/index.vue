@@ -38,6 +38,7 @@ import { getUserCenterHomeInfo } from '@/api/api'
 
 import userInfoCard from '@/components/userCenter/userInfoCard'
 import adBox from '@/components/homeAd/adBox'
+import weekArray from '@/components/weekArray'
 
 import { reLogin } from '@/api/dataTools'
 import { golink, consoleGroup } from '@/utils/tools'
@@ -53,13 +54,15 @@ export default {
       openid: '',
       data: {
         userInfo: {}
-      }
+      },
+      weekIndex: 0
     }
   },
   // 使用的 vue 组件
   components: {
     userInfoCard,
-    adBox
+    adBox,
+    weekArray
   },
   computed: {
     userCardInfo () {
@@ -70,7 +73,8 @@ export default {
         avatarUrl: basicInfo.state.userInfo.avatarUrl,
         realName: basicInfo.state.basicInfo.realName,
         userNo: basicInfo.state.userNo,
-        coach: basicInfo.state.coach
+        coach: basicInfo.state.coach,
+        isgetinfo: basicInfo.state.isgetinfo
       }
       consoleGroup('userCardInfoChange', [basicInfo.state, _data])
       return _data
@@ -140,13 +144,14 @@ export default {
     getPageData: function () {
       let _this = this
       getUserCenterHomeInfo().then(res => {
-        _this.data = res
+        if (res) {
+          _this.data = res
+        }
         wx.stopPullDownRefresh()
       })
     }
   },
   onLoad () {
-    this.openid = basicInfo.state.openid
     this.getPageData()
   },
   onShow () {

@@ -71,7 +71,19 @@ export default {
       this.$emit('animationfinish', event)
     },
     getUseConfig () {
-      this.useConfig = Object.assign({}, this.defaultconfig, this.config)
+      let _this = this
+      _this.useConfig = Object.assign({}, this.defaultconfig, this.config)
+      let ltr = _this.useConfig.imgHeight.match(/[a-z|A-Z]+$/gi)
+      let num = _this.useConfig.imgHeight.match(/^\d+/gi)
+      // 单位是 px 转成2倍做rpx
+      // eslint-disable-next-line eqeqeq
+      _this.useConfig.imgHeight = ltr == 'px' ? num * 2 : num
+      // 如果要显示名称则需要加高高度
+      if (_this.useConfig.isShowName) {
+        _this.useConfig.cell_height = parseInt(_this.useConfig.imgHeight) + 60
+      } else {
+        _this.useConfig.cell_height = _this.useConfig.imgHeight
+      }
     }
   },
   created () {

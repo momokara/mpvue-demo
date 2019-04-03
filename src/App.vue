@@ -171,6 +171,9 @@ $opacity-disable: 10%;
 .ta-c {
   text-align: center;
 }
+.fr{
+  float: right;
+}
 @mixin line-clamp($lineNumber) {
   white-space: normal;
   overflow: hidden;

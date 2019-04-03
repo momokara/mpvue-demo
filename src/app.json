@@ -1,7 +1,7 @@
 {
   "cloud": true,
   "networkTimeout": {
-    "request": 6000
+    "request": 60000
   },
   "pages": [
     "pages/home/main",
@@ -199,7 +199,9 @@
     "van-picker": "/static/components/picker/index",
     "score-star": "/static/components/score-star/index",
     "lottery-table": "/static/components/lottery-table/index",
-    "lottery-wheel": "/static/components/lottery-wheel/index"
+    "lottery-wheel": "/static/components/lottery-wheel/index",
+    "calendarWeek": "/static/components/calendarWeek/index"
+
   },
   "permission": {
     "scope.userLocation": {

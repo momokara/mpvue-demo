@@ -6,12 +6,12 @@
     <block >
       <img
         class="head-img"
-        :src="userData.avatarUrl"
+        :src="userData.avatarUrl?userData.avatarUrl:avatarUrl"
         @click="tapheadimg"
       >
     </block>
     <div class="info-box-1">
-      <div class="user-name fsp18 fc-black line-clamp_2">{{userData.nickName?userData.nickName:"登录中..."}}
+      <div class="user-name fsp18 fc-black line-clamp_2">{{userData.isgetinfo?(userData.nickName?userData.nickName:'游客'):"登录中..."}}
         <span
           v-if="userData.realName"
           class="user-name fsp12 fc-semi"
@@ -56,11 +56,15 @@
 import config from '@/config.js'
 import { golink } from '@/utils/tools'
 export default {
+  data () {
+    return {
+      avatarUrl: config.defaultData.headerImg
+    }
+  },
   props: {
     userData: {
       type: Object,
       default: {
-        avatarUrl: config.defaultData.headerImg
       }
     },
     // 账户统计信息
