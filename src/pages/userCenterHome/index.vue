@@ -103,7 +103,9 @@ export default {
     goLoginPage: function (isjump) {
       // eslint-disable-next-line no-mixed-operators
       isjump =
-        isjump || (!basicInfo.state.userInfo.avatarUrl && basicInfo.state.isgetinfo)
+        isjump ||
+        (!basicInfo.state.userInfo.avatarUrl && basicInfo.state.isgetinfo)
+
       if (isjump) {
         const fromUrl = 'pages/userCenterHome/main'
         wx.redirectTo({

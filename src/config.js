@@ -10,8 +10,8 @@ const config = {
   // 是否请求cos 0-(默认值) 请求cos静态数据地址 1-请求服务器接口
   isGetDataFormCos: 0,
 
-  // 访问基本地址 第一个是 生产地址 第二个是开发地址 (测试地址 ：http://139.199.74.34:3000/mock/19/xmb_zhijia_cloud)'https://api.xiaomabang.net/xmb_zhijia_cloud',
-  host: process.env.NODE_ENV === 'production' ? 'https://api.xiaomabang.net/xmb_zhijia_cloud' : 'https://api.xiaomabang.net/xmb_zhijia_cloud',
+  // 访问基本地址 第一个是 生产地址 第二个是开发地址 (测试地址 ：http://139.199.74.34:3000/mock/19/xmb_zhijia_cloud)'https://api.xiaomabang.net/xmb_zhijia_cloud'
+  host: process.env.NODE_ENV === 'production' ? 'https://api.xiaomabang.net/xmb_zhijia_cloud' : 'http://139.199.74.34:3000/mock/19/xmb_zhijia_cloud',
 
   // 云函数配置
   // 云函数环境id- 第一个是生产 第二个是开发环境

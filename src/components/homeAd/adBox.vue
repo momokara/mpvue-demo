@@ -5,13 +5,13 @@
       <a
         v-if="config.moreUrl"
         @click="golink(config.moreUrl)"
-        class="ad-box-more fc-green"
+        class="ad-box-more fr fc-green"
       >
         <span class="fsp14">更多</span>
         <van-icon
           name="arrow"
           size="14px"
-          custom-class="more-link-icon"
+          custom-class="more-link-icon fr"
         /></a>
     </div>
     <div class="info-box"></div>
@@ -115,13 +115,12 @@ export default {
   .ad-box-more {
     display: inline-block;
     box-sizing: border-box;
-    float: right;
     .fsp14 {
       line-height: 30px;
     }
     .more-link-icon {
       margin-top: 7px;
-      float: right;
+
     }
   }
 }

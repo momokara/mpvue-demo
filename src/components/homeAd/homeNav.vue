@@ -2,34 +2,25 @@
 <template>
   <!-- 首页的导航 -->
   <div>
-    <div
-      class="notice-box"
-      v-if="config.isShowNotice"
-    >
-      <noticeSwipers
-        :swiperList="noticeData"
-        icon-url="https://cdn.huibaoming.com/haivit/public/image/20181105181545_89/公告.png"
-      ></noticeSwipers>
+    <div class="notice-box"
+         v-if="config.isShowNotice">
+      <noticeSwipers :swiperList="noticeData"
+                     icon-url="https://cdn.huibaoming.com/haivit/public/image/20181105181545_89/公告.png"></noticeSwipers>
     </div>
     <div class="nav-box">
-      <div
-        v-for="item in data"
-        :key="item"
-        class="nav-cell fs12 ta-c"
-        :style="lineColumn"
-      >
-        <van-tabbar-item @click="callgolink(item)" :info="item.msgNum">
+      <div v-for="item in data"
+           :key="item"
+           class="nav-cell fs12 ta-c"
+           :style="lineColumn">
+        <van-tabbar-item @click="callgolink(item)"
+                         :info="item.msgNum">
           <div slot="icon">
-            <img
-              class="nav-icon"
-              :src="item.imgUrl"
-            >
+            <img class="nav-icon"
+                 :src="item.imgUrl">
           </div>
           <span class="icon_name line-clamp_1">{{item.name}}</span>
-          <span
-            v-if="item.tag"
-            class="icon_name line-clamp_1"
-          >{{item.tag}}</span>
+          <span v-if="item.tag"
+                class="icon_name line-clamp_1">{{item.tag}}</span>
         </van-tabbar-item>
       </div>
 
@@ -107,7 +98,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-
+  width: 100%;
   .nav-cell {
     margin: 15rpx 0;
   }
@@ -117,6 +108,8 @@ export default {
   }
   .icon_name {
     width: 100%;
+    height: 14px;
+    line-height: 14px;
     overflow: hidden;
   }
 }

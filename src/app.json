@@ -66,7 +66,6 @@
         "componentsDemoMenu/main",
         "font_color/main",
         "newpagedemo/main",
-
         "componentsDemo/Layout/main",
         "componentsDemo/Button/main",
         "componentsDemo/Cell/main",
@@ -199,9 +198,7 @@
     "van-picker": "/static/components/picker/index",
     "score-star": "/static/components/score-star/index",
     "lottery-table": "/static/components/lottery-table/index",
-    "lottery-wheel": "/static/components/lottery-wheel/index",
-    "calendarWeek": "/static/components/calendarWeek/index"
-
+    "lottery-wheel": "/static/components/lottery-wheel/index"
   },
   "permission": {
     "scope.userLocation": {

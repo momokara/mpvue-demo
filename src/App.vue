@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/../static/index.wxss";
+@import '@/../static/index.wxss';
 /* 微信设计规范中的字体大小 */
 $fs-40: 40pt;
 $fs-20: 20pt;
@@ -171,7 +171,7 @@ $opacity-disable: 10%;
 .ta-c {
   text-align: center;
 }
-.fr{
+.fr {
   float: right;
 }
 @mixin line-clamp($lineNumber) {
