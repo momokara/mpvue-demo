@@ -1,0 +1,7 @@
+<view>
+  <form bindsubmit="getFormid" report-submit="{{true}}">
+    <button formType="submit" class='btn'>
+      <view class='cover-box'>0 </view>
+    </button>
+  </form>
+</view>

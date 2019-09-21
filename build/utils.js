@@ -1,11 +1,18 @@
 var path = require('path')
+var fs = require('fs')
 var config = require('../config')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var mpvueInfo = require('../node_modules/mpvue/package.json')
+var packageInfo = require('../package.json')
+var mkdirp = require('mkdirp')
+
+const appJson = require('../src/app.config.js')
+fs.writeFileSync('./src/app.json', JSON.stringify(appJson))
 
 exports.assetsPath = function (_path) {
-  var assetsSubDirectory = process.env.NODE_ENV === 'production' ?
-    config.build.assetsSubDirectory :
-    config.dev.assetsSubDirectory
+  var assetsSubDirectory = process.env.NODE_ENV === 'production'
+    ? config.build.assetsSubDirectory
+    : config.dev.assetsSubDirectory
   return path.posix.join(assetsSubDirectory, _path)
 }
 
@@ -36,8 +43,8 @@ exports.cssLoaders = function (options) {
   }
 
   // generate loader string to be used with extract text plugin
-  function generateLoaders(loader, loaderOptions) {
-    var loaders = [cssLoader, postcssLoader, px2rpxLoader]
+  function generateLoaders (loader, loaderOptions) {
+    var loaders = [cssLoader, postcssLoader, px2rpxLoader] 
     if (loader) {
       loaders.push({
         loader: loader + '-loader',
@@ -65,9 +72,7 @@ exports.cssLoaders = function (options) {
     wxss: generateLoaders(),
     postcss: generateLoaders(),
     less: generateLoaders('less'),
-    sass: generateLoaders('sass', {
-      indentedSyntax: true
-    }),
+    sass: generateLoaders('sass', { indentedSyntax: true }),
     scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
@@ -86,4 +91,30 @@ exports.styleLoaders = function (options) {
     })
   }
   return output
+}
+
+const writeFile = async (filePath, content) => {
+  let dir = path.dirname(filePath)
+  let exist = fs.existsSync(dir)
+  if (!exist) {
+    await mkdirp(dir)
+  }
+  await fs.writeFileSync(filePath, content, 'utf8')
+}
+
+exports.writeFrameworkinfo = function () {
+  var buildInfo = {
+    'toolName': mpvueInfo.name,
+    'toolFrameWorkVersion': mpvueInfo.version,
+    'toolCliVersion': packageInfo.mpvueTemplateProjectVersion || '',
+    'createTime': Date.now()
+  }
+
+  var content = JSON.stringify(buildInfo)
+  var fileName = '.frameworkinfo'
+  var rootDir = path.resolve(__dirname, `../${fileName}`)
+  var distDir = path.resolve(config.build.assetsRoot, `./${fileName}`)
+
+  writeFile(rootDir, content)
+  writeFile(distDir, content)
 }

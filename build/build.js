@@ -10,8 +10,9 @@ var chalk = require('chalk')
 var webpack = require('webpack')
 var config = require('../config')
 var webpackConfig = require('./webpack.prod.conf')
+var utils = require('./utils')
 
-var spinner = ora('building for production...')
+var spinner = ora('文件打包中...')
 spinner.start()
 
 rm(path.join(config.build.assetsRoot, '*'), err => {
@@ -19,6 +20,9 @@ rm(path.join(config.build.assetsRoot, '*'), err => {
   webpack(webpackConfig, function (err, stats) {
     spinner.stop()
     if (err) throw err
+    if (process.env.PLATFORM === 'swan') {
+      utils.writeFrameworkinfo()
+    }
     process.stdout.write(stats.toString({
       colors: true,
       modules: false,
@@ -28,11 +32,11 @@ rm(path.join(config.build.assetsRoot, '*'), err => {
     }) + '\n\n')
 
     if (stats.hasErrors()) {
-      console.log(chalk.red('  Build failed with errors.\n'))
+      console.log(chalk.red(' 因为以下原因打包失败.\n'))
       process.exit(1)
     }
 
-    console.log(chalk.cyan('  Build complete.\n'))
+    console.log(chalk.cyan('  打包完成.\n'))
     console.log(chalk.yellow(
       '  Tip: built files are meant to be served over an HTTP server.\n' +
       '  Opening index.html over file:// won\'t work.\n'

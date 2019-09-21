@@ -84,16 +84,16 @@
 </template>
 
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       table_api_Row: apiData.api_row,
       table_api_Col: apiData.api_col,
       table_custom_class: apiData.custom_class
-    };
+    }
   },
 
   components: {
@@ -101,12 +101,12 @@ export default {
   },
 
   methods: {},
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 <style>

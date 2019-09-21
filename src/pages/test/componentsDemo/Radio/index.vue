@@ -108,31 +108,31 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 export default {
-  data() {
+  data () {
     return {
-      title: "",
-      radio_1: "1",
+      title: '',
+      radio_1: '1',
       radio_list: [
         {
-          value: "radio0",
-          info: "单选框 嵌套Group和Cell",
+          value: 'radio0',
+          info: '单选框 嵌套Group和Cell',
           isdisable: false
         },
         {
-          value: "radio1",
-          info: "单选框 嵌套Group和Cell",
+          value: 'radio1',
+          info: '单选框 嵌套Group和Cell',
           isdisable: false
         },
         {
-          value: "radio1",
-          info: "单选框 嵌套Group和Cell-disabled",
+          value: 'radio1',
+          info: '单选框 嵌套Group和Cell-disabled',
           isdisable: true
         }
       ],
-      radio_2: "",
+      radio_2: '',
       table_api_radio: apiData.api_Radio,
       table_api_radiogroup: apiData.api_RadioGroup,
       table_event_radio: apiData.event_Radio,
@@ -140,35 +140,35 @@ export default {
       table_slot_radio: apiData.slot_Radio,
       table_custom_class_radio: apiData.custom_class_Radio,
       table_custom_class_radiogroup: apiData.custom_class_RadioGroup
-    };
+    }
   },
   // 使用的 vue 组件
   components: { apiTable },
   // 页面中的方法
   methods: {
-    onChange: function(e) {
-      console.log(e.mp.detail);
-      this[e.mp.currentTarget.dataset.key] = e.mp.detail;
+    onChange: function (e) {
+      console.log(e.mp.detail)
+      this[e.mp.currentTarget.dataset.key] = e.mp.detail
     },
-    onClick(e) {
-      console.log(e);
-      this[e.mp.currentTarget.dataset.key] = e.mp.currentTarget.dataset.value;
+    onClick (e) {
+      console.log(e)
+      this[e.mp.currentTarget.dataset.key] = e.mp.currentTarget.dataset.value
     }
   },
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 
 <style lang="scss">
 .section-name {
-  height: 20px; /*px*/
-  line-height: 18px; /*px*/
-  width: 20px; /*px*/
+  height: 20PX; /*px*/
+  line-height: 18PX; /*px*/
+  width: 20PX; /*px*/
   border-radius: 50%;
   border: 1px solid #ddd;
   text-align: center;

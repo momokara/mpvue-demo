@@ -76,19 +76,19 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       show: false,
-      name: "fade",
+      name: 'fade',
       table_api: apiData.api,
       table_animation: apiData.animation,
       table_custom_class: apiData.custom_class
-    };
+    }
   },
 
   // 使用的 vue 组件
@@ -98,58 +98,58 @@ export default {
 
   // 页面中的方法
   methods: {
-    onClickFade() {
-      this._trigger("fade");
+    onClickFade () {
+      this._trigger('fade')
     },
 
-    onClickFadeUp() {
-      this._trigger("fade-up");
+    onClickFadeUp () {
+      this._trigger('fade-up')
     },
 
-    onClickFadeDown() {
-      this._trigger("fade-down");
+    onClickFadeDown () {
+      this._trigger('fade-down')
     },
 
-    onClickFadeLeft() {
-      this._trigger("fade-left");
+    onClickFadeLeft () {
+      this._trigger('fade-left')
     },
 
-    onClickFadeRight() {
-      this._trigger("fade-right");
+    onClickFadeRight () {
+      this._trigger('fade-right')
     },
 
-    onClickSlideUp() {
-      this._trigger("slide-up");
+    onClickSlideUp () {
+      this._trigger('slide-up')
     },
 
-    onClickSlideDown() {
-      this._trigger("slide-down");
+    onClickSlideDown () {
+      this._trigger('slide-down')
     },
 
-    onClickSlideLeft() {
-      this._trigger("slide-left");
+    onClickSlideLeft () {
+      this._trigger('slide-left')
     },
 
-    onClickSlideRight() {
-      this._trigger("slide-right");
+    onClickSlideRight () {
+      this._trigger('slide-right')
     },
-    _trigger(name) {
-      let _this = this;
-      _this.name = name;
-      _this.show = true;
+    _trigger (name) {
+      let _this = this
+      _this.name = name
+      _this.show = true
 
       setTimeout(() => {
-        _this.show = false;
-      }, 500);
+        _this.show = false
+      }, 500)
     }
   },
 
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

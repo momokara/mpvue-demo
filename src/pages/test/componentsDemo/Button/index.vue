@@ -12,10 +12,10 @@
           type="primary"
           class="demo-margin-right"
         >主要按钮</van-button>
-        <van-button type="danger">危险按钮</van-button>
+        <van-button @click="tapbtn" type="danger">危险按钮</van-button>
       </div>
-      <van-button class="demo-margin-right">默认按钮</van-button>
-      <van-button type="warning">警告按钮</van-button>
+      <van-button @click="tapbtn" class="demo-margin-right">默认按钮</van-button>
+      <van-button @click="tapbtn" type="warning">警告按钮</van-button>
 
       <div class="fsp16 fc-grey ">
         朴素按钮
@@ -103,29 +103,33 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       table_api: apiData.api,
       table_custom_class: apiData.custom_class,
       table_event: apiData.event
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
     apiTable
   },
   // 页面中的方法
-  methods: {},
-  onLoad(option) {
+  methods: {
+    tapbtn (e) {
+      console.log(e)
+    }
+  },
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

@@ -7,60 +7,42 @@
     <div class="goods-action-box">
       <div class="fsp16 fc-grey ">基本用法</div>
       <van-goods-action>
-        <van-goods-action-icon
-          text="客服1"
-          @click="onClickIcon"
-        >
-          <image src="https://cdn.huibaoming.com/haivit/public/image/20181026120910_500/活动订单.png" />
+        <van-goods-action-icon text="客服1"
+                               @click="onClickIcon"
+                               icon="https://cdn.huibaoming.com/haivit/public/image/20181026120910_500/活动订单.png">
         </van-goods-action-icon>
-        <van-goods-action-icon
-          text="客服1"
-          @click="onClickIcon"
-        >
-          <div>123</div>
+        <van-goods-action-icon text="客服1"
+                               @click="onClickIcon"
+                               icon="https://cdn.huibaoming.com/haivit/public/image/20181026120910_500/活动订单.png">
         </van-goods-action-icon>
-        <van-goods-action-icon
-          icon="cart"
-          text="购物车"
-          @click="onClickIcon"
-        />
-        <van-goods-action-button
-          text="加入购物车"
-          type="warning"
-        />
+        <van-goods-action-icon icon="cart"
+                               text="购物车"
+                               @click="onClickIcon" />
+        <van-goods-action-button text="加入购物车"
+                                 type="warning" />
         <van-goods-action-button text="立即购买" />
-        <van-goods-action-button
-          text="立即购买2"
-          type="primary"
-        />
+        <van-goods-action-button text="立即购买2"
+                                 type="primary" />
       </van-goods-action>
     </div>
     <div class="goods-action-box">
       <div class="fsp16 fc-grey ">加上info提示</div>
       <van-goods-action>
-        <van-goods-action-icon
-          text="客服1"
-          @click="onClickIcon"
-        >
-          <image src="https://cdn.huibaoming.com/haivit/public/image/20181026120910_500/活动订单.png" />
+        <van-goods-action-icon text="客服1"
+                               @click="onClickIcon"
+                               icon="https://cdn.huibaoming.com/haivit/public/image/20181026120910_500/活动订单.png">
         </van-goods-action-icon>
-        <van-goods-action-icon
-          text="客服2"
-          @click="onClickIcon"
-          info="s1"
-        >
-          <image src="https://cdn.huibaoming.com/haivit/public/image/20181026120910_500/活动订单.png" />
+        <van-goods-action-icon text="客服2"
+                               @click="onClickIcon"
+                               info="s1"
+                               icon="https://cdn.huibaoming.com/haivit/public/image/20181026120910_500/活动订单.png">
         </van-goods-action-icon>
-        <van-goods-action-icon
-          icon="cart"
-          text="购物车"
-          @click="onClickIcon"
-          info="66"
-        />
-        <van-goods-action-button
-          text="加入购物车"
-          type="warning"
-        />
+        <van-goods-action-icon icon="cart"
+                               text="购物车"
+                               @click="onClickIcon"
+                               info="66" />
+        <van-goods-action-button text="加入购物车"
+                                 type="warning" />
         <van-goods-action-button text="立即购买" />
       </van-goods-action>
     </div>
@@ -83,18 +65,18 @@
   </div>
 </template>
 <script>
-import Toast from "@/../static/components/toast/toast";
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import Toast from '@/../static/components/toast/toast'
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       table_api_icon: apiData.api_icon,
       table_api_button: apiData.api_button,
       table_event: apiData.event,
       table_slot: apiData.slot
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -102,20 +84,20 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onClickIcon() {
-      Toast("点击图标");
+    onClickIcon () {
+      Toast('点击图标')
     },
 
-    onClickButton() {
-      Toast("点击按钮");
+    onClickButton () {
+      Toast('点击按钮')
     }
   },
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

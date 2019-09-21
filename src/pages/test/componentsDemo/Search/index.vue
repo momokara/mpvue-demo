@@ -41,7 +41,7 @@
           slot="action"
           @tap="onSearch"
         >搜索</view>
-        <view slot="left-action">左边</view>
+        <view slot="label">左边</view>
       </van-search>
     </div>
     <div class="info">
@@ -62,19 +62,19 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
-      value: "",
+      title: '',
+      value: '',
       table_api: apiData.api,
       table_event: apiData.event,
       table_class: apiData.class,
       table_slot: apiData.slot
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -82,40 +82,40 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onChange(e) {
-      this.value = e.mp.detail;
+    onChange (e) {
+      this.value = e.mp.detail
     },
 
-    onSearch(event) {
+    onSearch (event) {
       if (this.value) {
         wx.showToast({
-          title: "搜索：" + this.value,
-          icon: "none"
-        });
+          title: '搜索：' + this.value,
+          icon: 'none'
+        })
       }
     },
 
-    onCancel() {
+    onCancel () {
       wx.showToast({
-        title: "取消",
-        icon: "none"
-      });
+        title: '取消',
+        icon: 'none'
+      })
     },
 
-    onClear() {
+    onClear () {
       wx.showToast({
-        title: "清空",
-        icon: "none"
-      });
+        title: '清空',
+        icon: 'none'
+      })
     }
   },
 
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

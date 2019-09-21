@@ -24,6 +24,7 @@
         <view
           slot="right"
           class="van-swipe-cell__right"
+          @click="tapdel"
         >删除</view>
       </van-swipe-cell>
 
@@ -74,19 +75,20 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
+import Dialog from '@/../static/components/dialog/dialog'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       table_api: apiData.api,
       table_slot: apiData.slot,
       table_event: apiData.event,
       table_close: apiData.close,
       table_func: apiData.func
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -94,31 +96,34 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onClose(event) {
-      const { position, instance } = event.detail;
+    onClose (event) {
+      const { position, instance } = event.detail
       switch (position) {
-        case "left":
-        case "cell":
-          instance.close();
-          break;
-        case "right":
+        case 'left':
+        case 'cell':
+          instance.close()
+          break
+        case 'right':
           Dialog.confirm({
-            message: "确定删除吗？"
+            message: '确定删除吗？'
           }).then(() => {
-            instance.close();
-          });
-          break;
+            instance.close()
+          })
+          break
       }
+    },
+    tapdel () {
+      console.log('tapdel')
     }
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

@@ -7,14 +7,12 @@
       <div class="fsp16 fc-grey ">
         基础用法
       </div>
-      <van-tree-select
-        :items="items"
-        :main-active-index="mainActiveIndex"
-        :active-id="activeId"
-        @clickItem="onClickItem"
-        @clickNav="onClickNav"
-        content-item-class="content-item-class"
-      ></van-tree-select>
+      <van-tree-select :items="items"
+                       :main-active-index="mainActiveIndex"
+                       :active-id="activeId"
+                       @clickItem="onClickItem"
+                       @clickNav="onClickNav"
+                       content-item-class="content-item-class"></van-tree-select>
     </div>
     <div class="info">
       <div class="fsp16 fc-grey">API 说明</div>
@@ -31,17 +29,17 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       items: [
         {
           // 导航名称
-          text: "所有城市",
+          text: '所有城市',
           // 该导航下所有的可选项
           children: [...apiData.pro1, ...apiData.pro2]
         },
@@ -62,8 +60,8 @@ export default {
         }
       ],
       mainActiveIndex: 0,
-      activeId: 1
-    };
+      activeId: [1, 4, 2]
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -71,24 +69,34 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onClickNav(e) {
-      console.log(e.mp.detail);
-      this.mainActiveIndex = e.mp.detail.index || 0;
+    onClickNav (e) {
+      console.log(e.mp.detail)
+      this.mainActiveIndex = e.mp.detail.index || 0
     },
 
-    onClickItem(e) {
-      console.log(e.mp.detail);
-      this.activeId = e.mp.detail.id;
+    onClickItem (e) {
+      console.log(this.activeId, e.mp.detail)
+      this.activeId = this.toggleArray(this.activeId, e.mp.detail.id)
+    },
+    toggleArray (array, id) {
+      let i = array.indexOf(id)
+      if (i >= 0) {
+        array.splice(i, 1)
+      } else {
+        array = array.concat(...[id])
+        array = Array.from(new Set(array))
+      }
+      return array
     }
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

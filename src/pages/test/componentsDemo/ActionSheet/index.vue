@@ -55,21 +55,21 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       show1: false,
       show2: false,
       show3: false,
       actions: [],
-      table_api:apiData.api,
-      table_event:apiData.event,
-      table_actions:apiData.actions
-    };
+      table_api: apiData.api,
+      table_event: apiData.event,
+      table_actions: apiData.actions
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -77,36 +77,36 @@ export default {
   },
   // 页面中的方法
   methods: {
-    toggle(type) {
-      this[type] = !this[type];
+    toggle (type) {
+      this[type] = !this[type]
     },
 
-    toggleActionSheet1() {
-      this.toggle("show1");
+    toggleActionSheet1 () {
+      this.toggle('show1')
     },
 
-    toggleActionSheet2() {
-      this.toggle("show2");
+    toggleActionSheet2 () {
+      this.toggle('show2')
     },
 
-    toggleActionSheet3() {
-      this.toggle("show3");
+    toggleActionSheet3 () {
+      this.toggle('show3')
     }
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
     this.actions = [
-      { name: "选项" },
-      { name: "分享", subname: "描述信息", openType: "share" },
+      { name: '选项' },
+      { name: '分享', subname: '描述信息', openType: 'share' },
       { loading: true },
-      { name: "禁用选项", disabled: true }
-    ];
+      { name: '禁用选项', disabled: true }
+    ]
   }
-};
+}
 </script>
 
 

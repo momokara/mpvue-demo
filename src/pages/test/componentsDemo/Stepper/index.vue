@@ -55,18 +55,18 @@
   </div>
 </template>
 <script>
-import Toast from "@/../static/components/toast/toast";
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import Toast from '@/../static/components/toast/toast'
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       table_api: apiData.api,
       table_event: apiData.event,
       table_class: apiData.class
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -74,17 +74,17 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onChange(event) {
-      Toast(`change: ${event.mp.detail}`);
+    onChange (event) {
+      Toast(`change: ${event.mp.detail}`)
     }
   },
 
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 

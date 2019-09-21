@@ -62,22 +62,25 @@
 </template>
 <script>
 // 页面记录
-import { pagelogs } from "@/utils/logs";
+import { pagelogs } from '@/utils/logs'
 
 export default {
-  data() {
-    return {};
+  data () {
+    return {}
   },
 
   components: {},
 
   methods: {},
 
-  created() {},
-  onShow() {
-    pagelogs();
+  created () {},
+  onShow () {
+    pagelogs()
+  },
+  onHide () {
+    pagelogs(true)
   }
-};
+}
 </script>
 <style lang="scss" scoped>
 .row {

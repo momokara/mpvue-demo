@@ -5,7 +5,7 @@
  */
 export const encrypt = (data) => {
   return wx.cloud.callFunction({
-    name: "docrypt",
+    name: 'docrypt',
     // 传给云函数的参数
     data: {
       type: 1,
@@ -20,8 +20,9 @@ export const encrypt = (data) => {
  * @return {Promise} 处理结果
  */
 export const decrypt = (data) => {
+  console.log(data)
   return wx.cloud.callFunction({
-    name: "docrypt",
+    name: 'docrypt',
     // 传给云函数的参数
     data: {
       type: 2,
@@ -36,12 +37,12 @@ export const decrypt = (data) => {
   })
 }
 
-const crypt = {};
-crypt.encrypt = encrypt;
-crypt.decrypt = decrypt;
-export default crypt;
+const crypt = {}
+crypt.encrypt = encrypt
+crypt.decrypt = decrypt
+export default crypt
 
 module.export = {
   encrypt,
   decrypt
-};
+}

@@ -1,40 +1,55 @@
 import { VantComponent } from '../common/component';
-import { iphonex } from '../mixins/iphonex';
+import { safeArea } from '../mixins/safe-area';
 VantComponent({
-  mixins: [iphonex],
-  classes: ['bar-class', 'price-class', 'button-class'],
-  props: {
-    tip: null,
-    type: Number,
-    price: null,
-    label: String,
-    loading: Boolean,
-    disabled: Boolean,
-    buttonText: String,
-    currency: {
-      type: String,
-      value: '¥'
+    mixins: [safeArea()],
+    classes: [
+        'bar-class',
+        'price-class',
+        'button-class'
+    ],
+    props: {
+        tip: {
+            type: null,
+            observer: 'updateTip'
+        },
+        tipIcon: String,
+        type: Number,
+        price: {
+            type: null,
+            observer: 'updatePrice'
+        },
+        label: String,
+        loading: Boolean,
+        disabled: Boolean,
+        buttonText: String,
+        currency: {
+            type: String,
+            value: '¥'
+        },
+        buttonType: {
+            type: String,
+            value: 'danger'
+        },
+        decimalLength: {
+            type: Number,
+            value: 2,
+            observer: 'updatePrice'
+        },
+        suffixLabel: String
     },
-    buttonType: {
-      type: String,
-      value: 'danger'
+    methods: {
+        updatePrice() {
+            const { price, decimalLength } = this.data;
+            this.set({
+                hasPrice: typeof price === 'number',
+                priceStr: (price / 100).toFixed(decimalLength)
+            });
+        },
+        updateTip() {
+            this.set({ hasTip: typeof this.data.tip === 'string' });
+        },
+        onSubmit(event) {
+            this.$emit('submit', event.detail);
+        }
     }
-  },
-  computed: {
-    hasPrice: function hasPrice() {
-      return typeof this.data.price === 'number';
-    },
-    priceStr: function priceStr() {
-      return (this.data.price / 100).toFixed(2);
-    },
-    tipStr: function tipStr() {
-      var tip = this.data.tip;
-      return typeof tip === 'string' ? tip : '';
-    }
-  },
-  methods: {
-    onSubmit: function onSubmit(event) {
-      this.$emit('submit', event.detail);
-    }
-  }
 });

@@ -1,0 +1,10 @@
+/project.config.json merge=ours
+/package.json merge=ours
+/package-lock.json merge=ours
+/project.config.json merge=ours
+/src/config.js merge=ours
+/cloudfunctions/docrypt merge=ours
+/cloudfunctions/getQrcode merge=ours
+/cloudfunctions/login merge=ours
+/cloudfunctions/request merge=ours
+/cloudfunctions/saveUserInfo merge=ours

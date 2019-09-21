@@ -2,7 +2,16 @@
 
 <view class="van-checkbox custom-class">
   <view class="van-checkbox__icon-wrap" bindtap="toggle">
-    <slot wx:if="{{ useIconSlot }}" name="icon" />
+    <block wx:if="{{ useIconSlot }}">
+      <block wx:if="{{disabled}}">
+        <slot name="icon-disabled" />
+      </block>
+      <block wx:else>
+        <slot wx:if="{{value}}" name="icon-active" />
+        <slot wx:else name="icon-default" />
+        <slot name="icon" />
+      </block>
+    </block>
     <van-icon
       wx:else
       name="success"

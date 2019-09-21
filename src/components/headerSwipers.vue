@@ -1,46 +1,51 @@
 <template>
   <!-- 首页顶部轮播 -->
-  <swiper
-    class="swiper"
-    :class="customClass"
-    :indicator-dots="useConfig.indicatorDots"
-    :indicator-color="useConfig.indicatorColor"
-    :indicator-active-color="useConfig.indicatorActiveColor"
-    :autoplay="useConfig.autoplay"
-    :interval="useConfig.interval"
-    :duration="useConfig.duration"
-    :circular="true"
-    :vertical="useConfig.vertical"
-    :previous-margin="useConfig.previousMargin"
-    :next-margin="useConfig.nextMargin"
-    :displayMultipleItems="useConfig.displayMultipleItems"
-    :current="current"
-    :current-item-id="currentItemId"
-    @change="swiperChange"
-    @animationfinish="animationFinish"
-  >
-    <swiper-item
-      v-for="item in swiperList"
-      :key="item"
-      :item-id="item.id"
-    >
-      <a
-        @click="golink(item.url)"
-        class="link"
-      >
-        <img
-          :src="item.imgUrl"
-          mode="scaleToFill"
-          class="slide-image"
-        />
-      </a>
-    </swiper-item>
-  </swiper>
+  <div class="header-swiper-box"
+       :style="'height:'+imgHeight">
+    <swiper v-if="swiperList"
+            class="swiper"
+            :class="customClass"
+            :indicator-dots="useConfig.indicatorDots"
+            :indicator-color="useConfig.indicatorColor"
+            :indicator-active-color="useConfig.indicatorActiveColor"
+            :autoplay="useConfig.autoplay"
+            :interval="useConfig.interval"
+            :duration="useConfig.duration"
+            :circular="useConfig.circular"
+            :vertical="useConfig.vertical"
+            :previous-margin="useConfig.previousMargin"
+            :next-margin="useConfig.nextMargin"
+            :displayMultipleItems="useConfig.displayMultipleItems"
+            @change="swiperChange"
+            @animationfinish="animationFinish">
+      <swiper-item v-for="item in swiperList"
+                   :key="item"
+                   :item-id="item.id">
+        <a @click="golink(item.url)"
+           class="link">
+          <video v-if="item.videoUrl"
+                 class="slide-image"
+                 :autoplay="item.videoAutoplay"
+                 :style="'height:'+imgHeight"
+                 :src="item.videoUrl"></video>
+          <img v-else
+               :src="item.imgUrl"
+               :mode="item.imgMode?item.imgMode:'scaleToFill'"
+               class="slide-image" />
+        </a>
+      </swiper-item>
+    </swiper>
+    <div v-else
+         class="swiper no-data-box">
+      <div class="link"></div>
+
+    </div>
+  </div>
 
 </template>
 
 <script>
-import { golink } from "@/utils/tools";
+import { golink } from '@/utils/tools'
 export default {
   props: {
     swiperList: {
@@ -58,60 +63,81 @@ export default {
     },
     currentItemId: {
       type: String
+    },
+    imgHeight: {
+      type: String,
+      default: '405rpx'
     }
   },
-  data() {
+  data () {
     return {
       defaultconfig: {
         indicatorDots: false,
-        indicatorColor: "rgba(0, 0, 0, 0.3)",
-        indicatorActiveColor: "#000",
+        indicatorColor: 'rgba(0, 0, 0, 0.3)',
+        indicatorActiveColor: '#000',
         autoplay: false,
         interval: 5000,
         duration: 500,
         circular: false,
         vertical: false,
-        previousMargin: "0px",
-        nextMargin: "0px",
+        previousMargin: '0px',
+        nextMargin: '0px',
         displayMultipleItems: 1
       },
       useConfig: {}
-    };
+    }
   },
   watch: {
     config: {
-      handler: function(val, oldval) {
-        this.getUseConfig();
+      handler: function (val, oldval) {
+        this.getUseConfig()
       },
       deep: true
     }
   },
   methods: {
     golink,
-    swiperChange(event) {
-      this.$emit("change", event);
+    swiperChange (event) {
+      this.$emit('change', event)
     },
-    animationFinish(event) {
-      this.$emit("animationfinish", event);
+    animationFinish (event) {
+      this.$emit('animationfinish', event)
     },
-    getUseConfig() {
-      this.useConfig = Object.assign({}, this.defaultconfig, this.config);
+    getUseConfig () {
+      this.useConfig = Object.assign({}, this.defaultconfig, this.config)
     }
   },
-  created() {
-    this.getUseConfig();
+  created () {
+    this.getUseConfig()
   }
-};
+}
 </script>
 
 <style lang="scss">
+.header-swiper-box {
+  margin: 12px auto;
+  width: 375px;
+  .swiper {
+    .link {
+      width: 350px;
+      margin: auto;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  }
+}
 .swiper {
   width: 100%;
   height: 100%;
-  a,
+  .link,
   .slide-image {
     height: 100%;
     width: 100%;
+  }
+}
+.no-data-box {
+  .link {
+    background-color: #fff;
   }
 }
 </style>

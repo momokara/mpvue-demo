@@ -12,4 +12,10 @@ yarn-error.log*
 *.njsproj
 *.sln
 /project.config.json
-/cloudfunctions
+/package-lock.json
+/project.config.json
+/package-lock.json
+/cloudfunctions/saveUserInfo
+/cloudfunctions/request
+/src/app.json
+/project.config.json

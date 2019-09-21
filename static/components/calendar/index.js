@@ -113,6 +113,12 @@ VantComponent({
       let alllen = dateRowNum * 7;
       let _startDay = 0;
       let _endDay = 0;
+      console.log("dateRowNum", dateRowNum);
+
+      this.$emit('dayNum', {
+        month,
+        dateRowNum
+      })
 
       for (let i = 0; i < alllen; i++) {
         let today;
@@ -165,6 +171,8 @@ VantComponent({
           info: day_info ? day_info : "",
           isActMonth: isActMonth
         };
+
+
       }
 
       this.setData({
@@ -188,6 +196,11 @@ VantComponent({
         })
       }
 
+
+      this.$emit('getAlldata', {
+        data: this.data
+      });
+      return dateRowNum;
     },
     lastMonth: function () {
       //全部时间的月份都是按0~11基准，显示月份才+1
@@ -238,9 +251,11 @@ VantComponent({
   },
   // 初始化加载
   mounted: function () {
+
     this._dateInit(this.data.year, this.data.month - 1);
     this.setData({
       isToday: '' + defaultYear + (defaultMonth + 1) + defaultNow.getDate()
-    })
+    });
+  
   },
 })

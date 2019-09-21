@@ -56,7 +56,8 @@
       <div class="fsp16 fc-grey ">
         样式风格
       </div>
-      <van-tabs type="card">
+      <van-tabs type="card" 
+                activeColor="blue">
         <van-tab
           v-for="(item, index) in [1,2,3]"
           :key="index"
@@ -152,13 +153,13 @@
   </div>
 </template>
 <script>
-import apiTable from "@/components/apiDataTable";
-import apiData from "./api_data";
+import apiTable from '@/components/apiDataTable'
+import apiData from './api_data'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
+      title: '',
       tabs: [1, 2, 3, 4],
       tabsMore: [1, 2, 3, 4, 5, 6, 7, 8],
       scrollTop: 0,
@@ -167,7 +168,7 @@ export default {
       table_slot: apiData.slot,
       table_event: apiData.event,
       table_class: apiData.custom_class
-    };
+    }
   },
   // 使用的 vue 组件
   components: {
@@ -175,43 +176,43 @@ export default {
   },
   // 页面中的方法
   methods: {
-    onClickDisabled(e) {
-      console.log(e);
+    onClickDisabled (e) {
+      console.log(e)
       wx.showToast({
         title: `标签 ${e.mp.detail.index + 1} 已被禁用`,
-        icon: "none"
-      });
+        icon: 'none'
+      })
     },
 
-    onChange(e) {
+    onChange (e) {
       wx.showToast({
         title: `切换到标签 ${e.mp.detail.index + 1}`,
-        icon: "none"
-      });
+        icon: 'none'
+      })
     },
 
-    onClick(e) {
-      console.log(e);
+    onClick (e) {
+      console.log(e)
       wx.showToast({
         title: `点击标签 ${e.mp.detail.index + 1}`,
-        icon: "none"
-      });
+        icon: 'none'
+      })
     },
 
-    onPageScroll(e) {
+    onPageScroll (e) {
       this.setData({
         scrollTop: e.scrollTop
-      });
+      })
     }
   },
 
   // 页面创建时使用的钩子 可以开始处理页面中的异步请求数据
-  onLoad(option) {
+  onLoad (option) {
     if (option) {
-      this.title = option.label;
+      this.title = option.label
     }
   }
-};
+}
 </script>
 
 
